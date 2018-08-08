@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk';
+
 AWS.config.update({region: 'us-east-2'});
 
 export default {
@@ -7,10 +8,8 @@ export default {
     *
     */
     init() {
-        const ACCESS_KEY = 'AKIAIBZQRVYDSSF57IBQ';
-        const SECRET_ACCESS_KEY = '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';
-        const credentials = new AWS.Credentials({accessKeyId: ACCESS_KEY, secretAccessKey: SECRET_ACCESS_KEY});
-        this.docClient = new AWS.DynamoDB.DocumentClient({credentials: credentials});
+        console.log('asdf', process.env);
+        this.docClient = new AWS.DynamoDB.DocumentClient();
     },
     /**
     *
