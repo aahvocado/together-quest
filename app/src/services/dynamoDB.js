@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk';
+import { AWS_CREDENTIALS } from '../properties';
 
 AWS.config.update({region: 'us-east-2'});
 
@@ -8,8 +9,7 @@ export default {
     *
     */
     init() {
-        console.log('asdf', process.env);
-        this.docClient = new AWS.DynamoDB.DocumentClient();
+        this.docClient = new AWS.DynamoDB.DocumentClient(AWS_CREDENTIALS);
     },
     /**
     *
