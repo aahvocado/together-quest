@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { AWS_CREDENTIALS } from '../properties';
+import { AWS_CREDENTIALS } from 'properties';
 
 AWS.config.update({region: 'us-east-2'});
 

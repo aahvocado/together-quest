@@ -12,6 +12,8 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
+const appPath = path.resolve(__dirname, '../src/');
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -84,6 +86,14 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
+      components: path.resolve(appPath, 'components'),
+      data: path.resolve(appPath, 'data'),
+      pages: path.resolve(appPath, 'pages'),
+      services: path.resolve(appPath, 'services'),
+      styles: path.resolve(appPath, 'styles'),
+      // tests: path.resolve(appPath, 'tests'),
+
+      properties: path.resolve(appPath, 'properties'),
 
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
