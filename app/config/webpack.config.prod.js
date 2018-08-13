@@ -56,7 +56,7 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [require.resolve('../src/styles/main.less'), require.resolve('./polyfills'), paths.appIndexJs],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -90,7 +90,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -121,12 +121,24 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
             },
             loader: require.resolve('eslint-loader'),
           },
         ],
         include: paths.appSrc,
+      },
+      {
+        test: /\.less$/,
+        use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+          } // translates CSS into CommonJS
+        }, {
+          loader: 'less-loader' // compiles Less to CSS
+        }]
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -149,7 +161,7 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               compact: true,
             },
           },
@@ -222,7 +234,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.(less|config|variables|overrides)$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },

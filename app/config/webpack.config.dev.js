@@ -35,6 +35,7 @@ module.exports = {
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
   entry: [
+    require.resolve('../src/styles/main.less'),
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Include an alternative client for WebpackDevServer. A client's job is to
@@ -133,6 +134,19 @@ module.exports = {
         include: paths.appSrc,
       },
       {
+        test: /\.less$/,
+        use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
+          } // translates CSS into CommonJS
+        }, {
+          loader: 'less-loader' // compiles Less to CSS
+        }]
+      },
+      {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
@@ -208,7 +222,7 @@ module.exports = {
             // its runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.(less|config|variables|overrides)$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',

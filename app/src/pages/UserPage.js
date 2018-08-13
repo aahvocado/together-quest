@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import CharacterComponent from 'components/CharacterComponent';
+import CharacterCard from 'components/CharacterCard';
 
 export default class UserPage extends Component {
   render() {
     return (
-      <div className="user-page">
-        <CharacterComponent />
+      <div className="tg-user-page">
+        <CharacterCard />
       </div>
     );
   }

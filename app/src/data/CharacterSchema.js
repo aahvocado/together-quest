@@ -1,4 +1,4 @@
-export default const baseCharacter = {
+const baseCharacter = {
     name: '',
     title: '',
     stats: {
