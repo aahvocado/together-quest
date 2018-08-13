@@ -1,0 +1,57 @@
+@cardWidth: 300px;
+
+.character-card {
+    max-width: @cardWidth;
+    max-height: 100vh;
+
+    flex: 0 0 auto;
+
+    padding: 10px;
+
+    border: 8px solid white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: beige;
+
+    .character-card-content-container ~ .character-card-content-container {
+        margin-top: 5px;
+    }
+}
+
+.character-card.variant-full {
+    width: @cardWidth;
+}
+
+.character-card-content-container {
+    display: flex;
+    flex-direction: row;
+
+    .character-icon ~ .character-info-container {
+        margin-left: 8px;
+    }
+    .character-title ~ .character-stats {
+        margin-top: 5px;
+    }
+}
+.character-info-container {
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    .character-name {
+        font-size: 2rem;
+    }
+    .character-title {
+        font-size: 0.9rem;
+    }
+}
+
+.character-icon {
+    border-radius: 50%;
+    border: 2px solid white;
+
+    height: 100px;
+    width: 100px;
+    flex: 0 0 auto;
+}

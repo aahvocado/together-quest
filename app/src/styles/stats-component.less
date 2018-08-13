@@ -1,0 +1,23 @@
+
+.character-stats {
+    display: flex;
+    flex-direction: row;
+
+    .stat-component ~ .stat-component {
+        margin-left: 5px;
+    }
+}
+
+.stat-component {
+    .stat-label {
+        padding: 5px;
+        border-top: 2px solid gray;
+        font-size: 0.7rem;
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 2.4rem;
+        text-align: center;
+    }
+}
