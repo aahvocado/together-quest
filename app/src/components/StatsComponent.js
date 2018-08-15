@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 
-import 'styles/stats-component.less';
-
 export class StatComponent extends PureComponent {
   render() {
     const { label, shortLabel, value } = this.props;

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import 'styles/character-card.less';
-
 import StatsComponent from 'components/StatsComponent';
 import ListComponent from 'components/ListComponent';
 
@@ -24,7 +22,7 @@ export default class CharacterCard extends Component {
     const { character: { name, title, stuff, traits, honors } } = this.props;
 
     return (
-      <div className='character-card variant-full'>
+      <div className='character-card variant-full tg-card'>
 
         <div className='character-card-content-container'>
           <div className='character-icon'></div>

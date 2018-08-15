@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 
-import 'styles/list-component.less';
-
 export class ListItemComponent extends PureComponent {
   render() {
 

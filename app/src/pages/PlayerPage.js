@@ -25,7 +25,7 @@ export default class PlayerPage extends Component {
     const { data } = this.state;
 
     return (
-      <div className="tg-user-page">
+      <div className="tg-player-page tg-centered-container">
         <CharacterCard character={ data } />
       </div>
     );
