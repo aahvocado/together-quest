@@ -15,7 +15,7 @@ class LinkButtonComponent extends PureComponent {
   static defaultProps = {
     icon: 'play',
     to: '/',
-    variant: 'corner',
+    variant: 'default',
   };
 
   render() {

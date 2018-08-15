@@ -6,6 +6,13 @@
 
     background: white;
     border-color: transparent;
+
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tg-button.tg-button--default {
+    box-shadow: 0px 0 2px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tg-button.tg-button--round {
@@ -13,11 +20,14 @@
     height: @roundButtonSize;
     width: @roundButtonSize;
 
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .tg-button.tg-button--corner {
   position: absolute;
   top: -25px;
   left: -25px;
+  z-index: @zindex-floating-button;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

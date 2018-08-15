@@ -17,7 +17,7 @@ class ButtonComponent extends PureComponent {
   render() {
     const { variant } = this.props;
 
-    const variantStyles = variant === 'round' ? 'tg-button--round' : '';
+    const variantStyles = variant === 'round' ? 'tg-button--round' : 'tg-button--default';
 
     return (
       <button
