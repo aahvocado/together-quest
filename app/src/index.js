@@ -6,6 +6,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'styles/css-reset.css';
 import 'styles/main.less';
+import '../node_modules/rpg-awesome/css/rpg-awesome.min.css';
 
 // set up services
 async function startServices() {

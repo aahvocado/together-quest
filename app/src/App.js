@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import UserPage from './pages/UserPage';
+import PlayerPage from './pages/PlayerPage';
 
 class App extends Component {
   render() {
     return (
       <div className="tg-app">
-        <UserPage />
+        <PlayerPage />
       </div>
     );
   }

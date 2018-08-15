@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import 'styles/character-card.less';
 
-import dynamoDB from 'services/dynamoDB';
-
 import StatsComponent from 'components/StatsComponent';
 import ListComponent from 'components/ListComponent';
 
@@ -21,25 +19,9 @@ export class CharacterInfoContainer extends Component {
 }
 
 export default class CharacterCard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: {},
-    };
-  }
-
-  async componentDidMount() {
-    // await dynamoDB.create('BLINKS-ID');
-    const resp = await dynamoDB.get('BLINKS-ID');
-
-    this.setState({
-      data: resp.Item
-    });
-  }
 
   render() {
-    const { data } = this.state;
+    const { character: { name, title, stuff, traits, honors } } = this.props;
 
     return (
       <div className='character-card variant-full'>
@@ -48,8 +30,8 @@ export default class CharacterCard extends Component {
           <div className='character-icon'></div>
 
           <CharacterInfoContainer
-            name={data.name}
-            title={data.title}
+            name={ name }
+            title={ title }
           />
         </div>
 
@@ -57,7 +39,7 @@ export default class CharacterCard extends Component {
           <ListComponent
             definition={'character-card-stuff'}
             label={'Stuff'}
-            list={ data.stuff }
+            list={ stuff }
           />
         </div>
 
@@ -65,7 +47,7 @@ export default class CharacterCard extends Component {
           <ListComponent
             definition={'character-card-traits'}
             label={'Traits'}
-            list={ data.traits }
+            list={ traits }
           />
         </div>
 
@@ -73,7 +55,7 @@ export default class CharacterCard extends Component {
           <ListComponent
             definition={'character-card-honors'}
             label={'Honors'}
-            list={ data.honors }
+            list={ honors }
           />
         </div>
 
