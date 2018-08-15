@@ -90,6 +90,7 @@ module.exports = {
       components: path.resolve(appPath, 'components'),
       data: path.resolve(appPath, 'data'),
       pages: path.resolve(appPath, 'pages'),
+      panels: path.resolve(appPath, 'panels'),
       services: path.resolve(appPath, 'services'),
       styles: path.resolve(appPath, 'styles'),
       // tests: path.resolve(appPath, 'tests'),

@@ -10,9 +10,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="tg-app">
-            <Route exact path="/" component={HomePage} />
-            <Route path="/overview" component={OverviewPage} />
-            <Route path="/player" component={PlayerPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/overview" component={OverviewPage} />
+          <Route path="/player" component={PlayerPage} />
         </div>
       </BrowserRouter>
     );
