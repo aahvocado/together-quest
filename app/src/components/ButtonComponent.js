@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 
 class ButtonComponent extends PureComponent {
   static propTypes = {
-    /** style of */
+    /** style of the button */
     variant: PropTypes.string,
+    /** TODO size */
+    size: PropTypes.string,
   };
 
   static defaultProps = {
     variant: 'default',
+    size: 'default',
   };
 
   render() {
     const { variant } = this.props;
 
-    const variantStyles = 'tg-button--round';
+    const variantStyles = variant === 'round' ? 'tg-button--round' : '';
 
     return (
       <button
@@ -27,3 +30,7 @@ class ButtonComponent extends PureComponent {
 }
 
 export default ButtonComponent;
+
+export {
+  ButtonComponent,
+}

@@ -1,14 +1,23 @@
-@buttonSize: 50px;
+@buttonSize: 30px;
+@roundButtonSize: 50px;
 
 .tg-button {
     height: @buttonSize;
 
     background: white;
+    border-color: transparent;
 }
 
-.tb-button.tb-button--round {
-
+.tg-button.tg-button--round {
     border-radius: 50%;
-    height: @buttonSize;
-    width: @buttonSize;
+    height: @roundButtonSize;
+    width: @roundButtonSize;
+
+    font-size: 1.5rem;
+}
+
+.tg-button.tg-button--corner {
+  position: absolute;
+  top: -25px;
+  left: -25px;
 }
