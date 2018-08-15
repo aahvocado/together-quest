@@ -1,6 +1,22 @@
 @tg-black: #333333;
 
 @zindex-floating-button: 3;
+.tg-app {
+  color: @tg-black;
+  background-color: lightblue;
+  height: 100vh;
+  width: 100vw;
+
+  button, a, div, span {
+    font-size: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  a {
+    color: @tg-black;
+    text-decoration: none;
+  }
+}
 
 .tg-card {
     border: 8px solid white;
@@ -10,10 +26,7 @@
 
     min-width: 50px;
     min-height: 50px;
-    position: relative;
-
-    padding: 30px 10px;
-}
+    position: relative;}
 
 .tg-container {
     position: relative;
@@ -22,9 +35,11 @@
     display: flex;
     flex-direction: row;
 }
-
 .tg-centered-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+// .tg-butto-panel {
+//     padding: 30px 10px;
+// }

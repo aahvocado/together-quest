@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+
+import { Link } from 'components/ButtonComponent';
 
 export default class MasterPage extends Component {
   render() {
@@ -7,7 +8,6 @@ export default class MasterPage extends Component {
       <div className="overview-page tg-centered-container">
         <div className="tg-card">
           <Link to="/overview">Game Master</Link>
-          <br/>
           <Link to="/player">Player</Link>
         </div>
       </div>

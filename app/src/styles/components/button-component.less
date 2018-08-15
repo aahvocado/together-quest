@@ -2,28 +2,27 @@
 @roundButtonSize: 50px;
 
 .tg-button {
-    height: @buttonSize;
+  padding: 5px;
+  background: white;
+  border-color: transparent;
 
-    background: white;
-    border-color: transparent;
-
-    cursor: pointer;
-    border-radius: 6px;
-    box-shadow: 0px 0 2px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0px 0 2px 0px rgba(0, 0, 0, 0.2), 0 3px 3px 0px rgba(0, 0, 0, 0.19);
 }
 
 .tg-button.tg-button--round {
-    border-radius: 50%;
-    height: @roundButtonSize;
-    width: @roundButtonSize;
+  border-radius: 50%;
+  height: @roundButtonSize;
+  width: @roundButtonSize;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .fas {
-      font-size: 1.2rem;
-    }
+  .fas {
+    font-size: 1.2rem;
+  }
 }
 
 .tg-button.tg-button--top-left {
