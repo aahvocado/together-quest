@@ -9,9 +9,6 @@
 
     cursor: pointer;
     border-radius: 6px;
-}
-
-.tg-button.tg-button--default {
     box-shadow: 0px 0 2px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -20,12 +17,16 @@
     height: @roundButtonSize;
     width: @roundButtonSize;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .fas {
       font-size: 1.2rem;
     }
 }
 
-.tg-button.tg-button--corner {
+.tg-button.tg-button--top-left {
   position: absolute;
   top: -25px;
   left: -25px;

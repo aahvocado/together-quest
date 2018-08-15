@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom'
 
-import ButtonComponent from 'components/ButtonComponent';
-import LinkButtonComponent from 'components/LinkButtonComponent';
+import { Button, Link } from 'components/ButtonComponent';
 
 import NewCharacterPanel from 'panels/NewCharacterPanel';
 
@@ -12,16 +11,20 @@ export default class MasterPage extends Component {
     return (
       <div className='overview-page tg-centered-container'>
         <div className='tg-container'>
-          <LinkButtonComponent icon='arrow-alt-circle-left' variant='corner' to='/' />
+          <Link to='/' isRound
+            floatingPosition='top-left'
+          >
+            <i className='fas fa-arrow-alt-circle-left fa-fw' />
+          </Link>
 
           <div className='tg-card'>
-            <LinkButtonComponent to='/overview/new-character'>
-            create new character
-            </LinkButtonComponent>
+            <Link to='/overview/new-character'>
+              create new character
+            </Link>
 
-            <ButtonComponent>
+            <Button>
               settings
-            </ButtonComponent>
+            </Button>
           </div>
 
           <div>

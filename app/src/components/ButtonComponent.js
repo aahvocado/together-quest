@@ -1,36 +1,52 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
-class ButtonComponent extends PureComponent {
-  static propTypes = {
-    /** style of the button */
-    variant: PropTypes.string,
-    /** TODO size */
-    size: PropTypes.string,
+import { Link as RouterLink } from 'react-router-dom';
+
+function ButtonHOC(Wrapper) {
+  return class ButtonComponent extends PureComponent {
+    static propTypes = {
+      /** use round styles */
+      isRound: PropTypes.boolean,
+      /** is defined, will position absolute in a corner */
+      floatingPosition: PropTypes.string,
+      /** route if using Link */
+      to: PropTypes.string,
+    };
+
+    static defaultProps = {
+      isRound: false,
+      floatingPosition: undefined,
+      to: '/',
+    };
+
+    render() {
+      const { isRound, floatingPosition, to } = this.props;
+
+      const classnames = cn('tg-button', {
+        'tg-button--round': isRound,
+        'tg-button--top-left': floatingPosition,
+      });
+
+      return (
+        <Wrapper
+          className={classnames}
+          to={Wrapper === RouterLink ? to : undefined}
+        >
+          { this.props.children }
+        </Wrapper>
+      );
+    }
   };
-
-  static defaultProps = {
-    variant: 'default',
-    size: 'default',
-  };
-
-  render() {
-    const { variant } = this.props;
-
-    const variantStyles = variant === 'round' ? 'tg-button--round' : 'tg-button--default';
-
-    return (
-      <button
-        className={`tg-button ${variantStyles}`}
-      >
-        { this.props.children }
-      </button>
-    );
-  }
 }
 
-export default ButtonComponent;
+const Button = ButtonHOC('button');
+const Link = ButtonHOC(RouterLink);
+
+export default Button;
 
 export {
-  ButtonComponent,
+  Button,
+  Link,
 }
