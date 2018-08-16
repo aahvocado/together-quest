@@ -1,16 +1,17 @@
-@all-colors: black, blue, green, pink, red;
+@all-colors: black, gray, blue, green, pink, red;
 
 @tg-black: #333333;
+@tg-gray: #ccd0d8;
 @tg-blue: #afebff;
 @tg-green: #b5ffb5;
-@tg-pink: #f3dff9;
+@tg-pink: #efbbff;
 @tg-red: #ff89a2;
 
 each(@all-colors, {
-  .color-@{value} {
+  #tg-app .color-@{value} {
     color: ~"@{tg-@{value}}";
   }
-  .bg-@{value} {
+  #tg-app .bg-@{value} {
     background: ~"@{tg-@{value}}";
   }
 });
