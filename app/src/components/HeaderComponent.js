@@ -1,38 +1,57 @@
 import React, { PureComponent } from 'react';
 // import cn from 'classnames';
 
+import { connect } from 'react-redux'
+
 import { Link } from 'components/ButtonComponent';
 import Icon from 'components/IconComponent';
 
+
 class HeaderComponent extends PureComponent {
   static defaultProps = {
-
+    url: '/',
   };
 
   render() {
+    const { url } = this.props;
 
     return (
       <div
         className='tg-header'
       >
         <Link
+          title='Home'
+          disabled={url === '/'}
           isFlag
           to='/'
-          title='Home'
-          disabled={true}
         >
           <Icon name='fa-home'/>
         </Link>
 
-        <Link isFlag title='Campaigns'>
+        <Link
+          title='Campaigns'
+          disabled={url === '/campaigns'}
+          isFlag
+          to='/'
+        >
           <Icon name='fa-map'/>
         </Link>
 
-        <Link isFlag title='Modules'>
+        <Link
+          title='Modules'
+          disabled={url === '/modules'}
+          isFlag
+          to='/'
+        >
           <Icon name='fa-atlas'/>
         </Link>
 
-        <Link isFlag title='Settings'>
+        <Link
+          title='Settings'
+          disabled={url === '/settings'}
+          isFlag
+          to='/'
+        >
           <Icon name='fa-cog'/>
         </Link>
       </div>
@@ -40,8 +59,24 @@ class HeaderComponent extends PureComponent {
   }
 };
 
-export default HeaderComponent;
+// connect component to State
+function mapStateToProps(state) {
+  return {
+    url: state.url,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+// export component
+const Header = connect(
+  mapStateToProps, mapDispatchToProps
+)(HeaderComponent)
+
+export default Header;
 
 export {
-  HeaderComponent,
+  Header,
 }
