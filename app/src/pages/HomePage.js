@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 
 import { Link } from 'components/ButtonComponent';
-import Layout from 'components/LayoutComponent';
+import Layout, { Panel, InnerPanel } from 'components/LayoutComponent';
 
 class HomePage extends Component {
   render() {
     return (
-      <Layout className="tg-home tg-page tg-centered-container">
-        test
+      <Layout className="tg-home tg-page">
+        <Panel>
+          test
+        </Panel>
+
+        <InnerPanel isGray>
+          Development Notes!
+        </InnerPanel>
       </Layout>
     );
   }

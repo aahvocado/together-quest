@@ -10,10 +10,11 @@
 
   cursor: pointer;
   border-radius: 6px;
-  box-shadow: 0px 0 2px 0px rgba(0, 0, 0, 0.2), 0 3px 3px 0px rgba(0, 0, 0, 0.19);
+  box-shadow: @tg-component-shadow;
+
   &.disabled {
-    color: #777777;
-    background: #dadada;
+    color: @tg-disabled-color;
+    background: @tg-disabled-bg;
     pointer-events: none;
   }
 
@@ -54,5 +55,5 @@
   left: -25px;
   z-index: @zindex-ui;
 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: @tg-component-shadow;
 }

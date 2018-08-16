@@ -1,0 +1,26 @@
+@tg-panel-color: white;
+
+.tg-layout {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+
+  background: white;
+  flex: 1 1 auto;
+  z-index: @zindex-layout;
+
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: @tg-component-shadow;
+}
+
+.tg-panel {
+  background: @tg-panel-color;
+  flex: 0 0 auto;
+  padding: 10px;
+}
+
+.tg-panel.tg-panel--inner {
+  margin: 10px;
+  border-radius: 10px;
+}

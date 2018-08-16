@@ -1,0 +1,19 @@
+@all-colors: black, blue, green, pink, red;
+
+@tg-black: #333333;
+@tg-blue: #afebff;
+@tg-green: #b5ffb5;
+@tg-pink: #f3dff9;
+@tg-red: #ff89a2;
+
+each(@all-colors, {
+  .color-@{value} {
+    color: ~"@{tg-@{value}}";
+  }
+  .bg-@{value} {
+    background: ~"@{tg-@{value}}";
+  }
+});
+
+@tg-disabled-bg: #dadada;
+@tg-disabled-color: #777777;
