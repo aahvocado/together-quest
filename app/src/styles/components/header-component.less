@@ -1,3 +1,5 @@
+@header-height: @round-button-size + 25px;
+
 .tg-header {
   display: flex;
   flex-direction: row;
@@ -5,8 +7,9 @@
 
   width: 100%;
 
-  z-index: @zindex-floating-ui;
+  z-index: @zindex-ui;
   position: absolute;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
 

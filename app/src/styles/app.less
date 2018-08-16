@@ -1,26 +1,38 @@
 @tg-black: #333333;
 
-@zindex-floating-ui: 3;
+@zindex-ui: 3;
+@zindex-layout: 2;
+@zindex-background: 1;
 
-.tg-app {
-  color: @tg-black;
-  background-color: lightblue;
+@desktop: ~"screen and (max-width: 1600px)";
+@phones: ~"only screen and (max-width: 480px)";
+
+#tg-app {
+  display: flex;
+  flex-direction: column;
+
   height: 100vh;
   width: 100vw;
+  box-sizing: border-box;
 
-  button, a, div, span {
-    font-size: 15px;
-    font-family: 'Source Sans Pro', sans-serif;
-  }
+  /* space for the header */
+  padding-top: @header-height;
+  padding-bottom: 50px;
+
+  /* base text styles */
+  color: @tg-black;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
 
   a {
-    color: @tg-black;
     text-decoration: none;
   }
+}
 
-  .tg-header ~ .tg-page {
-    padding-top: 75px
-  }
+body {
+  color: @tg-black;
+  background-color: lightblue;
 }
 
 .tg-card {

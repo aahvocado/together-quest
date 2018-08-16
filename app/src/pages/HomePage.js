@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 
 import { Link } from 'components/ButtonComponent';
+import Layout from 'components/LayoutComponent';
 
 class HomePage extends Component {
   render() {
     return (
-      <div className="home-page tg-page tg-centered-container">
-        <div className="tg-card">
-          <Link to="/overview">Game Master</Link>
-          <Link to="/player">Player</Link>
-        </div>
-      </div>
+      <Layout className="tg-home tg-page tg-centered-container">
+        test
+      </Layout>
     );
   }
 }

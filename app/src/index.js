@@ -4,7 +4,6 @@ import dynamoDB from 'services/dynamoDB';
 
 import '../node_modules/rpg-awesome/css/rpg-awesome.min.css';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
-import 'styles/css-reset.css';
 import 'styles/main.less';
 
 import App from './App';
@@ -17,5 +16,5 @@ async function startServices() {
 
 // render
 startServices();
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('tg-app'));
 registerServiceWorker();
