@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
-import { actions } from 'data/AppStore';
+import AppStore, { actions } from 'data/AppStore';
 
 import { Link as RouterLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
@@ -25,7 +24,7 @@ function ButtonHOC(Wrapper) {
         disabled,
         isCentered,
         isFlag,
-        isLink,
+        // isLink,
         isRound,
         floatingPosition,
         title,
@@ -39,6 +38,9 @@ function ButtonHOC(Wrapper) {
         'tg-button--flag tg-button--centered': isFlag,
         'tg-button--top-left': floatingPosition,
       });
+
+      // hack a little bit to check if this is a Link
+      const isLink = Wrapper === RouterLink;
 
       return (
         <Wrapper
@@ -58,46 +60,19 @@ function ButtonHOC(Wrapper) {
     }
   };
 }
-const TestLink = ButtonHOC(RouterLink);
 
-class FancyLink extends PureComponent {
-  render() {
-    // const { onClick } = this.props;
-    return (
-      <TestLink
-        {...this.props}
-        isLink
-        onClick={this.props.onClick}
-      >
-        { this.props.children }
-      </TestLink>
-    );
-  };
-
-  handle = (e) => {
-    console.log('test');
-    e.preventDefault();
+// we just need to extend the RouterLink with a dispatch() action
+class ReduxRouterLink extends ButtonHOC(RouterLink) {
+  handleClick = () => {
+    const { onClick, to } = this.props;
+    AppStore.dispatch(actions.changeUrl(to));
+    onClick();
   }
-};
+}
 
-function mapStateToProps(state) {
-  return state;
-};
-
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    onClick: () => {
-      dispatch(actions.changeUrl(ownProps.to));
-    },
-  }
-};
-
-// make the HOC
+// export the HOC
 const Button = ButtonHOC('button');
-const Link = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(FancyLink);
+const Link = ReduxRouterLink;
 
 export default Button;
 
