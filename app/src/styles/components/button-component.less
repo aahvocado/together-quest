@@ -1,5 +1,5 @@
-@buttonSize: 30px;
-@roundButtonSize: 50px;
+@round-button-size: 50px;
+@only-icon-font-size: 1.2rem;
 
 .tg-button {
   padding: 5px;
@@ -9,19 +9,40 @@
   cursor: pointer;
   border-radius: 6px;
   box-shadow: 0px 0 2px 0px rgba(0, 0, 0, 0.2), 0 3px 3px 0px rgba(0, 0, 0, 0.19);
+
+  .disabled {
+    color: #656565;
+    background: #cecece;
+  }
+
+  .tg-icon ~ * {
+    margin-left: 4px;
+  }
 }
 
-.tg-button.tg-button--round {
-  border-radius: 50%;
-  height: @roundButtonSize;
-  width: @roundButtonSize;
-
+.tg-button.tg-button--centered {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .fas {
-    font-size: 1.2rem;
+  .fas, .ra {
+    font-size: @only-icon-font-size;
+  }
+}
+
+.tg-button.tg-button--flag {
+  height: @round-button-size;
+  width: @round-button-size;
+  border-radius: 0 0 @round-button-size @round-button-size;
+}
+
+.tg-button.tg-button--round {
+  border-radius: 50%;
+  height: @round-button-size;
+  width: @round-button-size;
+
+  .fas, .ra {
+    font-size: @only-icon-font-size;
   }
 }
 
@@ -29,7 +50,7 @@
   position: absolute;
   top: -25px;
   left: -25px;
-  z-index: @zindex-floating-button;
+  z-index: @zindex-floating-ui;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

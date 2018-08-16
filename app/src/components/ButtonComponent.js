@@ -1,37 +1,35 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { Link as RouterLink } from 'react-router-dom';
 
 function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
-    static propTypes = {
-      /** use round styles */
-      isRound: PropTypes.boolean,
-      /** is defined, will position absolute in a corner */
-      floatingPosition: PropTypes.string,
-      /** route if using Link */
-      to: PropTypes.string,
-    };
-
     static defaultProps = {
+      disabled: false,
+      isCentered: false,
       isRound: false,
+      isFlag: false,
       floatingPosition: undefined,
+      title: undefined,
       to: '/',
     };
 
     render() {
-      const { isRound, floatingPosition, to } = this.props;
+      const { disabled, isCentered, isFlag, isRound, floatingPosition, title, to } = this.props;
 
       const classnames = cn('tg-button', {
-        'tg-button--round': isRound,
+        'disabled': disabled,
+        'tg-button--centered': isCentered,
+        'tg-button--round tg-button--centered': isRound,
+        'tg-button--flag tg-button--centered': isFlag,
         'tg-button--top-left': floatingPosition,
       });
 
       return (
         <Wrapper
           className={classnames}
+          title={title}
           to={Wrapper === RouterLink ? to : undefined}
         >
           { this.props.children }

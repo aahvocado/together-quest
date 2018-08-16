@@ -1,0 +1,25 @@
+.tg-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100%;
+
+  z-index: @zindex-floating-ui;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .tg-button ~ .tg-button {
+    margin-left: 10px;
+  }
+}
+
+.tg-header .tg-button {
+  transition: transform 500ms;
+  transform: translateY(-10px);
+
+  &:hover {
+    transform: translateY(0px);
+  }
+}
