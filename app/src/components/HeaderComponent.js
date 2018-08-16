@@ -15,6 +15,15 @@ class HeaderComponent extends PureComponent {
       <div
         className='tg-header'
       >
+        <Link
+          isFlag
+          to='/'
+          title='Home'
+          disabled={true}
+        >
+          <Icon name='fa-home'/>
+        </Link>
+
         <Link isFlag title='Campaigns'>
           <Icon name='fa-map'/>
         </Link>
