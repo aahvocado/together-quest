@@ -1,10 +1,8 @@
-@tg-panel-color: white;
-
 .tg-layout {
   display: flex;
   // overflow: auto;
 
-  background: white;
+  // background: white;
   flex: 1 1 auto;
   z-index: @zindex-layout;
 
@@ -21,8 +19,19 @@
   }
 }
 
+@multi-iterations: 3;
+
 .tg-layout.tg-layout--multi {
-  .tg-panel {
-    max-width: 300px;
+  > .tg-panel {
+    width: 33%;
   }
+
+  /* styles the active panel */
+  .panel-loop (@i) when (@i > 0) {
+    &.tg-active-panel-@{i} > .tg-panel:nth-child(@{i}) {
+      .tg-active-panel-mixin();
+    }
+    .panel-loop(@i - 1);
+  }
+  .panel-loop (@multi-iterations);
 }

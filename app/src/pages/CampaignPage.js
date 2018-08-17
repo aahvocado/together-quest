@@ -8,18 +8,17 @@ import { CharacterComponent, CharacterBlurb } from 'components/CharacterComponen
 
 import CharacterData from 'data/CharacterData';
 
-import NewsPanel from 'panels/NewsPanel';
-
 class CampaignPage extends Component {
   state = {
+    activePanel: 1,
     selectedCharacter: undefined,
   }
 
   render() {
-    const {selectedCharacter} = this.state;
+    const { activePanel, selectedCharacter } = this.state;
 
     return (
-      <Layout multi className='tg-campaign tg-page'>
+      <Layout multi activePanel={activePanel} className='tg-campaign tg-page'>
         <Panel>
           <h2>Campaigns</h2>
 

@@ -5,14 +5,16 @@ import { connect } from 'react-redux'
 
 class LayoutComponent extends PureComponent {
   static defaultProps = {
+    activePanel: -1, // which panel is active right now, start from 1
     className: '',
     multi: false,
   };
 
   render() {
-    const { className, multi } = this.props;
+    const { activePanel, className, multi } = this.props;
 
     const modifiers = {
+      [`tg-active-panel-${activePanel}`]: activePanel > 0,
       'tg-layout--multi': multi,
     };
 
