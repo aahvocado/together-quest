@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Button, Link } from 'components/ButtonComponent';
+import { ButtonGroup, Link } from 'components/ButtonComponent';
+import Icon from 'components/IconComponent';
 import Layout, { Panel, InnerPanel } from 'components/LayoutComponent';
 import NewsPanel from 'panels/NewsPanel';
 
@@ -14,8 +15,9 @@ class HomePage extends Component {
           <div>What would you like to do?</div>
 
           <InnerPanel className='bg-gray'>
-            <Button>Test</Button>
-            <Link>Test</Link>
+            <ButtonGroup>
+              <Link to='/new-campaign'><Icon name='fa-map-marked-alt' /><span>Create a new Campaign</span></Link>
+            </ButtonGroup>
           </InnerPanel>
 
         </Panel>

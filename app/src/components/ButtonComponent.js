@@ -5,6 +5,16 @@ import AppStore, { actions } from 'data/AppStore';
 
 import { Link as RouterLink } from 'react-router-dom';
 
+class ButtonGroup extends PureComponent {
+  render() {
+    const { className } = this.props;
+
+    return (
+      <div className={cn('tg-button-group', className)}>{ this.props.children }</div>
+    )
+  }
+}
+
 function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
     static defaultProps = {
@@ -77,6 +87,7 @@ const Link = ReduxRouterLink;
 export default Button;
 
 export {
+  ButtonGroup,
   Button,
   Link,
 }

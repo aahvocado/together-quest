@@ -1,6 +1,14 @@
 @round-button-size: 50px;
 @only-icon-font-size: 1.2rem;
 
+.tg-button-group {
+  display: flex;
+  flex-direction: row;
+
+  .tg-button + .tg-button {
+    margin-left: 10px;
+  }
+}
 .tg-button {
   flex: 0 0 auto;
   display: flex;
