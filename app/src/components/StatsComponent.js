@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-export class StatComponent extends PureComponent {
+class StatComponent extends PureComponent {
   render() {
     const { label, shortLabel, value } = this.props;
 
@@ -13,22 +13,38 @@ export class StatComponent extends PureComponent {
   }
 }
 
-export default class CharacterCard extends PureComponent {
-  // constructor(props) {
-  //   super(props);
-  // }
+class StatsComponent extends PureComponent {
+  static defaultProps = {
+    character: {
+      stats: {},
+      statMods: {},
+    },
+  }
 
   render() {
+    const { character: { stats, statMods } } = this.props;
 
+    const totalStr = stats.strength + statMods.strength;
+    const totalAgi = stats.agility + statMods.agility;
+    const totalWis = stats.wisdom + statMods.wisdom;
+    const totalChr = stats.charisma + statMods.charisma;
+    const totalMag = stats.magic + statMods.magic;
 
     return (
       <div className='character-stats'>
-        <StatComponent label={'strength'} shortLabel={'STR'} value={5} />
-        <StatComponent label={'agility'} shortLabel={'AGI'} value={5} />
-        <StatComponent label={'wisdom'} shortLabel={'WIS'} value={5} />
-        <StatComponent label={'charisma'} shortLabel={'CHR'} value={5} />
-        <StatComponent label={'magic'} shortLabel={'MAG'} value={5} />
+        <StatComponent label={'strength'} shortLabel={'STR'} value={totalStr} />
+        <StatComponent label={'agility'} shortLabel={'AGI'} value={totalAgi} />
+        <StatComponent label={'wisdom'} shortLabel={'WIS'} value={totalWis} />
+        <StatComponent label={'charisma'} shortLabel={'CHR'} value={totalChr} />
+        <StatComponent label={'magic'} shortLabel={'MAG'} value={totalMag} />
       </div>
     );
   }
+}
+
+export default StatsComponent;
+
+export {
+  StatsComponent,
+  StatComponent,
 }

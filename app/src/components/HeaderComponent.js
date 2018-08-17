@@ -32,7 +32,7 @@ class HeaderComponent extends PureComponent {
           title='Campaigns'
           disabled={url === '/campaigns'}
           isFlag
-          to='/'
+          to='/campaigns'
         >
           <Icon name='fa-map'/>
         </Link>

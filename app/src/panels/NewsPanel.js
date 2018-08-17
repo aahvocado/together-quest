@@ -29,7 +29,7 @@ class NewsPanel extends PureComponent {
     const { newsData } = this.props;
 
     return (
-      <Panel className='tg-news'>
+      <Panel className='tg-news bg-blue'>
         <h2 className='tg-news-heading'>News</h2>
         <ul className='tg-news-list'>
           { newsData.map((news) => {

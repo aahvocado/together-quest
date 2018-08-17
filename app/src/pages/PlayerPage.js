@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import dynamoDB from 'services/dynamoDB';
 
-import CharacterCard from 'components/CharacterCard';
+import CharacterComponent from 'components/CharacterComponent';
 
 export default class PlayerPage extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class PlayerPage extends Component {
 
     return (
       <div className="tg-player-page tg-centered-container">
-        <CharacterCard character={ data } />
+        <CharacterComponent character={ data } />
       </div>
     );
   }

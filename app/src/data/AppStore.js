@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 
+const currentPathname = window.location.pathname;
+
 // default state
 const state_default = {
-  url: '',
+  url: currentPathname,
 };
 
 // constants (actions)
@@ -18,7 +20,7 @@ function changeUrl(url) {
 
 // reducer
 function changeUrlReducer(state = {}, action) {
-  return action.url || '/';
+  return action.url || currentPathname;
 };
 
 // collections

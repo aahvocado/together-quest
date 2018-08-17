@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 
 import { Button, Link } from 'components/ButtonComponent';
 
-import NewCharacterPanel from 'panels/NewCharacterPanel';
+// import NewCharacterPanel from 'panels/NewCharacterPanel';
 
 class MasterPage extends Component {
   render() {
@@ -22,7 +22,7 @@ class MasterPage extends Component {
           </div>
 
           <div>
-            <Route path='/overview/new-character' component={NewCharacterPanel} />
+            <Route path='/overview/new-character' component={<div/>} />
           </div>
 
         </div>

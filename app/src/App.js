@@ -7,6 +7,7 @@ import AppStore from 'data/AppStore';
 import Header from 'components/HeaderComponent';
 import Footer from 'components/FooterComponent';
 
+import CampaignPage from 'pages/CampaignPage';
 import HomePage from 'pages/HomePage';
 import OverviewPage from 'pages/OverviewPage';
 import PlayerPage from 'pages/PlayerPage';
@@ -21,6 +22,7 @@ class App extends Component {
 
             <Route exact path="/" component={HomePage} />
             <Route path="/overview" component={OverviewPage} />
+            <Route path="/campaigns" component={CampaignPage} />
             <Route path="/player" component={PlayerPage} />
 
             <Footer />

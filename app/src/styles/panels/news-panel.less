@@ -2,8 +2,6 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  max-width: 250px;
-
   .tg-news-heading + .tg-news-list {
     margin-top: 8px;
   }
@@ -11,14 +9,26 @@
   .tg-news-item + .tg-news-item {
     margin-top: 8px;
   }
+
+  @media @desktop {
+    max-width: 250px;
+  }
+
+  @media @phone {
+    max-height: 250px;
+  }
 }
 
 .tg-news-item {
   display: flex;
   flex-direction: column;
 
-  border-left: 3px solid @tg-pink;
+  border-left: 3px solid #6e8cd0;
   padding-left: 4px;
+
+  &:first-of-type {
+    border-left: 3px solid white;
+  }
 
   .tg-news-item-date + .tg-news-item-content {
     margin-top: 4px;

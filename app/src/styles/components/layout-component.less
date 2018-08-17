@@ -2,7 +2,6 @@
 
 .tg-layout {
   display: flex;
-  flex-direction: row;
   overflow: auto;
 
   background: white;
@@ -12,6 +11,14 @@
   margin: 10px;
   border-radius: 5px;
   box-shadow: @tg-component-shadow;
+
+  @media @desktop {
+    flex-direction: row;
+  }
+
+  @media @phone {
+    flex-direction: column;
+  }
 }
 
 .tg-panel {
