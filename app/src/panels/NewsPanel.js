@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { InnerPanel } from 'components/LayoutComponent';
+import { Panel } from 'components/LayoutComponent';
 
 
 class NewsItem extends PureComponent {
@@ -29,14 +29,14 @@ class NewsPanel extends PureComponent {
     const { newsData } = this.props;
 
     return (
-      <InnerPanel className='tg-news'>
+      <Panel className='tg-news'>
         <h2 className='tg-news-heading'>News</h2>
         <ul className='tg-news-list'>
           { newsData.map((news) => {
             return <NewsItem data={news} key={news.date}/>
           })}
         </ul>
-      </InnerPanel>
+      </Panel>
     );
   }
 }
