@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-export class ListItemComponent extends PureComponent {
+class ListItemComponent extends PureComponent {
   render() {
 
     return (
@@ -11,7 +11,7 @@ export class ListItemComponent extends PureComponent {
   }
 }
 
-export default class ListComponent extends PureComponent {
+class ListComponent extends PureComponent {
   static defaultProps = {
     definition: undefined, // required to uniquely identify this from other lists
     label: undefined,
@@ -37,4 +37,10 @@ export default class ListComponent extends PureComponent {
       </div>
     );
   }
+}
+
+export default ListComponent;
+export {
+  ListComponent,
+  ListItemComponent,
 }

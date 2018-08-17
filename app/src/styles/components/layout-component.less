@@ -2,7 +2,7 @@
 
 .tg-layout {
   display: flex;
-  overflow: auto;
+  // overflow: auto;
 
   background: white;
   flex: 1 1 auto;
@@ -18,5 +18,11 @@
 
   @media @phone {
     flex-direction: column;
+  }
+}
+
+.tg-layout.tg-layout--multi {
+  .tg-panel {
+    max-width: 300px;
   }
 }

@@ -18,7 +18,7 @@ class LayoutComponent extends PureComponent {
 
     return (
       <div
-        className={cn('tg-layout', className)}
+        className={cn('tg-layout', modifiers, className)}
       >
         { this.props.children }
       </div>

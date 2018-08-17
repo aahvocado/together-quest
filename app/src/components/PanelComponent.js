@@ -4,14 +4,21 @@ import cn from 'classnames';
 class Panel extends PureComponent {
   static defaultProps = {
     className: '',
+
+    active: false,
     inner: false,
   };
 
   render() {
-    const { className, inner } = this.props;
+    const {
+      active,
+      className,
+      inner,
+    } = this.props;
 
     const modifiers = {
       'tg-panel--inner': inner,
+      'active': active,
     };
 
     return (
