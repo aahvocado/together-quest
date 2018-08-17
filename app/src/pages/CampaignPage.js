@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { ButtonGroup, Link } from 'components/ButtonComponent';
 import Icon from 'components/IconComponent';
-import Layout, { Panel, InnerPanel } from 'components/LayoutComponent';
+import Layout from 'components/LayoutComponent';
+import Panel from 'components/PanelComponent';
 import { CharacterComponent, CharacterBlurb } from 'components/CharacterComponent';
 
 import CharacterData from 'data/CharacterData';
@@ -24,7 +25,7 @@ class CampaignPage extends Component {
           <h2>Campaigns</h2>
           <div>Cat Quest</div>
 
-          <InnerPanel className='bg-blue'>
+          <Panel inner className='bg-blue'>
             <div><Icon name='ra-double-team'/><span>Current Players</span></div>
 
             <ul>
@@ -32,7 +33,7 @@ class CampaignPage extends Component {
                 return <CharacterBlurb key={character.name} character={character} onClick={this.handleSelectCharacter} />
               })}
             </ul>
-          </InnerPanel>
+          </Panel>
         </Panel>
 
         <Panel className='tg-character-panel'>

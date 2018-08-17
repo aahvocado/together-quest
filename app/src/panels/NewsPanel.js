@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Panel } from 'components/LayoutComponent';
+import Panel from 'components/PanelComponent';
 
 
 class NewsItem extends PureComponent {
