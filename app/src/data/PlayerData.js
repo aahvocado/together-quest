@@ -3,16 +3,18 @@
 const playerSchema = {
   username: undefined,
   id: undefined,
+  settings: {},
   email: undefined,
   password: null, // how to do this?
   campaigns: [],
   characters: [],
-  settings: {},
+  modules: [],
 };
 
 const samplePlayer = {
   username: 'aahvocado',
   id: '000000001',
+  settings: {},
   email: 'dxiao.ns@gmail.com',
   password: 'password',
   campaigns: [
@@ -21,7 +23,7 @@ const samplePlayer = {
   characters: [
     'DEMO-ID',
   ],
-  settings: {},
+  modules: [],
 };
 
 export {

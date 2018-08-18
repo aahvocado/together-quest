@@ -1,5 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import cn from 'classnames';
+
+import { Icon } from 'components';
 
 import AppData, { actions } from 'data/AppData';
 
@@ -19,6 +21,7 @@ function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
     static defaultProps = {
       disabled: false,
+      icon: undefined, // pass it an icon name
       isCentered: false,
       isFlag: false,
       isRound: false,
@@ -32,6 +35,7 @@ function ButtonHOC(Wrapper) {
     render() {
       const {
         disabled,
+        icon,
         isCentered,
         isFlag,
         isRound,
@@ -60,7 +64,16 @@ function ButtonHOC(Wrapper) {
           onClick={this.handleClick}
           to={isLink ? to : undefined}
         >
-          { this.props.children }
+          { icon &&
+            <Fragment>
+              <Icon name={icon} />
+              <span>{this.props.children}</span>
+            </Fragment>
+          }
+
+          { !icon &&
+            this.props.children
+          }
         </Wrapper>
       );
     };

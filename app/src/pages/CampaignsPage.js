@@ -9,10 +9,7 @@ import {
   Layout,
   Panel,
   CharacterComponent,
-  CharacterBlurb,
 } from 'components';
-
-import CharacterData from 'data/CharacterData';
 
 // redux mappings
 function mapStateToProps(state) {
@@ -41,23 +38,33 @@ const ConnectedCampaignSelectPanel = connect(
           <h2>Campaigns</h2>
 
           <Panel inner className='bg-gray'>
-            <Link to='/new-campaign'><Icon name='fa-map-marked-alt' /><span>Create a new Campaign</span></Link>
+            <Link to='/new-campaign' icon='fa-map-marked-alt'>Create a new Campaign</Link>
           </Panel>
 
           <Panel inner className='bg-gray'>
             <ButtonGroup>
               { campaigns.map((campaign) => {
-                const { title } = campaign;
+                const { title, id } = campaign;
 
                 return (
-                  <Button
+                  <Link
                     key={title}
-                    onClick={this.handleOnCampaignClick}
+                    to={`/campaigns/${id}`}
+                    // onClick={this.handleOnCampaignClick}
                   >
                     {title}
-                  </Button>
+                  </Link>
                 )
               })}
+            </ButtonGroup>
+          </Panel>
+
+
+          <Panel inner className='bg-gray'>
+            <ButtonGroup>
+              <Button disabled>
+                something else
+              </Button>
             </ButtonGroup>
           </Panel>
 
@@ -86,25 +93,17 @@ class CampaignDetailsPanel extends PureComponent {
 
     return (
       <Panel>
-        <h2>{title}</h2>
-        <Panel inner className='bg-blue'>
-          <div><Icon name='ra-double-team'/><span>{`contains ${players.length} Players`}</span></div>
 
-          <ul>
-            { CharacterData.characters.map((character) => {
-              return <CharacterBlurb key={character.name} character={character} onClick={this.handleSelectCharacter} />
-            })}
-          </ul>
-        </Panel>
       </Panel>
     )
   }
+
 }
 
-const ConnectedCampaignPage = connect(
+const ConnectedCampaignsPage = connect(
   mapStateToProps, mapDispatchToProps
 )(
-  class CampaignPage extends Component {
+  class CampaignsPage extends Component {
     state = {
       activePanel: 1,
       selectedCharacter: undefined,
@@ -138,12 +137,7 @@ const ConnectedCampaignPage = connect(
       })
     }
 
-    handleSelectCharacter = (character) => {
-      this.setState({
-        selectedCharacter: character,
-      })
-    }
   }
 );
 
-export default ConnectedCampaignPage;
+export default ConnectedCampaignsPage;

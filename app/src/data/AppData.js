@@ -44,16 +44,16 @@ function updateUserCampaignsReducer(state = {}, action) {
 
   switch(type) {
     case 'add':
-      const updatedCampaigns = state.campaigns || [];
+      const updatedCampaigns = state.user.campaigns || [];
       updatedCampaigns.push(campaign);
-      return Object.assign({}, state.campaigns, updatedCampaigns);
+      return Object.assign({}, state.user.campaigns, updatedCampaigns);
     case 'remove':
-      const oldCampaigns = state.campaigns || [];
-      const findCampaignIndex = state.campaigns.findIndex((c) => {
+      const oldCampaigns = state.user.campaigns || [];
+      const findCampaignIndex = state.user.campaigns.findIndex((c) => {
         return c.id === campaign.id;
       });
       oldCampaigns.splice(findCampaignIndex, 1);
-      return Object.assign({}, state.campaigns, oldCampaigns);
+      return Object.assign({}, state.user.campaigns, oldCampaigns);
     default:
       return state;
 

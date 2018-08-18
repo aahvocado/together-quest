@@ -7,7 +7,8 @@ import AppData from 'data/AppData';
 import Header from 'components/HeaderComponent';
 import Footer from 'components/FooterComponent';
 
-import CampaignPage from 'pages/CampaignPage';
+import CampaignsPage from 'pages/CampaignsPage';
+import CampaignOverviewPage from 'pages/CampaignOverviewPage';
 import HomePage from 'pages/HomePage';
 import OverviewPage from 'pages/OverviewPage';
 import PlayerPage from 'pages/PlayerPage';
@@ -21,8 +22,12 @@ class App extends Component {
             <Header />
 
             <Route exact path="/" component={HomePage} />
+
             <Route path="/overview" component={OverviewPage} />
-            <Route path="/campaigns" component={CampaignPage} />
+
+            <Route exact path="/campaigns" component={CampaignsPage} />
+            <Route path="/campaigns/:campaignId" component={CampaignOverviewPage} />
+
             <Route path="/player" component={PlayerPage} />
 
             <Footer />
