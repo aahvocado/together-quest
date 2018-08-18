@@ -3,9 +3,10 @@ import React, { PureComponent } from 'react';
 
 import { connect } from 'react-redux'
 
-import { Link } from 'components/ButtonComponent';
-import Icon from 'components/IconComponent';
-
+import {
+  Icon,
+  Link,
+} from 'components';
 
 class HeaderComponent extends PureComponent {
   static defaultProps = {
@@ -19,6 +20,17 @@ class HeaderComponent extends PureComponent {
       <div
         className='tg-header'
       >
+        <Link
+          title='Player'
+          disabled={url === '/player'}
+          isFlag
+          isWide
+          to='/'
+        >
+          <Icon name='fa-street-view'/>
+          <span>{"name"}</span>
+        </Link>
+
         <Link
           title='Home'
           disabled={url === '/'}

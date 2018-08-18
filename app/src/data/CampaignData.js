@@ -8,7 +8,7 @@ const campaignSchema = {
 const sampleCampaign = {
   title: 'Cat Quest',
   id: 'CAT-QUEST-ID',
-  players: ['BLINKS-ID', 'NOOK-ID'],
+  players: ['BLINKS-ID', 'NOOK-ID', 'PEARL-ID', 'DOUGLAS-ID'],
   modules: ['CAT-QUEST-MODULE-ID']
 };
 

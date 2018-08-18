@@ -53,9 +53,13 @@
 }
 
 .tg-button.tg-button--flag {
-  height: @round-button-size;
-  width: @round-button-size;
+  // height: @round-button-size;
+  // width: @round-button-size;
   border-radius: 0 0 @round-button-size @round-button-size;
+}
+.tg-button.tg-button--flag.tg-button--wide-flag {
+  border-radius: 0 0 @round-button-size/2 @round-button-size/2;
+  padding: 0 10px;
 }
 
 .tg-button.tg-button--round {

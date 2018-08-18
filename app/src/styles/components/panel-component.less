@@ -23,3 +23,25 @@
   margin: 10px;
   border-radius: 10px;
 }
+
+/* mixins */
+.tg-active-panel-mixin {
+  z-index: @zindex-active-panel;
+  transform: translateY(-5px);
+
+  @media @desktop {
+    box-shadow: @tg-panel-left-shadow, @tg-panel-right-shadow, @tg-panel-bottom-shadow;
+
+    &:first-child {
+      box-shadow: @tg-panel-right-shadow, @tg-panel-bottom-shadow;
+    }
+
+    &:last-child {
+      box-shadow: @tg-panel-left-shadow, @tg-panel-bottom-shadow;
+    }
+  }
+
+  @media @phone {
+
+  }
+}
