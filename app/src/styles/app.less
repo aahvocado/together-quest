@@ -6,14 +6,14 @@ body {
 #tg-app {
   display: flex;
   flex-direction: column;
-
-  height: 100vh;
-  width: 100vw;
+  align-items: center;
   box-sizing: border-box;
 
   /* space for the header */
   padding-top: @header-height;
   padding-bottom: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
 
   /* base text styles */
   color: @tg-black;
@@ -32,6 +32,21 @@ body {
     font-size: 1.5rem;
     font-family: 'Ruda', sans-serif;
   }
+
+  @media @desktop {
+    height: 100vh;
+    width: 100vw;
+    max-width: 1280px;
+  }
+
+  @media @mobile {
+    width: 100vw;
+    min-height: 100vh;
+  }
+}
+
+.tg-page {
+  width: 100%;
 }
 
 .placeholder {

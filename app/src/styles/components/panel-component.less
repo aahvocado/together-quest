@@ -10,8 +10,26 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+}
+// if in a multi layout
+.tg-layout.tg-layout--multi > .tg-panel {
+  flex: 1 1 33.33%;
+  width: auto;
 
-  transition: transform 100ms;
+  @media @desktop {
+    transition: transform 100ms;
+  }
+
+  @media @mobile {
+    transition: transform 500ms, opacity 300ms;
+    transform: translateY(25px);
+    opacity: 0;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
 }
 .tg-panel.active {
   .tg-active-panel-mixin();
@@ -27,9 +45,9 @@
 /* mixins */
 .tg-active-panel-mixin {
   z-index: @zindex-active-panel;
-  transform: translateY(-5px);
 
   @media @desktop {
+    transform: translateY(-5px);
     box-shadow: @tg-panel-left-shadow, @tg-panel-right-shadow, @tg-panel-bottom-shadow;
 
     &:first-child {
@@ -41,7 +59,8 @@
     }
   }
 
-  @media @phone {
-
+  @media @mobile {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

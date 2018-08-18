@@ -1,5 +1,6 @@
 .tg-layout {
   display: flex;
+  position: relative;
   // overflow: auto;
 
   // background: white;
@@ -14,25 +15,24 @@
     flex-direction: row;
   }
 
-  @media @phone {
+  @media @mobile {
     flex-direction: column;
+
+    // > .tg-panel + .tg-panel {
+    //   margin-top: 5px;
+    // }
   }
 }
 
-@multi-iterations: 3;
-
+/* styles the active panel */
 .tg-layout.tg-layout--multi {
-  > .tg-panel {
-    flex: 1 1 33.33%;
-    width: auto;
-  }
+  @layout-multi-iterations: 3;
 
-  /* styles the active panel */
   .panel-loop (@i) when (@i > 0) {
     &.tg-active-panel-@{i} > .tg-panel:nth-child(@{i}) {
       .tg-active-panel-mixin();
     }
     .panel-loop(@i - 1);
   }
-  .panel-loop (@multi-iterations);
+  .panel-loop (@layout-multi-iterations);
 }
