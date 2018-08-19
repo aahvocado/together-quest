@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import AppData from 'data/AppData';
+import store from 'data';
 
 import Header from 'components/HeaderComponent';
 import Footer from 'components/FooterComponent';
@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Provider store={AppData}>
+        <Provider store={store}>
           <Fragment>
             <Header />
 

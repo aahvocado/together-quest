@@ -1,9 +1,10 @@
 import React, { Fragment, PureComponent } from 'react';
 import cn from 'classnames';
 
-import { Icon } from 'components';
+import store from 'data';
+import { updateUrl } from 'data/actions';
 
-import AppData, { actions } from 'data/AppData';
+import { Icon } from 'components';
 
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -94,7 +95,7 @@ function ButtonHOC(Wrapper) {
 class ReduxRouterLink extends ButtonHOC(RouterLink) {
   handleClick = () => {
     const { onClick, to } = this.props;
-    AppData.dispatch(actions.changeUrl(to));
+    store.dispatch(updateUrl(to));
     onClick();
   }
 }

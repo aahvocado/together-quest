@@ -21,7 +21,7 @@ const createUser = async (data) => {
       settings: {},
       campaigns: [],
       characters: [],
-      modules: [],
+      // modules: [],
     },
   }
 
