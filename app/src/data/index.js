@@ -8,15 +8,15 @@ import appData from 'data/appData';
 * This file just gathers all the Data and Actions
 */
 
-const defaultState = {
-  url: userData.defaultState,
-  user: userData.defaultState,
-};
+const defaultState = Object.assign({},
+  appData.defaultState,
+  userData.defaultState,
+);
 
-const reducers = combineReducers({
-  url: appData.reducer,
-  user: userData.reducer,
-});
+const reducers = combineReducers(Object.assign({},
+  appData.reducer,
+  userData.reducer,
+));
 
 // create store
 const store = createStore(reducers);

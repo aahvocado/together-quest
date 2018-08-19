@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
 
 const userSchema = {
-  userId: undefined,
-  username: undefined,
-  settings: {},
-  email: undefined,
-  password: null, // how to do this?
-  campaigns: [],
-  characters: [],
-  // modules: [],
+  user: {
+    userId: undefined,
+    username: undefined,
+    settings: {},
+    email: undefined,
+    password: null, // how to do this?
+    campaigns: [],
+    characters: [],
+    // modules: [],
+  }
 };
 
 // constants
@@ -27,7 +29,13 @@ const updateCredentials = (data) => ({
 
 // reducers
 const userCredentialsReducer = (state = {}, { type, data }) => {
-  return Object.assign({}, state.user, data);
+  switch (type) {
+    case constants.UPDATE_CREDENTIALS:
+      return Object.assign({}, state, data || {});
+
+    default:
+      return state;
+  };
 };
 
 // combined
@@ -39,11 +47,9 @@ const userData = {
   defaultState: Object.assign({}, userSchema, {
 
   }),
-  reducer: combineReducers({
-    userId: userCredentialsReducer,
-    username: userCredentialsReducer,
-    email: userCredentialsReducer,
-  }),
+  reducer: {
+    user: userCredentialsReducer,
+  },
 };
 
 export default userData;

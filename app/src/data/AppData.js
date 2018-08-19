@@ -19,7 +19,13 @@ const updateUrl = (data) => ({
 
 // reducers
 const updateUrlReducer = (state = {}, { type, data }) => {
-  return data || '/';
+  switch (type) {
+    case constants.UPDATE_URL:
+      return data || '/';
+
+    default:
+      return state;
+  };
 };
 
 // combined
@@ -31,9 +37,9 @@ const appData = {
   defaultState: Object.assign({}, appSchema, {
     url: currentPath,
   }),
-  reducer: combineReducers({
+  reducer: {
     url: updateUrlReducer,
-  }),
+  },
 };
 
 export default appData;
