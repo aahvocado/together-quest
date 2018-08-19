@@ -1,6 +1,6 @@
 // import uuid from 'node-uuid';
 
-const playerSchema = {
+const userSchema = {
   username: undefined,
   id: undefined,
   settings: {},
@@ -11,7 +11,7 @@ const playerSchema = {
   modules: [],
 };
 
-const samplePlayer = {
+const sampleUser = {
   username: 'aahvocado',
   id: '000000001',
   settings: {},
@@ -27,6 +27,6 @@ const samplePlayer = {
 };
 
 export {
-  playerSchema,
-  samplePlayer,
+  userSchema,
+  sampleUser,
 }

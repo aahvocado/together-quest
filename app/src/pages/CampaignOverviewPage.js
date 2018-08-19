@@ -29,7 +29,6 @@ const ConnectedCampaignOverviewPage = connect(
       // const { campaign: { title, id, players, modules } } = this.props;
       const { match: { params: { campaignId } } } = this.props;
 
-
       return (
         <Layout className='tg-campaign-overview tg-page'>
           <Panel>

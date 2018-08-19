@@ -9,6 +9,7 @@ import {
 } from 'components';
 
 import NewsPanel from 'panels/NewsPanel';
+import LoginPanel from 'panels/LoginPanel';
 
 class HomePage extends Component {
   render() {
@@ -16,12 +17,11 @@ class HomePage extends Component {
       <Layout className='tg-home tg-page'>
         <Panel>
           <h2>Welcome to Together Quest!</h2>
-          <div>What would you like to do?</div>
+
+          <LoginPanel />
 
           <Panel inner className='bg-gray' >
-            <ButtonGroup>
-              <Link to='/new-campaign'><Icon name='fa-map-marked-alt' /><span>Create a new Campaign</span></Link>
-            </ButtonGroup>
+            ...
           </Panel>
 
         </Panel>

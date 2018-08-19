@@ -21,14 +21,17 @@ function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
     static defaultProps = {
       disabled: false,
-      icon: undefined, // pass it an icon name
+      floatingPosition: undefined,
+      title: undefined,
+      type: 'text',
+
       isCentered: false,
       isFlag: false,
       isRound: false,
       isWide: false,
-      floatingPosition: undefined,
+
+      icon: undefined, // pass it an icon name
       onClick: () => {},
-      title: undefined,
       to: '/',
     };
 
@@ -43,6 +46,7 @@ function ButtonHOC(Wrapper) {
         floatingPosition,
         title,
         to,
+        type,
       } = this.props;
 
       const classnames = cn('tg-button', {
@@ -63,6 +67,7 @@ function ButtonHOC(Wrapper) {
           title={title}
           onClick={this.handleClick}
           to={isLink ? to : undefined}
+          type={type}
         >
           { icon &&
             <Fragment>

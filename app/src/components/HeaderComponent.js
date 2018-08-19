@@ -15,6 +15,7 @@ class HeaderComponent extends PureComponent {
 
   render() {
     const { url } = this.props;
+    console.log('header', url);
 
     return (
       <div
