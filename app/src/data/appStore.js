@@ -2,19 +2,19 @@ import { createStore, combineReducers } from 'redux';
 
 import actions from 'data/actions';
 import userData from 'data/userData';
-import appData from 'data/appData';
+import navigationData from 'data/navigationData';
 
 /**
 * This file just gathers all the Data and Actions
 */
 
 const defaultState = Object.assign({},
-  appData.defaultState,
+  navigationData.defaultState,
   userData.defaultState,
 );
 
 const reducers = combineReducers(Object.assign({},
-  appData.reducer,
+  navigationData.reducer,
   userData.reducer,
 ));
 

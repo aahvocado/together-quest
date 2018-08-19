@@ -1,9 +1,9 @@
 import userData from 'data/userData';
-import appData from 'data/appData';
+import navigationData from 'data/navigationData';
 
 const {
   updateUrl,
-} = appData.actions;
+} = navigationData.actions;
 
 const {
   updateCredentials,

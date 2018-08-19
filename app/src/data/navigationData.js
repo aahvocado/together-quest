@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const currentPath = window.location.pathname;
 
-const appSchema = {
+const navigationSchema = {
   url: '',
 };
 
@@ -29,12 +29,12 @@ const updateUrlReducer = (state = {}, { type, data }) => {
 };
 
 // combined
-const appData = {
+const navigationData = {
   constants: constants,
   actions: {
     updateUrl,
   },
-  defaultState: Object.assign({}, appSchema, {
+  defaultState: Object.assign({}, navigationSchema, {
     url: currentPath,
   }),
   reducer: {
@@ -42,8 +42,8 @@ const appData = {
   },
 };
 
-export default appData;
+export default navigationData;
 
 export {
-  appSchema,
+  navigationSchema,
 }

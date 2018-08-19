@@ -31,6 +31,7 @@ const createUser = async (data) => {
 
   await dynamoDB.put(params);
 
+  // update app state
   store.dispatch(updateCredentials(item));
 
   // since `PUT` returns nothing we'll manually return the item

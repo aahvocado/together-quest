@@ -88,8 +88,13 @@ module.exports = {
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
       apis: path.resolve(appPath, 'apis'),
+
+      components$: path.resolve(appPath, 'components/Components.js'),
       components: path.resolve(appPath, 'components'),
+
+      data$: path.resolve(appPath, 'data/appStore.js'),
       data: path.resolve(appPath, 'data'),
+
       pages: path.resolve(appPath, 'pages'),
       panels: path.resolve(appPath, 'panels'),
       services: path.resolve(appPath, 'services'),
