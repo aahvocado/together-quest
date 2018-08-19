@@ -12,9 +12,12 @@ import {
   CharacterBlurb,
 } from 'components/CharacterComponent';
 
+import Form from 'components/FormComponent';
+
 import Footer from 'components/FooterComponent';
 import Header from 'components/HeaderComponent';
 import Icon from 'components/IconComponent';
+import Input from 'components/InputComponent';
 
 import { Layout } from 'components/LayoutComponent';
 
@@ -39,8 +42,10 @@ export {
   CharacterInfoContainer,
   CharacterBlurb,
   Footer,
+  Form,
   Header,
   Icon,
+  Input,
   Layout,
   ListComponent,
   ListItemComponent,

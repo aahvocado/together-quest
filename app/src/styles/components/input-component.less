@@ -1,0 +1,29 @@
+.tg-input {
+  display: flex;
+  flex-direction: column;
+
+  > .tg-input-label + .tg-input-field {
+    margin-top: 4px;
+  }
+}
+
+.tg-input.disabled {
+  color: @tg-disabled-color;
+  pointer-events: none;
+
+  .tg-input-field {
+    color: @tg-disabled-color;
+    background: @tg-disabled-bg;
+  }
+}
+
+.tg-input-label {
+  font-size: 0.8rem;
+}
+
+.tg-input-field {
+  border: 1px solid @tg-gray;
+  border-radius: 6px;
+  font-size: 1rem;
+  padding: 5px;
+}

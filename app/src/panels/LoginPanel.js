@@ -2,36 +2,27 @@ import React, { PureComponent } from 'react';
 
 import {
   Button,
-  ButtonGroup,
-  Link,
-  Icon,
-  Layout,
+  // ButtonGroup,
+  Form,
+  Input,
+  // Layout,
   Panel,
-  CharacterComponent,
+  // CharacterComponent,
 } from 'components';
 
 class RegisterPanel extends PureComponent {
   render() {
     return (
       <Panel inner className='bg-green'>
-        <form>
-          <label>
-            email
-            <input></input>
-          </label>
+        <Form>
+          <Input label='email'/>
 
-          <label>
-            username
-            <input></input>
-          </label>
+          <Input label='username'/>
 
-          <label>
-            password
-            <input disabled></input>
-          </label>
+          <Input label='password' disabled />
 
           <Button type='submit'>Register</Button>
-        </form>
+        </Form>
 
       </Panel>
     );
@@ -42,7 +33,7 @@ class LoginPanel extends PureComponent {
   render() {
     return (
       <Panel inner className='bg-green'>
-        <form>
+        <Form>
           <label>
             email
             <input></input>
@@ -52,7 +43,7 @@ class LoginPanel extends PureComponent {
             password
             <input></input>
           </label>
-        </form>
+        </Form>
 
         <Button type='submit'>Login</Button>
       </Panel>

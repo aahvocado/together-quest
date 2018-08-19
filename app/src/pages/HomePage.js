@@ -9,7 +9,7 @@ import {
 } from 'components';
 
 import NewsPanel from 'panels/NewsPanel';
-import LoginPanel from 'panels/LoginPanel';
+import { RegisterPanel } from 'panels/LoginPanel';
 
 class HomePage extends Component {
   render() {
@@ -18,7 +18,7 @@ class HomePage extends Component {
         <Panel>
           <h2>Welcome to Together Quest!</h2>
 
-          <LoginPanel />
+          <RegisterPanel />
 
           <Panel inner className='bg-gray' >
             ...

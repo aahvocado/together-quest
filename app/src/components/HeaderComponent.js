@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-// import cn from 'classnames';
 
 import { connect } from 'react-redux'
 
@@ -15,7 +14,6 @@ class HeaderComponent extends PureComponent {
 
   render() {
     const { url } = this.props;
-    console.log('header', url);
 
     return (
       <div
