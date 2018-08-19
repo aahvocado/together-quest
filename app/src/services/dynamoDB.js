@@ -3,21 +3,22 @@ import { AWS_CREDENTIALS } from 'properties';
 
 AWS.config.update({ region: 'us-east-2' });
 
-let documentClient = new AWS.DynamoDB.DocumentClient(AWS_CREDENTIALS);
+const documentClient = new AWS.DynamoDB.DocumentClient(AWS_CREDENTIALS);
 
-async function ready() {
+const ready = async () => {
   try {
     await documentClient;
+    console.log('DynamoDB :: Ready');
     return this;
   } catch(error) {
     console.error(error);
   }
 };
 
-async function requestWrapper(request, params) {
+const requestWrapper = async (request, params) => {
   try {
     return new Promise((resolve, reject) => {
-      request(params, (error, resp) => {
+      documentClient[request](params, (error, resp) => {
         if (error) { return reject(error); };
 
         resolve(resp);
@@ -28,12 +29,12 @@ async function requestWrapper(request, params) {
   }
 }
 
-async function get(params) {
-  return requestWrapper(documentClient.get, params);
+const get = async (params) => {
+  return requestWrapper('get', params);
 }
 
-async function put(params) {
-  return requestWrapper(documentClient.put, params);
+const put = async (params) => {
+  return requestWrapper('put', params);
 };
 
 const dynamoDB = {

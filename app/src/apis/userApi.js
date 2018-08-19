@@ -1,4 +1,4 @@
-import uuid from 'node-uuid';
+import uuid from 'uuid/v4';
 
 import userData from 'data/userData';
 import dynamoDB from 'services/dynamoDB';
@@ -6,13 +6,15 @@ import dynamoDB from 'services/dynamoDB';
 const tableName = 'together-quest-user';
 const primaryKey = 'userId';
 
-async function createUser(data) {
+const createUser = async (data) => {
   const { username, email } = data;
 
+  const newId = uuid();
   const params = {
     TableName: tableName,
-    HashKey: { [primaryKey]: uuid.v4() }
+    Key: { [primaryKey]: newId },
     Item: {
+      [primaryKey]: newId,
       username: username,
       email: email,
       password: '1',
@@ -21,18 +23,27 @@ async function createUser(data) {
       characters: [],
       modules: [],
     },
-
-    ReturnValues: 'ALL_UPDATES',
   }
 
-  return dynamoDB.put(params);
+  await dynamoDB.put(params);
+
+  // since `PUT` returns nothing we'll manually return the item
+  return params.Item;
 }
 
-async function fetchUser(userId) {
+const fetchUser = async (userId) => {
   const params = {
-    TableName: TableName,
+    TableName: tableName,
     Key: { [primaryKey]: userId },
   };
 
   return dynamoDB.get(params);
 }
+
+// export
+const userApi = {
+  createUser,
+  fetchUser,
+};
+
+export default userApi;

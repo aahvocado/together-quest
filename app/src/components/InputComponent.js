@@ -5,9 +5,10 @@ class InputComponent extends PureComponent {
   static defaultProps = {
     className: '',
     disabled: false,
-
     label: undefined,
+
     onChange: () => {},
+    validation: undefined, // function that validates the field
   };
 
   render() {

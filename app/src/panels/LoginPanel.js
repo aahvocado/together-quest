@@ -1,20 +1,18 @@
 import React, { PureComponent } from 'react';
+import userApi from 'apis/userApi';
 
 import {
   Button,
-  // ButtonGroup,
   Form,
   Input,
-  // Layout,
   Panel,
-  // CharacterComponent,
 } from 'components';
 
 class RegisterPanel extends PureComponent {
   render() {
     return (
       <Panel inner className='bg-green'>
-        <Form>
+        <Form onSubmit={this.handleRegisterSubmit}>
           <Input label='email'/>
 
           <Input label='username'/>
@@ -26,6 +24,12 @@ class RegisterPanel extends PureComponent {
 
       </Panel>
     );
+  };
+
+  handleRegisterSubmit = async (data) => {
+    const test = { username: 'first', email: 'first@test.com' }
+    const resp = await userApi.createUser(test);
+    console.log('registered', resp);
   }
 }
 
