@@ -6,13 +6,14 @@ class InputComponent extends PureComponent {
     className: '',
     disabled: false,
     label: undefined,
+    name: undefined, // required for forms
 
     onChange: () => {},
-    validation: undefined, // function that validates the field
+    validation: undefined, // todo: function that validates the field
   };
 
   render() {
-    const { className, disabled, label } = this.props;
+    const { className, disabled, label, name } = this.props;
 
     const modifiers = {
       'disabled': disabled,
@@ -20,8 +21,14 @@ class InputComponent extends PureComponent {
 
     return (
       <label className={cn('tg-input', modifiers, className)}>
-        <span className='tg-input-label'>{label}</span>
-        <input className='tg-input-field' onChange={this.handleOnChange} disabled={disabled} type='text' />
+        <span className='tg-input-label'>{label || name}</span>
+        <input
+          className='tg-input-field'
+          onChange={this.handleOnChange}
+          disabled={disabled}
+          name={name}
+          type='text'
+        />
       </label>
     );
   };

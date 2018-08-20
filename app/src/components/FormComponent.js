@@ -1,10 +1,32 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import cn from 'classnames';
+import uuid from 'uuid/v4';
 
-class FormComponent extends PureComponent {
+import {
+  Input,
+} from 'components';
+
+class FormComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      form: {},
+    };
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (!Object.is(this.state.form, nextState.form)) {
+      return false;
+    };
+
+    return true;
+  };
+
   static defaultProps = {
     className: '',
     disabled: false,
+    onChange: () => {},
     onSubmit: () => {},
   };
 
@@ -15,9 +37,11 @@ class FormComponent extends PureComponent {
       'disabled': disabled,
     };
 
+    const children = this.massageFormChildren(this.props.children);
+
     return (
       <form className={cn('tg-form', modifiers, className)} onSubmit={this.handleOnSubmit}>
-        {this.props.children}
+        { children }
       </form>
     );
   };
@@ -26,7 +50,27 @@ class FormComponent extends PureComponent {
     e.preventDefault();
 
     const { onSubmit } = this.props;
-    onSubmit(e);
+    onSubmit(this.state.form);
+  };
+
+  massageFormChildren = (children) => {
+    return children.map((child) => {
+      if (child.type === Input) {
+        return React.cloneElement(child, { onChange: this.handleChildFormOnChange, key: uuid() });
+      };
+
+      return child;
+    })
+  };
+
+  handleChildFormOnChange = (e) => {
+    const { name, value } = e.target;
+    if (!name || value.length === 0) { return; }; // do nothing if name is not given
+
+    const updatedForm = Object.assign({}, this.state.form, { [name]: value });
+
+    const { onChange } = this.props;
+    this.setState({ form: updatedForm }, () => { onChange(updatedForm) } );
   };
 }
 
