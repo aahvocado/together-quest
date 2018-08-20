@@ -26,6 +26,8 @@ import {
   ListItemComponent,
 } from 'components/ListComponent';
 
+import Loader from 'components/LoaderComponent';
+
 import { Panel } from 'components/PanelComponent';
 
 import {
@@ -49,6 +51,7 @@ export {
   Layout,
   ListComponent,
   ListItemComponent,
+  Loader,
   Panel,
   StatsComponent,
   StatComponent,
