@@ -5,7 +5,6 @@ import {
   Button,
   ButtonGroup,
   Link,
-  Icon,
   Layout,
   Panel,
   CharacterComponent,
@@ -85,7 +84,7 @@ class CampaignDetailsPanel extends PureComponent {
   };
 
   render() {
-    const { data: { id, title, players } } = this.props;
+    const { data: { id } } = this.props;
 
     if (!id) {
       return (<Panel></Panel>)

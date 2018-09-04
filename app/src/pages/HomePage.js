@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 import {
-  ButtonGroup,
-  Link,
-  Icon,
   Layout,
   Panel,
 } from 'components';
@@ -11,25 +9,41 @@ import {
 import NewsPanel from 'panels/NewsPanel';
 import { RegisterPanel } from 'panels/LoginPanel';
 
-class HomePage extends Component {
-  render() {
-    return (
-      <Layout className='tg-home tg-page'>
-        <Panel>
-          <h2>Welcome to Together Quest!</h2>
+// redux mappings
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+  };
+};
+function mapDispatchToProps(dispatch) {
+  return {};
+};
 
-          <RegisterPanel />
+const ConnectedHomePage = connect(
+  mapStateToProps, mapDispatchToProps
+)(
+  class HomePage extends Component {
+    render() {
+      const { user } = this.props;
 
-          <Panel inner className='bg-gray' >
-            ...
+      return (
+        <Layout className='tg-home tg-page'>
+          <Panel>
+            <h2>Welcome to Together Quest!</h2>
+
+            <RegisterPanel collapsed={Boolean(user.userId)} />
+
+            <Panel inner className='bg-gray' >
+              ...
+            </Panel>
+
           </Panel>
 
-        </Panel>
-
-        <NewsPanel />
-      </Layout>
-    );
+          <NewsPanel />
+        </Layout>
+      );
+    }
   }
-}
+);
 
-export default HomePage;
+export default ConnectedHomePage;

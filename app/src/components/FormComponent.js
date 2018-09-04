@@ -13,6 +13,10 @@ class FormComponent extends Component {
     this.state = {
       form: {},
     };
+
+    this.handleChildFormOnChange = this.handleChildFormOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.massageFormChildren = this.massageFormChildren.bind(this);
   };
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,14 +50,14 @@ class FormComponent extends Component {
     );
   };
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit(e) {
     e.preventDefault();
 
     const { onSubmit } = this.props;
     onSubmit(this.state.form);
   };
 
-  massageFormChildren = (children) => {
+  massageFormChildren(children) {
     return children.map((child) => {
       if (child.type === Input) {
         return React.cloneElement(child, { onChange: this.handleChildFormOnChange, key: uuid() });
@@ -63,7 +67,7 @@ class FormComponent extends Component {
     })
   };
 
-  handleChildFormOnChange = (e) => {
+  handleChildFormOnChange(e) {
     const { name, value } = e.target;
     if (!name || value.length === 0) { return; }; // do nothing if name is not given
 

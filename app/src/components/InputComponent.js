@@ -2,6 +2,11 @@ import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
 class InputComponent extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
   static defaultProps = {
     className: '',
     disabled: false,
@@ -33,7 +38,7 @@ class InputComponent extends PureComponent {
     );
   };
 
-  handleOnChange = (e) => {
+  handleOnChange(e) {
     const { onChange } = this.props;
     onChange(e);
   };

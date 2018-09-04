@@ -2,13 +2,8 @@ import React, { Component, PureComponent } from 'react';
 import { connect } from 'react-redux'
 
 import {
-  Button,
-  ButtonGroup,
-  Link,
-  Icon,
   Layout,
   Panel,
-  CharacterComponent,
 } from 'components';
 
 // redux mappings

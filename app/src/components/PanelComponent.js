@@ -4,8 +4,10 @@ import cn from 'classnames';
 class Panel extends PureComponent {
   static defaultProps = {
     className: '',
+    collpasedView: "Collapsed",
 
     active: false,
+    collapsed: false,
     inner: false,
   };
 
@@ -13,12 +15,26 @@ class Panel extends PureComponent {
     const {
       active,
       className,
+      collapsed,
+      collpasedView,
       inner,
     } = this.props;
 
     const modifiers = {
       'tg-panel--inner': inner,
+      'tg-panel--collpased': collapsed,
       'active': active,
+    };
+
+    // single line view
+    if (collapsed) {
+      return (
+        <div
+          className={cn('tg-panel', modifiers, className)}
+        >
+          { collpasedView }
+        </div>
+      );
     };
 
     return (

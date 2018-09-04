@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import ReactDOM from 'react-dom'
 import cn from 'classnames';
 
 class LoaderComponent extends PureComponent {

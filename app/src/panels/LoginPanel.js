@@ -10,15 +10,22 @@ import {
 } from 'components';
 
 class RegisterPanel extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+  };
+
   state = {
     isLoading: false,
-  }
+  };
 
   render() {
+    const { collapsed } = this.props;
     const { isLoading } = this.state;
 
     return (
-      <Panel inner className='bg-green'>
+      <Panel inner className='bg-green' collapsed={collapsed}>
 
         <Form onSubmit={this.handleRegisterSubmit}>
 
@@ -26,7 +33,7 @@ class RegisterPanel extends PureComponent {
 
           <Input name='email' disabled />
 
-          <Input name='username'/>
+          <Input name='username' />
 
           <Input name='password' disabled />
 
@@ -38,13 +45,19 @@ class RegisterPanel extends PureComponent {
     );
   };
 
-  handleRegisterSubmit = async (data) => {
+  async handleRegisterSubmit(data) {
+    // check if required data is present
+    if (!data.username) {
+      return console.log('requirements not met'); // todo validation
+    }
+
+    // save to db and update the store
     this.setState({ isLoading: true }, async () => {
-      const createUserPromise = await userApi.createUser(data);
+      await userApi.createUser(data);
 
       this.setState({ isLoading: false });
     })
-  }
+  };
 }
 
 class LoginPanel extends PureComponent {

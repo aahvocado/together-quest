@@ -29,7 +29,8 @@ const createUser = async (data) => {
     Item: item,
   };
 
-  await dynamoDB.put(params);
+  // woop woop no internet oh well
+  // await dynamoDB.put(params);
 
   // update app state
   store.dispatch(updateCredentials(item));

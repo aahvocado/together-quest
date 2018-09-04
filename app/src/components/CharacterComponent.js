@@ -44,7 +44,7 @@ class CharacterComponent extends PureComponent {
     character: {},
   }
   render() {
-    const { character: { name, title, stuff, traits, honors }, character } = this.props;
+    const { character: { /*name, title,*/ stuff, traits, honors }, character } = this.props;
 
     return (
       <div className='character-card variant-full tg-card'>
