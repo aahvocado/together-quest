@@ -25,7 +25,7 @@ class RegisterPanel extends PureComponent {
     const { isLoading } = this.state;
 
     return (
-      <Panel inner className='bg-green' collapsed={collapsed}>
+      <Panel inner className='bg-green' collapsed={collapsed} collpasedView={`Hello!`}>
 
         <Form onSubmit={this.handleRegisterSubmit}>
 

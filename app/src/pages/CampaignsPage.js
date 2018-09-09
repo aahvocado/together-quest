@@ -9,6 +9,7 @@ import {
   Panel,
   CharacterComponent,
 } from 'components';
+import CampaignsListPanel from 'panels/CampaignsListPanel';
 
 // redux mappings
 function mapStateToProps(state) {
@@ -21,62 +22,6 @@ function mapDispatchToProps(dispatch) {
   return {};
 };
 
-const ConnectedCampaignSelectPanel = connect(
-  mapStateToProps, mapDispatchToProps
-)(
-  class CampaignSelectPanel extends PureComponent {
-    static defaultProps = {
-      campaigns: [],
-      onCampaignSelect: () => {},
-    }
-    render() {
-      const { campaigns } = this.props;
-
-      return (
-        <Panel>
-          <h2>Campaigns</h2>
-
-          <Panel inner className='bg-gray'>
-            <Link to='/new-campaign' icon='fa-map-marked-alt'>Create a new Campaign</Link>
-          </Panel>
-
-          <Panel inner className='bg-gray'>
-            <ButtonGroup>
-              { campaigns.map((campaign) => {
-                const { title, id } = campaign;
-
-                return (
-                  <Link
-                    key={title}
-                    to={`/campaigns/${id}`}
-                    // onClick={this.handleOnCampaignClick}
-                  >
-                    {title}
-                  </Link>
-                )
-              })}
-            </ButtonGroup>
-          </Panel>
-
-
-          <Panel inner className='bg-gray'>
-            <ButtonGroup>
-              <Button disabled>
-                something else
-              </Button>
-            </ButtonGroup>
-          </Panel>
-
-        </Panel>
-      )
-    }
-
-    handleOnCampaignClick = (campaign) => {
-      const { onCampaignSelect } = this.props;
-      onCampaignSelect(this.props.campaigns[0]);
-    }
-  }
-);
 
 class CampaignDetailsPanel extends PureComponent {
   static defaultProps = {
@@ -115,7 +60,7 @@ const ConnectedCampaignsPage = connect(
       return (
         <Layout multi activePanel={activePanel} className='tg-campaign tg-page'>
 
-          <ConnectedCampaignSelectPanel onCampaignSelect={this.handleOnCampaignSelect} />
+          <CampaignsListPanel onCampaignSelect={this.handleOnCampaignSelect} />
 
           <CampaignDetailsPanel data={selectedCampaign} />
 

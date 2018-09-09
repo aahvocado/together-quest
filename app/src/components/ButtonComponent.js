@@ -20,6 +20,11 @@ class ButtonGroup extends PureComponent {
 
 function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
+    constructor(props) {
+      super(props);
+
+      this.handleClick = this.handleClick.bind(this);
+    }
     static defaultProps = {
       disabled: false,
       floatingPosition: undefined,
@@ -84,7 +89,7 @@ function ButtonHOC(Wrapper) {
       );
     };
 
-    handleClick = () => {
+    handleClick() {
       const { onClick } = this.props;
       onClick();
     }
@@ -93,7 +98,7 @@ function ButtonHOC(Wrapper) {
 
 // we just need to extend the RouterLink with a dispatch() action
 class ReduxRouterLink extends ButtonHOC(RouterLink) {
-  handleClick = () => {
+  handleClick() {
     const { onClick, to } = this.props;
     store.dispatch(updateUrl(to));
     onClick();

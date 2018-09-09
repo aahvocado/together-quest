@@ -5,23 +5,19 @@ import { updateCredentials } from 'data/actions';
 
 import dynamoDB from 'services/dynamoDB';
 
-const tableName = 'together-quest-user';
-const primaryKey = 'userId';
+const tableName = 'together-quest-campaigns';
+const primaryKey = 'campaignId';
 
-const createUser = async (data) => {
-  const { username, email } = data;
+const createCampaign = async (data) => {
+  const { title } = data;
   const newId = uuid();
 
   const item = {
     [primaryKey]: newId,
-    username: username,
-    email: email,
-    password: '1',
-    settings: {},
-    campaigns: [],
-    characters: [],
+    title: title,
+    players: [],
     modules: [],
-  }
+  };
 
   const params = {
     TableName: tableName,
@@ -38,10 +34,10 @@ const createUser = async (data) => {
   return item;
 }
 
-const fetchUser = async (userId) => {
+const fetchCampaign = async (id) => {
   const params = {
     TableName: tableName,
-    Key: { [primaryKey]: userId },
+    Key: { [primaryKey]: id },
   };
 
   return dynamoDB.get(params);
@@ -49,8 +45,8 @@ const fetchUser = async (userId) => {
 
 // export
 const userApi = {
-  createUser,
-  fetchUser,
+  createCampaign,
+  fetchCampaign,
 };
 
 export default userApi;

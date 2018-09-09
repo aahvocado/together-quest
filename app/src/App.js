@@ -26,6 +26,7 @@ class App extends Component {
             <Route path="/overview" component={OverviewPage} />
 
             <Route exact path="/campaigns" component={CampaignsPage} />
+            {/*<Route path="/campaigns/new" component={CampaignOverviewPage} />*/}
             <Route path="/campaigns/:campaignId" component={CampaignOverviewPage} />
 
             <Route path="/player" component={PlayerPage} />

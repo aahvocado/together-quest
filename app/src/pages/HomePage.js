@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import {
+  Button,
+  ButtonGroup,
+  Link,
   Layout,
   Panel,
 } from 'components';
@@ -24,17 +27,25 @@ const ConnectedHomePage = connect(
 )(
   class HomePage extends Component {
     render() {
-      const { user } = this.props;
+      const { user: { userId, campaigns = [] } } = this.props;
 
       return (
         <Layout className='tg-home tg-page'>
           <Panel>
             <h2>Welcome to Together Quest!</h2>
 
-            <RegisterPanel collapsed={Boolean(user.userId)} />
+            <RegisterPanel collapsed={Boolean(userId)} />
 
-            <Panel inner className='bg-gray' >
-              ...
+            <Panel
+              className='bg-gray'
+              inner
+
+              collapsed={!Boolean(userId)}
+              collpasedView={`Please log in to see more.`}
+            >
+              <ButtonGroup>
+                <Link to='/campaigns'>{`View your ${campaigns.length} campaigns`}</Link>
+              </ButtonGroup>
             </Panel>
 
           </Panel>
