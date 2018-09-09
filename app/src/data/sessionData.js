@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 // session data represents the cache for the current session, like fetched campaign data
 // default schema
@@ -29,7 +29,7 @@ const sessionCampaignReducer = (state, { type, data }) => {
     case constants.REMOVE_SESSION_CAMPAIGN:
     default:
       return [];
-  };
+  }
 };
 
 // combined

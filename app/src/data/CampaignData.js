@@ -36,7 +36,7 @@ const campaignDataReducer = (state = {}, { type, data }) => {
 
     default:
       return state;
-  };
+  }
 };
 
 // combined

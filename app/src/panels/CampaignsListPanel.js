@@ -1,13 +1,12 @@
-import React, { Component, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 
 import {
   Button,
   ButtonGroup,
   Link,
-  Layout,
   Panel,
-  CharacterComponent,
+  // CharacterComponent,
 } from 'components';
 
 // redux mappings

@@ -6,15 +6,8 @@ import sessionData from 'data/sessionData';
 import userData from 'data/userData';
 
 /**
-* This file just gathers all the Data and Actions
+* This file puts together all the reducers and creates the final store.
 */
-
-const defaultState = Object.assign({},
-  navigationData.defaultState,
-  sessionData.defaultState,
-  userData.defaultState,
-);
-
 const reducers = combineReducers(Object.assign({},
   navigationData.reducer,
   sessionData.reducer,
@@ -24,7 +17,7 @@ const reducers = combineReducers(Object.assign({},
 // create store
 const store = createStore(reducers);
 
-// test
+// listen to changes
 store.subscribe(() => {
   console.log('together-quest store', store.getState());
 });

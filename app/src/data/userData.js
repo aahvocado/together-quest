@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 const userSchema = {
   user: {
@@ -35,7 +35,7 @@ const userCredentialsReducer = (state = {}, { type, data }) => {
 
     default:
       return state;
-  };
+  }
 };
 
 // combined

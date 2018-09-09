@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 const currentPath = window.location.pathname;
 
@@ -25,7 +25,7 @@ const updateUrlReducer = (state = {}, { type, data }) => {
 
     default:
       return state;
-  };
+  }
 };
 
 // combined
