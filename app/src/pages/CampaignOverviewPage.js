@@ -1,6 +1,6 @@
 import React, { Component, PureComponent } from 'react';
 import { connect } from 'react-redux'
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import campaignApi from 'apis/campaignApi';
 
@@ -28,7 +28,6 @@ class NewCampaignPage extends PureComponent {
     const { isLoading } = this.state;
 
     return (
-      <Route>
       <Layout className='tg-campaign-overview tg-page'>
         <Panel>
           <h2>Start a New Campaign</h2>
@@ -46,18 +45,20 @@ class NewCampaignPage extends PureComponent {
           </Form>
         </Panel>
       </Layout>
-      </Route>
     );
   }
 
   async handleNewCampaignSubmit(data) {
+    // required values
+    if (!data.title) return;
+
     // save to db and update the store
     this.setState({ isLoading: true }, async () => {
       const campaign = await campaignApi.createCampaign(data);
 
       // successful
       if (campaign) {
-        return this.props.history.replace('/campaigns');
+        return this.props.history.push('/campaigns');
       };
 
       // error

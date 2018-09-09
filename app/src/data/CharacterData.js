@@ -190,10 +190,10 @@ const state_default = {
   ],
 };
 
-const CharacterData = state_default;
+const characterData = state_default;
 
 // export
-export default CharacterData;
+export default characterData;
 
 // export {
 //   state_default,

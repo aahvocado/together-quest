@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import CharacterData from 'data/CharacterData';
+import characterData from 'data/characterData';
 
 import {
   Panel,
@@ -25,7 +25,7 @@ class PlayerListPanel extends PureComponent {
           <div><Icon name='ra-double-team'/><span>{`contains ${players.length} Players`}</span></div>
 
           <ul>
-            { CharacterData.characters.map((character) => {
+            { characterData.characters.map((character) => {
               return <CharacterBlurb key={character.name} character={character} onClick={this.handleSelectCharacter} />
             })}
           </ul>

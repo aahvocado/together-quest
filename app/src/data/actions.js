@@ -1,15 +1,21 @@
-import userData from 'data/userData';
 import navigationData from 'data/navigationData';
-
-const {
-  updateUrl,
-} = navigationData.actions;
+import sessionData from 'data/sessionData';
+import userData from 'data/userData';
 
 const {
   updateCredentials,
 } = userData.actions;
 
+const {
+  addSessionCampaign,
+} = sessionData.actions;
+
+const {
+  updateUrl,
+} = navigationData.actions;
+
 export {
+  addSessionCampaign,
   updateUrl,
   updateCredentials,
 }
