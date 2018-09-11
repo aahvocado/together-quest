@@ -15,22 +15,29 @@ const userSchema = {
 
 // constants
 const constants = {
-  UPDATE_CAMPAIGNS: 'UPDATE_CAMPAIGNS',
-  UPDATE_CHARACTERS: 'UPDATE_CHARACTERS',
-  UPDATE_CREDENTIALS: 'UPDATE_CREDENTIALS',
-  UPDATE_SETTINGS: 'UPDATE_SETTINGS',
+  ADD_CAMPAIGN: 'ADD_CAMPAIGN',
+  REMOVE_CAMPAIGN: 'REMOVE_CAMPAIGN',
+  UPDATE_USER: 'UPDATE_USER',
 };
 
 // actions
-const updateCredentials = (data) => ({
-  type: constants.UPDATE_CREDENTIALS,
-  data: data,
-});
+const updateCredentials = (data) => ({ type: constants.UPDATE_USER, data: data });
+const updateCampaigns = (data) => ({ type: constants.ADD_CAMPAIGN, data: data });
 
 // reducers
-const userCredentialsReducer = (state = {}, { type, data }) => {
+const userReducer = (state = {}, { type, data }) => {
   switch (type) {
-    case constants.UPDATE_CREDENTIALS:
+    // adds to the the campaign id list
+    case constants.ADD_CAMPAIGN:
+      const campaignList = state.campaigns || [];
+      campaignList.push(data);
+
+      return Object.assign({}, state, {
+        campaigns: campaignList,
+      });
+
+    // update will replace any attributes
+    case constants.UPDATE_USER:
       return Object.assign({}, state, data || {});
 
     default:
@@ -42,13 +49,14 @@ const userCredentialsReducer = (state = {}, { type, data }) => {
 const userData = {
   constants: constants,
   actions: {
+    updateCampaigns,
     updateCredentials,
   },
   defaultState: Object.assign({}, userSchema, {
 
   }),
   reducer: {
-    user: userCredentialsReducer,
+    user: userReducer,
   },
 };
 

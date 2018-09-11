@@ -3,6 +3,7 @@ import sessionData from 'data/sessionData';
 import userData from 'data/userData';
 
 const {
+  updateCampaigns,
   updateCredentials,
 } = userData.actions;
 
@@ -16,6 +17,7 @@ const {
 
 export {
   addSessionCampaign,
-  updateUrl,
+  updateCampaigns,
   updateCredentials,
+  updateUrl,
 }

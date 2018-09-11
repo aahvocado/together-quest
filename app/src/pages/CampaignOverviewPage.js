@@ -13,6 +13,9 @@ import {
   Panel,
 } from 'components';
 
+/**
+* Panel for creating a New Campaign
+*/
 class NewCampaignPage extends PureComponent {
   constructor(props) {
     super(props);
@@ -66,10 +69,10 @@ class NewCampaignPage extends PureComponent {
     });
   }
 };
-
+// use component with router so we can change page after adding the new page
 const ConnectedNewCampaignPage = withRouter(({history, props}) => {
   return ( <NewCampaignPage history={history} {...props} />)
-})
+});
 
 // redux mappings
 function mapStateToProps(state) {
@@ -80,10 +83,23 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {};
 };
+/**
+* Page for viewing a user's campaigns
+*/
 const ConnectedCampaignOverviewPage = connect(
   mapStateToProps, mapDispatchToProps
 )(
   class CampaignOverviewPage extends Component {
+    // constructor(props) {
+    //   super(props);
+    // };
+
+    async componentWillMount() {
+      const sessionCampaigns = await campaignApi.fetchSessionCampaigns();
+
+      console.log('sessionCampaigns', sessionCampaigns);
+    };
+
     render() {
       // const { campaign: { title, id, players, modules } } = this.props;
       const { match: { params: { campaignId } } } = this.props; // from route
