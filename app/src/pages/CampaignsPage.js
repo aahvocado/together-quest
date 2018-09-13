@@ -49,7 +49,7 @@ const ConnectedCampaignsPage = connect(
       activePanel: 1,
       selectedCharacter: undefined,
       selectedCampaign: undefined,
-    }
+    };
 
     render() {
       const { activePanel, selectedCampaign, selectedCharacter } = this.state;

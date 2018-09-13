@@ -22,7 +22,7 @@ const constants = {
 
 // actions
 const updateCredentials = (data) => ({ type: constants.UPDATE_USER, data: data });
-const updateCampaigns = (data) => ({ type: constants.ADD_CAMPAIGN, data: data });
+const addCampaign = (data) => ({ type: constants.ADD_CAMPAIGN, data: data });
 
 // reducers
 const userReducer = (state = {}, { type, data }) => {
@@ -49,7 +49,7 @@ const userReducer = (state = {}, { type, data }) => {
 const userData = {
   constants: constants,
   actions: {
-    updateCampaigns,
+    addCampaign,
     updateCredentials,
   },
   defaultState: Object.assign({}, userSchema, {

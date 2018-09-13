@@ -94,12 +94,6 @@ const ConnectedCampaignOverviewPage = connect(
     //   super(props);
     // };
 
-    async componentWillMount() {
-      const sessionCampaigns = await campaignApi.fetchSessionCampaigns();
-
-      console.log('sessionCampaigns', sessionCampaigns);
-    };
-
     render() {
       // const { campaign: { title, id, players, modules } } = this.props;
       const { match: { params: { campaignId } } } = this.props; // from route

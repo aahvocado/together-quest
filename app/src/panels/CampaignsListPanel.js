@@ -1,10 +1,13 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 
+import campaignApi from 'apis/campaignApi';
+
 import {
   Button,
   ButtonGroup,
   Link,
+  Loader,
   Panel,
   // CharacterComponent,
 } from 'components';
@@ -30,8 +33,20 @@ const ConnectedCampaignSelectPanel = connect(
       onCampaignSelect: () => {},
     };
 
+    state = {
+      sessionCampaigns: [],
+    };
+
+    componentWillMount() {
+      this.setState({ isLoading: true }, async () => {
+        const sessionCampaigns = await campaignApi.fetchSessionCampaigns();
+        this.setState({ sessionCampaigns: sessionCampaigns, isLoading: false });
+      });
+    };
+
     render() {
-      const { campaigns } = this.props;
+      // const { campaigns } = this.props;
+      const { isLoading, sessionCampaigns } = this.state;
 
       return (
         <Panel>
@@ -42,13 +57,15 @@ const ConnectedCampaignSelectPanel = connect(
           </Panel>
 
           <Panel inner className='bg-gray'>
+            <Loader active={isLoading} />
+
             <ButtonGroup>
-              { campaigns.map((campaign) => {
+              { sessionCampaigns.map((campaign) => {
                 const { title, id } = campaign;
 
                 return (
                   <Link
-                    key={title}
+                    key={`campaigns-list-${id}-key`}
                     to={`/campaigns/${id}`}
                     onClick={this.handleOnCampaignClick}
                   >

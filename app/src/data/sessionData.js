@@ -10,17 +10,21 @@ const schema = {
 const constants = {
   ADD_SESSION_CAMPAIGN: 'ADD_SESSION_CAMPAIGN',
   REMOVE_SESSION_CAMPAIGN: 'REMOVE_SESSION_CAMPAIGN',
+  UPDATE_SESSION_CAMPAIGN: 'UPDATE_SESSION_CAMPAIGN',
 };
 
 // actions
-const addSessionCampaign = (data) => ({
-  type: constants.ADD_SESSION_CAMPAIGN,
-  data: data,
-});
+const addSessionCampaign = (data) => ({ type: constants.ADD_SESSION_CAMPAIGN, data: data });
+const updateSessionCampaign = (data) => ({ type: constants.UPDATE_SESSION_CAMPAIGN, data: data });
 
 // reducers
 const sessionCampaignReducer = (state, { type, data }) => {
   switch (type) {
+    // replace current list with given list
+    case constants.UPDATE_SESSION_CAMPAIGN:
+      return data || [];
+
+    // add to list
     case constants.ADD_SESSION_CAMPAIGN:
       const previousSessionCampaigns = state.slice();
       previousSessionCampaigns.push(data);
@@ -37,6 +41,7 @@ const sessionData = {
   constants: constants,
   actions: {
     addSessionCampaign,
+    updateSessionCampaign,
   },
   defaultState: Object.assign(schema, {
 
