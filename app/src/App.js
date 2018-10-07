@@ -11,7 +11,9 @@ import CampaignsPage from 'pages/CampaignsPage';
 import CampaignDetailsPage from 'pages/CampaignDetailsPage';
 import HomePage from 'pages/HomePage';
 import OverviewPage from 'pages/OverviewPage';
-import PlayerPage from 'pages/PlayerPage';
+
+import CharactersListPanel from 'panels/CharactersListPanel';
+// import CharacterDetailsPage from 'pages/CharacterDetailsPage';
 
 class App extends Component {
   render() {
@@ -29,7 +31,8 @@ class App extends Component {
             {/*<Route path="/campaigns/new" component={CampaignDetailsPage} />*/}
             <Route path="/campaigns/:campaignId" component={CampaignDetailsPage} />
 
-            <Route path="/player" component={PlayerPage} />
+            <Route path="/characters" component={CharactersListPanel} />
+            {/*<Route path="/characters/:characterId" component={CharacterDetailsPage} />*/}
 
             <Footer />
 

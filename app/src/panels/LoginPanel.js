@@ -55,7 +55,7 @@ class RegisterPanel extends PureComponent {
     this.setState({ isLoading: true }, async () => {
       await userApi.createUser(data);
 
-      this.setState({ isLoading: false });
+      // this.setState({ isLoading: false });
     })
   };
 }

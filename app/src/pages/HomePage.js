@@ -21,29 +21,47 @@ function mapDispatchToProps(dispatch) {
   return {};
 };
 
+class UnloggedHomePage extends Component {
+  render() {
+    return (
+      <Layout className='tg-home tg-page'>
+        <Panel>
+          <h2>Please log in or register for Together Quest!</h2>
+          <RegisterPanel />
+        </Panel>
+
+        <NewsPanel />
+      </Layout>
+    );
+  }
+};
+
 const ConnectedHomePage = connect(
   mapStateToProps, mapDispatchToProps
 )(
   class HomePage extends Component {
     render() {
-      const { user: { userId, campaigns = [] } } = this.props;
+      const { user: { userId, campaigns = [], characters = [] } } = this.props;
+
+      const isLoggedIn = Boolean(userId);
+
+      // different page for not being logged in
+      if (!isLoggedIn) {
+        return <UnloggedHomePage />
+      };
 
       return (
         <Layout className='tg-home tg-page'>
           <Panel>
             <h2>Welcome to Together Quest!</h2>
 
-            <RegisterPanel collapsed={Boolean(userId)} />
-
             <Panel
               className='bg-gray'
               inner
-
-              collapsed={!Boolean(userId)}
-              collpasedView={`Please log in to see more.`}
             >
               <ButtonGroup>
                 <Link to='/campaigns'>{`View your ${campaigns.length} campaigns`}</Link>
+                <Link to='/characters'>{`View your ${characters.length} characters`}</Link>
               </ButtonGroup>
             </Panel>
 
