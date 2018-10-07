@@ -32,7 +32,7 @@ const sessionCampaignReducer = (state, { type, data }) => {
 
     case constants.REMOVE_SESSION_CAMPAIGN:
     default:
-      return [];
+      return state || [];
   }
 };
 

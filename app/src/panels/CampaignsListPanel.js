@@ -28,6 +28,12 @@ const ConnectedCampaignSelectPanel = connect(
   mapStateToProps, mapDispatchToProps
 )(
   class CampaignsListPanel extends PureComponent {
+    constructor(props) {
+      super(props);
+
+      this.handleOnCampaignClick = this.handleOnCampaignClick.bind(this);
+    };
+
     static defaultProps = {
       campaigns: [],
       onCampaignSelect: () => {},
@@ -61,13 +67,13 @@ const ConnectedCampaignSelectPanel = connect(
 
             <ButtonGroup>
               { sessionCampaigns.map((campaign) => {
-                const { title, id } = campaign;
+                const { title, campaignId } = campaign;
 
                 return (
                   <Link
-                    key={`campaigns-list-${id}-key`}
-                    to={`/campaigns/${id}`}
-                    onClick={this.handleOnCampaignClick}
+                    key={`campaigns-list-${campaignId}-key`}
+                    to={`/campaigns/${campaignId}`}
+                    // onClick={this.handleOnCampaignClick}
                   >
                     {title}
                   </Link>
@@ -87,12 +93,12 @@ const ConnectedCampaignSelectPanel = connect(
 
         </Panel>
       )
-    }
+    };
 
-    handleOnCampaignClick = (campaign) => {
+    handleOnCampaignClick(campaign) {
       const { onCampaignSelect } = this.props;
       onCampaignSelect();
-    }
+    };
   }
 );
 

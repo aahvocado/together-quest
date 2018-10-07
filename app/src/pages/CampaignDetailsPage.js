@@ -77,7 +77,8 @@ const ConnectedNewCampaignPage = withRouter(({history, props}) => {
 // redux mappings
 function mapStateToProps(state) {
   return {
-    campaigns: state.campaigns,
+    // campaigns: state.user.campaigns,
+    sessionCampaigns: state.sessionCampaigns,
   };
 };
 function mapDispatchToProps(dispatch) {
@@ -86,26 +87,56 @@ function mapDispatchToProps(dispatch) {
 /**
 * Page for viewing a user's campaigns
 */
-const ConnectedCampaignOverviewPage = connect(
+const ConnectedCampaignDetailsPage = connect(
   mapStateToProps, mapDispatchToProps
 )(
-  class CampaignOverviewPage extends Component {
+  class CampaignDetailsPage extends Component {
     // constructor(props) {
     //   super(props);
     // };
 
-    render() {
-      // const { campaign: { title, id, players, modules } } = this.props;
+    componentWillMount() {
       const { match: { params: { campaignId } } } = this.props; // from route
+      const { sessionCampaigns = [] } = this.props;
 
-      if (campaignId === 'new') {
-        return <ConnectedNewCampaignPage {...this.props} />;
+      // if on the 'new' page or id is undefined
+      if (!campaignId || campaignId === 'new') {
+        return this.setState({ campaign: 'new' });
       };
+
+      // see if we've already fetched some of the basic data
+      let campaignMatch = undefined;
+      sessionCampaigns.forEach((sessionCampaign) => {
+        if (sessionCampaign.campaignId === campaignId) {
+          campaignMatch = sessionCampaign;
+        };
+      });
+
+      // if found a match, we don't need to fetch
+      if (campaignMatch) {
+        return this.setState({ campaign: campaignMatch });
+      };
+
+      // otherwise fetch new data
+      this.setState({ isLoading: true }, async () => {
+        const sessionCampaign = await campaignApi.fetchCampaign(campaignId);
+        this.setState({ sessionCampaign: sessionCampaign, isLoading: false });
+      });
+    };
+
+    render() {
+      const { campaign } = this.state;
+
+      // if no campaign was determined, render the create new campaign page
+      if (!campaign || campaign === 'new') return <ConnectedNewCampaignPage {...this.props} />;
+
+      // otherwise we can render the details
+      const { title } = campaign;
 
       return (
         <Layout className='tg-campaign-overview tg-page'>
           <Panel>
-            <h2>{`Campaign Specific Page for ${campaignId}`}</h2>
+            <h2>{`Campaign Specific Page for ${title}`}</h2>
           </Panel>
         </Layout>
       );
@@ -113,4 +144,4 @@ const ConnectedCampaignOverviewPage = connect(
   }
 );
 
-export default ConnectedCampaignOverviewPage;
+export default ConnectedCampaignDetailsPage;
