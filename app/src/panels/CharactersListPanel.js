@@ -9,7 +9,7 @@ import {
   Panel,
   CharacterComponent,
 } from 'components';
-import {BLINKS, NOOK, PEARL, DOUGLAS, TALLIE} from 'data/characterData';
+import {BLINKS, NOOK, PEARL, DOUGLAS, PALLY} from 'data/characterData';
 
 // redux mappings
 function mapStateToProps(state) {
@@ -26,16 +26,16 @@ const ConnectedCharactersListPanel = connect(
   mapStateToProps, mapDispatchToProps
 )(
   class CharactersListPanel extends PureComponent {
-    constructor(props) {
-      super(props);
-    };
+    // constructor(props) {
+    //   super(props);
+    // };
 
     static defaultProps = {
       characters: [],
     };
 
     render() {
-      const { characters } = this.props;
+      // const { characters } = this.props;
 
       return (
         <Panel className='character-list'>
@@ -43,7 +43,7 @@ const ConnectedCharactersListPanel = connect(
           <CharacterComponent character={NOOK} />
           <CharacterComponent character={PEARL} />
           <CharacterComponent character={DOUGLAS} />
-          <CharacterComponent character={TALLIE} />
+          <CharacterComponent character={PALLY} />
         </Panel>
       )
     };

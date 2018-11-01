@@ -65,17 +65,65 @@
   }
 }
 
-.character-stuff {
+.character-equipments {
   display: flex;
   flex-direction: column;
 
   margin-top: 10px;
 
+  .equipment {
+    margin-top: 5px;
+  }
+}
+.equipment {
+  display: flex;
+  flex-direction: column;
+
+  .equipment-main {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .equipment-name {
+    font-size: 1.2rem;
+  }
+  .tg-icon {
+    font-size: 12px;
+    margin-right: 3px;
+    margin-top: 5px;
+  }
+}
+
+.character-stuff {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+}
+.item {
+  margin-top: 5px;
+
   .item-name {
     font-size: 1.2rem;
   }
 
-  .item .tg-icon {
+  .tg-icon {
+    font-size: 12px;
+    margin-right: 3px;
+  }
+}
+
+.character-equipments {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+
+  .equipment-name {
+    font-size: 1.15rem;
+  }
+
+  .equipment .tg-icon {
     font-size: 12px;
     margin-right: 3px;
   }
@@ -86,12 +134,15 @@
   flex-direction: column;
 
   margin-top: 10px;
+}
+.trait {
+  margin-top: 5px;
 
   .trait-name {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
-  .trait .tg-icon {
+  .tg-icon {
     font-size: 12px;
     margin-right: 3px;
   }
@@ -102,12 +153,16 @@
   flex-direction: column;
 
   margin-top: 10px;
+}
+
+.honor {
+  margin-top: 5px;
 
   .honor-name {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
-  .honor .tg-icon {
+  .tg-icon {
     font-size: 12px;
     margin-right: 3px;
   }

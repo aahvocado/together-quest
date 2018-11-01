@@ -6,7 +6,7 @@ import {
 
 class CharacterEyecatchComponent extends PureComponent {
   render() {
-    const { character } = this.props;
+    // const { character } = this.props;
 
     return (
       <div className='tg-character tg-character--eyecatch'>
@@ -26,6 +26,7 @@ class CharacterComponent extends PureComponent {
       name,
       title,
       stats,
+      equipments,
       stuff,
       traits,
       honors,
@@ -41,10 +42,13 @@ class CharacterComponent extends PureComponent {
 
     return (
       <div className='character-component'>
+        {/* name */}
         <div className='character-name'>{name}</div>
 
+        {/* title */}
         <div className='character-title'>{title}</div>
 
+        {/* stats */}
         <div className='character-stats'>
           <span className='stat strength-stat'>
             <span className='stat-name'>{strength}</span>
@@ -53,7 +57,7 @@ class CharacterComponent extends PureComponent {
 
           <span className='stat agility-stat'>
             <span className='stat-name'>{agility}</span>
-            <Icon name='ra-player-dodge' />
+            <Icon name='fa-running' />
           </span>
 
           <span className='stat wisdom-stat'>
@@ -72,6 +76,24 @@ class CharacterComponent extends PureComponent {
           </span>
         </div>
 
+        {/* equipment */}
+        <div className='character-equipments'>
+          <div>[equipments]</div>
+          { equipments.map((equipment) =>
+            <div className='equipment'>
+              <div className='equipment-main'>
+                <Icon name='fa-puzzle-piece' />
+                <span className='equipment-name'>{equipment.name}</span>
+              </div>
+              {/*
+              <span className='equipment-slot'>{equipment.slot}</span>
+              <span className='equipment-mod'>{equipment.statMods.toString()}</span>
+              */}
+            </div>
+          )}
+        </div>
+
+        {/* stuff */}
         <div className='character-stuff'>
           <div>[stuff]</div>
           { stuff.map((item) =>
@@ -82,6 +104,7 @@ class CharacterComponent extends PureComponent {
           )}
         </div>
 
+        {/* traits */}
         <div className='character-traits'>
           <div>[traits]</div>
           { traits.map((trait) =>
@@ -92,6 +115,7 @@ class CharacterComponent extends PureComponent {
           )}
         </div>
 
+        {/* honors */}
         <div className='character-honors'>
           <div>[honors]</div>
           { honors.map((honor) =>
