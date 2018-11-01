@@ -1,7 +1,12 @@
+@equipmentsHeight: 180px;
+@stuffsHeight: 320px;
+// @traitsHeight: 180px;
+
 .tg-panel.character-list {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  padding: 5px;
 
   display: flex;
   flex-direction: row;
@@ -40,8 +45,17 @@
   flex-direction: column;
   align-items: center;
 
+  .stat-value-container {
+    display: flex;
+    flex-direction: row;
+  }
   .stat-name {
     font-size: 1.75rem;
+  }
+  .stat-mod {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
   }
 
   .tg-icon {
@@ -66,6 +80,7 @@
 }
 
 .character-equipments {
+  height: @equipmentsHeight;
   display: flex;
   flex-direction: column;
 
@@ -95,6 +110,7 @@
 }
 
 .character-stuff {
+  height: @stuffsHeight;
   display: flex;
   flex-direction: column;
 
@@ -130,6 +146,7 @@
 }
 
 .character-traits {
+  // height: @traitsHeight;
   display: flex;
   flex-direction: column;
 

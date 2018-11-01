@@ -83,7 +83,7 @@ export const BLINKS = {
     'Fire Fighting Human Champion',
   ],
   statMods: {
-    strength: 1,
+    strength: 5,
     agility: 0,
     wisdom: 0,
     charisma: 0,

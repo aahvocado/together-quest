@@ -18,6 +18,24 @@ class CharacterEyecatchComponent extends PureComponent {
   }
 };
 
+class StatComponent extends PureComponent{
+  render() {
+    const {iconName, type, value, modValue} = this.props;
+
+    const finalValue = value + modValue;
+    const hasStatMod = modValue !== 0;
+
+    return (
+      <span className={`stat ${type}-stat`}>
+        <div className='stat-value-container'>
+          <span className='stat-name'>{finalValue}</span>
+          <span className='stat-mod'>{hasStatMod ? (modValue > 0 ? '+' : '-') : null}</span>
+        </div>
+        <Icon name={iconName} />
+      </span>
+    );
+  }
+}
 class CharacterComponent extends PureComponent {
   render() {
     const { character } = this.props;
@@ -30,6 +48,7 @@ class CharacterComponent extends PureComponent {
       stuff,
       traits,
       honors,
+      statMods,
     } = character;
 
     const {
@@ -39,6 +58,14 @@ class CharacterComponent extends PureComponent {
       charisma,
       magic,
     } = stats;
+
+    const {
+      strength: strengthMod,
+      agility: agilityMod,
+      wisdom: wisdomMod,
+      charisma: charismaMod,
+      magic: magicMod,
+    } = statMods;
 
     return (
       <div className='character-component'>
@@ -50,30 +77,40 @@ class CharacterComponent extends PureComponent {
 
         {/* stats */}
         <div className='character-stats'>
-          <span className='stat strength-stat'>
-            <span className='stat-name'>{strength}</span>
-            <Icon name='ra-muscle-up' />
-          </span>
+          <StatComponent
+            iconName='ra-muscle-up'
+            type='strength'
+            value={strength}
+            modValue={strengthMod}
+          />
 
-          <span className='stat agility-stat'>
-            <span className='stat-name'>{agility}</span>
-            <Icon name='fa-running' />
-          </span>
+          <StatComponent
+            iconName='fa-running'
+            type='agility'
+            value={agility}
+            modValue={agilityMod}
+          />
 
-          <span className='stat wisdom-stat'>
-            <span className='stat-name'>{wisdom}</span>
-            <Icon name='fa-brain' />
-          </span>
+          <StatComponent
+            iconName='fa-brain'
+            type='wisdom'
+            value={wisdom}
+            modValue={wisdomMod}
+          />
 
-          <span className='stat charisma-stat'>
-            <span className='stat-name'>{charisma}</span>
-            <Icon name='fa-smile-wink' />
-          </span>
+          <StatComponent
+            iconName='fa-smile-wink'
+            type='charisma'
+            value={charisma}
+            modValue={charismaMod}
+          />
 
-          <span className='stat magic-stat'>
-            <span className='stat-name'>{magic}</span>
-            <Icon name='ra-fairy-wand' />
-          </span>
+          <StatComponent
+            iconName='ra-fairy-wand'
+            type='magic'
+            value={magic}
+            modValue={magicMod}
+          />
         </div>
 
         {/* equipment */}
