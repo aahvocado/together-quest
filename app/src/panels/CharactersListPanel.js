@@ -7,8 +7,9 @@ import {
   // Link,
   // Loader,
   Panel,
-  // CharacterComponent,
+  CharacterComponent,
 } from 'components';
+import {BLINKS, NOOK, PEARL, DOUGLAS, TALLIE} from 'data/characterData';
 
 // redux mappings
 function mapStateToProps(state) {
@@ -37,8 +38,12 @@ const ConnectedCharactersListPanel = connect(
       const { characters } = this.props;
 
       return (
-        <Panel>
-
+        <Panel className='character-list'>
+          <CharacterComponent character={BLINKS} />
+          <CharacterComponent character={NOOK} />
+          <CharacterComponent character={PEARL} />
+          <CharacterComponent character={DOUGLAS} />
+          <CharacterComponent character={TALLIE} />
         </Panel>
       )
     };

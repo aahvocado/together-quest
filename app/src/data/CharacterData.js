@@ -183,6 +183,31 @@ export const DEMO = {
         magic: 0,
     }
 };
+export const TALLIE = {
+    name: 'Tallie',
+    id: 'TALLIE-ID',
+    title: 'The ? Cat',
+    stats: {
+        strength: 1,
+        agility: 1,
+        wisdom: 1,
+        charisma: 1,
+        magic: 1,
+    },
+    stuff: [
+    ],
+    traits: [
+    ],
+    honors: [
+    ],
+    statMods: {
+        strength: 0,
+        agility: 0,
+        wisdom: 0,
+        charisma: 0,
+        magic: 0,
+    }
+};
 // default state
 const state_default = {
   characters: [
@@ -197,4 +222,5 @@ export default characterData;
 
 // export {
 //   state_default,
+//   BLINKS, NOOK, PEARL, DOUGLAS,
 // };

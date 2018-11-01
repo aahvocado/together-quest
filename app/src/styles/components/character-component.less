@@ -1,22 +1,114 @@
-.tg-character-blurb {
-  cursor: pointer;
-  padding: 5px;
-  background: white;
-
+.tg-panel.character-list {
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
-  box-shadow: @tg-component-shadow;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  font-size: 14px;
+
+  .character-component + .character-component {
+    margin-left: 10px;
+  }
 }
 
-.tg-character-blurb .character-info-container {
+.character-component {
+  flex: 1 1 20%;
+
+  .character-name {
+    font-size: 2rem;
+  }
+  .character-title {
+
+  }
+}
+
+.character-stats {
+  display: flex;
   flex-direction: row;
+  margin-top: 10px;
 
-  .character-info-person {
-    @media @desktop {
-      width: 200px;
-    }
+  .stat + .stat {
+    margin-left: 5px;
+  }
+}
 
-    @media @mobile {
-      width: 200px;
-    }
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .stat-name {
+    font-size: 1.75rem;
+  }
+
+  .tg-icon {
+    font-size: 1.15rem;
+  }
+
+  &.strength-stat {
+    color: #8a183f;
+  }
+  &.agility-stat {
+    color: #ca7c3a;
+  }
+  &.wisdom-stat {
+    color: #37bb3b;
+  }
+  &.charisma-stat {
+    color: #a73ea3;
+  }
+  &.magic-stat {
+    color: #506cd2;
+  }
+}
+
+.character-stuff {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+
+  .item-name {
+    font-size: 1.2rem;
+  }
+
+  .item .tg-icon {
+    font-size: 12px;
+    margin-right: 3px;
+  }
+}
+
+.character-traits {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+
+  .trait-name {
+    font-size: 1.2rem;
+  }
+
+  .trait .tg-icon {
+    font-size: 12px;
+    margin-right: 3px;
+  }
+}
+
+.character-honors {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+
+  .honor-name {
+    font-size: 1.2rem;
+  }
+
+  .honor .tg-icon {
+    font-size: 12px;
+    margin-right: 3px;
   }
 }

@@ -1,95 +1,115 @@
 import React, { PureComponent } from 'react';
 
-import StatsComponent from 'components/StatsComponent';
-import ListComponent from 'components/ListComponent';
+import {
+  Icon
+} from 'components';
 
-class CharacterInfoContainer extends PureComponent {
-  render() {
-    const { character } = this.props;
-    return (
-      <div className='character-info-container'>
-        <div className='character-info-person'>
-          <div className='character-name'>{ character.name }</div>
-          <div className='character-title'>{ `"${character.title}"` }</div>
-        </div>
-
-        <StatsComponent character={character} />
-      </div>
-    );
-  }
-}
-
-class CharacterBlurb extends PureComponent {
+class CharacterEyecatchComponent extends PureComponent {
   render() {
     const { character } = this.props;
 
     return (
-      <div className='tg-character-blurb character-info-container' onClick={this.handleOnClick}>
-        <div className='character-info-person'>
-          <div className='character-name'>{ character.name }</div>
-          <div className='character-title'>{ `"${character.title}"` }</div>
-        </div>
+      <div className='tg-character tg-character--eyecatch'>
+        <div>image</div>
+        <div>name</div>
+        <div>title</div>
       </div>
     );
   }
-
-  handleOnClick = () => {
-    const { onClick, character } = this.props;
-    onClick(character);
-  }
-}
+};
 
 class CharacterComponent extends PureComponent {
-  static defaultProps = {
-    character: {},
-  }
   render() {
-    const { character: { /*name, title,*/ stuff, traits, honors }, character } = this.props;
+    const { character } = this.props;
+
+    const {
+      name,
+      title,
+      stats,
+      stuff,
+      traits,
+      honors,
+    } = character;
+
+    const {
+      strength,
+      agility,
+      wisdom,
+      charisma,
+      magic,
+    } = stats;
 
     return (
-      <div className='character-card variant-full tg-card'>
+      <div className='character-component'>
+        <div className='character-name'>{name}</div>
 
-        <div className='character-card-content-container'>
-          <div className='character-icon'></div>
+        <div className='character-title'>{title}</div>
 
-          <CharacterInfoContainer
-            character={character}
-          />
+        <div className='character-stats'>
+          <span className='stat strength-stat'>
+            <span className='stat-name'>{strength}</span>
+            <Icon name='ra-muscle-up' />
+          </span>
+
+          <span className='stat agility-stat'>
+            <span className='stat-name'>{agility}</span>
+            <Icon name='ra-player-dodge' />
+          </span>
+
+          <span className='stat wisdom-stat'>
+            <span className='stat-name'>{wisdom}</span>
+            <Icon name='fa-brain' />
+          </span>
+
+          <span className='stat charisma-stat'>
+            <span className='stat-name'>{charisma}</span>
+            <Icon name='fa-smile-wink' />
+          </span>
+
+          <span className='stat magic-stat'>
+            <span className='stat-name'>{magic}</span>
+            <Icon name='ra-fairy-wand' />
+          </span>
         </div>
 
-        <div className='character-card-content-container'>
-          <ListComponent
-            definition={'character-card-stuff'}
-            label={'Stuff'}
-            list={ stuff }
-          />
+        <div className='character-stuff'>
+          <div>[stuff]</div>
+          { stuff.map((item) =>
+            <div className='item'>
+              <Icon name='fa-box' />
+              <span className='item-name'>{item}</span>
+            </div>
+          )}
         </div>
 
-        <div className='character-card-content-container'>
-          <ListComponent
-            definition={'character-card-traits'}
-            label={'Traits'}
-            list={ traits }
-          />
+        <div className='character-traits'>
+          <div>[traits]</div>
+          { traits.map((trait) =>
+            <div className='trait'>
+              <Icon name='fa-tag' />
+              <span className='trait-name'>{trait}</span>
+            </div>
+          )}
         </div>
 
-        <div className='character-card-content-container'>
-          <ListComponent
-            definition={'character-card-honors'}
-            label={'Honors'}
-            list={ honors }
-          />
+        <div className='character-honors'>
+          <div>[honors]</div>
+          { honors.map((honor) =>
+            <div className='honor'>
+              <Icon name='fa-certificate' />
+              <span className='honor-name'>{honor}</span>
+            </div>
+          )}
         </div>
 
       </div>
     );
   }
-}
+};
 
 export default CharacterComponent;
 
 export {
   CharacterComponent,
-  CharacterInfoContainer,
-  CharacterBlurb,
+  CharacterEyecatchComponent,
 }
