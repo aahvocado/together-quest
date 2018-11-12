@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import websocketManager, {connectToEventapp} from 'cr_core/websocketManager';
+import websocketManager, {createConnection} from 'services/websocketManager';
 
 /**
 * SocketClient class implements helpful functions to manage a feature using WebSockets
@@ -29,7 +29,9 @@ class SocketClient {
   constructor() {
     // start up a connection if it was never started before
     if (!websocketManager.isInitialized()) {
-      connectToEventapp();
+      createConnection({
+        url: 'localhost:1111',
+      });
 
     // try to reconnect since this feature uses it
     } else if (!websocketManager.isConnected()) {

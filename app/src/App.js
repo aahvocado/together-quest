@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+import 'services/eventManager'; // start listening to websocket server
 import store from 'data';
 
 import Header from 'components/HeaderComponent';
@@ -13,7 +14,6 @@ import HomePage from 'pages/HomePage';
 import OverviewPage from 'pages/OverviewPage';
 
 import CharactersListPanel from 'panels/CharactersListPanel';
-// import CharacterDetailsPage from 'pages/CharacterDetailsPage';
 
 class App extends Component {
   render() {

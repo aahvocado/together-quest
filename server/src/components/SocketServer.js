@@ -25,6 +25,7 @@ class SocketServer extends Server {
     // listen to when a client connects
     this.on('connection', (socket) => {
       const userClient = this.myClients[socket.id];
+      console.log('[SocketServer] Client Connected');
 
       /**
        * Client gets disconnected from server
@@ -47,6 +48,12 @@ class SocketServer extends Server {
     this.myClients[socketId] = socket;
 
     return next();
+  }
+  /**
+   * @param {Number} socketId
+   */
+  removeClient(socketId) {
+    delete this.myClients[socketId]
   }
   /**
    * simplifies getting the number of clients connected to this server
