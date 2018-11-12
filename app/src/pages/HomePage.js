@@ -2,14 +2,81 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import {
+  Button,
   ButtonGroup,
+  Input,
   Link,
   Layout,
   Panel,
 } from 'components';
 
 import NewsPanel from 'panels/NewsPanel';
-import { RegisterPanel } from 'panels/LoginPanel';
+
+/**
+ * empty log in page
+ */
+class UnloggedHomePage extends Component {
+  /** @default */
+  constructor(props) {
+    super(props);
+
+    this.handleOnJoinClick = this.handleOnJoinClick.bind(this);
+  };
+  /** @default */
+  render() {
+    return (
+      <Layout className='tg-home tg-page'>
+        <Panel>
+          <h2>Joining CatQuest? Tell me your name!</h2>
+          <Panel inner className='bg-green'>
+            <Input placeholder='name' />
+            <Button onClick={this.handleOnJoinClick}>Join</Button>
+          </Panel>
+        </Panel>
+
+        <NewsPanel />
+      </Layout>
+    );
+  };
+  /**
+   *
+   */
+  handleOnJoinClick() {
+
+  };
+};
+/**
+ * primary home page here
+ */
+class HomePage extends Component {
+  render() {
+    const { user: { userId, campaigns = [], characters = [] } } = this.props;
+
+    // different page for not being logged in
+    const isLoggedIn = Boolean(userId);
+    if (!isLoggedIn) {
+      return <UnloggedHomePage />
+    };
+
+    return (
+      <Layout className='tg-home tg-page'>
+        <Panel>
+          <h2>Welcome to Together Quest!</h2>
+
+          <Panel inner className='bg-gray'>
+            <ButtonGroup>
+              <Link to='/campaigns'>{`View your ${campaigns.length} campaigns`}</Link>
+              <Link to='/characters'>{`View your ${characters.length} characters`}</Link>
+            </ButtonGroup>
+          </Panel>
+
+        </Panel>
+
+        <NewsPanel />
+      </Layout>
+    );
+  }
+};
 
 // redux mappings
 function mapStateToProps(state) {
@@ -21,57 +88,5 @@ function mapDispatchToProps(dispatch) {
   return {};
 };
 
-class UnloggedHomePage extends Component {
-  render() {
-    return (
-      <Layout className='tg-home tg-page'>
-        <Panel>
-          <h2>Please log in or register for Together Quest!</h2>
-          <RegisterPanel />
-        </Panel>
-
-        <NewsPanel />
-      </Layout>
-    );
-  }
-};
-
-const ConnectedHomePage = connect(
-  mapStateToProps, mapDispatchToProps
-)(
-  class HomePage extends Component {
-    render() {
-      const { user: { userId, campaigns = [], characters = [] } } = this.props;
-
-      const isLoggedIn = Boolean(userId);
-
-      // different page for not being logged in
-      if (!isLoggedIn) {
-        return <UnloggedHomePage />
-      };
-
-      return (
-        <Layout className='tg-home tg-page'>
-          <Panel>
-            <h2>Welcome to Together Quest!</h2>
-
-            <Panel
-              className='bg-gray'
-              inner
-            >
-              <ButtonGroup>
-                <Link to='/campaigns'>{`View your ${campaigns.length} campaigns`}</Link>
-                <Link to='/characters'>{`View your ${characters.length} characters`}</Link>
-              </ButtonGroup>
-            </Panel>
-
-          </Panel>
-
-          <NewsPanel />
-        </Layout>
-      );
-    }
-  }
-);
-
+const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 export default ConnectedHomePage;

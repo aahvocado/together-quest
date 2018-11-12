@@ -2,23 +2,25 @@ import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
 class InputComponent extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
   static defaultProps = {
     className: '',
     disabled: false,
     label: undefined,
     name: undefined, // required for forms
+    placeholder: '',
 
     onChange: () => {},
     validation: undefined, // todo: function that validates the field
   };
 
+  constructor(props) {
+    super(props);
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+  };
+
   render() {
-    const { className, disabled, label, name } = this.props;
+    const { className, disabled, label, name, placeholder } = this.props;
 
     const modifiers = {
       'disabled': disabled,
@@ -31,6 +33,7 @@ class InputComponent extends PureComponent {
           className='tg-input-field'
           onChange={this.handleOnChange}
           disabled={disabled}
+          placeholder={placeholder}
           name={name}
           type='text'
         />
