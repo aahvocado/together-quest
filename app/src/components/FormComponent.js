@@ -7,6 +7,13 @@ import {
 } from 'components';
 
 class FormComponent extends Component {
+  static defaultProps = {
+    className: '',
+    disabled: false,
+    onChange: () => {},
+    onSubmit: () => {},
+  };
+  /** @default */
   constructor(props) {
     super(props);
 
@@ -18,22 +25,15 @@ class FormComponent extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.massageFormChildren = this.massageFormChildren.bind(this);
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (!Object.is(this.state.form, nextState.form)) {
-      return false;
-    };
-
-    return true;
+  /**
+   * experimenting with something, do not re-render so internal form doesn't reload
+   *
+   * @default
+   */
+  shouldComponentUpdate() {
+    return false;
   };
-
-  static defaultProps = {
-    className: '',
-    disabled: false,
-    onChange: () => {},
-    onSubmit: () => {},
-  };
-
+  /** @default */
   render() {
     const { className, disabled } = this.props;
 
@@ -49,7 +49,11 @@ class FormComponent extends Component {
       </form>
     );
   };
-
+  /**
+   * will pass the current state of the form to `onSubmit()`
+   *
+   * @param {Event} e
+   */
   handleOnSubmit(e) {
     e.preventDefault();
 
@@ -60,13 +64,21 @@ class FormComponent extends Component {
   massageFormChildren(children) {
     return children.map((child) => {
       if (child.type === Input) {
-        return React.cloneElement(child, { onChange: this.handleChildFormOnChange, key: uuid() });
+        return React.cloneElement(child, {
+          ...child.props,
+          key: uuid(),
+          onChange: this.handleChildFormOnChange,
+       });
       };
 
       return child;
     })
   };
-
+  /**
+   * will pass the current state of the form to `onChange()`
+   *
+   * @param {Event} e
+   */
   handleChildFormOnChange(e) {
     const { name, value } = e.target;
     if (!name || value.length === 0) { return; }; // do nothing if name is not given

@@ -1,4 +1,5 @@
 import Server from 'socket.io';
+import handleUserEvents from 'managers/userEventHandler';
 
 /**
  * Extends `socket.io-server` to add some helpful methods and keep track of unique Clients.
@@ -16,7 +17,7 @@ class SocketServer extends Server {
     super(server);
 
     // {'socket.id': Client}
-    this.myClients = {};
+    this.clients = {};
   };
   /**
    * starts a generic server and handle generic events
@@ -24,8 +25,11 @@ class SocketServer extends Server {
    start() {
     // listen to when a client connects
     this.on('connection', (socket) => {
-      const userClient = this.myClients[socket.id];
+      const userClient = this.clients[socket.id];
       console.log('[SocketServer] Client Connected');
+
+      // user events
+      handleUserEvents(socket);
 
       /**
        * Client gets disconnected from server
@@ -45,7 +49,7 @@ class SocketServer extends Server {
   handshake(socket, next) {
     // create a client based on a unique id per connection, then track it
     const socketId = socket.id;
-    this.myClients[socketId] = socket;
+    this.clients[socketId] = socket;
 
     return next();
   }
@@ -53,7 +57,7 @@ class SocketServer extends Server {
    * @param {Number} socketId
    */
   removeClient(socketId) {
-    delete this.myClients[socketId]
+    delete this.clients[socketId]
   }
   /**
    * simplifies getting the number of clients connected to this server

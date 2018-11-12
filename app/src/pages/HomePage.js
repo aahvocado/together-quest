@@ -1,26 +1,34 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 
 import {
   Button,
   ButtonGroup,
   Input,
+  Form,
   Link,
   Layout,
   Panel,
 } from 'components';
+
+import userApi from 'apis/userApi';
+import eventClient from 'services/eventClient';
 
 import NewsPanel from 'panels/NewsPanel';
 
 /**
  * empty log in page
  */
-class UnloggedHomePage extends Component {
+class UnloggedHomePage extends PureComponent {
   /** @default */
   constructor(props) {
     super(props);
 
-    this.handleOnJoinClick = this.handleOnJoinClick.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+
+    this.state = {
+      formState: {},
+    };
   };
   /** @default */
   render() {
@@ -29,8 +37,15 @@ class UnloggedHomePage extends Component {
         <Panel>
           <h2>Joining CatQuest? Tell me your name!</h2>
           <Panel inner className='bg-green'>
-            <Input placeholder='name' />
-            <Button onClick={this.handleOnJoinClick}>Join</Button>
+            <Form
+              onSubmit={this.handleFormSubmit}
+            >
+              <Input
+                name='username'
+                placeholder='username'
+              />
+              <Button>Join</Button>
+            </Form>
           </Panel>
         </Panel>
 
@@ -39,16 +54,28 @@ class UnloggedHomePage extends Component {
     );
   };
   /**
-   *
+   * tell the server we've signed up
    */
-  handleOnJoinClick() {
+  handleFormSubmit(formState) {
+    // do nothing if username is empty
+    if (!formState.username || formState.username.length <= 0) return;
 
+    // wait for server to tell us we joined, and once it's confirmed we can update our user data
+    eventClient.socket.once('joined', (data) => {
+      const joinedUsername = data.messages[0].username;
+      if (joinedUsername === formState.username) { // matching username
+        userApi.createUser(formState);
+      };
+    });
+
+    // tell server we joined
+    eventClient.emit('join', formState);
   };
 };
 /**
  * primary home page
  */
-class HomePage extends Component {
+class HomePage extends PureComponent {
   /** @default */
   render() {
     const { user: { userId, campaigns = [], characters = [] } } = this.props;
@@ -78,7 +105,6 @@ class HomePage extends Component {
     );
   }
 };
-
 // redux mappings
 function mapStateToProps(state) {
   return {

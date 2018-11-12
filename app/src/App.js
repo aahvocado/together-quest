@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import 'services/eventManager'; // start listening to websocket server
 import store from 'data';
 
 import Header from 'components/HeaderComponent';

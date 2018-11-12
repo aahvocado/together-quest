@@ -7,7 +7,9 @@ import dynamoDB from 'services/dynamoDB';
 
 const tableName = 'together-quest-user';
 const primaryKey = 'userId';
-
+/**
+ *
+ */
 const createUser = async (data) => {
   const { username, email } = data;
   const newId = uuid();
@@ -23,21 +25,23 @@ const createUser = async (data) => {
     modules: [],
   }
 
-  const params = {
-    TableName: tableName,
-    Key: { [primaryKey]: newId },
-    Item: item,
-  };
+  // const params = {
+  //   TableName: tableName,
+  //   Key: { [primaryKey]: newId },
+  //   Item: item,
+  // };
 
-  await dynamoDB.put(params);
+  // await dynamoDB.put(params);
 
   // update app state
   store.dispatch(updateCredentials(item));
 
   // since `PUT` returns nothing we'll manually return the item
   return item;
-}
-
+};
+/**
+ *
+ */
 const fetchUser = async (userId) => {
   const params = {
     TableName: tableName,
@@ -45,7 +49,7 @@ const fetchUser = async (userId) => {
   };
 
   return dynamoDB.get(params);
-}
+};
 
 // export
 const userApi = {
