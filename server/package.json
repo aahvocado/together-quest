@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/neonwednesdays/together-quest#readme",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "lodash": "^4.17.11",
     "socket.io": "^2.1.1"
   }
 }

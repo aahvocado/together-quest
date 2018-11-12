@@ -46,9 +46,10 @@ class UnloggedHomePage extends Component {
   };
 };
 /**
- * primary home page here
+ * primary home page
  */
 class HomePage extends Component {
+  /** @default */
   render() {
     const { user: { userId, campaigns = [], characters = [] } } = this.props;
 
