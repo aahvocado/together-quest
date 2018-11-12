@@ -8,6 +8,8 @@
 
 # misc
 .DS_Store
+*/.DS_Store
+
 .env
 .env.development
 .env.test
