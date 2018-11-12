@@ -31,7 +31,7 @@ class App extends Component {
             {/*<Route path="/campaigns/new" component={CampaignDetailsPage} />*/}
             <Route path="/campaigns/:campaignId" component={CampaignDetailsPage} />
 
-            <Route path="/characters" component={CharactersListPanel} />
+            <Route path="/catquest" component={CharactersListPanel} />
             {/*<Route path="/characters/:characterId" component={CharacterDetailsPage} />*/}
 
             <Footer />
