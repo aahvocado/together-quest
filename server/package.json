@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "webpack; node ./build/server.js"
+    "server": "webpack; node ./build/server.js",
+    "local-container": "docker stop toquest; docker rm toquest; docker build -t toquest .; docker run -d --name toquest -p 1111:1111 toquest"
   },
   "repository": {
     "type": "git",

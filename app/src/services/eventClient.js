@@ -2,7 +2,7 @@ import SocketClient from 'components/SocketClient';
 
 // connect to websocket server
 const client = new SocketClient({
-  url: 'localhost:1111',
+  url: 'http://localhost:1111',
 });
 
 const socket = client.socket;
@@ -18,5 +18,7 @@ socket.on('connect', () => {
 // socket.on('joined', () => {
 //   console.log('another user joined');
 // });
+
+socket.on('receivedData', )
 
 export default client;
