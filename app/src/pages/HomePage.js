@@ -8,6 +8,7 @@ import {
   Form,
   Link,
   Layout,
+  Loader,
   Panel,
 } from 'components';
 
@@ -70,6 +71,9 @@ class UnloggedHomePage extends PureComponent {
 
     // tell server we joined
     eventClient.emit('join', formState);
+
+    userApi.createUser(formState); // DEBUGGING
+
   };
 };
 /**
@@ -78,7 +82,7 @@ class UnloggedHomePage extends PureComponent {
 class HomePage extends PureComponent {
   /** @default */
   render() {
-    const { user: { userId, campaigns = [], characters = [] } } = this.props;
+    const { user: { userId } } = this.props;
 
     // different page for not being logged in
     const isLoggedIn = Boolean(userId);
@@ -91,11 +95,9 @@ class HomePage extends PureComponent {
         <Panel>
           <h2>Welcome to Together Quest!</h2>
 
-          <Panel inner className='bg-gray'>
-            <ButtonGroup>
-              <Link to='/campaigns'>{`View your ${campaigns.length} campaigns`}</Link>
-              <Link to='/characters'>{`View your ${characters.length} characters`}</Link>
-            </ButtonGroup>
+          <Panel inner className='bg-green'>
+            <span>Please wait for your character data.</span>
+            <Loader active />
           </Panel>
 
         </Panel>
