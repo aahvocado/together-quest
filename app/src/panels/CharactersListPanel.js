@@ -9,7 +9,7 @@ import {
   Panel,
   CharacterComponent,
 } from 'components';
-import {BLINKS, NOOK, PEARL, DOUGLAS, PALLY} from 'data/characterData';
+import {BLINKS, NOOK, PEARL, DOUGLAS, PALLY} from 'apis/CatQuestApi';
 
 // redux mappings
 function mapStateToProps(state) {

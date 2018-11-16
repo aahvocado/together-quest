@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash';
 
+import store from 'data';
+import { addCharacter } from 'data/actions';
+
 import {
   Button,
   // ButtonGroup,
@@ -99,15 +102,20 @@ class HomePage extends PureComponent {
         <Panel>
           <h2>Welcome to Together Quest!</h2>
 
-          <CharacterButton />
+          <CharacterButton onClick={this.test.bind(this)} />
 
           <Panel inner className='bg-green'>
             <span>Please wait for your character data.</span>
             <Loader active={!hasCharacters} />
 
-            { characters.map((char) => (
-              <CharacterButton />
+            <div className='flex-row flex-none pad-1'>
+            { characters.map((char, idx) => (
+              <CharacterButton
+                key={`char-list-item#${idx}-key`}
+                {...char}
+              />
             ))}
+            </div>
           </Panel>
 
         </Panel>
@@ -115,6 +123,10 @@ class HomePage extends PureComponent {
         <NewsPanel />
       </Layout>
     );
+  };
+
+  test() {
+    store.dispatch(addCharacter({}));
   }
 };
 // redux mappings

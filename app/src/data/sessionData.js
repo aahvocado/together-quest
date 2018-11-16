@@ -4,20 +4,35 @@
 // default schema
 const schema = {
   sessionCampaigns: [],
+  // sessionCharacters: [],
 };
 
 // constants
 const constants = {
+  ADD_SESSION_CHARACTER: 'ADD_SESSION_CHARACTER',
   ADD_SESSION_CAMPAIGN: 'ADD_SESSION_CAMPAIGN',
   REMOVE_SESSION_CAMPAIGN: 'REMOVE_SESSION_CAMPAIGN',
   UPDATE_SESSION_CAMPAIGN: 'UPDATE_SESSION_CAMPAIGN',
 };
 
 // actions
+// const addSessionCharacter = (data) => ({ type: constants.ADD_SESSION_CHARACTER, data: data });
 const addSessionCampaign = (data) => ({ type: constants.ADD_SESSION_CAMPAIGN, data: data });
 const updateSessionCampaign = (data) => ({ type: constants.UPDATE_SESSION_CAMPAIGN, data: data });
 
 // reducers
+// const sessionCharacterReducer = (state, { type, data }) => {
+//   switch (type) {
+//     // add to list
+//     case constants.ADD_SESSION_CHARACTER:
+//       const previousSessionCharacters = state.slice();
+//       previousSessionCharacters.push(data);
+//       return previousSessionCharacters;
+
+//     default:
+//       return state || [];
+//   }
+// };
 const sessionCampaignReducer = (state, { type, data }) => {
   switch (type) {
     // replace current list with given list
@@ -48,6 +63,7 @@ const sessionData = {
   }),
   reducer: {
     sessionCampaigns: sessionCampaignReducer,
+    // sessionCharacters: sessionCharacterReducer,
   },
 };
 
