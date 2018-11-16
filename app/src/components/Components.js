@@ -6,6 +6,8 @@ import {
   Link,
 } from 'components/ButtonComponent';
 
+import CharacterButton from 'components/CharacterButtonComponent';
+
 import {
   CharacterComponent,
   CharacterInfoContainer,
@@ -39,16 +41,17 @@ import {
 export {
   ButtonGroup,
   Button,
-  Link,
+  CharacterBlurb,
+  CharacterButton,
   CharacterComponent,
   CharacterInfoContainer,
-  CharacterBlurb,
   Footer,
   Form,
   Header,
   Icon,
   Input,
   Layout,
+  Link,
   ListComponent,
   ListItemComponent,
   Loader,

@@ -13,7 +13,7 @@ class ButtonGroup extends PureComponent {
     const { className } = this.props;
 
     return (
-      <div className={cn('tg-button-group', className)}>{ this.props.children }</div>
+      <div className={cn('tg-button-group flex-row', className)}>{ this.props.children }</div>
     )
   }
 }
@@ -26,6 +26,7 @@ function ButtonHOC(Wrapper) {
       this.handleClick = this.handleClick.bind(this);
     }
     static defaultProps = {
+      className: '',
       disabled: false,
       floatingPosition: undefined,
       title: undefined,
@@ -43,6 +44,7 @@ function ButtonHOC(Wrapper) {
 
     render() {
       const {
+        className,
         disabled,
         icon,
         isCentered,
@@ -55,7 +57,7 @@ function ButtonHOC(Wrapper) {
         type,
       } = this.props;
 
-      const classnames = cn('tg-button', {
+      const combinedClassName = cn('tg-button', className, {
         'disabled': disabled,
         'tg-button--centered': isCentered,
         'tg-button--round tg-button--centered': isRound,
@@ -69,7 +71,7 @@ function ButtonHOC(Wrapper) {
 
       return (
         <Wrapper
-          className={classnames}
+          className={combinedClassName}
           title={title}
           onClick={this.handleClick}
           to={isLink ? to : undefined}

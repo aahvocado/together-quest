@@ -3,21 +3,22 @@ import cn from 'classnames';
 
 class IconComponent extends PureComponent {
   static defaultProps = {
+    className: '',
     name: 'fa-play',
   };
 
   render() {
-    const { name } = this.props;
+    const { className, name } = this.props;
 
-    const type = name.split('-')[0];
+    const type = name.trim().split('-')[0];
 
-    const classnames = cn('tg-icon', {
+    const combinedClassName = cn('tg-icon', className, {
       [`fas fa-fw ${name}`]: type === 'fa',
       [`ra ra-fw ${name}`]: type === 'ra',
     });
 
     return (
-      <i className={(classnames)} />
+      <i className={(combinedClassName)} />
     );
   }
 };

@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
+import _ from 'lodash';
 
 import {
   Button,
-  ButtonGroup,
+  // ButtonGroup,
+  CharacterButton,
   Input,
   Form,
-  Link,
+  // Link,
   Layout,
   Loader,
   Panel,
@@ -82,7 +84,7 @@ class UnloggedHomePage extends PureComponent {
 class HomePage extends PureComponent {
   /** @default */
   render() {
-    const { user: { userId } } = this.props;
+    const { user: { userId, characters } } = this.props;
 
     // different page for not being logged in
     const isLoggedIn = Boolean(userId);
@@ -90,14 +92,22 @@ class HomePage extends PureComponent {
       return <UnloggedHomePage />
     };
 
+    const hasCharacters = !_.isEmpty(characters);
+
     return (
       <Layout className='tg-home tg-page'>
         <Panel>
           <h2>Welcome to Together Quest!</h2>
 
+          <CharacterButton />
+
           <Panel inner className='bg-green'>
             <span>Please wait for your character data.</span>
-            <Loader active />
+            <Loader active={!hasCharacters} />
+
+            { characters.map((char) => (
+              <CharacterButton />
+            ))}
           </Panel>
 
         </Panel>
