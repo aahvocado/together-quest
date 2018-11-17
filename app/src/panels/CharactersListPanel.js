@@ -43,7 +43,7 @@ const ConnectedCharactersListPanel = connect(
           <CharacterComponent character={NOOK} />
           <CharacterComponent character={PEARL} />
           <CharacterComponent character={DOUGLAS} />
-          <CharacterComponent character={PALLY} />
+          {/*<CharacterComponent character={PALLY} />*/}
         </Panel>
       )
     };

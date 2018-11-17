@@ -36,19 +36,21 @@ export const BLINKS = {
     description: "Lets you walk on water for a short duration.",
   }],
   stuff: [
-    '20 catnip coins',
+    '4 catnip coins',
     '0 doggy dollars',
     'a broken leash',
     'hammer',
     'dented pan',
-    'half vial of GLOW',
     'vial of glow moth dust',
     'handsaw',
     'a glowing potato',
     'rusty sword',
+    'Compound Bow of Twanging'
   ],
   traits: [
     'Magic Sensitivity',
+    'Glowing a Bit',
+    'Shrunk!',
   ],
   honors: [
     'Fire Fighting Human Champion',
@@ -79,7 +81,7 @@ export const NOOK = {
     description: "",
   }, {
     slot: 'hand',
-    name: 'Nook\'s Rapier',
+    name: 'Burning Blade',
     statMods: {strength: 1},
     description: "Your personal rapier!",
   }, {
@@ -89,13 +91,14 @@ export const NOOK = {
     description: "Cooler than Blink's",
   }],
   stuff: [
-    '51 catnip coins',
+    '58 catnip coins',
     '0 doggy dollars',
     'the Red fragment',
     'backup dagger',
     'kris',
     'empty whiskey bottle',
-    'Mink\'s shrink trinket',
+    'Nook\'s Rapier',
+    'Bareback cash register',
   ],
   traits: [
     'Tall',
@@ -133,9 +136,14 @@ export const PEARL = {
     name: 'Locket of Treats',
     statMods: {},
     description: 'Once per day, make a random candy treat!',
+  }, {
+    slot: 'hand',
+    name: 'Sharper Knife',
+    statMods: {},
+    description: 'It will be sharper than the one in your other hand',
   }],
   stuff: [
-    '37 catnip coins',
+    '32 catnip coins',
     '5 doggy dollars',
     'the Water Gem',
     'kris',
@@ -196,12 +204,13 @@ export const DOUGLAS = {
     description: '',
   }],
   stuff: [
-    '2 catnip coins',
+    '0 catnip coins',
     '12 doggy dollars',
     'lantern (unlit)',
     '(3 unidentified scrolls)',
     '(2 unindentified beakers)',
     'pipette',
+    'Blinks and his clothes and stuff'
   ],
   traits: [
     'Short Sighted',
@@ -238,13 +247,18 @@ export const PALLY = {
     name: 'Cloak of Warmth',
     statMods: {},
     description: 'Warms you right up.',
+  }, {
+    slot: 'hands',
+    name: 'Crossbow of Disgust',
+    statMods: {},
+    description: 'It shoots bugs!',
   }],
   stuff: [
-    '24 catnip coins',
+    '4 catnip coins',
     '0 doggy dollars',
     'Chovy\'s Box of Scents',
     'blindfold',
-    'birdsbane spear',
+    'Birdsbane Staff',
     'cave mushrooms',
     'jar of dust',
   ],
