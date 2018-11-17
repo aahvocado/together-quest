@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 class Panel extends PureComponent {
   static defaultProps = {
+    baseClassName: 'tg-panel bg-white flex-col',
     className: '',
     collpasedView: "Collapsed",
 
@@ -14,6 +15,7 @@ class Panel extends PureComponent {
   render() {
     const {
       active,
+      baseClassName,
       className,
       collapsed,
       collpasedView,
@@ -21,25 +23,29 @@ class Panel extends PureComponent {
     } = this.props;
 
     const modifiers = {
-      'tg-panel--inner': inner,
+      'pad-4 flex-grow': !inner,
+      'tg-panel--inner pad-2 mar-2 flex-none': inner,
       'tg-panel--collpased': collapsed,
       'active': active,
     };
+
+    const combinedClassName = cn(baseClassName, modifiers, className);
 
     // single line view
     if (collapsed) {
       return (
         <div
-          className={cn('tg-panel', modifiers, className)}
+          className={combinedClassName}
         >
           { collpasedView }
         </div>
       );
     };
 
+    // regular panel
     return (
       <div
-        className={cn('tg-panel', modifiers, className)}
+        className={combinedClassName}
       >
         { this.props.children }
       </div>

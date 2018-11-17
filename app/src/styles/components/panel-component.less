@@ -1,15 +1,8 @@
-@tg-panel-padding: 20px;
-
 @tg-panel-left-shadow: -4px 4px 8px 0 rgba(0, 0, 0, 0.2);
 @tg-panel-right-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
 @tg-panel-bottom-shadow: 0 5px rgba(0, 0, 0, 0.3);
 
 .tg-panel {
-  padding: @tg-panel-padding;
-  background: white;
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
   overflow-y: auto;
 }
 // if in a multi layout
@@ -36,9 +29,6 @@
 }
 
 .tg-panel.tg-panel--inner {
-  flex: 0 0 auto;
-  padding: @tg-panel-padding / 2;
-  margin: 10px;
   border-radius: 10px;
 }
 

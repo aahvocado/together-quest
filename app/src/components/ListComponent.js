@@ -4,7 +4,7 @@ class ListItemComponent extends PureComponent {
   render() {
 
     return (
-      <div className="list-item-component">
+      <div className="list-item-component pad-1">
         { this.props.children }
       </div>
     );

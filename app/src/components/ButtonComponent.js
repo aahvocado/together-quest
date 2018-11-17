@@ -57,7 +57,7 @@ function ButtonHOC(Wrapper) {
         type,
       } = this.props;
 
-      const combinedClassName = cn('tg-button', className, {
+      const combinedClassName = cn('tg-button pad-1', className, {
         'disabled': disabled,
         'tg-button--centered': isCentered,
         'tg-button--round tg-button--centered': isRound,

@@ -1,13 +1,10 @@
 .tg-layout {
   display: flex;
   position: relative;
-  // overflow: auto;
 
-  // background: white;
   flex: 1 1 auto;
   z-index: @zindex-layout;
 
-  margin: 10px;
   border-radius: 5px;
   box-shadow: @tg-component-shadow;
 
@@ -17,14 +14,13 @@
 
   @media @mobile {
     flex-direction: column;
-
-    // > .tg-panel + .tg-panel {
-    //   margin-top: 5px;
-    // }
   }
 }
 
-/* styles the active panel */
+/*
+  styles the active panel
+     up to 3 instances for now
+ */
 .tg-layout.tg-layout--multi {
   @layout-multi-iterations: 3;
 
