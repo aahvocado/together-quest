@@ -31,7 +31,7 @@ const updateCredentials = (data) => ({ type: constants.UPDATE_USER, data: data }
 const updatePermissions = (data) => ({ type: constants.UPDATE_PERMISSIONS, data: data });
 
 // reducers
-const userReducer = (state = {}, { type, data }) => {
+function userReducer(state = {}, { type, data }) {
   switch (type) {
     // adds to the the campaign id list
     case constants.ADD_CAMPAIGN:
@@ -59,16 +59,13 @@ const userReducer = (state = {}, { type, data }) => {
       return state;
   }
 };
-const permissionsReducer = (state = {}, { type, data }) => {
+function permissionsReducer(state = [], { type, data }) {
   switch (type) {
     // adds to the the campaign id list
     case constants.UPDATE_PERMISSIONS:
-      const permissionsList = state.permissions || [];
+      const permissionsList = state || [];
       permissionsList.push(data);
-
-      return Object.assign({}, state, {
-        permissions: permissionsList,
-      });
+      return permissionsList;
 
     default:
       return state;

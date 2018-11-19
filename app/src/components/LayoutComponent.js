@@ -32,17 +32,9 @@ class LayoutComponent extends PureComponent {
 function mapStateToProps(state) {
   return state;
 };
-
-function mapDispatchToProps(dispatch) {
-  return {};
-};
-
 // export component
-const Layout = connect(
-  mapStateToProps, mapDispatchToProps
-)(LayoutComponent);
-
-export default Layout;
+const ConnectedLayoutComponent = connect(mapStateToProps)(LayoutComponent);
+export default ConnectedLayoutComponent;
 export {
-  Layout,
+  ConnectedLayoutComponent,
 }

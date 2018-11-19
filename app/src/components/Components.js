@@ -21,7 +21,7 @@ import Header from 'components/HeaderComponent';
 import Icon from 'components/IconComponent';
 import Input from 'components/InputComponent';
 
-import { Layout } from 'components/LayoutComponent';
+import Layout from 'components/LayoutComponent';
 
 import {
   ListComponent,
@@ -30,7 +30,7 @@ import {
 
 import Loader from 'components/LoaderComponent';
 
-import { Panel } from 'components/PanelComponent';
+import Panel from 'components/PanelComponent';
 
 import {
   StatsComponent,

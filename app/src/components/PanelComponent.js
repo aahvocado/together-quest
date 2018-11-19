@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
-class Panel extends PureComponent {
+class PanelComponent extends PureComponent {
   static defaultProps = {
     baseClassName: 'tg-panel bg-white flex-col',
     className: '',
@@ -53,7 +53,7 @@ class Panel extends PureComponent {
   }
 }
 
-export default Panel;
+export default PanelComponent;
 export {
-  Panel,
+  PanelComponent,
 }

@@ -81,18 +81,10 @@ function mapStateToProps(state) {
     permissions: state.permissions,
   };
 };
-
-function mapDispatchToProps(dispatch) {
-  return {};
-};
-
 // export component
-const Header = connect(
-  mapStateToProps, mapDispatchToProps
-)(HeaderComponent)
-
-export default Header;
+const ConnectedHeaderComponent = connect(mapStateToProps)(HeaderComponent)
+export default ConnectedHeaderComponent;
 
 export {
-  Header,
+  ConnectedHeaderComponent,
 }

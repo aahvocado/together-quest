@@ -26,10 +26,10 @@ function createConnection(config = {}) {
   socket = io.connect(url, _.assign({
     path: path,
     secure: true,
-    reconnect: true,
+    reconnect: false,
     rejectUnauthorized: false,
 
-    reconnectionAttempts: 3,
+    reconnectionAttempts: 1,
     query: {
       userId: userId,
       userName: userName,

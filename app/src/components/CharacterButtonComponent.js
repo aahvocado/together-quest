@@ -26,7 +26,7 @@ class CharacterButtonComponent extends PureComponent {
       >
         <div className='tg-character-button--name fsize-base flex-none pad-1'>Character Name</div>
         <div className='tg-character-button--username fsize-small flex-none pad-hor-1'>username</div>
-        <div className='tg-character-button--image flex-grow flex-centered width-100 bg-pink'>
+        <div className='tg-character-button--image flex-grow flex-centered width-full bg-pink'>
           <Icon name='fa-id-card' />
         </div>
       </Button>

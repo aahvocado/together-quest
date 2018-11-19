@@ -2,23 +2,15 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash';
 
-import store from 'data';
-import { addCharacter } from 'data/actions';
-
 import {
-  Button,
+  // Button,
   // ButtonGroup,
   CharacterButton,
-  Input,
-  Form,
   // Link,
   Layout,
   Loader,
   Panel,
 } from 'components';
-
-import userApi from 'apis/userApi';
-import eventClient from 'services/eventClient';
 
 import NewsPanel from 'panels/NewsPanel';
 
@@ -28,7 +20,7 @@ import NewsPanel from 'panels/NewsPanel';
 class CharactersPage extends PureComponent {
   /** @default */
   render() {
-    const { user: { username, characters = [] } } = this.props;
+    const { user: { characters = [] } } = this.props;
 
     const hasCharacters = !_.isEmpty(characters);
 
@@ -62,9 +54,5 @@ class CharactersPage extends PureComponent {
 const mapStateToProps = (state) => ({
   user: state.user,
 });
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-const ConnectedCharactersPage = connect(mapStateToProps, mapDispatchToProps)(CharactersPage);
+const ConnectedCharactersPage = connect(mapStateToProps)(CharactersPage);
 export default ConnectedCharactersPage;

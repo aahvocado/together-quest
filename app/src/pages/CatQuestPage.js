@@ -23,12 +23,7 @@ function mapStateToProps(state) {
     characters: state.user.characters,
   };
 };
-
-function mapDispatchToProps(dispatch) {
-  return {};
-};
-
-const ConnectedCatQuestPage = connect(mapStateToProps, mapDispatchToProps)(
+const ConnectedCatQuestPage = connect(mapStateToProps)(
   class CatQuestPage extends PureComponent {
     // constructor(props) {
     //   super(props);

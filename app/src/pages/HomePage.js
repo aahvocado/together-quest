@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 
-// import store from 'data';
-// import { addCharacter } from 'data/actions';
-
 import {
   Button,
   // ButtonGroup,
@@ -114,9 +111,5 @@ class HomePage extends PureComponent {
 const mapStateToProps = (state) => ({
   user: state.user,
 });
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);
+const ConnectedHomePage = connect(mapStateToProps)(HomePage);
 export default ConnectedHomePage;

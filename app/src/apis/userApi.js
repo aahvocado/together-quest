@@ -1,6 +1,5 @@
 import uuid from 'uuid/v4';
 
-// import store from 'data';
 import { updateCredentials } from 'data/actions';
 
 import dynamoDB from 'services/dynamoDB';

@@ -81,15 +81,10 @@ function mapStateToProps(state) {
     sessionCampaigns: state.sessionCampaigns,
   };
 };
-function mapDispatchToProps(dispatch) {
-  return {};
-};
 /**
 * Page for viewing a user's campaigns
 */
-const ConnectedCampaignDetailsPage = connect(
-  mapStateToProps, mapDispatchToProps
-)(
+const ConnectedCampaignDetailsPage = connect(mapStateToProps)(
   class CampaignDetailsPage extends Component {
     // constructor(props) {
     //   super(props);
