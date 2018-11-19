@@ -9,7 +9,6 @@ import {
   Link,
   Loader,
   Panel,
-  // CharacterComponent,
 } from 'components';
 
 // redux mappings
@@ -24,10 +23,8 @@ function mapDispatchToProps(dispatch) {
   return {};
 };
 
-const ConnectedCampaignSelectPanel = connect(
-  mapStateToProps, mapDispatchToProps
-)(
-  class CampaignsListPanel extends PureComponent {
+const ConnectedCatQuestPage = connect(mapStateToProps, mapDispatchToProps)(
+  class CatQuestPage extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -102,4 +99,4 @@ const ConnectedCampaignSelectPanel = connect(
   }
 );
 
-export default ConnectedCampaignSelectPanel;
+export default ConnectedCatQuestPage;

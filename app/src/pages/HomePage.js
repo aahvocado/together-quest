@@ -1,19 +1,16 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
-import _ from 'lodash';
 
-import store from 'data';
-import { addCharacter } from 'data/actions';
+// import store from 'data';
+// import { addCharacter } from 'data/actions';
 
 import {
   Button,
   // ButtonGroup,
-  CharacterButton,
   Input,
   Form,
   // Link,
   Layout,
-  Loader,
   Panel,
 } from 'components';
 
@@ -79,7 +76,6 @@ class UnloggedHomePage extends PureComponent {
 
     // TESTING
     userApi.createUser(formState);
-
   };
 };
 /**
@@ -88,7 +84,7 @@ class UnloggedHomePage extends PureComponent {
 class HomePage extends PureComponent {
   /** @default */
   render() {
-    const { user: { userId, characters } } = this.props;
+    const { user: { userId, username } } = this.props;
 
     // different page for not being logged in
     const isLoggedIn = Boolean(userId);
@@ -96,27 +92,13 @@ class HomePage extends PureComponent {
       return <UnloggedHomePage />
     };
 
-    const hasCharacters = !_.isEmpty(characters);
-
     return (
       <Layout className='tg-home tg-page'>
         <Panel>
-          <h2>Welcome to Together Quest!</h2>
+          <h2>{`Welcome to Together Quest, ${username}!`}</h2>
 
-          <CharacterButton onClick={this.test.bind(this)} />
-
-          <Panel inner className='bg-green'>
-            <span>Please wait for your game master to send you character data.</span>
-            <Loader active={!hasCharacters} />
-
-            <div className='flex-row flex-none'>
-            { characters.map((char, idx) => (
-              <CharacterButton
-                key={`char-list-item#${idx}-key`}
-                {...char}
-              />
-            ))}
-            </div>
+          <Panel inner className='bg-blue'>
+            <span>Take a look at your characters tab</span>
           </Panel>
 
         </Panel>
@@ -125,10 +107,6 @@ class HomePage extends PureComponent {
       </Layout>
     );
   };
-
-  test() {
-    store.dispatch(addCharacter({}));
-  }
 };
 // redux mappings
 const mapStateToProps = (state) => ({

@@ -7,6 +7,7 @@ const {
   addCampaign,
   addCharacter,
   updateCredentials,
+  updatePermissions,
 } = userData.actions;
 
 // session
@@ -25,6 +26,7 @@ export {
   addCharacter,
   addCampaign,
   updateCredentials,
+  updatePermissions,
 
   //session
   addSessionCampaign,

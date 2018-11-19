@@ -7,12 +7,9 @@ import store from 'data';
 import Header from 'components/HeaderComponent';
 import Footer from 'components/FooterComponent';
 
-import CampaignsPage from 'pages/CampaignsPage';
-import CampaignDetailsPage from 'pages/CampaignDetailsPage';
 import HomePage from 'pages/HomePage';
-import OverviewPage from 'pages/OverviewPage';
-
-import CharactersListPanel from 'panels/CharactersListPanel';
+import CatQuestPage from 'pages/CatQuestPage';
+import CharactersPage from 'pages/CharactersPage';
 
 class App extends Component {
   render() {
@@ -24,13 +21,9 @@ class App extends Component {
 
             <Route exact path="/" component={HomePage} />
 
-            <Route path="/overview" component={OverviewPage} />
+            <Route path="/catquest" component={CatQuestPage} />
 
-            <Route exact path="/campaigns" component={CampaignsPage} />
-            {/*<Route path="/campaigns/new" component={CampaignDetailsPage} />*/}
-            <Route path="/campaigns/:campaignId" component={CampaignDetailsPage} />
-
-            <Route path="/catquest" component={CharactersListPanel} />
+            <Route path="/characters" component={CharactersPage} />
             {/*<Route path="/characters/:characterId" component={CharacterDetailsPage} />*/}
 
             <Footer />

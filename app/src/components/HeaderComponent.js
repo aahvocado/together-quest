@@ -13,32 +13,30 @@ class HeaderComponent extends PureComponent {
   };
 
   render() {
-    const { url } = this.props;
+    const { url, user: { userId } } = this.props;
 
     return (
       <div
         className='tg-header'
       >
         <Link
-          title='Player'
-          disabled={url === '/player'}
-          isFlag
-          isWide
-          to='/'
-        >
-          <Icon name='fa-street-view'/>
-          <span>{"name"}</span>
-        </Link>
-
-        <Link
           title='Home'
-          disabled={url === '/'}
+          disabled={ url === '/' }
           isFlag
           to='/'
         >
           <Icon name='fa-home'/>
         </Link>
 
+        <Link
+          title='Character'
+          disabled={ url === '/characters' || !userId }
+          isFlag
+          to='/characters'
+        >
+          <Icon name='fa-user'/>
+        </Link>
+{/*
         <Link
           title='Campaigns'
           disabled={url === '/campaigns'}
@@ -65,6 +63,7 @@ class HeaderComponent extends PureComponent {
         >
           <Icon name='fa-cog'/>
         </Link>
+*/}
       </div>
     );
   }
@@ -74,6 +73,8 @@ class HeaderComponent extends PureComponent {
 function mapStateToProps(state) {
   return {
     url: state.url,
+    user: state.user,
+    permissions: state.permissions,
   };
 };
 
