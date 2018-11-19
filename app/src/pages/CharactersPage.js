@@ -29,7 +29,7 @@ class CharactersPage extends PureComponent {
         <Panel>
           <h2>Characters Page</h2>
 
-          <Panel inner className='bg-green'>
+          <Panel inner className='bg-limegreen'>
             <span>Please wait for your game master to send you character data.</span>
             <Loader active={!hasCharacters} />
 

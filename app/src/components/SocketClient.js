@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import store from 'data';
 
 import websocketManager, {createConnection} from 'services/websocketManager';
 
@@ -29,8 +30,14 @@ class SocketClient {
   constructor() {
     // start up a connection if it was never started before
     if (!websocketManager.isInitialized()) {
+      const state = store.getState();
+
       createConnection({
         url: 'localhost:1111',
+        query: {
+          username: state.user.username,
+          userId: state.user.userId,
+        },
       });
 
     // try to reconnect since this feature uses it

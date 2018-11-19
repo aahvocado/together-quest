@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { updatePermissions } from 'data/actions';
 
 import {
-  // Button,
+  Button,
   // ButtonGroup,
   // Link,
   // Loader,
@@ -29,13 +29,15 @@ class GameMaster404Page extends PureComponent {
  * temporary no permission page
  */
 const ConnectedGameMasterPage = connect((state) => ({
+  /** @type {Object} */
   user: state.user,
+  /** @type {Array} */
   permissions: state.permissions,
+  /** @type {Array} */
+  otherUsers: state.otherUsers,
 }))(
   class GameMasterPage extends PureComponent {
     static defaultProps = {
-      campaigns: [],
-      onCampaignSelect: () => {},
     };
     /** @default */
     // constructor(props) {
@@ -47,7 +49,7 @@ const ConnectedGameMasterPage = connect((state) => ({
     };
     /** @default */
     render() {
-      const { permissions } = this.props;
+      const { permissions, otherUsers } = this.props;
 
       //
       if (!permissions.includes('GAME_MASTER')) {
@@ -58,7 +60,18 @@ const ConnectedGameMasterPage = connect((state) => ({
         <Layout className='tg-gamemaster-page width-full'>
           <Panel>
             <h2>Game Master Page</h2>
+
+            <Panel inner className='bg-blue'>
+              <h3>Currently Connected Players</h3>
+
+              { otherUsers.map((user) => (
+                <Button>
+                  {user.username}
+                </Button>
+              ))}
+            </Panel>
           </Panel>
+
         </Layout>
       )
     };

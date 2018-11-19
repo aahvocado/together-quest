@@ -15,6 +15,7 @@ class SocketServer extends Server {
    */
   constructor(server) {
     super(server);
+    this.use(this.handshake.bind(this));
 
     // {'socket.id': Client}
     this.clients = {};
@@ -27,6 +28,9 @@ class SocketServer extends Server {
     this.on('connection', (socket) => {
       const userClient = this.clients[socket.id];
       console.log('[SocketServer] Client Connected');
+
+      // when user connects, send everybody all users's data
+      this.emit('connected', this.getAllUserData());
 
       // user events
       handleUserEvents(socket);
@@ -51,6 +55,12 @@ class SocketServer extends Server {
     const socketId = socket.id;
     this.clients[socketId] = socket;
 
+    const query = socket.handshake.query;
+    socket.userData = {
+      username: query.username,
+      userId: query.userId, // todo
+    };
+
     return next();
   }
   /**
@@ -66,6 +76,17 @@ class SocketServer extends Server {
    */
   get clientsCount() {
     return this.engine.clientsCount;
+  }
+  /**
+   * all socket.userData
+   *
+   * @returns {Array}
+   */
+  getAllUserData() {
+    const socketIdList = Object.keys(this.clients);
+    return socketIdList.map((socketId) => {
+      return this.clients[socketId].userData;
+    })
   }
 };
 

@@ -37,7 +37,7 @@ class UnloggedHomePage extends PureComponent {
         <Panel>
           <h2>Home Page</h2>
           <h3>Joining CatQuest? Tell me your name!</h3>
-          <Panel inner className='bg-green'>
+          <Panel inner className='bg-limegreen'>
             <Form
               onSubmit={this.handleFormSubmit}
             >

@@ -23,6 +23,7 @@ const {
 const {
   addSessionCampaign: _addSessionCampaign,
   updateSessionCampaign: _updateSessionCampaign,
+  updateOtherUsers: _updateOtherUsers,
 } = sessionData.actions;
 
 // navigation
@@ -50,6 +51,7 @@ export const updatePermissions = attachDispatch(_updatePermissions);
 // session
 export const addSessionCampaign = attachDispatch(_addSessionCampaign);
 export const updateSessionCampaign = attachDispatch(_updateSessionCampaign);
+export const updateOtherUsers = attachDispatch(_updateOtherUsers);
 
 // navigation
 export const updateUrl = attachDispatch(_updateUrl);

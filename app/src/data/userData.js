@@ -1,8 +1,9 @@
 // import { combineReducers } from 'redux';
+import uuid from 'uuid/v4';
 
 const userSchema = {
   user: {
-    userId: undefined,
+    userId: uuid(),
     username: undefined,
     settings: {},
     email: undefined,
@@ -56,7 +57,7 @@ function userReducer(state = {}, { type, data }) {
       return Object.assign({}, state, data || {});
 
     default:
-      return state;
+      return userSchema.user;
   }
 };
 function permissionsReducer(state = [], { type, data }) {
@@ -68,7 +69,7 @@ function permissionsReducer(state = [], { type, data }) {
       return permissionsList;
 
     default:
-      return state;
+      return userSchema.permissions;
   }
 };
 
