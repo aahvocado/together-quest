@@ -77,7 +77,8 @@ class UnloggedHomePage extends PureComponent {
     // tell server we joined
     eventClient.emit('join', formState);
 
-    userApi.createUser(formState); // DEBUGGING
+    // TESTING
+    userApi.createUser(formState);
 
   };
 };
@@ -105,10 +106,10 @@ class HomePage extends PureComponent {
           <CharacterButton onClick={this.test.bind(this)} />
 
           <Panel inner className='bg-green'>
-            <span>Please wait for your character data.</span>
+            <span>Please wait for your game master to send you character data.</span>
             <Loader active={!hasCharacters} />
 
-            <div className='flex-row flex-none pad-1'>
+            <div className='flex-row flex-none'>
             { characters.map((char, idx) => (
               <CharacterButton
                 key={`char-list-item#${idx}-key`}
@@ -130,14 +131,12 @@ class HomePage extends PureComponent {
   }
 };
 // redux mappings
-function mapStateToProps(state) {
-  return {
-    user: state.user,
-  };
-};
-function mapDispatchToProps(dispatch) {
-  return {};
-};
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+
+});
 
 const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 export default ConnectedHomePage;

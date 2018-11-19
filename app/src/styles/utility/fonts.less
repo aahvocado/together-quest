@@ -1,0 +1,31 @@
+@baseFontSize: 15px;
+
+// create font sizes from 0 to max
+.generate-all-font-size(25);
+
+// mixin for create all instances
+.generate-all-font-size(@n, @i: 0) when (@i =< @n) {
+  .generate-font-size(@i);
+
+  // recursive loop
+  .generate-all-font-size(@n, (@i + 1));
+};
+
+// mixin
+.generate-font-size(@num) {
+  .fsize-@{num} {
+    font-size: @num;
+  }
+}
+
+// specific sizes
+// todo - calculations/rem
+.fsize-base {
+  font-size: @baseFontSize;
+}
+.fsize-small {
+  font-size: 12px;
+}
+.fsize-big {
+  font-size: 15px;
+}

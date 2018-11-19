@@ -26,6 +26,7 @@ function ButtonHOC(Wrapper) {
       this.handleClick = this.handleClick.bind(this);
     }
     static defaultProps = {
+      baseClassName: 'pad-1',
       className: '',
       disabled: false,
       floatingPosition: undefined,
@@ -44,6 +45,7 @@ function ButtonHOC(Wrapper) {
 
     render() {
       const {
+        baseClassName,
         className,
         disabled,
         icon,
@@ -57,7 +59,9 @@ function ButtonHOC(Wrapper) {
         type,
       } = this.props;
 
-      const combinedClassName = cn('tg-button pad-1', className, {
+      const combinedClassName = cn('tg-button',
+        baseClassName,
+        className, {
         'disabled': disabled,
         'tg-button--centered': isCentered,
         'tg-button--round tg-button--centered': isRound,

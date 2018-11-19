@@ -9,7 +9,13 @@ import {
   Panel,
   CharacterComponent,
 } from 'components';
-import {BLINKS, NOOK, PEARL, DOUGLAS, PALLY} from 'apis/CatQuestApi';
+import {
+  BLINKS,
+  NOOK,
+  PEARL,
+  DOUGLAS,
+  // PALLY,
+} from 'apis/CatQuestApi';
 
 // redux mappings
 function mapStateToProps(state) {
@@ -22,9 +28,7 @@ function mapDispatchToProps(dispatch) {
   return {};
 };
 
-const ConnectedCharactersListPanel = connect(
-  mapStateToProps, mapDispatchToProps
-)(
+const ConnectedCharactersListPanel = connect(mapStateToProps, mapDispatchToProps)(
   class CharactersListPanel extends PureComponent {
     // constructor(props) {
     //   super(props);

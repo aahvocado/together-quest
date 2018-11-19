@@ -1,11 +1,13 @@
 @basePadding: 5px;
 
-// create padding for 5, 10, 15, 20, 25
+// create padding for 0, 5, 10, 15, 20, 25
 .generate-all-padding(5);
 
 // mixin for create all instances of padding
-.generate-all-padding(@n, @i: 1) when (@i =< @n) {
+.generate-all-padding(@n, @i: 0) when (@i =< @n) {
   .generate-pad(@i);
+  .generate-vertical-pad(@i);
+  .generate-horizontal-pad(@i);
   .generate-top-pad(@i);
   .generate-right-pad(@i);
   .generate-bottom-pad(@i);
@@ -22,6 +24,18 @@
 .generate-pad(@num) {
   .pad-@{num} {
     padding: @num * @basePadding;
+  }
+}
+.generate-vertical-pad(@num) {
+  .pad-ver-@{num} {
+    padding-top: @num * @basePadding;
+    padding-bottom: @num * @basePadding;
+  }
+}
+.generate-horizontal-pad(@num) {
+  .pad-hor-@{num} {
+    padding-left: @num * @basePadding;
+    padding-right: @num * @basePadding;
   }
 }
 .generate-top-pad(@num) {

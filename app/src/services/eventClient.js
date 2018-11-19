@@ -19,6 +19,8 @@ socket.on('connect', () => {
 //   console.log('another user joined');
 // });
 
-socket.on('receivedData', )
+socket.on('gameMasterData', (data) => {
+
+});
 
 export default client;

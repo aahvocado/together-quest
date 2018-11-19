@@ -1,11 +1,13 @@
 @baseMargin: 5px;
 
-// create margin for 5, 10, 15, 20, 25
+// create margin for 0, 5, 10, 15, 20, 25
 .generate-all-margin(5);
 
 // mixin for create all instances of margin
-.generate-all-margin(@n, @i: 1) when (@i =< @n) {
+.generate-all-margin(@n, @i: 0) when (@i =< @n) {
   .generate-margin(@i);
+  .generate-vertical-margin(@i);
+  .generate-horizontal-margin(@i);
   .generate-top-margin(@i);
   .generate-right-margin(@i);
   .generate-bottom-margin(@i);
@@ -22,6 +24,18 @@
 .generate-margin(@num) {
   .mar-@{num} {
     margin: @num * @baseMargin;
+  }
+}
+.generate-vertical-margin(@num) {
+  .mar-ver-@{num} {
+    margin-top: @num * @baseMargin;
+    margin-bottom: @num * @baseMargin;
+  }
+}
+.generate-horizontal-margin(@num) {
+  .mar-hor-@{num} {
+    margin-left: @num * @baseMargin;
+    margin-right: @num * @baseMargin;
   }
 }
 .generate-top-margin(@num) {
