@@ -1,6 +1,6 @@
 import uuid from 'uuid/v4';
 
-import store from 'data';
+// import store from 'data';
 import { updateCredentials } from 'data/actions';
 
 import dynamoDB from 'services/dynamoDB';
@@ -34,7 +34,7 @@ const createUser = async (data) => {
   // await dynamoDB.put(params);
 
   // update app state
-  store.dispatch(updateCredentials(item));
+  updateCredentials(item);
 
   // since `PUT` returns nothing we'll manually return the item
   return item;

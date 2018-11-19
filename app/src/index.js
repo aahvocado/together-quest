@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import store from 'data';
 import 'services/dynamoDB';
 
 import '../node_modules/rpg-awesome/css/rpg-awesome.min.css';
@@ -16,4 +15,4 @@ ReactDOM.render(<App />, document.getElementById('tg-app'));
 registerServiceWorker();
 
 // go to home page
-store.dispatch(updateUrl(window.location.pathname));
+updateUrl(window.location.pathname);

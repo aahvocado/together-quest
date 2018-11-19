@@ -1,6 +1,6 @@
 import uuid from 'uuid/v4';
 
-import store from 'data';
+// import store from 'data';
 import { addCampaign, addSessionCampaign, updateSessionCampaign } from 'data/actions';
 
 import dynamoDB from 'services/dynamoDB';
@@ -28,8 +28,8 @@ const createCampaign = async (data) => {
   await dynamoDB.put(params);
 
   // update app state
-  store.dispatch(addCampaign(newId));
-  store.dispatch(addSessionCampaign(item));
+  addCampaign(newId);
+  addSessionCampaign(item);
 
   // since `PUT` returns nothing we'll manually return the item
   return item;
@@ -56,7 +56,7 @@ const fetchSessionCampaigns = async () => {
     return fetchedCampaign;
   }));
 
-  store.dispatch(updateSessionCampaign(fetchedCampaigns));
+  updateSessionCampaign(fetchedCampaigns);
   return fetchedCampaigns;
 };
 

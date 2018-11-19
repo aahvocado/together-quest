@@ -8,9 +8,9 @@ import Header from 'components/HeaderComponent';
 import Footer from 'components/FooterComponent';
 
 import HomePage from 'pages/HomePage';
-import CatQuestPage from 'pages/CatQuestPage';
+import GameMasterPage from 'pages/GameMasterPage';
 import CharactersPage from 'pages/CharactersPage';
-import CharactersListPanel from 'panels/CharactersListPanel';
+import CatQuestPage from 'pages/CatQuestPage';
 
 class App extends Component {
   render() {
@@ -23,7 +23,8 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
 
             <Route path="/catquest" component={CatQuestPage} />
-            <Route path="/catquest-players" component={CharactersListPanel} />
+
+            <Route path="/gamemaster" component={GameMasterPage} />
 
             <Route path="/characters" component={CharactersPage} />
             {/*<Route path="/characters/:characterId" component={CharacterDetailsPage} />*/}

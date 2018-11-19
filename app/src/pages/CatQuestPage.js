@@ -1,21 +1,26 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 
-import campaignApi from 'apis/campaignApi';
-
 import {
-  Button,
-  ButtonGroup,
-  Link,
-  Loader,
+  // Button,
+  // ButtonGroup,
+  // Link,
+  // Loader,
   Panel,
+  CharacterComponent,
 } from 'components';
+import {
+  BLINKS,
+  NOOK,
+  PEARL,
+  DOUGLAS,
+  // PALLY,
+} from 'apis/CatQuestApi';
 
 // redux mappings
 function mapStateToProps(state) {
   return {
-    campaigns: state.campaigns,
-    currentCampaign: state.currentCampaign,
+    characters: state.user.characters,
   };
 };
 
@@ -25,76 +30,26 @@ function mapDispatchToProps(dispatch) {
 
 const ConnectedCatQuestPage = connect(mapStateToProps, mapDispatchToProps)(
   class CatQuestPage extends PureComponent {
-    constructor(props) {
-      super(props);
-
-      this.handleOnCampaignClick = this.handleOnCampaignClick.bind(this);
-    };
+    // constructor(props) {
+    //   super(props);
+    // };
 
     static defaultProps = {
-      campaigns: [],
-      onCampaignSelect: () => {},
-    };
-
-    state = {
-      sessionCampaigns: [],
-    };
-
-    componentWillMount() {
-      this.setState({ isLoading: true }, async () => {
-        const sessionCampaigns = await campaignApi.fetchSessionCampaigns();
-        this.setState({ sessionCampaigns: sessionCampaigns, isLoading: false });
-      });
+      characters: [],
     };
 
     render() {
-      // const { campaigns } = this.props;
-      const { isLoading, sessionCampaigns } = this.state;
+      // const { characters } = this.props;
 
       return (
-        <Panel>
-          <h2>Campaigns</h2>
-
-          <Panel inner className='bg-gray'>
-            <Link to='/campaigns/new' icon='fa-map-marked-alt'>Create a new Campaign</Link>
-          </Panel>
-
-          <Panel inner className='bg-gray'>
-            <Loader active={isLoading} />
-
-            <ButtonGroup>
-              { sessionCampaigns.map((campaign) => {
-                const { title, campaignId } = campaign;
-
-                return (
-                  <Link
-                    key={`campaigns-list-${campaignId}-key`}
-                    to={`/campaigns/${campaignId}`}
-                    // onClick={this.handleOnCampaignClick}
-                  >
-                    {title}
-                  </Link>
-                )
-              })}
-            </ButtonGroup>
-          </Panel>
-
-
-          <Panel inner className='bg-gray'>
-            <ButtonGroup>
-              <Button disabled>
-                something else
-              </Button>
-            </ButtonGroup>
-          </Panel>
-
+        <Panel className='character-list'>
+          <CharacterComponent character={BLINKS} />
+          <CharacterComponent character={NOOK} />
+          <CharacterComponent character={PEARL} />
+          <CharacterComponent character={DOUGLAS} />
+          {/*<CharacterComponent character={PALLY} />*/}
         </Panel>
       )
-    };
-
-    handleOnCampaignClick(campaign) {
-      const { onCampaignSelect } = this.props;
-      onCampaignSelect();
     };
   }
 );

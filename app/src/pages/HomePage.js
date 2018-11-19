@@ -38,7 +38,8 @@ class UnloggedHomePage extends PureComponent {
     return (
       <Layout className='tg-home tg-page'>
         <Panel>
-          <h2>Joining CatQuest? Tell me your name!</h2>
+          <h2>Home Page</h2>
+          <h3>Joining CatQuest? Tell me your name!</h3>
           <Panel inner className='bg-green'>
             <Form
               onSubmit={this.handleFormSubmit}
@@ -95,7 +96,8 @@ class HomePage extends PureComponent {
     return (
       <Layout className='tg-home tg-page'>
         <Panel>
-          <h2>{`Welcome to Together Quest, ${username}!`}</h2>
+          <h2>Home Page</h2>
+          <h3>{`Welcome to Together Quest, ${username}!`}</h3>
 
           <Panel inner className='bg-blue'>
             <span>Take a look at your characters tab</span>
