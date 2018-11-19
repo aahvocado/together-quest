@@ -10,6 +10,7 @@ import Footer from 'components/FooterComponent';
 import HomePage from 'pages/HomePage';
 import CatQuestPage from 'pages/CatQuestPage';
 import CharactersPage from 'pages/CharactersPage';
+import CharactersListPanel from 'panels/CharactersListPanel';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
 
             <Route path="/catquest" component={CatQuestPage} />
+            <Route path="/catquest-players" component={CharactersListPanel} />
 
             <Route path="/characters" component={CharactersPage} />
             {/*<Route path="/characters/:characterId" component={CharacterDetailsPage} />*/}

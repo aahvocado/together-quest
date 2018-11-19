@@ -116,8 +116,8 @@ class CharacterComponent extends PureComponent {
         {/* equipment */}
         <div className='character-equipments'>
           <div>[equipments]</div>
-          { equipments.map((equipment) =>
-            <div className='equipment'>
+          { equipments.map((equipment, idx) =>
+            <div className='equipment' key={`${idx}`}>
               <div className='equipment-main'>
                 <Icon name='fa-puzzle-piece' />
                 <span className='equipment-name'>{equipment.name}</span>
@@ -133,8 +133,8 @@ class CharacterComponent extends PureComponent {
         {/* stuff */}
         <div className='character-stuff'>
           <div>[stuff]</div>
-          { stuff.map((item) =>
-            <div className='item'>
+          { stuff.map((item, idx) =>
+            <div className='item' key={`${idx}`}>
               <Icon name='fa-box' />
               <span className='item-name'>{item}</span>
             </div>
@@ -144,8 +144,8 @@ class CharacterComponent extends PureComponent {
         {/* traits */}
         <div className='character-traits'>
           <div>[traits]</div>
-          { traits.map((trait) =>
-            <div className='trait'>
+          { traits.map((trait, idx) =>
+            <div className='trait' key={`${idx}`}>
               <Icon name='fa-tag' />
               <span className='trait-name'>{trait}</span>
             </div>
@@ -155,8 +155,8 @@ class CharacterComponent extends PureComponent {
         {/* honors */}
         <div className='character-honors'>
           <div>[honors]</div>
-          { honors.map((honor) =>
-            <div className='honor'>
+          { honors.map((honor, idx) =>
+            <div className='honor' key={`${idx}`}>
               <Icon name='fa-certificate' />
               <span className='honor-name'>{honor}</span>
             </div>

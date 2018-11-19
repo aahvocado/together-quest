@@ -16,4 +16,4 @@ ReactDOM.render(<App />, document.getElementById('tg-app'));
 registerServiceWorker();
 
 // go to home page
-store.dispatch(updateUrl('/'));
+store.dispatch(updateUrl(window.location.pathname));
