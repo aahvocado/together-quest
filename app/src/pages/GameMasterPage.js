@@ -71,8 +71,10 @@ const ConnectedGameMasterPage = connect((state) => ({
             <Panel inner className='bg-blue'>
               <h3>Currently Connected Players</h3>
 
-              { otherUsers.map((user) => (
-                <Button>
+              { otherUsers.map((user, idx) => (
+                <Button
+                  key={`userBtn-${idx}-key`}
+                >
                   {user.username}
                 </Button>
               ))}

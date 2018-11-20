@@ -37,6 +37,7 @@ class SocketServer extends Server {
        */
       socket.on('disconnect', () => {
         this.removeClient(socket.id);
+        this.emit('usersUpdate', this.getAllUserData());
       });
     });
   }
@@ -55,7 +56,7 @@ class SocketServer extends Server {
     const query = socket.handshake.query;
     socket.userData = {
       username: query.username,
-      userId: query.userId, // todo
+      userId: query.userId,
     };
 
     return next();
@@ -83,7 +84,7 @@ class SocketServer extends Server {
     const socketIdList = Object.keys(this.clients);
     return socketIdList.map((socketId) => {
       return this.clients[socketId].userData;
-    })
+    }).filter(Boolean);
   }
 };
 

@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash';
 
-import store from 'data';
-
 import {
   Button,
   // ButtonGroup,
@@ -61,14 +59,15 @@ class UnloggedHomePage extends PureComponent {
    * tell the server we've signed up
    */
   handleFormSubmit(formState) {
+    console.log('handleFormSubmit');
     // do nothing if username is empty
     if (!formState.username || formState.username.length <= 0) return;
 
     // wait for server to tell us we joined
-    eventClient.socket.once('joined', (userDataList) => {
+    eventClient.socket.once('usersUpdate', (userDataList) => {
       // search for user list to see if our id is in there
       const serverAccepted = _.find(userDataList, (userData) => {
-        return userData.userId === store.getState().user.userId;
+        return userData.userId === this.props.user.userId;
       });
 
       // if so we can complete signup
@@ -79,45 +78,44 @@ class UnloggedHomePage extends PureComponent {
 
     // tell server we joined
     eventClient.emit('join', formState);
-
-    // TESTING
-    // userApi.createUser(formState);
   };
 };
 /**
  * primary home page
  */
-class HomePage extends PureComponent {
-  /** @default */
-  render() {
-    const { user: { username } } = this.props;
+const ConnectedHomePage = connect((state) => ({
+  /** @type {Object} */
+  user: state.user,
+}))(
+  class HomePage extends PureComponent {
+    /** @default */
+    render() {
+      const { user } = this.props;
+      const { username } = user;
 
-    // different page for not being logged in
-    const isLoggedIn = Boolean(username);
-    if (!isLoggedIn) {
-      return <UnloggedHomePage />
-    };
+      // different page for not being logged in
+      const isLoggedIn = Boolean(username);
+      if (!isLoggedIn) {
+        return <UnloggedHomePage user={user} />
+      };
 
-    return (
-      <Layout className='tg-home tg-page'>
-        <Panel>
-          <h2>Home Page</h2>
-          <h3>{`Welcome to Together Quest, ${username}!`}</h3>
+      return (
+        <Layout className='tg-home tg-page'>
+          <Panel>
+            <h2>Home Page</h2>
+            <h3>{`Welcome to Together Quest, ${username}!`}</h3>
 
-          <Panel inner className='bg-blue'>
-            <span>Take a look at your characters tab</span>
+            <Panel inner className='bg-blue'>
+              <span>Take a look at your characters tab</span>
+            </Panel>
+
           </Panel>
 
-        </Panel>
+          <NewsPanel />
+        </Layout>
+      );
+    };
+  }
+);
 
-        <NewsPanel />
-      </Layout>
-    );
-  };
-};
-// redux mappings
-const mapStateToProps = (state) => ({
-  user: state.user,
-});
-const ConnectedHomePage = connect(mapStateToProps)(HomePage);
 export default ConnectedHomePage;
