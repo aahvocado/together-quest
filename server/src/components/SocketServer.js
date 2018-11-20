@@ -29,9 +29,6 @@ class SocketServer extends Server {
       const userClient = this.clients[socket.id];
       console.log('[SocketServer] Client Connected');
 
-      // when user connects, send everybody all users's data
-      this.emit('connected', this.getAllUserData());
-
       // user events
       handleUserEvents(socket);
 

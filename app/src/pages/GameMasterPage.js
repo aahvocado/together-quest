@@ -12,6 +12,8 @@ import {
   Panel,
 } from 'components';
 
+import eventClient from 'services/eventClient';
+
 /**
  * temporary no permission page
  */
@@ -46,6 +48,11 @@ const ConnectedGameMasterPage = connect((state) => ({
     /** @default */
     componentWillMount() {
       updatePermissions('GAME_MASTER'); // temporarily just give game master permission if they come here
+
+      // tell server we joined
+      eventClient.emit('join', {
+        username: 'GAME_MASTER',
+      });
     };
     /** @default */
     render() {

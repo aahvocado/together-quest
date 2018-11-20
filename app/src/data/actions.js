@@ -23,6 +23,7 @@ const {
 const {
   addSessionCampaign: _addSessionCampaign,
   updateSessionCampaign: _updateSessionCampaign,
+  resetOtherUsers: _resetOtherUsers,
   updateOtherUsers: _updateOtherUsers,
 } = sessionData.actions;
 
@@ -51,6 +52,7 @@ export const updatePermissions = attachDispatch(_updatePermissions);
 // session
 export const addSessionCampaign = attachDispatch(_addSessionCampaign);
 export const updateSessionCampaign = attachDispatch(_updateSessionCampaign);
+export const resetOtherUsers = attachDispatch(_resetOtherUsers);
 export const updateOtherUsers = attachDispatch(_updateOtherUsers);
 
 // navigation

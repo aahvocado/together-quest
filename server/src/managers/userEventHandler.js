@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {io} from 'managers/serverManager';
 
 /**
@@ -7,8 +9,10 @@ function handleUserEvents(socket) {
   /**
    * user has given their info and officially joined, pass it out
    */
-  socket.on('join', (data) => {
-    socket.emit('joined', data);
+  socket.on('join', (message) => {
+    _.assignIn(socket.userData, message.data[0]);
+
+    io.emit('usersUpdate', io.getAllUserData());
   });
 };
 

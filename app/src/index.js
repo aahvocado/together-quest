@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import 'services/dynamoDB';
 
-import eventClient from 'services/eventClient';
-
 import '../node_modules/rpg-awesome/css/rpg-awesome.min.css';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
 import 'styles/main.less';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+
 import { updateUrl } from 'data/actions';
 
 // render
@@ -18,8 +17,3 @@ registerServiceWorker();
 
 // update our data store with our current location
 updateUrl(window.location.pathname);
-
-// get currently joined users
-eventClient.listenTo('connected', (userDataList) => {
-  console.log('connected', userDataList);
-});

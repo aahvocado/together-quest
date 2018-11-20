@@ -126,19 +126,19 @@ class SocketClient {
   * @example Client.emit('favorite_team', 'expense');
   *
   * @param {String} event
-  * @param {[*]} messages
+  * @param {[*]} data
   */
-  emit(event = 'message', ...messages) {
-    this.emitHandler(event, event, undefined, ...messages);
+  emit(event = 'message', ...data) {
+    this.emitHandler(event, event, undefined, ...data);
   }
   /**
   * emit an 'update' event but record a different `lastEvent` on the db
   *
   * @param {String} event
-  * @param {[*]} messages
+  * @param {[*]} data
   */
-  emitUpdate(event = 'update', ...messages) {
-    this.emitHandler('update', event, undefined, ...messages);
+  emitUpdate(event = 'update', ...data) {
+    this.emitHandler('update', event, undefined, ...data);
   }
   /**
   * under the hood, this is the final method that creates the payload for emitting to the server
@@ -147,13 +147,13 @@ class SocketClient {
   * @param {String} emitEvent - actual event to send to server
   * @param {String} event - event we will be emitting to others
   * @param {Array} channels - which channels to emit to
-  * @param {[*]} messages - resulting data that other listeneres will receive
+  * @param {[*]} data - resulting data that other listeneres will receive
   */
-  emitHandler(emitEvent, event, channels, ...messages) {
+  emitHandler(emitEvent, event, channels, ...data) {
     this.socket.emit(emitEvent, {
       event: event,
       channels: channels,
-      messages: messages,
+      data: data,
     });
   }
   /**
@@ -174,11 +174,11 @@ class SocketClient {
       to: (anotherChannel) => {
         return this.to(anotherChannel, channels);
       },
-      emit: (event, ...messages) => {
-        return this.emitHandler(event, event, channels, ...messages);
+      emit: (event, ...data) => {
+        return this.emitHandler(event, event, channels, ...data);
       },
-      emitUpdate: (event, ...messages) => {
-        return this.emitHandler('update', event, channels, ...messages);
+      emitUpdate: (event, ...data) => {
+        return this.emitHandler('update', event, channels, ...data);
       },
     };
   }

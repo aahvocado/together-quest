@@ -1,6 +1,3 @@
-// import { combineReducers } from 'redux';
-import store from 'data';
-
 // session data is the cache for the current session
 //  so anything that has to be fetched every time instead of being saved locally
 const sessionSchema = {
@@ -16,6 +13,7 @@ const constants = {
   REMOVE_SESSION_CAMPAIGN: 'REMOVE_SESSION_CAMPAIGN',
   UPDATE_SESSION_CAMPAIGN: 'UPDATE_SESSION_CAMPAIGN',
   UPDATE_OTHER_USERS: 'UPDATE_OTHER_USERS',
+  RESET_OTHER_USERS: 'RESET_OTHER_USERS',
 };
 
 // actions
@@ -23,6 +21,7 @@ const constants = {
 const addSessionCampaign = (data) => ({ type: constants.ADD_SESSION_CAMPAIGN, data: data });
 const updateSessionCampaign = (data) => ({ type: constants.UPDATE_SESSION_CAMPAIGN, data: data });
 const updateOtherUsers = (data) => ({ type: constants.UPDATE_OTHER_USERS, data: data });
+const resetOtherUsers = (data) => ({ type: constants.RESET_OTHER_USERS, data: data });
 
 // reducers
 // const sessionCharacterReducer = (state, { type, data }) => {
@@ -58,18 +57,19 @@ function otherUsersReducer(state = [], { type, data = {} }) {
   const { userId } = data;
 
   switch (type) {
-    // replace map based on id I guess
+    // update array
     case constants.UPDATE_OTHER_USERS:
       // can't add if no id
       if (!userId) return state;
-
-      // don't add if user is this one
-      if (userId === store.state.user.userId) return state;
 
       // otherwise add em in
       const previousOtherUsers = state.slice();
       previousOtherUsers.push(data);
       return previousOtherUsers;
+
+    // clear out
+    case constants.RESET_OTHER_USERS:
+      return [];
 
     default:
       return state || [];
@@ -83,6 +83,7 @@ const sessionData = {
     addSessionCampaign,
     updateSessionCampaign,
     updateOtherUsers,
+    resetOtherUsers,
   },
   defaultState: {...sessionSchema},
   reducer: {

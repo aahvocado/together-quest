@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
+import _ from 'lodash';
+
+import store from 'data';
 
 import {
   Button,
@@ -61,10 +64,15 @@ class UnloggedHomePage extends PureComponent {
     // do nothing if username is empty
     if (!formState.username || formState.username.length <= 0) return;
 
-    // wait for server to tell us we joined, and once it's confirmed we can update our user data
-    eventClient.socket.once('joined', (data) => {
-      const joinedUsername = data.messages[0].username;
-      if (joinedUsername === formState.username) { // matching username
+    // wait for server to tell us we joined
+    eventClient.socket.once('joined', (userDataList) => {
+      // search for user list to see if our id is in there
+      const serverAccepted = _.find(userDataList, (userData) => {
+        return userData.userId === store.getState().user.userId;
+      });
+
+      // if so we can complete signup
+      if (serverAccepted) {
         userApi.createUser(formState);
       };
     });
@@ -73,7 +81,7 @@ class UnloggedHomePage extends PureComponent {
     eventClient.emit('join', formState);
 
     // TESTING
-    userApi.createUser(formState);
+    // userApi.createUser(formState);
   };
 };
 /**
@@ -82,10 +90,10 @@ class UnloggedHomePage extends PureComponent {
 class HomePage extends PureComponent {
   /** @default */
   render() {
-    const { user: { userId, username } } = this.props;
+    const { user: { username } } = this.props;
 
     // different page for not being logged in
-    const isLoggedIn = Boolean(userId);
+    const isLoggedIn = Boolean(username);
     if (!isLoggedIn) {
       return <UnloggedHomePage />
     };

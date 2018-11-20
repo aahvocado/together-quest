@@ -14,7 +14,7 @@ class HeaderComponent extends PureComponent {
   };
   /** @default */
   render() {
-    const { url, user: { userId } } = this.props;
+    const { url, user: { username } } = this.props;
 
     return (
       <div
@@ -34,7 +34,7 @@ class HeaderComponent extends PureComponent {
 
         <Link
           title='Character'
-          disabled={ url === '/characters' || !userId }
+          disabled={ url === '/characters' || !username }
           isFlag
           to='/characters'
         >
