@@ -2,6 +2,10 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash';
 
+import { updateCredentials } from 'data/actions';
+
+import eventClient from 'services/eventClient';
+
 import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
@@ -14,8 +18,6 @@ import {
   Panel,
 } from 'components';
 
-import userApi from 'apis/userApi';
-import eventClient from 'services/eventClient';
 
 import NewsPanel from 'panels/NewsPanel';
 
@@ -73,7 +75,7 @@ class UnloggedHomePage extends PureComponent {
 
       // if so we can complete signup
       if (serverAccepted) {
-        userApi.createUser(formState);
+        updateCredentials(formState);
       };
     });
 

@@ -19,6 +19,7 @@ class App extends Component {
       <BrowserRouter>
         <Provider store={store}>
           <Fragment>
+
             <Header />
 
             <Route exact path="/" component={HomePage} />

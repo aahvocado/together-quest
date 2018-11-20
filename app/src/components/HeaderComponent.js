@@ -35,7 +35,7 @@ class HeaderComponent extends PureComponent {
 
         <Link
           title='Character'
-          disabled={ url === '/characters' || !isLoggedIn() }
+          disabled={ url.includes('/characters') || !isLoggedIn() }
           isFlag
           to='/characters'
         >

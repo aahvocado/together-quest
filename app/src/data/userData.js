@@ -55,7 +55,10 @@ function userReducer(state, { type, data }) {
 
     // update will replace any attributes
     case constants.UPDATE_USER:
-      return Object.assign({}, state, data || {});
+      return {
+        ...state,
+        ...data,
+      };
 
     default:
       return state || userSchema.user;
