@@ -27,7 +27,7 @@ const updateModules = (data) => ({
 });
 
 // reducers
-const campaignDataReducer = (state = {}, { type, data }) => {
+const campaignDataReducer = (state, { type, data }) => {
   switch (type) {
     case constants.UPDATE_TITLE:
     case constants.UPDATE_PLAYERS:
@@ -35,7 +35,7 @@ const campaignDataReducer = (state = {}, { type, data }) => {
       return Object.assign({}, state, data || {});
 
     default:
-      return state;
+      return state || campaignSchema;
   }
 };
 

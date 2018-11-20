@@ -18,13 +18,13 @@ const updateUrl = (data) => ({
 });
 
 // reducers
-const updateUrlReducer = (state = {}, { type, data }) => {
+const updateUrlReducer = (state, { type, data }) => {
   switch (type) {
     case constants.UPDATE_URL:
       return data || '/';
 
     default:
-      return state;
+      return state || navigationSchema.url;
   }
 };
 

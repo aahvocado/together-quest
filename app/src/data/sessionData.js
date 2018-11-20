@@ -50,10 +50,10 @@ function sessionCampaignReducer(state, { type, data }) {
 
     case constants.REMOVE_SESSION_CAMPAIGN:
     default:
-      return state || [];
+      return state || sessionSchema.sessionCampaigns;
   }
 };
-function otherUsersReducer(state = [], { type, data = {} }) {
+function otherUsersReducer(state, { type, data = {} }) {
   const { userId } = data;
 
   switch (type) {
@@ -72,7 +72,7 @@ function otherUsersReducer(state = [], { type, data = {} }) {
       return [];
 
     default:
-      return state || [];
+      return state || sessionSchema.otherUsers;
   }
 };
 
