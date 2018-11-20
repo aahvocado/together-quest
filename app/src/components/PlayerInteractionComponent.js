@@ -24,7 +24,8 @@ class PlayerInteractionComponent extends PureComponent {
       <div
         className={cn('flex-row bg-white align-center mar-1 pad-2', className)}
       >
-        <span className='flex-grow'>{username}</span>
+        <Icon className='flex-none mar-r-1' name='fa-user-circle' />
+        <span className='flex-grow fweight-bold'>{username}</span>
 
         <ButtonGroup className='flex-none'>
           <Button
@@ -35,12 +36,14 @@ class PlayerInteractionComponent extends PureComponent {
 
           <Button
             title='Message'
+            disabled
           >
             <Icon name='fa-envelope' />
           </Button>
 
           <Button
             title='Kick Player'
+            disabled
           >
             <Icon name='fa-minus-circle' />
           </Button>
@@ -50,10 +53,4 @@ class PlayerInteractionComponent extends PureComponent {
   }
 };
 
-// connect component to State
-// function mapStateToProps(state) {
-//   return state;
-// };
-// export component
-// const ConnectedLayoutComponent = connect(mapStateToProps)(LayoutComponent);
 export default PlayerInteractionComponent;
