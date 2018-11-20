@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-
 import { connect } from 'react-redux'
+
+import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
   Icon,
@@ -14,7 +15,7 @@ class HeaderComponent extends PureComponent {
   };
   /** @default */
   render() {
-    const { url, user: { username } } = this.props;
+    const { url } = this.props;
 
     return (
       <div
@@ -34,7 +35,7 @@ class HeaderComponent extends PureComponent {
 
         <Link
           title='Character'
-          disabled={ url === '/characters' || !username }
+          disabled={ url === '/characters' || !isLoggedIn() }
           isFlag
           to='/characters'
         >

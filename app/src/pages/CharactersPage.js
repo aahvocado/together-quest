@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
+
+import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
   // Button,
@@ -12,8 +15,6 @@ import {
   Panel,
 } from 'components';
 
-import NewsPanel from 'panels/NewsPanel';
-
 /**
  *
  */
@@ -21,6 +22,11 @@ class CharactersPage extends PureComponent {
   /** @default */
   render() {
     const { user: { characters = [] } } = this.props;
+
+    // go back to homepage if not logged in
+    if (!isLoggedIn()) {
+      return <Redirect to='/' />
+    };
 
     const hasCharacters = !_.isEmpty(characters);
 
@@ -44,8 +50,6 @@ class CharactersPage extends PureComponent {
           </Panel>
 
         </Panel>
-
-        <NewsPanel />
       </Layout>
     );
   };

@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import _ from 'lodash';
 
+import { isLoggedIn } from 'utils/sessionUtils';
+
 import {
   Button,
   // ButtonGroup,
@@ -59,7 +61,6 @@ class UnloggedHomePage extends PureComponent {
    * tell the server we've signed up
    */
   handleFormSubmit(formState) {
-    console.log('handleFormSubmit');
     // do nothing if username is empty
     if (!formState.username || formState.username.length <= 0) return;
 
@@ -94,8 +95,7 @@ const ConnectedHomePage = connect((state) => ({
       const { username } = user;
 
       // different page for not being logged in
-      const isLoggedIn = Boolean(username);
-      if (!isLoggedIn) {
+      if (!isLoggedIn()) {
         return <UnloggedHomePage user={user} />
       };
 

@@ -100,6 +100,7 @@ module.exports = {
       services: path.resolve(appPath, 'services'),
       styles: path.resolve(appPath, 'styles'),
       tests: path.resolve(appPath, 'tests'),
+      utils: path.resolve(appPath, 'utils'),
 
       properties: path.resolve(appPath, 'properties'),
 
