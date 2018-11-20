@@ -69,7 +69,7 @@ class AttachDataModal extends PureComponent {
           <h3 className='flex-none'>{`Send Character Data to ${username}`}</h3>
 
           <TextArea
-            className='flex-grow mar-ver-1 border-gray'
+            className='flex-grow mar-ver-2 border-gray'
             placeholder='Attach Character Data'
           />
 
@@ -190,7 +190,7 @@ const ConnectedGameMasterPage = connect((state) => ({
      *
      */
     handleOnAttachClick() {
-      const { focusedUser } = this.state;
+      // const { focusedUser } = this.state;
 
       this.setState({focusedUser: null})
     }

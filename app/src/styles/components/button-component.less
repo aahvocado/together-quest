@@ -1,13 +1,13 @@
 @round-button-size: 50px;
 @only-icon-font-size: 1.2rem;
 
-.tg-button-group {
-  .tg-button + .tg-button {
+.button-component-group {
+  .button-component + .button-component {
     margin-left: 10px;
   }
 }
 
-.tg-button {
+.button-component {
   background: white;
   border-color: transparent;
   border-radius: 6px;
@@ -33,7 +33,7 @@
   }
 }
 
-.tg-button.tg-button--centered {
+.button-component.button-component--centered {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,15 +43,15 @@
   }
 }
 
-.tg-button.tg-button--flag {
+.button-component.button-component--flag {
   border-radius: 0 0 @round-button-size @round-button-size;
 }
-.tg-button.tg-button--flag.tg-button--wide-flag {
+.button-component.button-component--flag.button-component--wide-flag {
   border-radius: 0 0 @round-button-size/2 @round-button-size/2;
   padding: 0 10px;
 }
 
-.tg-button.tg-button--round {
+.button-component.button-component--round {
   border-radius: 50%;
   height: @round-button-size;
   width: @round-button-size;
@@ -61,7 +61,7 @@
   }
 }
 
-.tg-button.tg-button--top-left {
+.button-component.button-component--top-left {
   position: absolute;
   top: -25px;
   left: -25px;

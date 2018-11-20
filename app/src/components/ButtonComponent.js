@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
 // import store from 'data';
@@ -9,40 +9,61 @@ import { Icon } from 'components';
 import { Link as RouterLink } from 'react-router-dom';
 
 class ButtonGroup extends PureComponent {
+  static defaultProps = {
+    /** @type {String} */
+    baseClassName: 'pad-1',
+    /** @type {String} */
+    className: '',
+  };
+  /** @default */
   render() {
-    const { className } = this.props;
+    const { baseClassName, className } = this.props;
 
     return (
-      <div className={cn('tg-button-group flex-row', className)}>{ this.props.children }</div>
+      <div className={cn('button-component-group', baseClassName, className)}>
+        { this.props.children }
+      </div>
     )
   }
 }
 
 function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
+    static defaultProps = {
+      /** @type {String} */
+      baseClassName: 'pad-1',
+      /** @type {String} */
+      className: '',
+      /** @type {Boolean} */
+      disabled: false,
+      /** @type {Boolean} */
+      floatingPosition: undefined,
+      /** @type {String} */
+      title: undefined,
+      /** @type {String} */
+      type: 'text',
+      /** @type {Boolean} */
+      isCentered: false,
+      /** @type {Boolean} */
+      isFlag: false,
+      /** @type {Boolean} */
+      isRound: false,
+      /** @type {Boolean} */
+      isWide: false,
+      /** @type {String} */
+      icon: undefined, // pass it an icon name
+      /** @type {Function} */
+      onClick: () => {},
+      /** @type {String} */
+      to: '/',
+    };
+    /** @default */
     constructor(props) {
       super(props);
 
       this.handleClick = this.handleClick.bind(this);
     }
-    static defaultProps = {
-      baseClassName: 'pad-1',
-      className: '',
-      disabled: false,
-      floatingPosition: undefined,
-      title: undefined,
-      type: 'text',
-
-      isCentered: false,
-      isFlag: false,
-      isRound: false,
-      isWide: false,
-
-      icon: undefined, // pass it an icon name
-      onClick: () => {},
-      to: '/',
-    };
-
+    /** @default */
     render() {
       const {
         baseClassName,
@@ -59,38 +80,31 @@ function ButtonHOC(Wrapper) {
         type,
       } = this.props;
 
-      const combinedClassName = cn('tg-button',
-        baseClassName,
-        className, {
+      const modifiers = {
         'disabled': disabled,
-        'tg-button--centered': isCentered,
-        'tg-button--round tg-button--centered': isRound,
-        'tg-button--flag tg-button--centered': isFlag && !isWide,
-        'tg-button--wide-flag tg-button--flag tg-button--centered': isWide,
-        'tg-button--top-left': floatingPosition,
-      });
+        'button-component--centered': isCentered,
+        'button-component--round button-component--centered': isRound,
+        'button-component--flag button-component--centered': isFlag && !isWide,
+        'button-component--wide-flag button-component--flag button-component--centered': isWide,
+        'button-component--top-left': floatingPosition,
+      };
 
       // hack a little bit to check if this is a Link
       const isLink = Wrapper === RouterLink;
 
       return (
         <Wrapper
-          className={combinedClassName}
+          className={cn('button-component', modifiers, baseClassName, className)}
           title={title}
           onClick={this.handleClick}
           to={isLink ? to : undefined}
           type={type}
         >
           { icon &&
-            <Fragment>
-              <Icon name={icon} />
-              <span>{this.props.children}</span>
-            </Fragment>
+            <Icon name={icon} />
           }
 
-          { !icon &&
-            this.props.children
-          }
+          { this.props.children }
         </Wrapper>
       );
     };

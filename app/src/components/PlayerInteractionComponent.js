@@ -41,25 +41,24 @@ class PlayerInteractionComponent extends PureComponent {
           <Button
             title='Send Character Data'
             className='pad-2'
+            icon='fa-address-card'
             onClick={this.handleSendDataClick}
-          >
-            <Icon name='fa-address-card' />
-          </Button>
+          />
 
           <Button
             title='Message'
             className='pad-2'
+            icon='fa-envelope'
             disabled
           >
-            <Icon name='fa-envelope' />
           </Button>
 
           <Button
             title='Kick Player'
             className='pad-2'
+            icon='fa-minus-circle'
             disabled
           >
-            <Icon name='fa-minus-circle' />
           </Button>
         </ButtonGroup>
       </div>
