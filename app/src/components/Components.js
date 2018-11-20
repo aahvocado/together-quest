@@ -30,6 +30,8 @@ import {
 
 import Loader from 'components/LoaderComponent';
 
+import Modal from 'components/ModalComponent';
+
 import Panel from 'components/PanelComponent';
 
 import {
@@ -55,6 +57,7 @@ export {
   ListComponent,
   ListItemComponent,
   Loader,
+  Modal,
   Panel,
   StatsComponent,
   StatComponent,

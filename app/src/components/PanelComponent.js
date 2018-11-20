@@ -29,7 +29,7 @@ class PanelComponent extends PureComponent {
       'active': active,
     };
 
-    const combinedClassName = cn(baseClassName, modifiers, className);
+    const combinedClassName = cn(modifiers, baseClassName, className);
 
     // single line view
     if (collapsed) {

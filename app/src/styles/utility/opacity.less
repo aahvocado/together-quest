@@ -1,0 +1,17 @@
+// all opacities
+.generate-all-opacity(5);
+
+// loop for it
+.generate-all-opacity(@n, @i: 0) when (@i =< @n) {
+  .generate-opacity(@i);
+
+  // recursive loop
+  .generate-all-opacity(@n, (@i + 1));
+}
+
+// example: generate-opacity(4) results in opacity: 0.25;
+.generate-opacity(@num) {
+  .opacity-@{num} {
+    opacity: (1 / @num);
+  }
+}

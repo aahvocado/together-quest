@@ -13,10 +13,10 @@
 @tg-darkred: #cc566f;
 
 each(@all-colors, {
-  #tg-app .color-@{value} {
+  .color-@{value} {
     color: ~"@{tg-@{value}}";
   }
-  #tg-app .bg-@{value} {
+  .bg-@{value} {
     background: ~"@{tg-@{value}}";
   }
 });

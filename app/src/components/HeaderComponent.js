@@ -19,7 +19,7 @@ class HeaderComponent extends PureComponent {
 
     return (
       <div
-        className='tg-header'
+        className='tg-header zindex-4 position-absolute width-full flex-row justify-center'
       >
 
         <SocketConnectionButton />

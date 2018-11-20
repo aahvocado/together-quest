@@ -1,0 +1,17 @@
+// all z-index
+.generate-all-zindex(10);
+
+// loop for it
+.generate-all-zindex(@n, @i: 0) when (@i =< @n) {
+  .generate-zindex(@i);
+
+  // recursive loop
+  .generate-all-zindex(@n, (@i + 1));
+}
+
+//
+.generate-zindex(@num) {
+  .zindex-@{num} {
+    z-index: @num;
+  }
+}

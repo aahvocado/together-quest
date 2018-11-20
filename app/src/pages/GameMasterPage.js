@@ -8,6 +8,7 @@ import {
   ListComponent,
   Loader,
   Layout,
+  Modal,
   Panel,
 } from 'components';
 import PlayerInteractionComponent from 'components/PlayerInteractionComponent';
@@ -70,6 +71,15 @@ const ConnectedGameMasterPage = connect((state) => ({
         <Layout className='tg-gamemaster-page width-full'>
           <Panel>
             <h2>Game Master Page</h2>
+
+            <Modal>
+              <Panel
+                className='bg-white'
+                inner
+              >
+                gib data
+              </Panel>
+            </Modal>
 
             <Panel inner className='bg-blue'>
               { !hasOtherPlayers &&
