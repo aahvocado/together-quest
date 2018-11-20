@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import {
-  Button,
+  Link,
   Icon,
 } from 'components';
 
@@ -21,26 +21,28 @@ class CharacterButtonComponent extends PureComponent {
   render() {
     const {
       name,
+      id,
     } = this.props;
 
     return (
-      <Button
+      <Link
         baseClassName='pad-0 mar-1'
         className='tg-character-button flex-col justify-center'
-        onClick={this.handleOnClick}
+        // onClick={this.handleOnClick}
+        to={`/characters/${id}`}
       >
         <div className='tg-character-button--name fsize-base flex-none pad-1'>{name}</div>
         <div className='tg-character-button--image flex-grow flex-centered width-full bg-pink'>
           <Icon name='fa-id-card' />
         </div>
-      </Button>
+      </Link>
     );
   }
   /**
-   *
+   * @param {SyntheticEvent} e
    */
-  handleOnClick(...args) {
-    this.props.onClick(...args);
+  handleOnClick(e) {
+    this.props.onClick({...this.props});
   }
 };
 

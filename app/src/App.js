@@ -10,6 +10,7 @@ import Footer from 'components/FooterComponent';
 import HomePage from 'pages/HomePage';
 import GameMasterPage from 'pages/GameMasterPage';
 import CharactersPage from 'pages/CharactersPage';
+import CharacterDetailsPage from 'pages/CharacterDetailsPage';
 import CatQuestPage from 'pages/CatQuestPage';
 
 class App extends Component {
@@ -26,8 +27,9 @@ class App extends Component {
 
             <Route path="/gamemaster" component={GameMasterPage} />
 
-            <Route path="/characters" component={CharactersPage} />
-            {/*<Route path="/characters/:characterId" component={CharacterDetailsPage} />*/}
+            <Route exact path="/characters" component={CharactersPage} />
+
+            <Route path="/characters/:characterId" component={CharacterDetailsPage} />
 
             <Footer />
 

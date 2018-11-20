@@ -1,5 +1,6 @@
 // import { combineReducers } from 'redux';
 import uuid from 'uuid/v4';
+import {BLINKS} from 'apis/CatQuestApi';
 
 const userSchema = {
   user: {
@@ -9,7 +10,7 @@ const userSchema = {
     email: undefined,
     password: null, // how to do this?
     campaigns: [],
-    characters: [],
+    characters: [BLINKS],
     // modules: [],
   },
   permissions: [],
@@ -36,7 +37,7 @@ function userReducer(state, { type, data }) {
   switch (type) {
     // adds to the the campaign id list
     case constants.ADD_CAMPAIGN:
-      const campaignList = state.campaigns || [];
+      const campaignList = state.campaigns || userSchema.user.campaigns;
       campaignList.push(data);
 
       return Object.assign({}, state, {
@@ -45,7 +46,7 @@ function userReducer(state, { type, data }) {
 
     // add to the the characters list
     case constants.ADD_CHARACTER:
-      const characterList = state.characters || [];
+      const characterList = state.characters || userSchema.user.characters;
       characterList.push(data);
 
       return Object.assign({}, state, {
@@ -64,7 +65,7 @@ function permissionsReducer(state, { type, data }) {
   switch (type) {
     // adds to the the campaign id list
     case constants.UPDATE_PERMISSIONS:
-      const permissionsList = state || [];
+      const permissionsList = state || userSchema.permissions;
       permissionsList.push(data);
       return permissionsList;
 
