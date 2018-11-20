@@ -27,7 +27,7 @@ class SocketServer extends Server {
     // listen to when a client connects
     this.on('connection', (socket) => {
       const userClient = this.clients[socket.id];
-      console.log('[SocketServer] Client Connected');
+      console.log(`[SocketServer] Connected "${socket.userData.userId}"`);
 
       // user events
       handleUserEvents(socket);
@@ -36,6 +36,7 @@ class SocketServer extends Server {
        * Client gets disconnected from server
        */
       socket.on('disconnect', () => {
+        console.log(`[SocketServer] Disconnected "${socket.userData.userId}"`);
         this.removeClient(socket.id);
         this.emit('usersUpdate', this.getAllUserData());
       });
@@ -84,7 +85,7 @@ class SocketServer extends Server {
     const socketIdList = Object.keys(this.clients);
     return socketIdList.map((socketId) => {
       return this.clients[socketId].userData;
-    }).filter(Boolean);
+    }).filter((userData) => (userData.username !== 'undefined'));
   }
 };
 
