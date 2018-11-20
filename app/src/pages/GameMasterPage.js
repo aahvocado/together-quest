@@ -7,7 +7,6 @@ import { updatePermissions } from 'data/actions';
 import {
   Button,
   ButtonGroup,
-  Icon,
   ListComponent,
   Loader,
   Layout,
@@ -42,16 +41,19 @@ class AttachDataModal extends PureComponent {
     /** @type {String} */
     username: '',
     /** @type {Function} */
-    onOverlayClick: () => {},
-    /** @type {Function} */
     onAttachClick: () => {},
+    /** @type {Function} */
+    onCancelClick: () => {},
+    /** @type {Function} */
+    onOverlayClick: () => {},
   };
   /** @default */
   render() {
     const {
       active,
-      onOverlayClick,
       onAttachClick,
+      onCancelClick,
+      onOverlayClick,
       username,
     } = this.props;
 
@@ -63,8 +65,7 @@ class AttachDataModal extends PureComponent {
         onOverlayClick={(...args) => { onOverlayClick(...args) }}
       >
         <Panel
-          className='bg-white height-full width-full flex-col'
-          inner
+          className='bg-white height-full width-full flex-col borradius-2 simple-shadow'
         >
           <h3 className='flex-none'>{`Send Character Data to ${username}`}</h3>
 
@@ -76,9 +77,15 @@ class AttachDataModal extends PureComponent {
           <ButtonGroup className='flex-none justify-end'>
             <Button
               className='pad-2'
+              icon='fa-window-close'
+              onClick={(...args) => { onCancelClick(...args) }}
+            />
+
+            <Button
+              className='pad-2'
+              icon='fa-paper-plane'
               onClick={(...args) => { onAttachClick(...args) }}
             >
-              <Icon name='fa-paper-plane'/>
               <span>Send</span>
             </Button>
           </ButtonGroup>
@@ -106,13 +113,15 @@ const ConnectedGameMasterPage = connect((state) => ({
     constructor(props) {
       super(props);
 
-      this.handleOnOverlayClick = this.handleOnOverlayClick.bind(this);
+      this.handleOnCancelModal = this.handleOnCancelModal.bind(this);
       this.handleOnAttachClick = this.handleOnAttachClick.bind(this);
       this.handleOnSendDataClick = this.handleOnSendDataClick.bind(this);
 
       this.state = {
         /** @type {Object} */
         focusedUser: null,
+        /** @type {Boolean} */
+        isAttachModalOpen: false,
       }
     };
     /** @default */
@@ -131,7 +140,7 @@ const ConnectedGameMasterPage = connect((state) => ({
         otherUsers,
       } = this.props;
 
-      const { focusedUser } = this.state;
+      const { focusedUser, isAttachModalOpen} = this.state;
 
       //
       if (!permissions.includes('GAME_MASTER')) {
@@ -147,10 +156,11 @@ const ConnectedGameMasterPage = connect((state) => ({
             <h2>Game Master Page</h2>
 
             <AttachDataModal
-              active={!_.isNil(focusedUser)}
+              active={isAttachModalOpen}
               username={_.get(focusedUser, 'username')}
-              onOverlayClick={this.handleOnOverlayClick}
               onAttachClick={this.handleOnAttachClick}
+              onCancelClick={this.handleOnCancelModal}
+              onOverlayClick={this.handleOnCancelModal}
             />
 
             <Panel inner className='bg-blue'>
@@ -182,8 +192,8 @@ const ConnectedGameMasterPage = connect((state) => ({
     /**
      * cliecked on overlay in the modal
      */
-    handleOnOverlayClick() {
-      this.setState({focusedUser: null});
+    handleOnCancelModal() {
+      this.setState({isAttachModalOpen: false});
     }
     /**
      * clicked on the send attachment in the modal
@@ -192,7 +202,7 @@ const ConnectedGameMasterPage = connect((state) => ({
     handleOnAttachClick() {
       // const { focusedUser } = this.state;
 
-      this.setState({focusedUser: null})
+      this.setState({isAttachModalOpen: false})
     }
     /**
      * clicked on the send data to player button
@@ -200,7 +210,7 @@ const ConnectedGameMasterPage = connect((state) => ({
      * @param {Object} data
      */
     handleOnSendDataClick(data) {
-      this.setState({focusedUser: data});
+      this.setState({focusedUser: data, isAttachModalOpen: true});
     }
   }
 );

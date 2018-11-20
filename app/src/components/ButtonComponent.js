@@ -11,7 +11,7 @@ import { Link as RouterLink } from 'react-router-dom';
 class ButtonGroup extends PureComponent {
   static defaultProps = {
     /** @type {String} */
-    baseClassName: 'pad-1',
+    baseClassName: 'flex-row',
     /** @type {String} */
     className: '',
   };

@@ -23,6 +23,18 @@ class ModalComponent extends PureComponent {
 
     this.handleModalContentClick = this.handleModalContentClick.bind(this);
     this.handleOverlayClick = this.handleOverlayClick.bind(this);
+
+    this.state = {
+      /** @type {Boolean} */
+      isHidden: true, // we want this to be completely hidden when this is first rendered
+    }
+  };
+  /** @default */
+  componentDidUpdate() {
+    // if we were hidden, but now we are active, we can not worry about being hidden anymore
+    if (this.state.isHidden && this.props.active) {
+      this.setState({ isHidden: false });
+    }
   };
   /** @default */
   render() {
@@ -33,22 +45,21 @@ class ModalComponent extends PureComponent {
       useStandardSize,
     } = this.props;
 
-    // active means no show
-    if (!active) {
-      return null;
-    }
+    const { isHidden } = this.state;
 
     const modifiers = {
+      'active': active,
+      'hidden': isHidden,
       'modal-component--standard': useStandardSize,
     };
 
     return (
       <div
-        className='modal-overlay position-fixed flex-centered pos-0 zindex-10'
+        className={cn('modal-component modal-overlay position-fixed flex-centered pos-0 zindex-10', modifiers)}
         onClick={this.handleOverlayClick}
       >
         <div
-          className={cn('modal-component', baseClassName, className, modifiers)}
+          className={cn('modal-container', baseClassName, className)}
           onClick={this.handleModalContentClick}
         >
           {this.props.children}
