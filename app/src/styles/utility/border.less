@@ -1,0 +1,27 @@
+@baseRadius: 5px;
+
+// create border-radius for 0, 5, 10, 15
+.generate-all-border-radius(3);
+
+// mixin for create all instances of margin
+.generate-all-border-radius(@n, @i: 0) when (@i =< @n) {
+  .generate-border-radius(@i);
+
+  // recursive loop
+  .generate-all-border-radius(@n, (@i + 1));
+};
+
+/*
+  example:
+  .generate-margin(2) will output .mar-2 { margin: 10px; }
+*/
+.generate-border-radius(@num) {
+  .borradius-@{num} {
+    border-radius: @num * @baseRadius;
+  }
+}
+
+//
+.borradius-round {
+  border-radius: 50%;
+}

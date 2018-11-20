@@ -39,6 +39,8 @@ import {
   StatComponent,
 } from 'components/StatsComponent';
 
+import TextArea from 'components/TextAreaComponent';
+
 // export start
 export {
   ButtonGroup,
@@ -61,4 +63,5 @@ export {
   Panel,
   StatsComponent,
   StatComponent,
+  TextArea,
 };

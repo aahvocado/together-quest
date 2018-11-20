@@ -5,11 +5,15 @@ import _ from 'lodash';
 import { updatePermissions } from 'data/actions';
 
 import {
+  Button,
+  ButtonGroup,
+  Icon,
   ListComponent,
   Loader,
   Layout,
   Modal,
   Panel,
+  TextArea,
 } from 'components';
 import PlayerInteractionComponent from 'components/PlayerInteractionComponent';
 
@@ -31,6 +35,61 @@ class GameMaster404Page extends PureComponent {
 /**
  * temporary no permission page
  */
+class AttachDataModal extends PureComponent {
+  static defaultProps = {
+    /** @type {Boolean} */
+    active: false,
+    /** @type {String} */
+    username: '',
+    /** @type {Function} */
+    onOverlayClick: () => {},
+    /** @type {Function} */
+    onSendClick: () => {},
+  };
+  /** @default */
+  render() {
+    const {
+      active,
+      onOverlayClick,
+      onSendClick,
+      username,
+    } = this.props;
+
+    return (
+      <Modal
+        className='flex-centered'
+        useStandardSize
+        active={active}
+        onOverlayClick={(...args) => { onOverlayClick(...args) }}
+      >
+        <Panel
+          className='bg-white height-full width-full flex-col'
+          inner
+        >
+          <h3 className='flex-none'>{`Send Character Data to ${username}`}</h3>
+
+          <TextArea
+            className='flex-grow mar-ver-1 border-gray'
+            placeholder='Attach Character Data'
+          />
+
+          <ButtonGroup className='flex-none justify-end'>
+            <Button
+              className='pad-2'
+              onClick={(...args) => { onSendClick(...args) }}
+            >
+              <Icon name='fa-paper-plane'/>
+              <span>Send</span>
+            </Button>
+          </ButtonGroup>
+        </Panel>
+      </Modal>
+    )
+  };
+}
+/**
+ * temporary no permission page
+ */
 const ConnectedGameMasterPage = connect((state) => ({
   /** @type {Object} */
   user: state.user,
@@ -41,11 +100,20 @@ const ConnectedGameMasterPage = connect((state) => ({
 }))(
   class GameMasterPage extends PureComponent {
     static defaultProps = {
+
     };
     /** @default */
-    // constructor(props) {
-    //   super(props);
-    // };
+    constructor(props) {
+      super(props);
+
+      this.onOverlayClick = this.onOverlayClick.bind(this);
+      this.onSendClick = this.onSendClick.bind(this);
+
+      this.state = {
+        /** @type {Object} */
+        focusedUser: null,
+      }
+    };
     /** @default */
     componentWillMount() {
       updatePermissions('GAME_MASTER'); // temporarily just give game master permission if they come here
@@ -57,7 +125,12 @@ const ConnectedGameMasterPage = connect((state) => ({
     };
     /** @default */
     render() {
-      const { permissions, otherUsers } = this.props;
+      const {
+        permissions,
+        otherUsers,
+      } = this.props;
+
+      const { focusedUser } = this.state;
 
       //
       if (!permissions.includes('GAME_MASTER')) {
@@ -72,14 +145,12 @@ const ConnectedGameMasterPage = connect((state) => ({
           <Panel>
             <h2>Game Master Page</h2>
 
-            <Modal>
-              <Panel
-                className='bg-white'
-                inner
-              >
-                gib data
-              </Panel>
-            </Modal>
+            <AttachDataModal
+              active={!_.isNil(focusedUser)}
+              username={_.get(focusedUser, 'username')}
+              onOverlayClick={this.onOverlayClick}
+              onSendClick={this.onSendClick}
+            />
 
             <Panel inner className='bg-blue'>
               { !hasOtherPlayers &&
@@ -97,13 +168,23 @@ const ConnectedGameMasterPage = connect((state) => ({
                 list={otherUsers}
                 ItemComponent={PlayerInteractionComponent}
               />
-
             </Panel>
           </Panel>
-
         </Layout>
       )
     };
+    /**
+     *
+     */
+    onOverlayClick() {
+      this.setState({focusedUser: null});
+    }
+    /**
+     *
+     */
+    onSendClick() {
+      console.log('onSendClick');
+    }
   }
 );
 

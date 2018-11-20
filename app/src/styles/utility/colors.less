@@ -19,6 +19,9 @@ each(@all-colors, {
   .bg-@{value} {
     background: ~"@{tg-@{value}}";
   }
+  .border-@{value} {
+    border-color: ~"@{tg-@{value}}";
+  }
 });
 
 @tg-disabled-bg: #dadada;

@@ -1,3 +1,4 @@
+// display flex
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -12,15 +13,13 @@
   display: flex;
   flex-direction: column;
 }
-
-.align-center {
-  align-items: center;
+.flex-centered {
+  display: flex;
+  .align-center();
+  .justify-center();
 }
 
-.justify-center {
-  justify-content: center;
-}
-
+// common flex things
 .flex-none {
   flex: 0 0 auto;
 }
@@ -29,8 +28,24 @@
   flex: 1 1 auto;
 }
 
-.flex-centered {
-  display: flex;
-  .align-center();
-  .justify-center();
+// align-items
+.align-start {
+  align-items: flex-start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+
+// justify-content
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
 }
