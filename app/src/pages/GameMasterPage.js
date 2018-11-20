@@ -44,14 +44,14 @@ class AttachDataModal extends PureComponent {
     /** @type {Function} */
     onOverlayClick: () => {},
     /** @type {Function} */
-    onSendClick: () => {},
+    onAttachClick: () => {},
   };
   /** @default */
   render() {
     const {
       active,
       onOverlayClick,
-      onSendClick,
+      onAttachClick,
       username,
     } = this.props;
 
@@ -76,7 +76,7 @@ class AttachDataModal extends PureComponent {
           <ButtonGroup className='flex-none justify-end'>
             <Button
               className='pad-2'
-              onClick={(...args) => { onSendClick(...args) }}
+              onClick={(...args) => { onAttachClick(...args) }}
             >
               <Icon name='fa-paper-plane'/>
               <span>Send</span>
@@ -106,8 +106,9 @@ const ConnectedGameMasterPage = connect((state) => ({
     constructor(props) {
       super(props);
 
-      this.onOverlayClick = this.onOverlayClick.bind(this);
-      this.onSendClick = this.onSendClick.bind(this);
+      this.handleOnOverlayClick = this.handleOnOverlayClick.bind(this);
+      this.handleOnAttachClick = this.handleOnAttachClick.bind(this);
+      this.handleOnSendDataClick = this.handleOnSendDataClick.bind(this);
 
       this.state = {
         /** @type {Object} */
@@ -148,8 +149,8 @@ const ConnectedGameMasterPage = connect((state) => ({
             <AttachDataModal
               active={!_.isNil(focusedUser)}
               username={_.get(focusedUser, 'username')}
-              onOverlayClick={this.onOverlayClick}
-              onSendClick={this.onSendClick}
+              onOverlayClick={this.handleOnOverlayClick}
+              onAttachClick={this.handleOnAttachClick}
             />
 
             <Panel inner className='bg-blue'>
@@ -166,7 +167,12 @@ const ConnectedGameMasterPage = connect((state) => ({
                 className='flex-col flex-grow'
                 getKey={(item) => (item.userId)}
                 list={otherUsers}
-                ItemComponent={PlayerInteractionComponent}
+                ItemComponent={(props) => (
+                  <PlayerInteractionComponent
+                    {...props}
+                    onSendDataClick={this.handleOnSendDataClick}
+                  />
+                )}
               />
             </Panel>
           </Panel>
@@ -174,16 +180,27 @@ const ConnectedGameMasterPage = connect((state) => ({
       )
     };
     /**
-     *
+     * cliecked on overlay in the modal
      */
-    onOverlayClick() {
+    handleOnOverlayClick() {
       this.setState({focusedUser: null});
     }
     /**
+     * clicked on the send attachment in the modal
      *
      */
-    onSendClick() {
-      console.log('onSendClick');
+    handleOnAttachClick() {
+      const { focusedUser } = this.state;
+
+      this.setState({focusedUser: null})
+    }
+    /**
+     * clicked on the send data to player button
+     *
+     * @param {Object} data
+     */
+    handleOnSendDataClick(data) {
+      this.setState({focusedUser: data});
     }
   }
 );

@@ -13,10 +13,20 @@ class PlayerInteractionComponent extends PureComponent {
   static defaultProps = {
     /** @type {String} */
     className: '',
-    /** @type {Object} */
-    username: {},
+    /** @type {String} */
+    userId: '',
+    /** @type {String} */
+    username: '',
+    /** @type {Function} */
+    onSendDataClick: () => {},
   };
+  /** @default */
+  constructor(props) {
+    super(props);
 
+    this.handleSendDataClick = this.handleSendDataClick.bind(this);
+  };
+  /** @default */
   render() {
     const { className, username } = this.props;
 
@@ -30,12 +40,15 @@ class PlayerInteractionComponent extends PureComponent {
         <ButtonGroup className='flex-none'>
           <Button
             title='Send Character Data'
+            className='pad-2'
+            onClick={this.handleSendDataClick}
           >
             <Icon name='fa-address-card' />
           </Button>
 
           <Button
             title='Message'
+            className='pad-2'
             disabled
           >
             <Icon name='fa-envelope' />
@@ -43,6 +56,7 @@ class PlayerInteractionComponent extends PureComponent {
 
           <Button
             title='Kick Player'
+            className='pad-2'
             disabled
           >
             <Icon name='fa-minus-circle' />
@@ -50,6 +64,17 @@ class PlayerInteractionComponent extends PureComponent {
         </ButtonGroup>
       </div>
     );
+  }
+  /**
+   *
+   */
+  handleSendDataClick() {
+    const { onSendDataClick, userId, username } = this.props;
+
+    onSendDataClick({
+      userId,
+      username,
+    });
   }
 };
 
