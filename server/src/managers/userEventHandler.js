@@ -14,6 +14,17 @@ function handleUserEvents(socket) {
 
     io.emit('usersUpdate', io.getAllUserData());
   });
+  /**
+   * user has given their info and officially joined, pass it out
+   */
+  socket.on('sendCharacterData', (message) => {
+    const toSocketId = message.data[0];
+    const attachedData = message.data[1];
+
+    const toClient = io.clients[toSocketId];
+    toClient.emit('updateCharacterData', attachedData);
+  });
+
 };
 
 export default handleUserEvents;

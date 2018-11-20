@@ -29,10 +29,11 @@ client.listenTo('usersUpdate', (userDataList) => {
     updateOtherUsers(userData);
   })
 });
-
-
-socket.on('gameMasterData', (data) => {
-
+/**
+ * game master sent new data to update to
+ */
+socket.on('updateCharacterData', (attachedData) => {
+  console.log('updateCharacterData', attachedData);
 });
 
 export default client;

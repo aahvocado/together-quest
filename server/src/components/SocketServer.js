@@ -58,6 +58,7 @@ class SocketServer extends Server {
     socket.userData = {
       username: query.username,
       userId: query.userId,
+      socketId: socketId,
     };
 
     return next();

@@ -17,6 +17,8 @@ class PlayerInteractionComponent extends PureComponent {
     userId: '',
     /** @type {String} */
     username: '',
+    /** @type {String} */
+    socketId: '',
     /** @type {Function} */
     onSendDataClick: () => {},
   };
@@ -68,11 +70,12 @@ class PlayerInteractionComponent extends PureComponent {
    *
    */
   handleSendDataClick() {
-    const { onSendDataClick, userId, username } = this.props;
+    const { onSendDataClick, userId, username, socketId } = this.props;
 
     onSendDataClick({
       userId,
       username,
+      socketId,
     });
   }
 };

@@ -48,14 +48,27 @@ class AttachDataModal extends PureComponent {
     onOverlayClick: () => {},
   };
   /** @default */
+  constructor(props) {
+    super(props);
+
+    this.onAttachTextChange = this.onAttachTextChange.bind(this);
+    this.handleOnAttachClick = this.handleOnAttachClick.bind(this);
+
+    this.state = {
+      /** @type {String} */
+      attachText: '',
+    }
+  };
+  /** @default */
   render() {
     const {
       active,
-      onAttachClick,
       onCancelClick,
       onOverlayClick,
       username,
     } = this.props;
+
+    const { attachText } = this.state;
 
     return (
       <Modal
@@ -72,6 +85,8 @@ class AttachDataModal extends PureComponent {
           <TextArea
             className='flex-grow mar-ver-2 border-gray'
             placeholder='Attach Character Data'
+            onChange={this.onAttachTextChange}
+            value={attachText}
           />
 
           <ButtonGroup className='flex-none justify-end'>
@@ -84,7 +99,7 @@ class AttachDataModal extends PureComponent {
             <Button
               className='pad-2'
               icon='fa-paper-plane'
-              onClick={(...args) => { onAttachClick(...args) }}
+              onClick={this.handleOnAttachClick}
             >
               <span>Send</span>
             </Button>
@@ -93,6 +108,19 @@ class AttachDataModal extends PureComponent {
       </Modal>
     )
   };
+  /**
+   * @param {SyntheticEvent}
+   */
+  onAttachTextChange(e) {
+    this.setState({attachText: e.currentTarget.value});
+  }
+  /**
+   *
+   */
+  handleOnAttachClick() {
+    const { attachText } = this.state;
+    this.props.onAttachClick(attachText);
+  }
 }
 /**
  * temporary no permission page
@@ -199,8 +227,10 @@ const ConnectedGameMasterPage = connect((state) => ({
      * clicked on the send attachment in the modal
      *
      */
-    handleOnAttachClick() {
-      // const { focusedUser } = this.state;
+    handleOnAttachClick(attachText) {
+      const { focusedUser: { socketId } } = this.state;
+
+      eventClient.emit('sendCharacterData', socketId, attachText);
 
       this.setState({isAttachModalOpen: false})
     }
