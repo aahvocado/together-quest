@@ -6,6 +6,7 @@ import {
 } from 'components';
 
 class CharacterButtonComponent extends PureComponent {
+  // include a ton of defaultProps from the `characterData` schema
   static defaultProps = {
     /** @type {Function} */
     onClick: () => {},
@@ -18,14 +19,17 @@ class CharacterButtonComponent extends PureComponent {
   }
   /** @default */
   render() {
+    const {
+      name,
+    } = this.props;
+
     return (
       <Button
         baseClassName='pad-0 mar-1'
         className='tg-character-button flex-col justify-center'
         onClick={this.handleOnClick}
       >
-        <div className='tg-character-button--name fsize-base flex-none pad-1'>Character Name</div>
-        <div className='tg-character-button--username fsize-small flex-none pad-hor-1'>username</div>
+        <div className='tg-character-button--name fsize-base flex-none pad-1'>{name}</div>
         <div className='tg-character-button--image flex-grow flex-centered width-full bg-pink'>
           <Icon name='fa-id-card' />
         </div>

@@ -17,6 +17,7 @@ import {
 import PlayerInteractionComponent from 'components/PlayerInteractionComponent';
 
 import eventClient from 'services/eventClient';
+import {BLINKS} from 'apis/CatQuestApi';
 
 /**
  * temporary no permission page
@@ -56,7 +57,7 @@ class AttachDataModal extends PureComponent {
 
     this.state = {
       /** @type {String} */
-      attachText: '',
+      attachText: JSON.stringify(BLINKS),
     }
   };
   /** @default */
@@ -230,7 +231,12 @@ const ConnectedGameMasterPage = connect((state) => ({
     handleOnAttachClick(attachText) {
       const { focusedUser: { socketId } } = this.state;
 
-      eventClient.emit('sendCharacterData', socketId, attachText);
+      const attachedData = JSON.parse(attachText);
+
+      // if attached object doesn't have a name or id, then we can't send it
+      if (!attachedData.name && !attachedData.id) return;
+
+      eventClient.emit('sendCharacterData', socketId, attachedData);
 
       this.setState({isAttachModalOpen: false})
     }
