@@ -5,13 +5,12 @@ import _ from 'lodash';
 import { updatePermissions } from 'data/actions';
 
 import {
-  Button,
-  // ButtonGroup,
-  // Link,
+  ListComponent,
   Loader,
   Layout,
   Panel,
 } from 'components';
+import PlayerInteractionComponent from 'components/PlayerInteractionComponent';
 
 import eventClient from 'services/eventClient';
 
@@ -82,16 +81,12 @@ const ConnectedGameMasterPage = connect((state) => ({
 
               <Loader active={!hasOtherPlayers} />
 
-              <div className='flex-col flex-grow'>
-                { otherUsers.map((user, idx) => (
-                  <Button
-                    key={`userBtn-${idx}-key`}
-                    className='mar-1'
-                  >
-                    {user.username}
-                  </Button>
-                ))}
-              </div>
+              <ListComponent
+                className='flex-col flex-grow'
+                getKey={(item) => (item.userId)}
+                list={otherUsers}
+                ItemComponent={PlayerInteractionComponent}
+              />
 
             </Panel>
           </Panel>

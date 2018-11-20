@@ -1,40 +1,49 @@
 import React, { PureComponent } from 'react';
+import cn from 'classnames';
 
+/**
+ *
+ */
 class ListItemComponent extends PureComponent {
+  /** @default */
   render() {
-
     return (
-      <div className="list-item-component pad-1">
-        { this.props.children }
-      </div>
+      <li className="list-item-component pad-1 flex-none" {...this.props} />
     );
   }
 }
-
+/**
+ *
+ */
 class ListComponent extends PureComponent {
   static defaultProps = {
-    definition: undefined, // required to uniquely identify this from other lists
-    label: undefined,
+    /** @type {String} */
+    className: '',
+    /** @type {Function} */
+    getKey: (item) => (item.id),
+    /** @type {Array<*>} */
     list: [],
-  }
-
+    /** @type {Component} */
+    ItemComponent: ListItemComponent,
+  };
+  /** @default */
   render() {
-    const { definition, label, list } = this.props;
-
-    if (!definition || !list) {
-      return null;
-    }
+    const {
+      className,
+      getKey,
+      list,
+      ItemComponent,
+    } = this.props;
 
     return (
-      <div className='list-component'>
-        <div className='list-component-label'>{ label }</div>
-
-        <ul className='list-container'>
-          { list.map((item, idx) =>
-            <ListItemComponent key={`${definition}-list-item-${idx}-key`}>{ item }</ListItemComponent>
-          )}
-        </ul>
-      </div>
+      <ul className={cn('list-component flex-col', className)}>
+        { list.map((item) =>
+          <ItemComponent
+            key={`ListItem#${getKey(item)}-key`}
+            {...item}
+          />
+        )}
+      </ul>
     );
   }
 }
