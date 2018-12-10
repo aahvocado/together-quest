@@ -50,14 +50,14 @@ export const BLINKS = {
   traits: [
     'Magic Sensitivity',
     'Glowing a Bit',
-    'Shrunk!',
+    'Bruised',
   ],
   honors: [
     'Fire Fighting Human Champion',
   ],
   statMods: {
-    strength: 5,
-    agility: 0,
+    strength: 0,
+    agility: -1,
     wisdom: 0,
     charisma: 0,
     magic: 0,
@@ -81,7 +81,7 @@ export const NOOK = {
     description: "",
   }, {
     slot: 'hand',
-    name: 'Burning Blade',
+    name: 'Burning Blade (out of fluid)',
     statMods: {strength: 1},
     description: "Your personal rapier!",
   }, {
@@ -96,20 +96,21 @@ export const NOOK = {
     'the Red fragment',
     'backup dagger',
     'kris',
-    'empty whiskey bottle',
+    'whiskey bottle with water',
     'Nook\'s Rapier',
     'Bareback cash register',
   ],
   traits: [
     'Tall',
     'Intimidating',
+    'Crippled'
   ],
   honors: [
     'Flaming Cat Champion'
   ],
   statMods: {
     strength: 1,
-    agility: 0,
+    agility: -2,
     wisdom: 0,
     charisma: 0,
     magic: 0,
@@ -154,12 +155,13 @@ export const PEARL = {
     'Peg-Legged',
     'Bark',
     'Bite',
+    'Wounded',
   ],
   honors: [
     'Esteemed Member of the Cat Army',
   ],
   statMods: {
-    strength: 0,
+    strength: -1,
     agility: 0,
     wisdom: 0,
     charisma: 1,
@@ -210,7 +212,6 @@ export const DOUGLAS = {
     '(3 unidentified scrolls)',
     '(2 unindentified beakers)',
     'pipette',
-    'Blinks and his clothes and stuff'
   ],
   traits: [
     'Short Sighted',
