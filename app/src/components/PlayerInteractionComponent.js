@@ -37,7 +37,7 @@ class PlayerInteractionComponent extends PureComponent {
         className={cn('flex-row bg-white align-center mar-1 pad-2', className)}
       >
         <Icon className='flex-none mar-r-1' name='fa-user-circle' />
-        <span className='flex-grow fweight-bold'>{username}</span>
+        <span className='flex-grow f-bold'>{username}</span>
 
         <ButtonGroup className='flex-none'>
           <Button

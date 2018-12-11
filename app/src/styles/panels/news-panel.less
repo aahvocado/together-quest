@@ -3,11 +3,11 @@
   overflow-y: auto;
 
   .tg-news-heading + .tg-news-list {
-    margin-top: 8px;
+    margin-top: @baseMargin * 2;
   }
 
   .tg-news-item + .tg-news-item {
-    margin-top: 8px;
+    margin-top: @baseMargin * 2;
   }
 
   @media @desktop {
@@ -20,26 +20,13 @@
 }
 
 .tg-news-item {
-  display: flex;
-  flex-direction: column;
-
-  border-left: 3px solid #6e8cd0;
-  padding-left: 4px;
+  border-left: 3px solid;
 
   &:first-of-type {
-    border-left: 3px solid white;
+    border-left-color: white;
   }
 
-  .tg-news-item-date + .tg-news-item-content {
-    margin-top: 4px;
+  &:not(:first-of-type) {
+    border-left-color: #6e8cd0;
   }
-}
-.tg-news-item-title {
-
-}
-.tg-news-item-date {
-  font-size: 0.8rem;
-}
-.tg-news-item-content {
-
 }

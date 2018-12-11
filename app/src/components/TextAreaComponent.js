@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
 /**
- * temporary no permission page
+ *
  */
 class TextAreaComponent extends PureComponent {
   static defaultProps = {
