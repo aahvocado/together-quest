@@ -31,13 +31,11 @@ function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
     static defaultProps = {
       /** @type {String} */
-      baseClassName: 'pad-1',
+      baseClassName: 'pad-1 sibling-mar-l-2 borradius-1 color-black bg-white borcolor-transparent simple-shadow fsize-base',
       /** @type {String} */
       className: '',
       /** @type {Boolean} */
       disabled: false,
-      /** @type {Boolean} */
-      floatingPosition: undefined,
       /** @type {String} */
       title: undefined,
       /** @type {String} */
@@ -74,7 +72,6 @@ function ButtonHOC(Wrapper) {
         isFlag,
         isRound,
         isWide,
-        floatingPosition,
         title,
         to,
         type,
@@ -82,11 +79,10 @@ function ButtonHOC(Wrapper) {
 
       const modifiers = {
         'disabled': disabled,
-        'button-component--centered': isCentered,
-        'button-component--round button-component--centered': isRound,
-        'button-component--flag button-component--centered': isFlag && !isWide,
-        'button-component--wide-flag button-component--flag button-component--centered': isWide,
-        'button-component--top-left': floatingPosition,
+        'flex-centered': isCentered,
+        'button-component--round flex-centered borradius-round': isRound,
+        'button-component--flag flex-centered': isFlag && !isWide,
+        'button-component--flag flex-centered pad-hor-2': isWide,
       };
 
       // hack a little bit to check if this is a Link
@@ -101,7 +97,7 @@ function ButtonHOC(Wrapper) {
           type={type}
         >
           { icon &&
-            <Icon name={icon} />
+            <Icon name={icon} className='mar-r-1' />
           }
 
           { this.props.children }

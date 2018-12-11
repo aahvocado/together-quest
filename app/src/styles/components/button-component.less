@@ -1,45 +1,19 @@
 @round-button-size: 50px;
-@only-icon-font-size: 1.2rem;
-
-.button-component-group {
-  .button-component + .button-component {
-    margin-left: 10px;
-  }
-}
 
 .button-component {
-  background: white;
-  border-color: transparent;
-  border-radius: 6px;
   text-decoration: none;
-  color: @tg-black;
-  font-size: inherit;
-  font-family: inherit;
   box-sizing: border-box;
-  line-height: inherit;
-
-  border: 1px solid transparent;
   cursor: pointer;
-  box-shadow: @tg-component-shadow;
+
+  // bigger icon if only contains button
+  .tg-icon:only-child {
+    font-size: 1.2rem;
+  }
 
   &.disabled {
     color: @tg-disabled-color;
     background: @tg-disabled-bg;
     pointer-events: none;
-  }
-
-  .tg-icon + * {
-    margin-left: 4px;
-  }
-}
-
-.button-component.button-component--centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .fas, .ra {
-    font-size: @only-icon-font-size;
   }
 }
 
@@ -48,24 +22,9 @@
 }
 .button-component.button-component--flag.button-component--wide-flag {
   border-radius: 0 0 @round-button-size/2 @round-button-size/2;
-  padding: 0 10px;
 }
 
 .button-component.button-component--round {
-  border-radius: 50%;
   height: @round-button-size;
   width: @round-button-size;
-
-  .fas, .ra {
-    font-size: @only-icon-font-size;
-  }
-}
-
-.button-component.button-component--top-left {
-  position: absolute;
-  top: -25px;
-  left: -25px;
-  z-index: @zindex-ui;
-
-  box-shadow: @tg-component-shadow;
 }
