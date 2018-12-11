@@ -1,0 +1,47 @@
+/*
+  handles styles for items that typically have siblings like lists
+*/
+
+// start generating
+.generate-sibling-styles(5);
+
+// mixin for create all instances
+.generate-sibling-styles(@n, @i: 0) when (@i =< @n) {
+  .generate-sibling-margin(@i);
+  .generate-sibling-padding(@i);
+
+  // recursive
+  .generate-sibling-styles(@n, (@i + 1));
+}
+
+// margin
+.generate-sibling-margin(@num) {
+  .sibling-mar-t-@{num} + .sibling-mar-t-@{num} {
+    margin-top: @num * @baseMargin;
+  }
+  .sibling-mar-b-@{num} + .sibling-mar-b-@{num} {
+    margin-bottom: @num * @baseMargin;
+  }
+  .sibling-mar-l-@{num} + .sibling-mar-l-@{num} {
+    margin-left: @num * @baseMargin;
+  }
+  .sibling-mar-r-@{num} + .sibling-mar-r-@{num} {
+    margin-right: @num * @baseMargin;
+  }
+}
+
+// padding
+.generate-sibling-padding(@num) {
+  .sibling-pad-t-@{num} + .sibling-pad-t-@{num} {
+    padding-top: @num * @basePadding;
+  }
+  .sibling-pad-b-@{num} + .sibling-pad-b-@{num} {
+    padding-bottom: @num * @basePadding;
+  }
+  .sibling-pad-l-@{num} + .sibling-pad-l-@{num} {
+    padding-left: @num * @basePadding;
+  }
+  .sibling-pad-r-@{num} + .sibling-pad-r-@{num} {
+    padding-right: @num * @basePadding;
+  }
+}

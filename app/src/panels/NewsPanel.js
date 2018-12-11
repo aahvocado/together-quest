@@ -11,7 +11,7 @@ class NewsItem extends PureComponent {
     const { data: { date, content, title } } = this.props;
 
     return (
-      <li className='tg-news-item flex-col pad-l-3'>
+      <li className='tg-news-item flex-col pad-l-3 sibling-mar-t-2'>
         <span className='fsize-base f-bold'>{ title }</span>
         <span className='fsize-small mar-t-1 f-italic'>{ date }</span>
         <p className='fsize-base mar-t-1'>{ content }</p>
@@ -38,8 +38,8 @@ class NewsPanel extends PureComponent {
 
     return (
       <Panel className='tg-news bg-blue'>
-        <h2 className='tg-news-heading'>News</h2>
-        <ul className='tg-news-list'>
+        <h2 className='tg-news-heading mar-t-2'>News</h2>
+        <ul className='tg-news-list mar-t-2'>
           { newsData.map((news) => {
             return <NewsItem data={news} key={news.date}/>
           })}
