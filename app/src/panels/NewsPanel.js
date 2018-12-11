@@ -1,14 +1,27 @@
 import React, { PureComponent } from 'react';
-import Panel from 'components/PanelComponent';
 
+import {
+  ListComponent,
+  Panel,
+} from 'components';
 
+/**
+ * contains the news
+ *
+ * todo: fetch from db or something
+ */
 class NewsItem extends PureComponent {
   static defaultProps = {
-    data: {},
+    /** @type {String} */
+    content: '',
+    /** @type {String} */
+    date: '',
+    /** @type {String} */
+    title: '',
   };
 
   render() {
-    const { data: { date, content, title } } = this.props;
+    const { date, content, title } = this.props;
 
     return (
       <li className='tg-news-item flex-col pad-l-3 sibling-mar-t-2'>
@@ -38,12 +51,13 @@ class NewsPanel extends PureComponent {
 
     return (
       <Panel className='tg-news bg-blue'>
-        <h2 className='tg-news-heading mar-t-2'>News</h2>
-        <ul className='tg-news-list mar-t-2'>
-          { newsData.map((news) => {
-            return <NewsItem data={news} key={news.date}/>
-          })}
-        </ul>
+        <h2 className='tg-news-heading'>News</h2>
+        <ListComponent
+          className='tg-news-list mar-t-2'
+          list={newsData}
+          ItemComponent={NewsItem}
+          getKey={(props) => (props.date)}
+        />
       </Panel>
     );
   }
