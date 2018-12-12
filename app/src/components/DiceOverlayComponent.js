@@ -5,13 +5,7 @@ import { DiceManager, DiceD20 } from 'apis/diceApi';
 const SCREEN_WIDTH = window.innerWidth;
 const SCREEN_HEIGHT = window.innerHeight;
 
-const world = new CANNON.World();
-world.gravity.set(0, 0, -11);
-world.broadphase = new CANNON.NaiveBroadphase();
-world.solver.iterations = 16;
-
-DiceManager.setWorld(world);
-
+// visual
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 renderer.setClearColor(new THREE.Color('rgb(151, 229, 255)'));
@@ -24,7 +18,6 @@ const camera = new THREE.PerspectiveCamera(70, SCREEN_WIDTH / SCREEN_HEIGHT, 0.1
 camera.position.z = 5;
 scene.add(camera);
 
-// light
 const light = new THREE.DirectionalLight('#6a6879', 1.5);
 light.castShadow = true;
 light.position.set(0, 0, 15);
@@ -33,13 +26,18 @@ light.shadow.mapSize.height = 512;
 light.shadow.camera = new THREE.OrthographicCamera(-10, 10, -10, 10, 0.1, 100);
 scene.add(light);
 
-//Floor
-var floorMaterial = new THREE.MeshPhongMaterial({ color: '#00aa00', side: THREE.DoubleSide });
-var floorGeometry = new THREE.PlaneGeometry(12, 12, 1, 1);
-var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+const floorMaterial = new THREE.MeshPhongMaterial({ color: '#00aa00', side: THREE.DoubleSide });
+const floorGeometry = new THREE.PlaneGeometry(12, 12, 1, 1);
+const floor = new THREE.Mesh(floorGeometry, floorMaterial);
 floor.receiveShadow = true;
 floor.position.z = -4;
 scene.add(floor);
+
+// physics
+const world = new CANNON.World();
+world.gravity.set(0, 0, -11);
+world.broadphase = new CANNON.NaiveBroadphase();
+world.solver.iterations = 16;
 
 let floorBody = new CANNON.Body({
   position: new CANNON.Vec3(0, 0, -4),
@@ -50,6 +48,8 @@ let floorBody = new CANNON.Body({
 floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 0), -Math.PI / 2);
 world.add(floorBody);
 
+// dice
+DiceManager.setWorld(world);
 let dice20 = new DiceD20({size: 0.8});
 scene.add(dice20.getObject());
 
