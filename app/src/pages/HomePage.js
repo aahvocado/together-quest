@@ -17,7 +17,7 @@ import {
   Layout,
   Panel,
 } from 'components';
-
+import 'components/DiceOverlayComponent';
 
 import NewsPanel from 'panels/NewsPanel';
 
