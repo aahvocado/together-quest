@@ -57,6 +57,7 @@
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "three": "^0.99.0",
+    "threejs-dice-modern": "git+https://github.com/aahvocado/threejs-dice-modern.git",
     "url-loader": "0.6.2",
     "uuid": "^3.3.2",
     "webpack": "3.8.1",

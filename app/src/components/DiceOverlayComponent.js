@@ -1,6 +1,7 @@
 import * as CANNON from 'cannon';
 import * as THREE from 'three';
-import { DiceManager, DiceD20 } from 'apis/diceApi';
+
+import DiceManager, { DiceD20 } from 'threejs-dice-modern';
 
 const SCREEN_WIDTH = window.innerWidth;
 const SCREEN_HEIGHT = window.innerHeight;
