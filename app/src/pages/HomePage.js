@@ -17,7 +17,7 @@ import {
   Layout,
   Panel,
 } from 'components';
-import 'components/DiceOverlayComponent';
+import DiceOverlayComponent from 'components/DiceOverlayComponent';
 
 import NewsPanel from 'panels/NewsPanel';
 
@@ -43,6 +43,8 @@ class UnloggedHomePage extends PureComponent {
           <h2>Home Page</h2>
           <h3>Joining CatQuest? Tell me your name!</h3>
           <Panel inner className='bg-limegreen'>
+            <DiceOverlayComponent />
+
             <Form
               onSubmit={this.handleFormSubmit}
             >

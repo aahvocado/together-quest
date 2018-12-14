@@ -1,56 +1,134 @@
+import React, { PureComponent } from 'react';
+import cn from 'classnames';
 import * as CANNON from 'cannon';
 import * as THREE from 'three';
 
-import DiceManager, { DiceD20 } from 'threejs-dice-modern';
+import diceManager, { DiceD20 } from 'threejs-dice-modern';
 
-const SCREEN_WIDTH = window.innerWidth;
-const SCREEN_HEIGHT = window.innerHeight;
+class DiceOverlayComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: '',
+    /** @type {string} */
+    className: '',
+    /** @type {object} */
+    style: {},
+  };
+  /** @override */
+  constructor(props) {
+    super(props);
 
-// visual
-const renderer = new THREE.WebGLRenderer({antialias: true});
-renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-renderer.setClearColor(new THREE.Color('rgb(151, 229, 255)'));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-document.body.appendChild(renderer.domElement);
+    this.mountRef = React.createRef();
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(70, SCREEN_WIDTH / SCREEN_HEIGHT, 0.1, 100);
-camera.position.z = 5;
-scene.add(camera);
+    this.animate = this.animate.bind(this);
+  }
+  /** @override */
+  render() {
+    const { baseClassName, className, style } = this.props;
 
-const light = new THREE.DirectionalLight('#6a6879', 1.5);
-light.castShadow = true;
-light.position.set(0, 0, 15);
-light.shadow.mapSize.width = 512;
-light.shadow.mapSize.height = 512;
-light.shadow.camera = new THREE.OrthographicCamera(-10, 10, -10, 10, 0.1, 100);
-scene.add(light);
+    return (
+      <div
+        className={cn('dice-overlay-component', baseClassName, className)}
+        style={style}
+        ref={this.mountRef}
+      />
+    )
+  }
+  /** @override */
+  componentDidMount() {
+    const WIDTH = 200 || this.mountRef.current.clientWidth;
+    const HEIGHT = 200 || this.mountRef.current.clientHeight;
 
-const floorMaterial = new THREE.MeshPhongMaterial({ color: '#00aa00', side: THREE.DoubleSide });
-const floorGeometry = new THREE.PlaneGeometry(12, 12, 1, 1);
-const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-floor.receiveShadow = true;
-floor.position.z = -4;
-scene.add(floor);
+    // INITIALIZE
+    // - RENDERER
+    this.renderer = new THREE.WebGLRenderer({antialias: true});
+    this.renderer.setSize(WIDTH, HEIGHT);
+    this.renderer.setClearColor('#d3d3d3');
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-// physics
-const world = new CANNON.World();
-world.gravity.set(0, 0, -11);
-world.broadphase = new CANNON.NaiveBroadphase();
-world.solver.iterations = 16;
+    // - SCENE
+    this.scene = new THREE.Scene();
 
-let floorBody = new CANNON.Body({
-  position: new CANNON.Vec3(0, 0, -4),
-  mass: 0,
-  shape: new CANNON.Plane(),
-  material: DiceManager.floorBodyMaterial,
-});
-floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 0), -Math.PI / 2);
-world.add(floorBody);
+    // - CAMERA
+    this.camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, 0.1, 1000);
+    this.camera.position.z = 5;
 
+    // - LIGHT
+    const light = new THREE.DirectionalLight('#6a6879', 1.5);
+    light.castShadow = true;
+    light.position.set(0, 0, 15);
+    light.shadow.mapSize.width = 512;
+    light.shadow.mapSize.height = 512;
+    light.shadow.camera = new THREE.OrthographicCamera(-10, 10, -10, 10, 0.1, 100);
+
+    // - OBJECTS
+    const floorMaterial = new THREE.MeshPhongMaterial({ color: '#d3d3d3', side: THREE.DoubleSide });
+    const floorGeometry = new THREE.PlaneGeometry(15, 15, 1, 1);
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.receiveShadow = true;
+    floor.position.z = -4;
+
+    // - PHYSICS
+    this.world = new CANNON.World();
+    this.world.gravity.set(0, 0, -11);
+    this.world.broadphase = new CANNON.NaiveBroadphase();
+    this.world.solver.iterations = 16;
+
+    // -- floor collider
+    const floorBody = new CANNON.Body({
+      position: new CANNON.Vec3(0, 0, -4),
+      mass: 0,
+      shape: new CANNON.Plane(),
+      material: diceManager.floorBodyMaterial,
+    });
+    floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 0), -Math.PI / 2);
+
+    this.world.add(floorBody);
+
+    // RENDER
+    this.scene.add(this.camera);
+    this.scene.add(light);
+    this.scene.add(floor);
+
+    // MOUNT
+    this.mountRef.current.appendChild(this.renderer.domElement);
+
+    // START
+    this.start();
+  }
+  /** @override */
+  componentWillUnmount(){
+    this.stop()
+    this.mount.removeChild(this.renderer.domElement);
+  }
+  /**
+   * starts updating the renderer
+   */
+  start() {
+    if (!this.frameId) {
+      this.frameId = requestAnimationFrame(this.animate);
+    }
+  }
+  /**
+   * stops updating the renderer
+   */
+  stop() {
+    cancelAnimationFrame(this.frameId)
+  }
+  /**
+   * update a single animation frame
+   */
+  animate() {
+    this.renderer.render(this.scene, this.camera);
+    this.frameId = requestAnimationFrame(this.animate);
+  }
+}
+
+export default DiceOverlayComponent;
+/*
 // dice
-DiceManager.setWorld(world);
+diceManager.setWorld(world);
 let dice20 = new DiceD20({size: 0.8});
 scene.add(dice20.getObject());
 
@@ -81,7 +159,7 @@ function randomThrow() {
     diceValues.push({dice: dice[i], value: i + 1});
   };
 
-  DiceManager.prepareValues(diceValues);
+  diceManager.prepareValues(diceValues);
 }
 
 function animate() {
@@ -97,4 +175,4 @@ function animate() {
 }
 
 requestAnimationFrame(animate);
-randomThrow();
+randomThrow();*/
