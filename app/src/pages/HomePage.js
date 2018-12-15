@@ -17,7 +17,9 @@ import {
   Layout,
   Panel,
 } from 'components';
-import DiceOverlayComponent from 'components/DiceOverlayComponent';
+
+import { DiceD20 } from 'threejs-dice-modern';
+import DiceOverlayComponent, { DiceHandler } from 'components/DiceOverlayComponent';
 
 import NewsPanel from 'panels/NewsPanel';
 
@@ -31,6 +33,12 @@ class UnloggedHomePage extends PureComponent {
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
+    // test
+    this.diceHandler = new DiceHandler();
+
+    const dice20 = new DiceD20({size: 2});
+    this.diceHandler.addDice(dice20);
+
     this.state = {
       formState: {},
     };
@@ -43,7 +51,7 @@ class UnloggedHomePage extends PureComponent {
           <h2>Home Page</h2>
           <h3>Joining CatQuest? Tell me your name!</h3>
           <Panel inner className='bg-limegreen'>
-            <DiceOverlayComponent />
+            <DiceOverlayComponent diceHandler={this.diceHandler} />
 
             <Form
               onSubmit={this.handleFormSubmit}

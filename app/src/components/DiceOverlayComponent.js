@@ -3,7 +3,86 @@ import cn from 'classnames';
 import * as CANNON from 'cannon';
 import * as THREE from 'three';
 
-import diceManager, { DiceD20 } from 'threejs-dice-modern';
+import diceManager from 'threejs-dice-modern';
+
+export class DiceHandler {
+  /**
+   *
+   */
+  constructor() {
+    this.manager = null;
+    this.diceList = [];
+
+    this.init();
+  }
+  /**
+   *
+   */
+  init() {
+    this.world = new CANNON.World();
+
+    this.scene = new THREE.Scene();
+
+    this.manager = diceManager;
+
+    this.manager.setWorld(this.world);
+  }
+  /**
+   *
+   */
+  update() {
+    this.world.step(1/60);
+
+    for (var i in this.diceList) {
+      this.diceList[i].getObject().diceObject.updateMeshFromBody();
+    }
+  }
+  /**
+   *
+   * @params {DiceObject} dice
+   */
+  addDice(dice) {
+    this.diceList.push(dice);
+    this.addToScene(dice.getObject());
+  }
+  /**
+   *
+   * @params {THREE.object} object
+   */
+  addToScene(object) {
+    this.scene.add(object);
+  }
+  /**
+   *
+   */
+  shakeDice() {
+    const diceValues = this.diceList.map((die) => {
+      const gameObject = die.getObject();
+      gameObject.diceObject.updateMeshFromBody();
+
+      gameObject.quaternion.x = (Math.random()*90-45) * Math.PI / 180;
+      gameObject.quaternion.z = (Math.random()*90-45) * Math.PI / 180;
+      die.updateBodyFromMesh();
+
+      gameObject.body.angularVelocity.set(
+        12 * Math.random() - 10,
+        12 * Math.random() - 10,
+        12 * Math.random() - 10
+      );
+      gameObject.body.velocity.set(
+        1 * Math.round(Math.random()) * 2 - 1,
+        1 * Math.round(Math.random()) * 2 - 1,
+        1,
+      );
+
+      return ({dice: die, value: 5});
+    });
+
+    this.manager.prepareValues(diceValues);
+
+    return diceValues;
+  }
+}
 
 class DiceOverlayComponent extends PureComponent {
   static defaultProps = {
@@ -13,6 +92,8 @@ class DiceOverlayComponent extends PureComponent {
     className: '',
     /** @type {object} */
     style: {},
+    /** @type {diceManager} */
+    diceHandler: {},
   };
   /** @override */
   constructor(props) {
@@ -36,6 +117,9 @@ class DiceOverlayComponent extends PureComponent {
   }
   /** @override */
   componentDidMount() {
+    const { diceHandler } = this.props;
+    this.world = diceHandler.world;
+
     const WIDTH = 200 || this.mountRef.current.clientWidth;
     const HEIGHT = 200 || this.mountRef.current.clientHeight;
 
@@ -46,9 +130,6 @@ class DiceOverlayComponent extends PureComponent {
     this.renderer.setClearColor('#d3d3d3');
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-    // - SCENE
-    this.scene = new THREE.Scene();
 
     // - CAMERA
     this.camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, 0.1, 1000);
@@ -70,7 +151,6 @@ class DiceOverlayComponent extends PureComponent {
     floor.position.z = -4;
 
     // - PHYSICS
-    this.world = new CANNON.World();
     this.world.gravity.set(0, 0, -11);
     this.world.broadphase = new CANNON.NaiveBroadphase();
     this.world.solver.iterations = 16;
@@ -87,14 +167,16 @@ class DiceOverlayComponent extends PureComponent {
     this.world.add(floorBody);
 
     // RENDER
-    this.scene.add(this.camera);
-    this.scene.add(light);
-    this.scene.add(floor);
+    diceHandler.addToScene(this.camera);
+    diceHandler.addToScene(light);
+    diceHandler.addToScene(floor);
 
     // MOUNT
     this.mountRef.current.appendChild(this.renderer.domElement);
 
     // START
+    diceHandler.shakeDice();
+
     this.start();
   }
   /** @override */
@@ -120,8 +202,13 @@ class DiceOverlayComponent extends PureComponent {
    * update a single animation frame
    */
   animate() {
-    this.renderer.render(this.scene, this.camera);
-    this.frameId = requestAnimationFrame(this.animate);
+    const { diceHandler } = this.props;
+
+    if (diceHandler) {
+      diceHandler.update();
+      this.renderer.render(diceHandler.scene, this.camera);
+      this.frameId = requestAnimationFrame(this.animate);
+    }
   }
 }
 
@@ -161,18 +248,4 @@ function randomThrow() {
 
   diceManager.prepareValues(diceValues);
 }
-
-function animate() {
-  world.step(1/60);
-
-  for (var i in dice) {
-    dice[i].updateMeshFromBody();
-  }
-
-  renderer.render(scene, camera);
-
-  requestAnimationFrame(animate);
-}
-
-requestAnimationFrame(animate);
-randomThrow();*/
+*/
