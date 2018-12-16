@@ -220,7 +220,10 @@ class DiceOverlayComponent extends PureComponent {
   /** @override */
   componentWillUnmount(){
     this.stop()
-    this.mount.removeChild(this.renderer.domElement);
+
+    if (this.mount && this.renderer) {
+      this.mount.removeChild(this.renderer.domElement);
+    }
   }
   /**
    * starts updating the renderer
