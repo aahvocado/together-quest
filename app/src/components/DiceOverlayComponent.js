@@ -4,6 +4,7 @@ import * as CANNON from 'cannon';
 import * as THREE from 'three';
 
 import diceManager from 'threejs-dice-modern';
+import CannonDebugRenderer from 'utils/CannonDebugRenderer';
 
 export class DiceHandler {
   /**
@@ -70,8 +71,8 @@ export class DiceHandler {
         12 * Math.random() - 10
       );
       gameObject.body.velocity.set(
-        1 * Math.round(Math.random()) * 2 - 1,
-        1 * Math.round(Math.random()) * 2 - 1,
+        5 * Math.round(Math.random()) * 2 - 1,
+        5 * Math.round(Math.random()) * 2 - 1,
         1,
       );
 
@@ -122,12 +123,13 @@ class DiceOverlayComponent extends PureComponent {
 
     const WIDTH = 200 || this.mountRef.current.clientWidth;
     const HEIGHT = 200 || this.mountRef.current.clientHeight;
+    const floorZ = -4;
 
     // INITIALIZE
     // - RENDERER
     this.renderer = new THREE.WebGLRenderer({antialias: true});
     this.renderer.setSize(WIDTH, HEIGHT);
-    this.renderer.setClearColor('#d3d3d3');
+    this.renderer.setClearColor(new THREE.Color(0x436499));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -138,13 +140,15 @@ class DiceOverlayComponent extends PureComponent {
     // - LIGHT
     const light = new THREE.DirectionalLight('#6a6879', 1.5);
     light.castShadow = true;
-    light.position.set(0, 0, 15);
+    light.position.set(-5, 5, 10);
     light.shadow.mapSize.width = 512;
     light.shadow.mapSize.height = 512;
     light.shadow.camera = new THREE.OrthographicCamera(-10, 10, -10, 10, 0.1, 100);
 
+    const ambientLighting = new THREE.AmbientLight( 0x404040 ); // soft white light
+
     // - OBJECTS
-    const floorMaterial = new THREE.MeshPhongMaterial({ color: '#d3d3d3', side: THREE.DoubleSide });
+    const floorMaterial = new THREE.MeshPhongMaterial({ color: new THREE.Color(0x436499), side: THREE.DoubleSide });
     const floorGeometry = new THREE.PlaneGeometry(15, 15, 1, 1);
     const floor = new THREE.Mesh(floorGeometry, floorMaterial);
     floor.receiveShadow = true;
@@ -157,26 +161,60 @@ class DiceOverlayComponent extends PureComponent {
 
     // -- floor collider
     const floorBody = new CANNON.Body({
-      position: new CANNON.Vec3(0, 0, -4),
-      mass: 0,
+      position: new CANNON.Vec3(0, 0, floorZ),
       shape: new CANNON.Plane(),
       material: diceManager.floorBodyMaterial,
     });
     floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 0), -Math.PI / 2);
-
     this.world.add(floorBody);
+
+    // -- wall colliders
+    const leftWall = new CANNON.Body({
+      position: new CANNON.Vec3(-5, 0, floorZ),
+      shape: new CANNON.Plane(),
+      material: diceManager.floorBodyMaterial,
+    });
+    leftWall.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI / 2);
+    this.world.add(leftWall);
+
+    const rightWall = new CANNON.Body({
+      position: new CANNON.Vec3(5, 0, floorZ),
+      shape: new CANNON.Plane(),
+      material: diceManager.floorBodyMaterial,
+    });
+    rightWall.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2);
+    this.world.add(rightWall);
+
+    const topWall = new CANNON.Body({
+      position: new CANNON.Vec3(0, 5, floorZ),
+      shape: new CANNON.Plane(),
+      material: diceManager.floorBodyMaterial,
+    });
+    topWall.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), Math.PI / 2);
+    this.world.add(topWall);
+
+    const bottomWall = new CANNON.Body({
+      position: new CANNON.Vec3(0, -5, floorZ),
+      shape: new CANNON.Plane(),
+      material: diceManager.floorBodyMaterial,
+    });
+    bottomWall.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
+    this.world.add(bottomWall);
 
     // RENDER
     diceHandler.addToScene(this.camera);
+    diceHandler.addToScene(ambientLighting);
     diceHandler.addToScene(light);
     diceHandler.addToScene(floor);
 
     // MOUNT
     this.mountRef.current.appendChild(this.renderer.domElement);
 
+    // toggle this to show the Cannon.js collision layer
+    if (false) this.cannonDebugRenderer = new CannonDebugRenderer(diceHandler.scene, diceHandler.world);
+
     // START
     diceHandler.shakeDice();
-
     this.start();
   }
   /** @override */
@@ -208,6 +246,10 @@ class DiceOverlayComponent extends PureComponent {
       diceHandler.update();
       this.renderer.render(diceHandler.scene, this.camera);
       this.frameId = requestAnimationFrame(this.animate);
+    }
+
+    if (this.cannonDebugRenderer) {
+      this.cannonDebugRenderer.update();
     }
   }
 }
