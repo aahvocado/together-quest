@@ -8,9 +8,9 @@ import {
 
 export class CharacterNameComponent extends PureComponent {
   static defaultProps = {
-    /** @type {String} */
+    /** @type {string} */
     baseClassName: 'flex-col bg-white borradius-1 pad-2',
-    /** @type {String} */
+    /** @type {string} */
     className: '',
     /** @type {string} */
     name: '',
@@ -37,26 +37,28 @@ export class CharacterNameComponent extends PureComponent {
 
 export class CharacterStatsComponent extends PureComponent {
   static defaultProps = {
-    /** @type {String} */
+    /** @type {string} */
     baseClassName: 'flex-col bg-white borradius-1 pad-2',
-    /** @type {String} */
+    /** @type {string} */
     className: '',
-    /** @type {array} */
-    statsList: [],
+    /** @type {array<StatModel>} */
+    stats: [],
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      statsList,
+      stats,
     } = this.props;
 
     return (
       <div className={cn('character-stats-component', baseClassName, className)}>
         <ListComponent
-          list={statsList}
-          getKey={(props) => (props.id)}
+          baseClassName='flex-row'
+          className=''
+          list={stats}
+          getKey={(props) => (props.attributes.id)}
           ItemComponent={StatComponent}
         />
       </div>
@@ -64,186 +66,63 @@ export class CharacterStatsComponent extends PureComponent {
   }
 }
 
-export class StatComponent extends PureComponent{
+export class StatComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'flex-col bg-white borradius-1 pad-2',
+    /** @type {string} */
+    className: '',
+    /** @type {StatModel.attributes} */
+    attributes: {},
+  }
+  /** @override */
   render() {
-    const {iconName, type, value, modValue} = this.props;
+    const {
+      baseClassName,
+      className,
+      attributes,
+    } = this.props;
 
-    const finalValue = value + modValue;
-    const hasStatMod = modValue !== 0;
+    const {
+      name,
+      value,
+    } = attributes;
 
     return (
-      <span className={`stat ${type}-stat`}>
-        <div className='stat-value-container'>
-          <span className='stat-name'>{finalValue}</span>
-          <span className='stat-mod'>{hasStatMod ? (modValue > 0 ? '+' : '-') : null}</span>
-        </div>
-        <Icon name={iconName} />
-      </span>
+      <div className={cn('stat-component', baseClassName, className)}>
+        <div>{name}</div>
+        <div>{value}</div>
+      </div>
     );
   }
 }
 
 export class CharacterComponent extends PureComponent {
   render() {
-    const { character } = this.props;
+    const { character: { attributes } } = this.props;
 
     const {
       name,
       title,
       stats,
-      equipments,
-      stuff,
-      traits,
-      honors,
-      statMods,
-    } = character;
+    } = attributes;
 
     return (
       <div className='character-component flex-col width-full'>
         <CharacterNameComponent
+          className='sibling-mar-t-2'
           name={name}
           title={title}
         />
 
         <CharacterStatsComponent
-          statsList={stats}
+          className='sibling-mar-t-2'
+          stats={stats}
         />
       </div>
     )
   }
 }
-
-class OldCharacterComponent extends PureComponent {
-  render() {
-    const { character } = this.props;
-
-    const {
-      name,
-      title,
-      stats,
-      equipments,
-      stuff,
-      traits,
-      honors,
-      statMods,
-    } = character;
-
-    const {
-      strength,
-      agility,
-      wisdom,
-      charisma,
-      magic,
-    } = stats;
-
-    const {
-      strength: strengthMod,
-      agility: agilityMod,
-      wisdom: wisdomMod,
-      charisma: charismaMod,
-      magic: magicMod,
-    } = statMods;
-
-    return (
-      <div className='character-component'>
-        {/* name */}
-        <div className='character-name'>{name}</div>
-
-        {/* title */}
-        <div className='character-title'>{title}</div>
-
-        {/* stats */}
-        <div className='character-stats'>
-          <StatComponent
-            iconName='ra-muscle-up'
-            type='strength'
-            value={strength}
-            modValue={strengthMod}
-          />
-
-          <StatComponent
-            iconName='fa-running'
-            type='agility'
-            value={agility}
-            modValue={agilityMod}
-          />
-
-          <StatComponent
-            iconName='fa-brain'
-            type='wisdom'
-            value={wisdom}
-            modValue={wisdomMod}
-          />
-
-          <StatComponent
-            iconName='fa-smile-wink'
-            type='charisma'
-            value={charisma}
-            modValue={charismaMod}
-          />
-
-          <StatComponent
-            iconName='ra-fairy-wand'
-            type='magic'
-            value={magic}
-            modValue={magicMod}
-          />
-        </div>
-
-        {/* equipment */}
-        <div className='character-equipments'>
-          <div>[equipments]</div>
-          { equipments.map((equipment, idx) =>
-            <div className='equipment' key={`${idx}`}>
-              <div className='equipment-main'>
-                <Icon name='fa-puzzle-piece' />
-                <span className='equipment-name'>{equipment.name}</span>
-              </div>
-              {/*
-              <span className='equipment-slot'>{equipment.slot}</span>
-              <span className='equipment-mod'>{equipment.statMods.toString()}</span>
-              */}
-            </div>
-          )}
-        </div>
-
-        {/* stuff */}
-        <div className='character-stuff'>
-          <div>[stuff]</div>
-          { stuff.map((item, idx) =>
-            <div className='item' key={`${idx}`}>
-              <Icon name='fa-box' />
-              <span className='item-name'>{item}</span>
-            </div>
-          )}
-        </div>
-
-        {/* traits */}
-        <div className='character-traits'>
-          <div>[traits]</div>
-          { traits.map((trait, idx) =>
-            <div className='trait' key={`${idx}`}>
-              <Icon name='fa-tag' />
-              <span className='trait-name'>{trait}</span>
-            </div>
-          )}
-        </div>
-
-        {/* honors */}
-        <div className='character-honors'>
-          <div>[honors]</div>
-          { honors.map((honor, idx) =>
-            <div className='honor' key={`${idx}`}>
-              <Icon name='fa-certificate' />
-              <span className='honor-name'>{honor}</span>
-            </div>
-          )}
-        </div>
-
-      </div>
-    );
-  }
-};
 
 export default CharacterComponent;
 

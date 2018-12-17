@@ -1,6 +1,12 @@
 import CharacterModel from 'models/CharacterModel';
 import StatModel from 'models/StatModel';
 
+const STRENGTH_ID = 'STRENGTH-STAT-ID';
+const AGILITY_ID = 'AGILITY-STAT-ID';
+const WISDOM_ID = 'WISDOM-STAT-ID';
+const CHARISMA_ID = 'CHARISMA-STAT-ID';
+const MAGIC_ID = 'MAGIC-STAT-ID';
+
 // export const BLINKS = {
 //   name: 'Blinks',
 //   id: 'BLINKS-ID',
@@ -282,36 +288,39 @@ export const PALLY = {
 };
 
 export const BLINKS = new CharacterModel({
-  attributes: {
-    name: 'Blinks',
-    id: 'BLINKS-ID',
-    title: 'Not-Naked Human',
-    stats: [
-      new StatModel({
-        name: 'strength',
-        value: 2,
-        modifier: 0,
-      }),
-      new StatModel({
-        name: 'agility',
-        value: 4,
-        modifier: -1,
-      }),
-      new StatModel({
-        name: 'wisdom',
-        value: 5,
-        modifier: -1,
-      }),
-      new StatModel({
-        name: 'charisma',
-        value: 4,
-        modifier: -1,
-      }),
-      new StatModel({
-        name: 'magic',
-        value: 1,
-        modifier: -1,
-      }),
-    ],
-  }
+  name: 'Blinks',
+  id: 'BLINKS-ID',
+  title: 'Not-Naked Human',
+  stats: [
+    new StatModel({
+      id: STRENGTH_ID,
+      name: 'strength',
+      value: 2,
+      modifier: 0,
+    }),
+    new StatModel({
+      id: AGILITY_ID,
+      name: 'agility',
+      value: 4,
+      modifier: -1,
+    }),
+    new StatModel({
+      id: WISDOM_ID,
+      name: 'wisdom',
+      value: 5,
+      modifier: -1,
+    }),
+    new StatModel({
+      id: CHARISMA_ID,
+      name: 'charisma',
+      value: 4,
+      modifier: -1,
+    }),
+    new StatModel({
+      id: MAGIC_ID,
+      name: 'magic',
+      value: 1,
+      modifier: -1,
+    }),
+  ],
 });

@@ -17,7 +17,9 @@ class ListItemComponent extends PureComponent {
  */
 class ListComponent extends PureComponent {
   static defaultProps = {
-    /** @type {String} */
+    /** @type {string} */
+    baseClassName: 'flex-col',
+    /** @type {string} */
     className: '',
     /** @type {Function} */
     getKey: (item) => (item.id),
@@ -29,6 +31,7 @@ class ListComponent extends PureComponent {
   /** @default */
   render() {
     const {
+      baseClassName,
       className,
       getKey,
       list,
@@ -36,7 +39,7 @@ class ListComponent extends PureComponent {
     } = this.props;
 
     return (
-      <ul className={cn('list-component flex-col', className)}>
+      <ul className={cn('list-component', baseClassName, className)}>
         { list.map((item) =>
           <ItemComponent
             key={`ListItem#${getKey(item)}-key`}

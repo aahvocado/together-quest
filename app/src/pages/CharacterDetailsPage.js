@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
 
-// import { isLoggedIn } from 'utils/sessionUtils';
+import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
   CharacterComponent,
@@ -25,26 +25,27 @@ const ConnectedCharacterDetailsPage = connect((state) => ({
 
       const { match: { params: { characterId } } } = props; // from route
 
+      // todo this needs to fetch model
       const currentCharacter = _.find(props.user.characters, {id: characterId});
 
       this.state = {
-        currentCharacter: currentCharacter,
+        characterModel: currentCharacter,
       };
     };
     /** @default */
     render() {
-      // const { currentCharacter } = this.state;
-      const currentCharacter = BLINKS;
+      // const { characterModel } = this.state;
+      const characterModel = BLINKS;
 
       // go back to homepage if not logged in or if character is not found
-      if (/*!isLoggedIn() ||*/ _.isUndefined(currentCharacter)) {
+      if (!isLoggedIn() || _.isUndefined(characterModel)) {
         return <Redirect to='/' />
       };
 
       return (
         <div className='tg-character-details-page flex-col width-full'>
           <CharacterComponent
-            character={currentCharacter}
+            character={characterModel}
           />
         </div>
       );

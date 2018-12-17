@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { schema } from 'js-schema';
+import schema from 'js-schema';
 
 export const characterSchema = schema({
   // name of character
@@ -33,7 +33,7 @@ export class CharacterModel {
       inventory: [],
       traits: [],
       honors: [],
-    }, options.attributes);
+    }, options);
 
     // validate
     if (!characterSchema(this.attributes)) {
