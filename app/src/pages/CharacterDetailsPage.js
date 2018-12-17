@@ -6,10 +6,8 @@ import _ from 'lodash';
 // import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
-  Panel,
+  CharacterComponent,
 } from 'components';
-
-import { CharacterNameComponent } from 'components/CharacterComponent';
 
 import { BLINKS } from 'apis/catQuestApi';
 
@@ -45,10 +43,8 @@ const ConnectedCharacterDetailsPage = connect((state) => ({
 
       return (
         <div className='tg-character-details-page flex-col width-full'>
-          <CharacterNameComponent
-            className=''
-            name={currentCharacter.name}
-            title={currentCharacter.title}
+          <CharacterComponent
+            character={currentCharacter}
           />
         </div>
       );

@@ -1,4 +1,4 @@
-const characterSchema = {
+export const characterSchema = {
   name: undefined,
   id: undefined,
   title: undefined,
@@ -13,25 +13,22 @@ const characterSchema = {
   stuff: [],
   traits: [],
   honors: [],
-  statMods: {
-    strength: 0,
-    agility: 0,
-    wisdom: 0,
-    charisma: 0,
-    magic: 0,
-  }
 };
-const equipmentSchema = {
+
+export const statSchema = {
+  // name of stat
+  name: '',
+  // base value of modifier
+  value: 0,
+  // changes to the value
+  modifier: 0,
+  // how much a given amount affects a dice roll
+  influence: (value) => (value),
+}
+
+export const equipmentSchema = {
   slot: '',
   name: '',
   statMods: {},
   description: '',
-};
-
-// export
-// export default characterData;
-
-export {
-  characterSchema,
-  equipmentSchema,
 };

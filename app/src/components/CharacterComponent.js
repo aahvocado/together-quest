@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
 import {
-  Icon
+  Icon,
+  ListComponent,
 } from 'components';
 
 export class CharacterNameComponent extends PureComponent {
@@ -13,6 +14,8 @@ export class CharacterNameComponent extends PureComponent {
     className: '',
     /** @type {string} */
     name: '',
+    /** @type {string} */
+    title: '',
   }
   /** @override */
   render() {
@@ -32,7 +35,36 @@ export class CharacterNameComponent extends PureComponent {
   }
 }
 
-class StatComponent extends PureComponent{
+export class CharacterStatsComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {String} */
+    baseClassName: 'flex-col bg-white borradius-1 pad-2',
+    /** @type {String} */
+    className: '',
+    /** @type {array} */
+    statsList: [],
+  }
+  /** @override */
+  render() {
+    const {
+      baseClassName,
+      className,
+      statsList,
+    } = this.props;
+
+    return (
+      <div className={cn('character-stats-component', baseClassName, className)}>
+        <ListComponent
+          list={statsList}
+          getKey={(props) => (props.id)}
+          ItemComponent={StatComponent}
+        />
+      </div>
+    );
+  }
+}
+
+export class StatComponent extends PureComponent{
   render() {
     const {iconName, type, value, modValue} = this.props;
 
@@ -50,7 +82,38 @@ class StatComponent extends PureComponent{
     );
   }
 }
-class CharacterComponent extends PureComponent {
+
+export class CharacterComponent extends PureComponent {
+  render() {
+    const { character } = this.props;
+
+    const {
+      name,
+      title,
+      stats,
+      equipments,
+      stuff,
+      traits,
+      honors,
+      statMods,
+    } = character;
+
+    return (
+      <div className='character-component flex-col width-full'>
+        <CharacterNameComponent
+          name={name}
+          title={title}
+        />
+
+        <CharacterStatsComponent
+          statsList={stats}
+        />
+      </div>
+    )
+  }
+}
+
+class OldCharacterComponent extends PureComponent {
   render() {
     const { character } = this.props;
 
@@ -184,6 +247,3 @@ class CharacterComponent extends PureComponent {
 
 export default CharacterComponent;
 
-export {
-  CharacterComponent,
-}
