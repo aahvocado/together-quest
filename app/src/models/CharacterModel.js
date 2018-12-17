@@ -1,32 +1,43 @@
 import _ from 'lodash';
-import { characterSchema } from 'data/characterSchema';
+import { schema } from 'js-schema';
+
+export const characterSchema = schema({
+  // name of character
+  name: String,
+  // character's id
+  id: String,
+  // sub title of character
+  title: String,
+  // list of stats
+  stats: Array,
+  // list of equipment
+  equipments: Array,
+  // list of inventory
+  inventory: Array,
+  // any innate traits
+  traits: Array,
+  // honors given
+  honors: Array,
+})
 
 export class CharacterModel {
   constructor(options = {}) {
 
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = _.assign({}, {
-      // name of character
       name: null,
-      // character's id
       id: null,
-      // sub title of character
       title: '',
-      // list of stats
       stats: [],
-      // list of equipment
       equipments: [],
-      // list of inventory
       inventory: [],
-      // any innate traits
       traits: [],
-      // honors given
       honors: [],
     }, options.attributes);
 
     // validate
     if (!characterSchema(this.attributes)) {
-      console.error('CharacterModel schema mismatch');
+      console.error('schema mismatch');
     }
 
   }

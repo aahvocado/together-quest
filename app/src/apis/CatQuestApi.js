@@ -1,4 +1,5 @@
 import CharacterModel from 'models/CharacterModel';
+import StatModel from 'models/StatModel';
 
 // export const BLINKS = {
 //   name: 'Blinks',
@@ -285,10 +286,32 @@ export const BLINKS = new CharacterModel({
     name: 'Blinks',
     id: 'BLINKS-ID',
     title: 'Not-Naked Human',
-    stats: [{
-      name: 'strength',
-      value: 0,
-      modifier: 0,
-    }],
+    stats: [
+      new StatModel({
+        name: 'strength',
+        value: 2,
+        modifier: 0,
+      }),
+      new StatModel({
+        name: 'agility',
+        value: 4,
+        modifier: -1,
+      }),
+      new StatModel({
+        name: 'wisdom',
+        value: 5,
+        modifier: -1,
+      }),
+      new StatModel({
+        name: 'charisma',
+        value: 4,
+        modifier: -1,
+      }),
+      new StatModel({
+        name: 'magic',
+        value: 1,
+        modifier: -1,
+      }),
+    ],
   }
 });
