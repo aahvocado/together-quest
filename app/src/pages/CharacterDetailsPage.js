@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
 
-import { isLoggedIn } from 'utils/sessionUtils';
+// import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
   CharacterComponent,
@@ -38,7 +38,7 @@ const ConnectedCharacterDetailsPage = connect((state) => ({
       const currentCharacter = BLINKS;
 
       // go back to homepage if not logged in or if character is not found
-      if (!isLoggedIn() || _.isUndefined(currentCharacter)) {
+      if (/*!isLoggedIn() ||*/ _.isUndefined(currentCharacter)) {
         return <Redirect to='/' />
       };
 
