@@ -95,6 +95,7 @@ module.exports = {
       data$: path.resolve(appPath, 'data/appStore.js'),
       data: path.resolve(appPath, 'data'),
 
+      models: path.resolve(appPath, 'models'),
       pages: path.resolve(appPath, 'pages'),
       panels: path.resolve(appPath, 'panels'),
       services: path.resolve(appPath, 'services'),

@@ -6,7 +6,6 @@ import {
 } from 'components';
 
 class CharacterButtonComponent extends PureComponent {
-  // include a ton of defaultProps from the `characterData` schema
   static defaultProps = {
     /** @type {Function} */
     onClick: () => {},

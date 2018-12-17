@@ -1,68 +1,70 @@
-export const BLINKS = {
-  name: 'Blinks',
-  id: 'BLINKS-ID',
-  title: 'Not-Naked Human',
-  stats: {
-    strength: 2,
-    agility: 4,
-    wisdom: 5,
-    charisma: 4,
-    magic: 1,
-  },
-  equipments: [{
-    slot: 'head',
-    name: 'Zinc Helmet',
-    statMods: {},
-    description: "Protects you from bad smells.",
-  }, {
-    slot: 'body',
-    name: 'Leather Jacket',
-    statMods: {},
-    description: "Your signature style!",
-  }, {
-    slot: 'wrist',
-    name: 'Bracelet of Branches',
-    statMods: {},
-    description: "Allows you to maniuplate vines.",
-  }, {
-    slot: 'pants',
-    name: 'Breakup Jeans',
-    statMods: {},
-    description: "Gotten from a couple cats who were in the middle of a couple's spat.",
-  }, {
-    slot: 'feet',
-    name: 'Greaves of Saint Grebes',
-    statMods: {agility: -1},
-    description: "Lets you walk on water for a short duration.",
-  }],
-  stuff: [
-    '4 catnip coins',
-    '0 doggy dollars',
-    'a broken leash',
-    'hammer',
-    'dented pan',
-    'vial of glow moth dust',
-    'handsaw',
-    'a glowing potato',
-    'rusty sword',
-    'Compound Bow of Twanging'
-  ],
-  traits: [
-    'Magic Sensitivity',
-    'Glowing a Bit',
-    'Bruised',
-  ],
-  honors: [
-    'Fire Fighting Human Champion',
-  ],
-  statMods: {
-    strength: 0,
-    agility: -1,
-    wisdom: 0,
-    charisma: 0,
-    magic: 0,
-  }
-};
+import CharacterModel from 'models/CharacterModel';
+
+// export const BLINKS = {
+//   name: 'Blinks',
+//   id: 'BLINKS-ID',
+//   title: 'Not-Naked Human',
+//   stats: {
+//     strength: 2,
+//     agility: 4,
+//     wisdom: 5,
+//     charisma: 4,
+//     magic: 1,
+//   },
+//   equipments: [{
+//     slot: 'head',
+//     name: 'Zinc Helmet',
+//     statMods: {},
+//     description: "Protects you from bad smells.",
+//   }, {
+//     slot: 'body',
+//     name: 'Leather Jacket',
+//     statMods: {},
+//     description: "Your signature style!",
+//   }, {
+//     slot: 'wrist',
+//     name: 'Bracelet of Branches',
+//     statMods: {},
+//     description: "Allows you to maniuplate vines.",
+//   }, {
+//     slot: 'pants',
+//     name: 'Breakup Jeans',
+//     statMods: {},
+//     description: "Gotten from a couple cats who were in the middle of a couple's spat.",
+//   }, {
+//     slot: 'feet',
+//     name: 'Greaves of Saint Grebes',
+//     statMods: {agility: -1},
+//     description: "Lets you walk on water for a short duration.",
+//   }],
+//   stuff: [
+//     '4 catnip coins',
+//     '0 doggy dollars',
+//     'a broken leash',
+//     'hammer',
+//     'dented pan',
+//     'vial of glow moth dust',
+//     'handsaw',
+//     'a glowing potato',
+//     'rusty sword',
+//     'Compound Bow of Twanging'
+//   ],
+//   traits: [
+//     'Magic Sensitivity',
+//     'Glowing a Bit',
+//     'Bruised',
+//   ],
+//   honors: [
+//     'Fire Fighting Human Champion',
+//   ],
+//   statMods: {
+//     strength: 0,
+//     agility: -1,
+//     wisdom: 0,
+//     charisma: 0,
+//     magic: 0,
+//   }
+// };
 export const NOOK = {
   name: 'Nook',
   id: 'NOOK-ID',
@@ -277,3 +279,16 @@ export const PALLY = {
     magic: 0,
   }
 };
+
+export const BLINKS = new CharacterModel({
+  attributes: {
+    name: 'Blinks',
+    id: 'BLINKS-ID',
+    title: 'Not-Naked Human',
+    stats: [{
+      name: 'strength',
+      value: 0,
+      modifier: 0,
+    }],
+  }
+});
