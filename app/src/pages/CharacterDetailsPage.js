@@ -10,6 +10,8 @@ import {
   Panel,
 } from 'components';
 
+import { BLINKS } from 'apis/catQuestApi';
+
 /**
  *
  */
@@ -32,7 +34,8 @@ const ConnectedCharacterDetailsPage = connect((state) => ({
     };
     /** @default */
     render() {
-      const { currentCharacter } = this.state;
+      // const { currentCharacter } = this.state;
+      const currentCharacter = BLINKS;
 
       // go back to homepage if not logged in or if character is not found
       if (!isLoggedIn() || _.isUndefined(currentCharacter)) {

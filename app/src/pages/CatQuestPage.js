@@ -15,7 +15,7 @@ import {
   PEARL,
   DOUGLAS,
   // PALLY,
-} from 'apis/CatQuestApi';
+} from 'apis/catQuestApi';
 
 // redux mappings
 function mapStateToProps(state) {

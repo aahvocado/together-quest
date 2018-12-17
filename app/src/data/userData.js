@@ -1,6 +1,6 @@
 // import { combineReducers } from 'redux';
 import uuid from 'uuid/v4';
-import {BLINKS} from 'apis/CatQuestApi';
+import {BLINKS} from 'apis/catQuestApi';
 
 const userSchema = {
   user: {
