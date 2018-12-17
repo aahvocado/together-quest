@@ -1,7 +1,7 @@
 @baseFontSize: 15px;
 
 // create font sizes from 0 to max
-.generate-all-font-size(25);
+.generate-all-font-size(10);
 
 // mixin for create all instances
 .generate-all-font-size(@n, @i: 0) when (@i =< @n) {
@@ -14,7 +14,7 @@
 // mixin
 .generate-font-size(@num) {
   .fsize-@{num} {
-    font-size: @num;
+    font-size: @num * 5px;
   }
 }
 
@@ -29,8 +29,8 @@
   line-height: 0.8rem;
 }
 .fsize-big {
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 
 // font weight

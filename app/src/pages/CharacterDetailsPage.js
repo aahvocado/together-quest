@@ -6,9 +6,10 @@ import _ from 'lodash';
 // import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
-  CharacterComponent,
   Panel,
 } from 'components';
+
+import { CharacterNameComponent } from 'components/CharacterComponent';
 
 import { BLINKS } from 'apis/catQuestApi';
 
@@ -43,9 +44,13 @@ const ConnectedCharacterDetailsPage = connect((state) => ({
       };
 
       return (
-        <Panel className='tg-character-details-page bg-white width-full'>
-          <CharacterComponent character={currentCharacter} />
-        </Panel>
+        <div className='tg-character-details-page flex-col width-full'>
+          <CharacterNameComponent
+            className=''
+            name={currentCharacter.name}
+            title={currentCharacter.title}
+          />
+        </div>
       );
     };
   }

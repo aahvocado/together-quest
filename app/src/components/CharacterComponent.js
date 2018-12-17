@@ -1,22 +1,36 @@
 import React, { PureComponent } from 'react';
+import cn from 'classnames';
 
 import {
   Icon
 } from 'components';
 
-class CharacterEyecatchComponent extends PureComponent {
+export class CharacterNameComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {String} */
+    baseClassName: 'flex-col bg-white borradius-1 pad-2',
+    /** @type {String} */
+    className: '',
+    /** @type {string} */
+    name: '',
+  }
+  /** @override */
   render() {
-    // const { character } = this.props;
+    const {
+      baseClassName,
+      className,
+      name,
+      title,
+    } = this.props;
 
     return (
-      <div className='tg-character tg-character--eyecatch'>
-        <div>image</div>
-        <div>name</div>
-        <div>title</div>
+      <div className={cn('character-name-component', baseClassName, className)}>
+        <div className='flex-none fsize-5'>{name}</div>
+        <div className='flex-none'>{title}</div>
       </div>
     );
   }
-};
+}
 
 class StatComponent extends PureComponent{
   render() {
@@ -172,5 +186,4 @@ export default CharacterComponent;
 
 export {
   CharacterComponent,
-  CharacterEyecatchComponent,
 }
