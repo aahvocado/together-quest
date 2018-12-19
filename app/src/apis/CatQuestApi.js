@@ -60,14 +60,14 @@ export const NOOK = new CharacterModel({
     description: "Cooler than Blink's",
   }],
   stuff: [
-    '58 catnip coins',
-    '0 doggy dollars',
+    '78 catnip coins',
+    '10 doggy dollars',
     'the Red fragment',
     'backup dagger',
     'kris',
     'whiskey bottle with water',
     'Nook\'s Rapier',
-    'Bareback cash register',
+    'lockpicking kit'
   ],
   traits: [
     'Tall',

@@ -109,7 +109,7 @@ export class StatComponent extends PureComponent {
           }
         </div>
 
-        <div className='fsize-2'>{name}</div>
+        <div className='fsize-1'>{name}</div>
 
         <Icon name={icon} />
 
