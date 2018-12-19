@@ -86,14 +86,33 @@ export class StatComponent extends PureComponent {
     const {
       icon,
       name,
+      modifier,
       value,
     } = attributes;
 
+    const displayValue = Math.max(value + modifier, 0);
+
+    let bonusIcon;
+    if (modifier < 0) {
+      bonusIcon = 'fa-arrow-down';
+    } else if (modifier > 0) {
+      bonusIcon = 'fa-arrow-up';
+    }
+
     return (
       <div className={cn('stat-component', baseClassName, className)}>
-        <div className='fsize-6'>{value}</div>
+        <div className='flex-row'>
+          <div className='fsize-6'>{displayValue}</div>
+
+          { bonusIcon &&
+            <Icon name={bonusIcon} />
+          }
+        </div>
+
         <div className='fsize-2'>{name}</div>
+
         <Icon name={icon} />
+
       </div>
     );
   }
