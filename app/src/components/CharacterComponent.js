@@ -69,7 +69,7 @@ export class CharacterStatsComponent extends PureComponent {
 export class StatComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'flex-col bg-white borradius-1 pad-2',
+    baseClassName: 'flex-row bg-white borradius-1 pad-2 align-center',
     /** @type {string} */
     className: '',
     /** @type {StatModel.attributes} */
@@ -94,16 +94,14 @@ export class StatComponent extends PureComponent {
 
     return (
       <div className={cn('stat-component', baseClassName, className)}>
-        <div className='flex-row borcolor-litegray bor-b-1 pad-b-1 mar-b-1'>
-          <Icon name={icon} />
-          <div>{name}</div>
-        </div>
-
         <div className='flex-row'>
           <div className='fsize-6'>{displayValue}</div>
           { this.renderModifiedIcon() }
         </div>
 
+        <div className='flex-row borcolor-litegray bor-l-1 pad-l-1 mar-l-1'>
+          <div>{name}</div>
+        </div>
       </div>
     );
   }
