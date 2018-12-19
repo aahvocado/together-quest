@@ -1,32 +1,42 @@
-@baseRadius: 5px;
-
-// create border-radius for 0, 5, 10, 15
-.generate-all-border-radius(3);
+// create border-width for 0, 1, 2, 3, 4, 5
+.generate-all-border-width(5);
 
 // mixin for create all instances of margin
-.generate-all-border-radius(@n, @i: 0) when (@i =< @n) {
-  .generate-border-radius(@i);
+.generate-all-border-width(@n, @i: 0) when (@i =< @n) {
+  .generate-border-width-top(@i);
+  .generate-border-width-bottom(@i);
+  .generate-border-width-left(@i);
+  .generate-border-width-right(@i);
 
   // recursive loop
-  .generate-all-border-radius(@n, (@i + 1));
+  .generate-all-border-width(@n, (@i + 1));
 };
 
 /*
   example:
-  .generate-margin(2) will output .mar-2 { margin: 10px; }
+  .generate-border-top(2) will output .bor-t-2 { border-top-width: 2px; }
 */
-.generate-border-radius(@num) {
-  .borradius-@{num} {
-    border-radius: @num * @baseRadius;
+.generate-border-width-top(@num) {
+  .bor-t-@{num} {
+    border-top-width: ~"@{num}px";
+    border-style: solid;
   }
 }
-
-//
-.borradius-round {
-  border-radius: 50%;
+.generate-border-width-bottom(@num) {
+  .bor-b-@{num} {
+    border-bottom-width: ~"@{num}px";
+    border-style: solid;
+  }
 }
-
-//
-.borcolor-transparent {
-  border-color: transparent;
+.generate-border-width-left(@num) {
+  .bor-l-@{num} {
+    border-left-width: ~"@{num}px";
+    border-style: solid;
+  }
+}
+.generate-border-width-right(@num) {
+  .bor-r-@{num} {
+    border-right-width: ~"@{num}px";
+    border-style: solid;
+  }
 }

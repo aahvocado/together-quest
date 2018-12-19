@@ -38,7 +38,7 @@ export class CharacterNameComponent extends PureComponent {
 export class CharacterStatsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'flex-col bg-white borradius-1 pad-2',
+    baseClassName: 'bg-white borradius-1 pad-2',
     /** @type {string} */
     className: '',
     /** @type {array<StatModel>} */
@@ -55,7 +55,7 @@ export class CharacterStatsComponent extends PureComponent {
     return (
       <div className={cn('character-stats-component', baseClassName, className)}>
         <ListComponent
-          baseClassName='flex-row'
+          baseClassName='flex-col'
           className=''
           list={stats}
           getKey={(props) => (props.attributes.id)}
@@ -101,17 +101,16 @@ export class StatComponent extends PureComponent {
 
     return (
       <div className={cn('stat-component', baseClassName, className)}>
+        <div className='flex-row borcolor-litegray bor-b-1 pad-b-1 mar-b-1'>
+          <Icon name={icon} />
+          <div>{name}</div>
+        </div>
+
         <div className='flex-row'>
           <div className='fsize-6'>{displayValue}</div>
 
-          { bonusIcon &&
-            <Icon name={bonusIcon} />
-          }
+          { bonusIcon && <Icon name={bonusIcon} /> }
         </div>
-
-        <div className='fsize-1'>{name}</div>
-
-        <Icon name={icon} />
 
       </div>
     );
