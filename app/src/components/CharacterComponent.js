@@ -69,7 +69,7 @@ export class CharacterStatsComponent extends PureComponent {
 export class StatComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'flex-row bg-white borradius-1 pad-2 align-center',
+    baseClassName: 'flex-row bg-white borradius-1 pad-2 align-center bor-1 borcolor-litegray sibling-mar-t-1',
     /** @type {string} */
     className: '',
     /** @type {StatModel.attributes} */

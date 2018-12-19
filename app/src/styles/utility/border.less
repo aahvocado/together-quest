@@ -3,10 +3,13 @@
 
 // mixin for create all instances of margin
 .generate-all-border-width(@n, @i: 0) when (@i =< @n) {
+  .generate-border-width(@i);
   .generate-border-width-top(@i);
   .generate-border-width-bottom(@i);
   .generate-border-width-left(@i);
   .generate-border-width-right(@i);
+  .generate-border-width-horizontal(@i);
+  .generate-border-width-vertical(@i);
 
   // recursive loop
   .generate-all-border-width(@n, (@i + 1));
@@ -14,8 +17,16 @@
 
 /*
   example:
-  .generate-border-top(2) will output .bor-t-2 { border-top-width: 2px; }
+  .generate-border-width(2) will output .bor-2 { border-width: 2px; }
 */
+// all sides
+.generate-border-width(@num) {
+  .bor-@{num} {
+    border-width: ~"@{num}px";
+    border-style: solid;
+  }
+}
+// one side
 .generate-border-width-top(@num) {
   .bor-t-@{num} {
     border-top-width: ~"@{num}px";
@@ -37,6 +48,22 @@
 .generate-border-width-right(@num) {
   .bor-r-@{num} {
     border-right-width: ~"@{num}px";
+    border-style: solid;
+  }
+}
+// horizontal: left - right
+.generate-border-width-horizontal(@num) {
+  .bor-h-@{num} {
+    border-left-width: ~"@{num}px";
+    border-right-width: ~"@{num}px";
+    border-style: solid;
+  }
+}
+// vertical: top - bottom
+.generate-border-width-vertical(@num) {
+  .bor-v-@{num} {
+    border-top-width: ~"@{num}px";
+    border-bottom-width: ~"@{num}px";
     border-style: solid;
   }
 }
