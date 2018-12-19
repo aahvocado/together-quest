@@ -107,6 +107,11 @@ export class CharacterComponent extends PureComponent {
       name,
       title,
       stats,
+
+      equipments,
+      stuff,
+      traits,
+      honors,
     } = attributes;
 
     return (
@@ -121,6 +126,52 @@ export class CharacterComponent extends PureComponent {
           className='sibling-mar-t-2'
           stats={stats}
         />
+
+        {/* equipment */}
+        <div className='character-equipments flex-col bg-white borradius-1 pad-2'>
+          <div>[equipments]</div>
+          { equipments.map((equipment, idx) =>
+            <div className='equipment' key={`${idx}`}>
+              <div className='equipment-main'>
+                <Icon name='fa-puzzle-piece' />
+                <span className='equipment-name'>{equipment.name}</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* stuff */}
+        <div className='character-stuff flex-col bg-white borradius-1 pad-2'>
+          <div>[stuff]</div>
+          { stuff.map((item, idx) =>
+            <div className='item' key={`${idx}`}>
+              <Icon name='fa-box' />
+              <span className='item-name'>{item}</span>
+            </div>
+          )}
+        </div>
+
+        {/* traits */}
+        <div className='character-traits flex-col bg-white borradius-1 pad-2'>
+          <div>[traits]</div>
+          { traits.map((trait, idx) =>
+            <div className='trait' key={`${idx}`}>
+              <Icon name='fa-tag' />
+              <span className='trait-name'>{trait}</span>
+            </div>
+          )}
+        </div>
+
+        {/* honors */}
+        <div className='character-honors flex-col bg-white borradius-1 pad-2'>
+          <div>[honors]</div>
+          { honors.map((honor, idx) =>
+            <div className='honor' key={`${idx}`}>
+              <Icon name='fa-certificate' />
+              <span className='honor-name'>{honor}</span>
+            </div>
+          )}
+        </div>
       </div>
     )
   }

@@ -37,7 +37,7 @@ const ConnectedCatQuestPage = connect(mapStateToProps)(
       // const { characters } = this.props;
 
       return (
-        <Panel className='character-list'>
+        <Panel baseClassName='flex-col' className='character-list'>
           <CharacterComponent character={BLINKS} />
           <CharacterComponent character={NOOK} />
           <CharacterComponent character={PEARL} />

@@ -7,82 +7,42 @@ const WISDOM_ID = 'WISDOM-STAT-ID';
 const CHARISMA_ID = 'CHARISMA-STAT-ID';
 const MAGIC_ID = 'MAGIC-STAT-ID';
 
-// export const BLINKS = {
-//   name: 'Blinks',
-//   id: 'BLINKS-ID',
-//   title: 'Not-Naked Human',
-//   stats: {
-//     strength: 2,
-//     agility: 4,
-//     wisdom: 5,
-//     charisma: 4,
-//     magic: 1,
-//   },
-//   equipments: [{
-//     slot: 'head',
-//     name: 'Zinc Helmet',
-//     statMods: {},
-//     description: "Protects you from bad smells.",
-//   }, {
-//     slot: 'body',
-//     name: 'Leather Jacket',
-//     statMods: {},
-//     description: "Your signature style!",
-//   }, {
-//     slot: 'wrist',
-//     name: 'Bracelet of Branches',
-//     statMods: {},
-//     description: "Allows you to maniuplate vines.",
-//   }, {
-//     slot: 'pants',
-//     name: 'Breakup Jeans',
-//     statMods: {},
-//     description: "Gotten from a couple cats who were in the middle of a couple's spat.",
-//   }, {
-//     slot: 'feet',
-//     name: 'Greaves of Saint Grebes',
-//     statMods: {agility: -1},
-//     description: "Lets you walk on water for a short duration.",
-//   }],
-//   stuff: [
-//     '4 catnip coins',
-//     '0 doggy dollars',
-//     'a broken leash',
-//     'hammer',
-//     'dented pan',
-//     'vial of glow moth dust',
-//     'handsaw',
-//     'a glowing potato',
-//     'rusty sword',
-//     'Compound Bow of Twanging'
-//   ],
-//   traits: [
-//     'Magic Sensitivity',
-//     'Glowing a Bit',
-//     'Bruised',
-//   ],
-//   honors: [
-//     'Fire Fighting Human Champion',
-//   ],
-//   statMods: {
-//     strength: 0,
-//     agility: -1,
-//     wisdom: 0,
-//     charisma: 0,
-//     magic: 0,
-//   }
-// };
-export const NOOK = {
+export const NOOK = new CharacterModel({
   name: 'Nook',
   id: 'NOOK-ID',
   title: 'Mighty Savannah Cat',
-  stats: {
-    strength: 7,
-    agility: 5,
-    wisdom: 3,
-    charisma: 1,
-    magic: 0,
-  },
+  stats: [
+    new StatModel({
+      id: STRENGTH_ID,
+      name: 'strength',
+      value: 7,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: AGILITY_ID,
+      name: 'agility',
+      value: 5,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: WISDOM_ID,
+      name: 'wisdom',
+      value: 3,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: CHARISMA_ID,
+      name: 'charisma',
+      value: 1,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: MAGIC_ID,
+      name: 'magic',
+      value: 0,
+      modifier: -2,
+    }),
+  ],
   equipments: [{
     slot: 'hand',
     name: 'Assassin\'s gaunlet',
@@ -124,18 +84,43 @@ export const NOOK = {
     charisma: 0,
     magic: 0,
   }
-};
-export const PEARL = {
+});
+export const PEARL = new CharacterModel({
   name: 'Pearl',
   id: 'PEARL-ID',
   title: 'Brave Dachshund Captain',
-  stats: {
-    strength: 4,
-    agility: 0,
-    wisdom: 5,
-    charisma: 6,
-    magic: 1,
-  },
+  stats: [
+    new StatModel({
+      id: STRENGTH_ID,
+      name: 'strength',
+      value: 4,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: AGILITY_ID,
+      name: 'agility',
+      value: 0,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: WISDOM_ID,
+      name: 'wisdom',
+      value: 5,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: CHARISMA_ID,
+      name: 'charisma',
+      value: 6,
+      modifier: -2,
+    }),
+    new StatModel({
+      id: MAGIC_ID,
+      name: 'magic',
+      value: 1,
+      modifier: -2,
+    }),
+  ],
   equipments: [{
     slot: 'accessory',
     name: 'Mink\'s Grappling Hook',
@@ -176,18 +161,43 @@ export const PEARL = {
     charisma: 1,
     magic: 0,
   }
-};
-export const DOUGLAS = {
+});
+export const DOUGLAS = new CharacterModel({
   name: 'Douglas',
   id: 'DOUGLAS-ID',
   title: 'Mysterious Mole',
-  stats: {
-    strength: 6,
-    agility: 2,
-    wisdom: 4,
-    charisma: 4,
-    magic: 0,
-  },
+  stats: [
+    new StatModel({
+      id: STRENGTH_ID,
+      name: 'strength',
+      value: 6,
+      modifier: 0,
+    }),
+    new StatModel({
+      id: AGILITY_ID,
+      name: 'agility',
+      value: 2,
+      modifier: 0,
+    }),
+    new StatModel({
+      id: WISDOM_ID,
+      name: 'wisdom',
+      value: 4,
+      modifier: 0,
+    }),
+    new StatModel({
+      id: CHARISMA_ID,
+      name: 'charisma',
+      value: 4,
+      modifier: 0,
+    }),
+    new StatModel({
+      id: MAGIC_ID,
+      name: 'magic',
+      value: 0,
+      modifier: 0,
+    }),
+  ],
   equipments: [{
     slot: 'body',
     name: 'Mountainhopper\'s Cursed Armor',
@@ -228,15 +238,8 @@ export const DOUGLAS = {
   honors: [
     'Fire Fighting Human Champion',
   ],
-  statMods: {
-    strength: -1,
-    agility: 0,
-    wisdom: 0,
-    charisma: 0,
-    magic: 0,
-  }
-};
-export const PALLY = {
+});
+export const PALLY = new CharacterModel({
   name: 'Pally',
   id: 'PALLY-ID',
   title: 'Cat Monk of Pallas',
@@ -285,7 +288,7 @@ export const PALLY = {
     charisma: 0,
     magic: 0,
   }
-};
+});
 
 export const BLINKS = new CharacterModel({
   name: 'Blinks',
@@ -296,31 +299,77 @@ export const BLINKS = new CharacterModel({
       id: STRENGTH_ID,
       name: 'strength',
       value: 2,
-      modifier: 0,
+      modifier: -2,
     }),
     new StatModel({
       id: AGILITY_ID,
       name: 'agility',
       value: 4,
-      modifier: -1,
+      modifier: -2,
     }),
     new StatModel({
       id: WISDOM_ID,
       name: 'wisdom',
       value: 5,
-      modifier: -1,
+      modifier: -2,
     }),
     new StatModel({
       id: CHARISMA_ID,
       name: 'charisma',
       value: 4,
-      modifier: -1,
+      modifier: -2,
     }),
     new StatModel({
       id: MAGIC_ID,
       name: 'magic',
       value: 1,
-      modifier: -1,
+      modifier: -2,
     }),
+  ],
+  equipments: [{
+    slot: 'head',
+    name: 'Zinc Helmet',
+    statMods: {},
+    description: "Protects you from bad smells.",
+  }, {
+    slot: 'body',
+    name: 'Leather Jacket',
+    statMods: {},
+    description: "Your signature style!",
+  }, {
+    slot: 'wrist',
+    name: 'Bracelet of Branches',
+    statMods: {},
+    description: "Allows you to maniuplate vines.",
+  }, {
+    slot: 'pants',
+    name: 'Breakup Jeans',
+    statMods: {},
+    description: "Gotten from a couple cats who were in the middle of a couple's spat.",
+  }, {
+    slot: 'feet',
+    name: 'Greaves of Saint Grebes',
+    statMods: {agility: -1},
+    description: "Lets you walk on water for a short duration.",
+  }],
+  stuff: [
+    '4 catnip coins',
+    '0 doggy dollars',
+    'a broken leash',
+    'hammer',
+    'dented pan',
+    'vial of glow moth dust',
+    'handsaw',
+    'a glowing potato',
+    'rusty sword',
+    'Compound Bow of Twanging'
+  ],
+  traits: [
+    'Magic Sensitivity',
+    'Glowing a Bit',
+    'Bruised',
+  ],
+  honors: [
+    'Fire Fighting Human Champion',
   ],
 });

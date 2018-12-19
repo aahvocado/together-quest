@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 class PanelComponent extends PureComponent {
   static defaultProps = {
-    baseClassName: 'tg-panel bg-white flex-col',
+    baseClassName: 'bg-white flex-col',
     className: '',
     collpasedView: "Collapsed",
 
@@ -29,7 +29,7 @@ class PanelComponent extends PureComponent {
       'active': active,
     };
 
-    const combinedClassName = cn(modifiers, baseClassName, className);
+    const combinedClassName = cn('tg-panel', modifiers, baseClassName, className);
 
     // single line view
     if (collapsed) {
