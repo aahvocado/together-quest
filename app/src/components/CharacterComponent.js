@@ -92,13 +92,6 @@ export class StatComponent extends PureComponent {
 
     const displayValue = Math.max(value + modifier, 0);
 
-    let bonusIcon;
-    if (modifier < 0) {
-      bonusIcon = 'fa-arrow-down';
-    } else if (modifier > 0) {
-      bonusIcon = 'fa-arrow-up';
-    }
-
     return (
       <div className={cn('stat-component', baseClassName, className)}>
         <div className='flex-row borcolor-litegray bor-b-1 pad-b-1 mar-b-1'>
@@ -108,12 +101,31 @@ export class StatComponent extends PureComponent {
 
         <div className='flex-row'>
           <div className='fsize-6'>{displayValue}</div>
-
-          { bonusIcon && <Icon name={bonusIcon} /> }
+          { this.renderModifiedIcon() }
         </div>
 
       </div>
     );
+  }
+  /**
+   * icon that shows which direction stat was modified by
+   *
+   * @returns {React.Element | null}
+   */
+  renderModifiedIcon() {
+    const { attributes } = this.props;
+    const { modifier } = attributes;
+
+    // guard clause - if not modifier then we don't need to show an icon
+    if (modifier === 0) {
+      return null;
+    }
+
+    // less than zero is down, greater than zero is up
+    const modIcon = modifier < 0 ? 'fa-arrow-down' : 'fa-arrow-up';
+    return (
+      <Icon name={modIcon} />
+    )
   }
 }
 
