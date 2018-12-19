@@ -84,14 +84,16 @@ export class StatComponent extends PureComponent {
     } = this.props;
 
     const {
+      icon,
       name,
       value,
     } = attributes;
 
     return (
       <div className={cn('stat-component', baseClassName, className)}>
-        <div>{name}</div>
-        <div>{value}</div>
+        <div className='fsize-6'>{value}</div>
+        <div className='fsize-2'>{name}</div>
+        <Icon name={icon} />
       </div>
     );
   }
