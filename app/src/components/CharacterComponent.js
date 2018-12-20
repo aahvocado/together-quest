@@ -38,7 +38,7 @@ export class CharacterNameComponent extends PureComponent {
   }
 }
 /**
- * simply creating the section that the trigger is clickable on
+ * section that the trigger is clickable on
  */
 class CharacterSectionTrigger extends PureComponent {
   static defaultProps = {
@@ -65,6 +65,40 @@ class CharacterSectionTrigger extends PureComponent {
   }
 }
 /**
+ * since collapsible is reused in the same way, this combines it
+ */
+class CharacterSectionCollapsible extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'bg-white borradius-1 pad-2 sibling-mar-t-2 simple-shadow',
+    /** @type {string} */
+    className: '',
+    /** @type {string} */
+    title: '',
+  }
+  /** @override */
+  render() {
+    const {
+      baseClassName,
+      className,
+      title,
+    } = this.props;
+
+    return (
+      <Collapsible
+        className={cn(baseClassName, className)}
+        openedClassName={cn(baseClassName, className)}
+        transitionTime={200}
+        transitionCloseTime={200}
+        trigger={<CharacterSectionTrigger title={title} open={false} />}
+        triggerWhenOpen={<CharacterSectionTrigger title={title} open={true} />}
+      >
+        { this.props.children }
+      </Collapsible>
+    )
+  }
+}
+/**
  * has everything Character Component
  */
 export class CharacterComponent extends PureComponent {
@@ -84,29 +118,23 @@ export class CharacterComponent extends PureComponent {
 
     return (
       <div className='character-component flex-col width-full'>
+        {/* name */}
         <CharacterNameComponent
           className='sibling-mar-t-2'
           name={name}
           title={title}
         />
 
-        <Collapsible
-          className='bg-white borradius-1 pad-2 sibling-mar-t-2 simple-shadow'
-          openedClassName='bg-white borradius-1 pad-2 sibling-mar-t-2'
-          transitionTime={200}
-          transitionCloseTime={200}
-          trigger={<CharacterSectionTrigger title='Stats' open={false} />}
-          triggerWhenOpen={<CharacterSectionTrigger title='Stats' open={true} />}
-        >
+        {/* stats */}
+        <CharacterSectionCollapsible title='Stats'>
           <CharacterStatsComponent
             className='mar-t-1'
             stats={stats}
           />
-        </Collapsible>
+        </CharacterSectionCollapsible>
 
         {/* equipment */}
-        <div className='character-equipments flex-col bg-white borradius-1 pad-2'>
-          <div>[equipments]</div>
+        <CharacterSectionCollapsible title='Equipment'>
           { equipments.map((equipment, idx) =>
             <div className='equipment' key={`${idx}`}>
               <div className='equipment-main'>
@@ -115,40 +143,38 @@ export class CharacterComponent extends PureComponent {
               </div>
             </div>
           )}
-        </div>
+        </CharacterSectionCollapsible>
 
-        {/* stuff */}
-        <div className='character-stuff flex-col bg-white borradius-1 pad-2'>
-          <div>[stuff]</div>
+        {/* Inventory */}
+        <CharacterSectionCollapsible title='Inventory'>
           { stuff.map((item, idx) =>
             <div className='item' key={`${idx}`}>
               <Icon name='fa-box' />
               <span className='item-name'>{item}</span>
             </div>
           )}
-        </div>
+        </CharacterSectionCollapsible>
 
         {/* traits */}
-        <div className='character-traits flex-col bg-white borradius-1 pad-2'>
-          <div>[traits]</div>
+        <CharacterSectionCollapsible title='Traits'>
           { traits.map((trait, idx) =>
             <div className='trait' key={`${idx}`}>
               <Icon name='fa-tag' />
               <span className='trait-name'>{trait}</span>
             </div>
           )}
-        </div>
+        </CharacterSectionCollapsible>
 
         {/* honors */}
-        <div className='character-honors flex-col bg-white borradius-1 pad-2'>
-          <div>[honors]</div>
+        <CharacterSectionCollapsible title='Honors'>
           { honors.map((honor, idx) =>
             <div className='honor' key={`${idx}`}>
               <Icon name='fa-certificate' />
               <span className='honor-name'>{honor}</span>
             </div>
           )}
-        </div>
+        </CharacterSectionCollapsible>
+
       </div>
     )
   }
