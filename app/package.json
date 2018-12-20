@@ -46,6 +46,7 @@
     "prop-types": "^15.6.2",
     "raf": "3.4.0",
     "react": "^16.6.3",
+    "react-collapsible": "^2.3.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.6.3",
     "react-redux": "^5.0.7",

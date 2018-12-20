@@ -3,8 +3,9 @@ import cn from 'classnames';
 
 import {
   Icon,
-  ListComponent,
 } from 'components';
+
+import { CharacterStatsComponent } from 'components/CharacterStatsComponent';
 
 export class CharacterNameComponent extends PureComponent {
   static defaultProps = {
@@ -35,97 +36,6 @@ export class CharacterNameComponent extends PureComponent {
   }
 }
 
-export class CharacterStatsComponent extends PureComponent {
-  static defaultProps = {
-    /** @type {string} */
-    baseClassName: 'bg-white borradius-1 pad-2',
-    /** @type {string} */
-    className: '',
-    /** @type {array<StatModel>} */
-    stats: [],
-  }
-  /** @override */
-  render() {
-    const {
-      baseClassName,
-      className,
-      stats,
-    } = this.props;
-
-    return (
-      <div className={cn('character-stats-component', baseClassName, className)}>
-        <ListComponent
-          baseClassName='flex-col'
-          className=''
-          list={stats}
-          getKey={(props) => (props.attributes.id)}
-          ItemComponent={StatComponent}
-        />
-      </div>
-    );
-  }
-}
-
-export class StatComponent extends PureComponent {
-  static defaultProps = {
-    /** @type {string} */
-    baseClassName: 'flex-row bg-white borradius-1 pad-2 align-center bor-1 borcolor-litegray sibling-mar-t-1',
-    /** @type {string} */
-    className: '',
-    /** @type {StatModel.attributes} */
-    attributes: {},
-  }
-  /** @override */
-  render() {
-    const {
-      baseClassName,
-      className,
-      attributes,
-    } = this.props;
-
-    const {
-      icon,
-      name,
-      modifier,
-      value,
-    } = attributes;
-
-    const displayValue = Math.max(value + modifier, 0);
-
-    return (
-      <div className={cn('stat-component', baseClassName, className)}>
-        <div className='flex-row'>
-          <div className='fsize-6'>{displayValue}</div>
-          { this.renderModifiedIcon() }
-        </div>
-
-        <div className='flex-row borcolor-litegray bor-l-1 pad-l-1 mar-l-1'>
-          <div>{name}</div>
-        </div>
-      </div>
-    );
-  }
-  /**
-   * icon that shows which direction stat was modified by
-   *
-   * @returns {React.Element | null}
-   */
-  renderModifiedIcon() {
-    const { attributes } = this.props;
-    const { modifier } = attributes;
-
-    // guard clause - if not modifier then we don't need to show an icon
-    if (modifier === 0) {
-      return null;
-    }
-
-    // less than zero is down, greater than zero is up
-    const modIcon = modifier < 0 ? 'fa-arrow-down' : 'fa-arrow-up';
-    return (
-      <Icon name={modIcon} />
-    )
-  }
-}
 
 export class CharacterComponent extends PureComponent {
   render() {

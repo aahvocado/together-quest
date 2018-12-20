@@ -34,11 +34,6 @@ import Modal from 'components/ModalComponent';
 
 import Panel from 'components/PanelComponent';
 
-import {
-  StatsComponent,
-  StatComponent,
-} from 'components/StatsComponent';
-
 import TextArea from 'components/TextAreaComponent';
 
 // export start
@@ -61,7 +56,5 @@ export {
   Loader,
   Modal,
   Panel,
-  StatsComponent,
-  StatComponent,
   TextArea,
 };

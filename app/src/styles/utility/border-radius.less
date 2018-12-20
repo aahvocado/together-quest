@@ -6,6 +6,8 @@
 // mixin for create all instances of margin
 .generate-all-border-radius(@n, @i: 0) when (@i =< @n) {
   .generate-border-radius(@i);
+  .generate-border-radius-top(@i);
+  .generate-border-radius-bottom(@i);
 
   // recursive loop
   .generate-all-border-radius(@n, (@i + 1));
@@ -18,6 +20,16 @@
 .generate-border-radius(@num) {
   .borradius-@{num} {
     border-radius: @num * @baseRadius;
+  }
+}
+.generate-border-radius-top(@num) {
+  .borradius-b-@{num} {
+    border-radius: @num * @baseRadius @num * @baseRadius 0 0;
+  }
+}
+.generate-border-radius-bottom(@num) {
+  .borradius-t-@{num} {
+    border-radius: 0 0 @num * @baseRadius @num * @baseRadius;
   }
 }
 
