@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import schema from 'js-schema';
 
+import Model from 'models/Model'
+
 export const statSchema = schema({
   // id
   id: String,
@@ -42,8 +44,9 @@ const STAT_DEFAULT_MAP = {
   },
 }
 
-export class StatModel {
+export class StatModel extends Model {
   constructor(options = {}) {
+    super(options);
 
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = _.assign({}, {
@@ -61,6 +64,16 @@ export class StatModel {
     if (!statSchema(this.attributes)) {
       console.error(statSchema.errors(this.attributes));
     }
+  }
+  /**
+   * adds value and modifier together
+   *
+   * @returns {number}
+   */
+  getTrueValue() {
+    const { value, modifier } = this.attributes;
+
+    return value + modifier;
   }
 }
 

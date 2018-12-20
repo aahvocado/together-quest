@@ -2,6 +2,8 @@ import _ from 'lodash';
 import schema from 'js-schema';
 import uuid from 'uuid/v4';
 
+import Model from 'models/Model'
+
 export const itemModel = schema({
   // name of item
   name: String,
@@ -24,8 +26,9 @@ export const ITEM_TYPE_ID = {
   EQUIPMENT: 'EQUIPMENT-ITEM-ID',
 }
 
-export class CharacterModel {
+export class CharacterModel extends Model {
   constructor(options = {}) {
+    super(options);
 
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = _.assign({}, {

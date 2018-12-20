@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import schema from 'js-schema';
 
+import Collection from 'models/Collection';
+import Model from 'models/Model'
+
 export const characterSchema = schema({
   // name of character
   name: String,
@@ -9,28 +12,29 @@ export const characterSchema = schema({
   // sub title of character
   title: String,
   // list of stats
-  stats: Array,
+  stats: Collection,
   // list of equipment
   equipments: Array,
   // list of inventory
-  inventory: Array,
+  inventory: Collection,
   // any innate traits
   traits: Array,
   // honors given
   honors: Array,
 })
 
-export class CharacterModel {
+export class CharacterModel extends Model {
   constructor(options = {}) {
+    super(options);
 
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = _.assign({}, {
       name: null,
       id: null,
       title: '',
-      stats: [],
+      stats: new Collection(),
       equipments: [],
-      inventory: [],
+      inventory: new Collection(),
       traits: [],
       honors: [],
     }, options);
