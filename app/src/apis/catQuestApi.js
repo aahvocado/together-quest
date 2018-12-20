@@ -1,43 +1,48 @@
 import CharacterModel from 'models/CharacterModel';
+
+import Collection from 'models/Collection';
 import StatModel, { STAT_TYPE_ID } from 'models/StatModel';
 import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
+
 
 export const NOOK = new CharacterModel({
   name: 'Nook',
   id: 'NOOK-ID',
   title: 'Mighty Savannah Cat',
-  stats: [
-    new StatModel({
-      id: STAT_TYPE_ID.STRENGTH,
-      name: 'strength',
-      value: 7,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.AGILITY,
-      name: 'agility',
-      value: 5,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.WISDOM,
-      name: 'wisdom',
-      value: 3,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.CHARISMA,
-      name: 'charisma',
-      value: 1,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.MAGIC,
-      name: 'magic',
-      value: 0,
-      modifier: -2,
-    }),
-  ],
+  stats: new Collection({
+    models: [
+      new StatModel({
+        id: STAT_TYPE_ID.STRENGTH,
+        name: 'strength',
+        value: 7,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.AGILITY,
+        name: 'agility',
+        value: 5,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.WISDOM,
+        name: 'wisdom',
+        value: 3,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.CHARISMA,
+        name: 'charisma',
+        value: 1,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.MAGIC,
+        name: 'magic',
+        value: 0,
+        modifier: -2,
+      }),
+    ],
+  }),
   equipments: [{
     slot: 'hand',
     name: 'Assassin\'s gaunlet',
@@ -84,38 +89,40 @@ export const PEARL = new CharacterModel({
   name: 'Pearl',
   id: 'PEARL-ID',
   title: 'Brave Dachshund Captain',
-  stats: [
-    new StatModel({
-      id: STAT_TYPE_ID.STRENGTH,
-      name: 'strength',
-      value: 4,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.AGILITY,
-      name: 'agility',
-      value: 0,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.WISDOM,
-      name: 'wisdom',
-      value: 5,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.CHARISMA,
-      name: 'charisma',
-      value: 6,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.MAGIC,
-      name: 'magic',
-      value: 1,
-      modifier: -2,
-    }),
-  ],
+  stats: new Collection({
+    models: [
+      new StatModel({
+        id: STAT_TYPE_ID.STRENGTH,
+        name: 'strength',
+        value: 4,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.AGILITY,
+        name: 'agility',
+        value: 0,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.WISDOM,
+        name: 'wisdom',
+        value: 5,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.CHARISMA,
+        name: 'charisma',
+        value: 6,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.MAGIC,
+        name: 'magic',
+        value: 1,
+        modifier: -2,
+      }),
+    ],
+  }),
   equipments: [{
     slot: 'accessory',
     name: 'Mink\'s Grappling Hook',
@@ -161,38 +168,40 @@ export const DOUGLAS = new CharacterModel({
   name: 'Douglas',
   id: 'DOUGLAS-ID',
   title: 'Mysterious Mole',
-  stats: [
-    new StatModel({
-      id: STAT_TYPE_ID.STRENGTH,
-      name: 'strength',
-      value: 6,
-      modifier: 0,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.AGILITY,
-      name: 'agility',
-      value: 2,
-      modifier: 0,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.WISDOM,
-      name: 'wisdom',
-      value: 4,
-      modifier: 0,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.CHARISMA,
-      name: 'charisma',
-      value: 4,
-      modifier: 0,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.MAGIC,
-      name: 'magic',
-      value: 0,
-      modifier: 0,
-    }),
-  ],
+  stats: new Collection({
+    models: [
+      new StatModel({
+        id: STAT_TYPE_ID.STRENGTH,
+        name: 'strength',
+        value: 6,
+        modifier: 0,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.AGILITY,
+        name: 'agility',
+        value: 2,
+        modifier: 0,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.WISDOM,
+        name: 'wisdom',
+        value: 4,
+        modifier: 0,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.CHARISMA,
+        name: 'charisma',
+        value: 4,
+        modifier: 0,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.MAGIC,
+        name: 'magic',
+        value: 0,
+        modifier: 0,
+      }),
+    ],
+  }),
   equipments: [{
     slot: 'body',
     name: 'Mountainhopper\'s Cursed Armor',
@@ -234,93 +243,44 @@ export const DOUGLAS = new CharacterModel({
     'Fire Fighting Human Champion',
   ],
 });
-/*export const PALLY = new CharacterModel({
-  name: 'Pally',
-  id: 'PALLY-ID',
-  title: 'Cat Monk of Pallas',
-  stats: {
-    strength: 5,
-    agility: 3,
-    wisdom: 5,
-    charisma: 3,
-    magic: 0,
-  },
-  equipments: [{
-    slot: 'feet',
-    name: 'Boots of the Aristocrat',
-    statMods: {},
-    description: 'Once per day, you can click your heels to instantly clean all your clothes.',
-  }, {
-    slot: 'back',
-    name: 'Cloak of Warmth',
-    statMods: {},
-    description: 'Warms you right up.',
-  }, {
-    slot: 'hands',
-    name: 'Crossbow of Disgust',
-    statMods: {},
-    description: 'It shoots bugs!',
-  }],
-  stuff: [
-    '4 catnip coins',
-    '0 doggy dollars',
-    'Chovy\'s Box of Scents',
-    'blindfold',
-    'Birdsbane Staff',
-    'cave mushrooms',
-    'jar of dust',
-  ],
-  traits: [
-    'Fluffy',
-    'Contemplative',
-  ],
-  honors: [
-  ],
-  statMods: {
-    strength: 0,
-    agility: 0,
-    wisdom: 0,
-    charisma: 0,
-    magic: 0,
-  }
-});*/
-
 export const BLINKS = new CharacterModel({
   name: 'Blinks',
   id: 'BLINKS-ID',
   title: 'Not-Naked Human',
-  stats: [
-    new StatModel({
-      id: STAT_TYPE_ID.STRENGTH,
-      name: 'strength',
-      value: 2,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.AGILITY,
-      name: 'agility',
-      value: 4,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.WISDOM,
-      name: 'wisdom',
-      value: 5,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.CHARISMA,
-      name: 'charisma',
-      value: 4,
-      modifier: -2,
-    }),
-    new StatModel({
-      id: STAT_TYPE_ID.MAGIC,
-      name: 'magic',
-      value: 1,
-      modifier: -2,
-    }),
-  ],
+  stats: new Collection({
+    models: [
+      new StatModel({
+        id: STAT_TYPE_ID.STRENGTH,
+        name: 'strength',
+        value: 2,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.AGILITY,
+        name: 'agility',
+        value: 4,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.WISDOM,
+        name: 'wisdom',
+        value: 5,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.CHARISMA,
+        name: 'charisma',
+        value: 4,
+        modifier: -2,
+      }),
+      new StatModel({
+        id: STAT_TYPE_ID.MAGIC,
+        name: 'magic',
+        value: 1,
+        modifier: -2,
+      }),
+    ],
+  }),
   equipments: [{
     slot: 'head',
     name: 'Zinc Helmet',
@@ -347,26 +307,65 @@ export const BLINKS = new CharacterModel({
     statMods: {agility: -1},
     description: "Lets you walk on water for a short duration.",
   }],
-  stuff: [
-    new ItemModel({
-      name: 'catnip coins',
-      quantity: 4,
-      isStackable: true,
-      typeId: ITEM_TYPE_ID.CONSUMABLE,
-      description: 'Currency for lands owned by the Cat Nation.',
-    })
-
-    // '4 catnip coins',
-    // '0 doggy dollars',
-    // 'a broken leash',
-    // 'hammer',
-    // 'dented pan',
-    // 'vial of glow moth dust',
-    // 'handsaw',
-    // 'a glowing potato',
-    // 'rusty sword',
-    // 'Compound Bow of Twanging'
-  ],
+  inventory: new Collection({
+    models: [
+      new ItemModel({
+        name: 'catnip coins',
+        quantity: 4,
+        isStackable: true,
+        typeId: ITEM_TYPE_ID.CONSUMABLE,
+        description: 'Currency for lands under the rule of the Cat Nation.',
+      }),
+      new ItemModel({
+        name: 'doggy dollars',
+        quantity: 0,
+        isStackable: true,
+        typeId: ITEM_TYPE_ID.CONSUMABLE,
+      }),
+      new ItemModel({
+        name: 'broken leash',
+        isStackable: false,
+        typeId: ITEM_TYPE_ID.EQUIPMENT,
+      }),
+      new ItemModel({
+        name: 'hammer',
+        isStackable: false,
+        typeId: ITEM_TYPE_ID.EQUIPMENT,
+       }),
+      new ItemModel({
+        name: 'dented frying pan',
+        isStackable: false,
+        typeId: ITEM_TYPE_ID.EQUIPMENT,
+      }),
+      new ItemModel({
+        name: 'vial of glow dust',
+        quantity: 1,
+        isStackable: true,
+        typeId: ITEM_TYPE_ID.CONSUMABLE,
+      }),
+      new ItemModel({
+        name: 'handsaw',
+        isStackable: false,
+        typeId: ITEM_TYPE_ID.EQUIPMENT,
+      }),
+      new ItemModel({
+        name: 'glowing potato',
+        quantity: 1,
+        isStackable: true,
+        typeId: ITEM_TYPE_ID.CONSUMABLE,
+      }),
+      new ItemModel({
+        name: 'rusty sword',
+        isStackable: false,
+        typeId: ITEM_TYPE_ID.EQUIPMENT,
+      }),
+      new ItemModel({
+        name: 'Compound Bow of Tanging',
+        isStackable: false,
+        typeId: ITEM_TYPE_ID.EQUIPMENT,
+      }),
+    ],
+  }),
   traits: [
     'Magic Sensitivity',
     'Glowing a Bit',

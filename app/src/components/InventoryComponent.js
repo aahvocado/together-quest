@@ -3,7 +3,6 @@ import cn from 'classnames';
 
 import {
   // Icon,
-  ListComponent,
 } from 'components';
 
 export class InventoryComponent extends PureComponent {
@@ -12,7 +11,7 @@ export class InventoryComponent extends PureComponent {
     baseClassName: '',
     /** @type {string} */
     className: '',
-    /** @type {array<ItemModel>} */
+    /** @type {Collection<ItemModel>} */
     inventory: [],
   }
   /** @override */
@@ -24,14 +23,13 @@ export class InventoryComponent extends PureComponent {
     } = this.props;
 
     return (
-      <div className={cn('inventory-component', baseClassName, className)}>
-        <ListComponent
-          baseClassName='flex-col'
-          className=''
-          list={inventory}
-          getKey={(props) => (props.id)}
-          ItemComponent={InventoryItemComponent}
-        />
+      <div className={cn('inventory-component flex-col', baseClassName, className)}>
+        { inventory.map((item) => (
+          <InventoryItemComponent
+            key={item.id}
+            itemModel={item}
+          />
+        ))}
       </div>
     );
   }
@@ -54,11 +52,18 @@ export class InventoryItemComponent extends PureComponent {
       itemModel,
     } = this.props;
 
-    console.log('invitem', this.props);
+    const {
+      isStackable,
+      name,
+      quantity,
+    } = itemModel.attributes;
 
     return (
       <div className={cn('item-component', baseClassName, className)}>
-        {itemModel.name}
+        <div className='flex-row'>
+          { isStackable && <div className='mar-r-1'>{quantity}</div> }
+          <div>{name}</div>
+        </div>
       </div>
     );
   }

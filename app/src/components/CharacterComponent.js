@@ -110,9 +110,9 @@ export class CharacterComponent extends PureComponent {
       name,
       title,
       stats,
+      inventory,
 
       equipments,
-      stuff,
       traits,
       honors,
     } = attributes;
@@ -148,7 +148,7 @@ export class CharacterComponent extends PureComponent {
 
         {/* Inventory */}
         <CharacterSectionCollapsible title='Inventory'>
-          <InventoryComponent inventory={stuff} />
+          <InventoryComponent inventory={inventory} />
         </CharacterSectionCollapsible>
 
         {/* traits */}
