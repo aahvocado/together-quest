@@ -16,6 +16,14 @@ export const statSchema = schema({
   influence: Function,
 })
 
+export const STAT_TYPE_ID = {
+  STRENGTH: 'strength-stat-id',
+  AGILITY: 'agility-stat-id',
+  WISDOM: 'wisdom-stat-id',
+  CHARISMA: 'charisma-stat-id',
+  MAGIC: 'magic-stat-id',
+}
+
 const STAT_DEFAULT_MAP = {
   strength: {
     icon: 'ra-muscle-up'
@@ -51,7 +59,7 @@ export class StatModel {
 
     // validate
     if (!statSchema(this.attributes)) {
-      console.error('schema mismatch');
+      console.error(statSchema.errors(this.attributes));
     }
   }
 }

@@ -8,6 +8,7 @@ import {
 } from 'components';
 
 import { CharacterStatsComponent } from 'components/CharacterStatsComponent';
+import { InventoryComponent } from 'components/InventoryComponent';
 
 export class CharacterNameComponent extends PureComponent {
   static defaultProps = {
@@ -147,12 +148,7 @@ export class CharacterComponent extends PureComponent {
 
         {/* Inventory */}
         <CharacterSectionCollapsible title='Inventory'>
-          { stuff.map((item, idx) =>
-            <div className='item' key={`${idx}`}>
-              <Icon name='fa-box' />
-              <span className='item-name'>{item}</span>
-            </div>
-          )}
+          <InventoryComponent inventory={stuff} />
         </CharacterSectionCollapsible>
 
         {/* traits */}

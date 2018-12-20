@@ -1,11 +1,6 @@
 import CharacterModel from 'models/CharacterModel';
-import StatModel from 'models/StatModel';
-
-const STRENGTH_ID = 'STRENGTH-STAT-ID';
-const AGILITY_ID = 'AGILITY-STAT-ID';
-const WISDOM_ID = 'WISDOM-STAT-ID';
-const CHARISMA_ID = 'CHARISMA-STAT-ID';
-const MAGIC_ID = 'MAGIC-STAT-ID';
+import StatModel, { STAT_TYPE_ID } from 'models/StatModel';
+import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
 
 export const NOOK = new CharacterModel({
   name: 'Nook',
@@ -13,31 +8,31 @@ export const NOOK = new CharacterModel({
   title: 'Mighty Savannah Cat',
   stats: [
     new StatModel({
-      id: STRENGTH_ID,
+      id: STAT_TYPE_ID.STRENGTH,
       name: 'strength',
       value: 7,
       modifier: -2,
     }),
     new StatModel({
-      id: AGILITY_ID,
+      id: STAT_TYPE_ID.AGILITY,
       name: 'agility',
       value: 5,
       modifier: -2,
     }),
     new StatModel({
-      id: WISDOM_ID,
+      id: STAT_TYPE_ID.WISDOM,
       name: 'wisdom',
       value: 3,
       modifier: -2,
     }),
     new StatModel({
-      id: CHARISMA_ID,
+      id: STAT_TYPE_ID.CHARISMA,
       name: 'charisma',
       value: 1,
       modifier: -2,
     }),
     new StatModel({
-      id: MAGIC_ID,
+      id: STAT_TYPE_ID.MAGIC,
       name: 'magic',
       value: 0,
       modifier: -2,
@@ -91,31 +86,31 @@ export const PEARL = new CharacterModel({
   title: 'Brave Dachshund Captain',
   stats: [
     new StatModel({
-      id: STRENGTH_ID,
+      id: STAT_TYPE_ID.STRENGTH,
       name: 'strength',
       value: 4,
       modifier: -2,
     }),
     new StatModel({
-      id: AGILITY_ID,
+      id: STAT_TYPE_ID.AGILITY,
       name: 'agility',
       value: 0,
       modifier: -2,
     }),
     new StatModel({
-      id: WISDOM_ID,
+      id: STAT_TYPE_ID.WISDOM,
       name: 'wisdom',
       value: 5,
       modifier: -2,
     }),
     new StatModel({
-      id: CHARISMA_ID,
+      id: STAT_TYPE_ID.CHARISMA,
       name: 'charisma',
       value: 6,
       modifier: -2,
     }),
     new StatModel({
-      id: MAGIC_ID,
+      id: STAT_TYPE_ID.MAGIC,
       name: 'magic',
       value: 1,
       modifier: -2,
@@ -168,31 +163,31 @@ export const DOUGLAS = new CharacterModel({
   title: 'Mysterious Mole',
   stats: [
     new StatModel({
-      id: STRENGTH_ID,
+      id: STAT_TYPE_ID.STRENGTH,
       name: 'strength',
       value: 6,
       modifier: 0,
     }),
     new StatModel({
-      id: AGILITY_ID,
+      id: STAT_TYPE_ID.AGILITY,
       name: 'agility',
       value: 2,
       modifier: 0,
     }),
     new StatModel({
-      id: WISDOM_ID,
+      id: STAT_TYPE_ID.WISDOM,
       name: 'wisdom',
       value: 4,
       modifier: 0,
     }),
     new StatModel({
-      id: CHARISMA_ID,
+      id: STAT_TYPE_ID.CHARISMA,
       name: 'charisma',
       value: 4,
       modifier: 0,
     }),
     new StatModel({
-      id: MAGIC_ID,
+      id: STAT_TYPE_ID.MAGIC,
       name: 'magic',
       value: 0,
       modifier: 0,
@@ -239,7 +234,7 @@ export const DOUGLAS = new CharacterModel({
     'Fire Fighting Human Champion',
   ],
 });
-export const PALLY = new CharacterModel({
+/*export const PALLY = new CharacterModel({
   name: 'Pally',
   id: 'PALLY-ID',
   title: 'Cat Monk of Pallas',
@@ -288,7 +283,7 @@ export const PALLY = new CharacterModel({
     charisma: 0,
     magic: 0,
   }
-});
+});*/
 
 export const BLINKS = new CharacterModel({
   name: 'Blinks',
@@ -296,31 +291,31 @@ export const BLINKS = new CharacterModel({
   title: 'Not-Naked Human',
   stats: [
     new StatModel({
-      id: STRENGTH_ID,
+      id: STAT_TYPE_ID.STRENGTH,
       name: 'strength',
       value: 2,
       modifier: -2,
     }),
     new StatModel({
-      id: AGILITY_ID,
+      id: STAT_TYPE_ID.AGILITY,
       name: 'agility',
       value: 4,
       modifier: -2,
     }),
     new StatModel({
-      id: WISDOM_ID,
+      id: STAT_TYPE_ID.WISDOM,
       name: 'wisdom',
       value: 5,
       modifier: -2,
     }),
     new StatModel({
-      id: CHARISMA_ID,
+      id: STAT_TYPE_ID.CHARISMA,
       name: 'charisma',
       value: 4,
       modifier: -2,
     }),
     new StatModel({
-      id: MAGIC_ID,
+      id: STAT_TYPE_ID.MAGIC,
       name: 'magic',
       value: 1,
       modifier: -2,
@@ -353,16 +348,24 @@ export const BLINKS = new CharacterModel({
     description: "Lets you walk on water for a short duration.",
   }],
   stuff: [
-    '4 catnip coins',
-    '0 doggy dollars',
-    'a broken leash',
-    'hammer',
-    'dented pan',
-    'vial of glow moth dust',
-    'handsaw',
-    'a glowing potato',
-    'rusty sword',
-    'Compound Bow of Twanging'
+    new ItemModel({
+      name: 'catnip coins',
+      quantity: 4,
+      isStackable: true,
+      typeId: ITEM_TYPE_ID.CONSUMABLE,
+      description: 'Currency for lands owned by the Cat Nation.',
+    })
+
+    // '4 catnip coins',
+    // '0 doggy dollars',
+    // 'a broken leash',
+    // 'hammer',
+    // 'dented pan',
+    // 'vial of glow moth dust',
+    // 'handsaw',
+    // 'a glowing potato',
+    // 'rusty sword',
+    // 'Compound Bow of Twanging'
   ],
   traits: [
     'Magic Sensitivity',

@@ -37,7 +37,7 @@ export class CharacterModel {
 
     // validate
     if (!characterSchema(this.attributes)) {
-      console.error('schema mismatch');
+      console.error(characterSchema.errors(this.attributes));
     }
 
   }
