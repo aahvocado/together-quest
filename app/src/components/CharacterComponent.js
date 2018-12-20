@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
+import Collapsible from 'react-collapsible';
+
 import {
   Icon,
 } from 'components';
@@ -35,8 +37,36 @@ export class CharacterNameComponent extends PureComponent {
     );
   }
 }
+/**
+ * simply creating the section that the trigger is clickable on
+ */
+class CharacterSectionTrigger extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    title: '',
+    /** @type {boolean} */
+    open: false,
+  }
+  /** @override */
+  render() {
+    const {
+      open,
+      title,
+    } = this.props;
 
+    const toggleIcon = open ? 'fa-toggle-on' : 'fa-toggle-off';
 
+    return (
+      <div className='flex-row flex-centered'>
+        <h2 className='flex-grow'>{title}</h2>
+        <Icon className='flex-none' name={toggleIcon} />
+      </div>
+    )
+  }
+}
+/**
+ * has everything Character Component
+ */
 export class CharacterComponent extends PureComponent {
   render() {
     const { character: { attributes } } = this.props;
@@ -60,10 +90,19 @@ export class CharacterComponent extends PureComponent {
           title={title}
         />
 
-        <CharacterStatsComponent
-          className='sibling-mar-t-2'
-          stats={stats}
-        />
+        <Collapsible
+          className='bg-white borradius-1 pad-2 sibling-mar-t-2 simple-shadow'
+          openedClassName='bg-white borradius-1 pad-2 sibling-mar-t-2'
+          transitionTime={200}
+          transitionCloseTime={200}
+          trigger={<CharacterSectionTrigger title='Stats' open={false} />}
+          triggerWhenOpen={<CharacterSectionTrigger title='Stats' open={true} />}
+        >
+          <CharacterStatsComponent
+            className='mar-t-1'
+            stats={stats}
+          />
+        </Collapsible>
 
         {/* equipment */}
         <div className='character-equipments flex-col bg-white borradius-1 pad-2'>

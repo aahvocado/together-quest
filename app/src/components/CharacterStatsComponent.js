@@ -11,7 +11,7 @@ import {
 export class CharacterStatsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'bg-white borradius-1 pad-2',
+    baseClassName: '',
     /** @type {string} */
     className: '',
     /** @type {array<StatModel>} */
@@ -136,23 +136,16 @@ export class SimpleStatComponent extends PureComponent {
 
 export class DetailedStatComponent extends PureComponent {
   static defaultProps = {
-    /** @type {string} */
-    baseClassName: 'sibling-mar-t-1 bg-skyblue borradius-1',
-    /** @type {string} */
-    className: '',
     /** @type {StatModel.attributes} */
     attributes: {},
   }
   /** @override */
   render() {
     const {
-      baseClassName,
-      className,
       attributes,
     } = this.props;
 
     const {
-      icon,
       modifier,
       value,
     } = attributes;
