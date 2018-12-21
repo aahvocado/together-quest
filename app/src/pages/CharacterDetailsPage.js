@@ -5,9 +5,7 @@ import _ from 'lodash';
 
 import { isLoggedIn } from 'utils/sessionUtils';
 
-import {
-  CharacterComponent,
-} from 'components';
+import CharacterComponent from 'components/CharacterComponent';
 
 import { BLINKS } from 'apis/catQuestApi';
 

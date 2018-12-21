@@ -8,12 +8,6 @@ import {
 
 import CharacterButton from 'components/CharacterButtonComponent';
 
-import {
-  CharacterComponent,
-  CharacterInfoContainer,
-  CharacterBlurb,
-} from 'components/CharacterComponent';
-
 import Form from 'components/FormComponent';
 
 import Footer from 'components/FooterComponent';
@@ -30,7 +24,7 @@ import {
 
 import Loader from 'components/LoaderComponent';
 
-import Modal from 'components/ModalComponent';
+import ModalComponent from 'components/ModalComponent';
 
 import Panel from 'components/PanelComponent';
 
@@ -40,10 +34,7 @@ import TextArea from 'components/TextAreaComponent';
 export {
   ButtonGroup,
   Button,
-  CharacterBlurb,
   CharacterButton,
-  CharacterComponent,
-  CharacterInfoContainer,
   Footer,
   Form,
   Header,
@@ -54,7 +45,7 @@ export {
   ListComponent,
   ListItemComponent,
   Loader,
-  Modal,
+  ModalComponent,
   Panel,
   TextArea,
 };

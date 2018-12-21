@@ -7,14 +7,14 @@ import {
   // Link,
   // Loader,
   Panel,
-  CharacterComponent,
 } from 'components';
+import CharacterComponent from 'components/CharacterComponent';
+
 import {
   BLINKS,
   NOOK,
   PEARL,
   DOUGLAS,
-  // PALLY,
 } from 'apis/catQuestApi';
 
 // redux mappings
@@ -34,15 +34,12 @@ const ConnectedCatQuestPage = connect(mapStateToProps)(
     };
 
     render() {
-      // const { characters } = this.props;
-
       return (
         <Panel baseClassName='flex-col' className='character-list'>
           <CharacterComponent character={BLINKS} />
           <CharacterComponent character={NOOK} />
           <CharacterComponent character={PEARL} />
           <CharacterComponent character={DOUGLAS} />
-          {/*<CharacterComponent character={PALLY} />*/}
         </Panel>
       )
     };

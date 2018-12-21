@@ -10,7 +10,7 @@ import {
   ListComponent,
   Loader,
   Layout,
-  Modal,
+  ModalComponent,
   Panel,
   TextArea,
 } from 'components';
@@ -72,7 +72,7 @@ class AttachDataModal extends PureComponent {
     const { attachText } = this.state;
 
     return (
-      <Modal
+      <ModalComponent
         className='flex-centered'
         useStandardSize
         active={active}
@@ -106,7 +106,7 @@ class AttachDataModal extends PureComponent {
             </Button>
           </ButtonGroup>
         </Panel>
-      </Modal>
+      </ModalComponent>
     )
   };
   /**

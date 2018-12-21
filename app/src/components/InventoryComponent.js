@@ -90,7 +90,7 @@ export class InventoryItemComponent extends PureComponent {
     return name;
   }
   /**
-   * @returns {string}
+   * @returns {React.Element}
    */
   getBackgroundIcon() {
     const { itemModel: { attributes }} = this.props;

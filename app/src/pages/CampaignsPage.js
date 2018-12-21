@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import {
   Layout,
   Panel,
-  CharacterComponent,
 } from 'components';
+import CharacterComponent from 'components/CharacterComponent';
 import CampaignsListPanel from 'panels/CampaignsListPanel';
 
 // redux mappings
