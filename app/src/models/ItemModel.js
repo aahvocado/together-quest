@@ -11,6 +11,8 @@ export const itemModel = schema({
   id: String,
   // description
   description: String,
+  // name of icon
+  icon: String,
   // any stats this modifies
   modifier: [Array, null],
   // type of item
@@ -26,6 +28,11 @@ export const ITEM_TYPE_ID = {
   EQUIPMENT: 'EQUIPMENT-ITEM-ID',
 }
 
+const ITEM_TYPE_ICON = {
+  'CONSUMABLE-ITEM-ID': 'ra-heart-bottle',
+  'EQUIPMENT-ITEM-ID': 'ra-plain-dagger',
+}
+
 export class CharacterModel extends Model {
   constructor(options = {}) {
     super(options);
@@ -35,19 +42,21 @@ export class CharacterModel extends Model {
       name: null,
       id: null,
       description: '',
+      icon: '',
       modifier: null,
       typeId: '',
       quantity: 0,
       isStackable: false,
     }, options);
 
-    this.attributes.id = uuid();
+    this.attributes.id = this.attributes.id || uuid();
+
+    this.attributes.icon = ITEM_TYPE_ICON[this.attributes.typeId];
 
     // validate
     if (!itemModel(this.attributes)) {
       console.error(itemModel.errors(this.attributes));
     }
-
   }
 }
 

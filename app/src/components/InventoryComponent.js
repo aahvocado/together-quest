@@ -60,13 +60,8 @@ export class InventoryItemComponent extends PureComponent {
       <div
         className={cn('item-component', baseClassName, className)}
       >
-        <div
-          className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'
-        >
-          <Icon
-            name='ra-heart-bottle'
-            className='fsize-8'
-          />
+        <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
+          {this.getBackgroundIcon()}
         </div>
 
         <div
@@ -93,6 +88,21 @@ export class InventoryItemComponent extends PureComponent {
     }
 
     return name;
+  }
+  /**
+   * @returns {string}
+   */
+  getBackgroundIcon() {
+    const { itemModel: { attributes }} = this.props;
+    const {
+      icon,
+    } = attributes;
 
+    return (
+      <Icon
+        name={icon}
+        className='fsize-8'
+      />
+    )
   }
 }
