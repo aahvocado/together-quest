@@ -14,8 +14,8 @@ export const itemModel = schema({
   flavorText: [String, null],
   // name of icon
   icon: String,
-  // any stats this modifies
-  modifier: [Array, null],
+  // any modifying effects
+  modifiers: [Array, null],
   // type of item
   typeId: String,
   // number of this item
@@ -26,12 +26,20 @@ export const itemModel = schema({
 
 export const ITEM_TYPE_ID = {
   CONSUMABLE: 'CONSUMABLE-ITEM-ID',
+  CURRENCY: 'CURRENCY-ITEM-ID',
   EQUIPMENT: 'EQUIPMENT-ITEM-ID',
+  FOOD: 'FOOD-ITEM-ID',
+  TOOL: 'TOOL-ITEM-ID',
+  WEAPON: 'WEAPON-ITEM-ID',
 }
 
 const ITEM_TYPE_ICON = {
-  'CONSUMABLE-ITEM-ID': 'ra-heart-bottle',
-  'EQUIPMENT-ITEM-ID': 'ra-plain-dagger',
+  [ITEM_TYPE_ID.CONSUMABLE]: 'ra-heart-bottle',
+  [ITEM_TYPE_ID.CURRENCY]: 'fa-money-bill',
+  [ITEM_TYPE_ID.EQUIPMENT]: 'ra-plain-dagger',
+  [ITEM_TYPE_ID.FOOD]: 'ra-meat',
+  [ITEM_TYPE_ID.TOOL]: 'ra-hammer',
+  [ITEM_TYPE_ID.WEAPON]: 'ra-plain-dagger',
 }
 
 export class CharacterModel extends Model {
@@ -45,7 +53,7 @@ export class CharacterModel extends Model {
       description: '',
       flavorText: null,
       icon: '',
-      modifier: null,
+      modifiers: null,
       typeId: '',
       quantity: 0,
       isStackable: false,

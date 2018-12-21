@@ -2,7 +2,7 @@ import CharacterModel from 'models/CharacterModel';
 
 import Collection from 'models/Collection';
 import StatModel, { STAT_TYPE_ID } from 'models/StatModel';
-import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
+// import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
 
 import * as catquestItemsApi from 'apis/catquest/catquestItemsApi';
 
@@ -311,51 +311,15 @@ export const BLINKS = new CharacterModel({
   inventory: new Collection({
     models: [
       catquestItemsApi.catnipCoins({ quantity: 4 }),
-      new ItemModel({
-        name: 'doggy dollars',
-        quantity: 0,
-        isStackable: true,
-        typeId: ITEM_TYPE_ID.CONSUMABLE,
-        description: 'Currency for lands under the jurisdiction of the Dog Nation.',
-
-      }),
-      new ItemModel({
-        name: 'broken leash',
-        isStackable: false,
-        typeId: ITEM_TYPE_ID.EQUIPMENT,
-      }),
-      new ItemModel({
-        name: 'hammer',
-        isStackable: false,
-        typeId: ITEM_TYPE_ID.EQUIPMENT,
-       }),
-      new ItemModel({
-        name: 'dented frying pan',
-        isStackable: false,
-        typeId: ITEM_TYPE_ID.EQUIPMENT,
-      }),
-      new ItemModel({
-        name: 'vial of glow dust',
-        quantity: 1,
-        isStackable: true,
-        typeId: ITEM_TYPE_ID.CONSUMABLE,
-      }),
-      new ItemModel({
-        name: 'handsaw',
-        isStackable: false,
-        typeId: ITEM_TYPE_ID.EQUIPMENT,
-      }),
-      new ItemModel({
-        name: 'glowing potato',
-        quantity: 1,
-        isStackable: true,
-        typeId: ITEM_TYPE_ID.CONSUMABLE,
-      }),
-      new ItemModel({
-        name: 'rusty sword',
-        isStackable: false,
-        typeId: ITEM_TYPE_ID.EQUIPMENT,
-      }),
+      catquestItemsApi.doggyDollars({ quantity: 0 }),
+      catquestItemsApi.brokenLeash(),
+      catquestItemsApi.hammer(),
+      catquestItemsApi.fryingPan(),
+      catquestItemsApi.glowDust({ quantity: 1 }),
+      catquestItemsApi.handsaw(),
+      catquestItemsApi.potato({ quantity: 1, modifiers: ['glowing'] }),
+      catquestItemsApi.rustySword({ quantity: 1 }),
+      catquestItemsApi.brokenLeash(),
       // new ItemModel({
       //   name: 'Compound Bow of Twanging',
       //   isStackable: false,
