@@ -15,7 +15,7 @@ import {
   NOOK,
   PEARL,
   DOUGLAS,
-} from 'apis/catQuestApi';
+} from 'apis/catquest/catquestCharactersApi';
 
 // redux mappings
 function mapStateToProps(state) {

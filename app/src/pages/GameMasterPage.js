@@ -17,7 +17,7 @@ import {
 import PlayerInteractionComponent from 'components/PlayerInteractionComponent';
 
 import eventClient from 'services/eventClient';
-import {BLINKS} from 'apis/catQuestApi';
+import {BLINKS} from 'apis/catquest/catquestCharactersApi';
 
 /**
  * temporary no permission page

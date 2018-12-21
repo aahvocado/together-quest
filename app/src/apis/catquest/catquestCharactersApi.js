@@ -4,7 +4,7 @@ import Collection from 'models/Collection';
 import StatModel, { STAT_TYPE_ID } from 'models/StatModel';
 import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
 
-import * as catQuestItemsApi from 'apis/catQuestItemsApi';
+import * as catquestItemsApi from 'apis/catquest/catquestItemsApi';
 
 export const NOOK = new CharacterModel({
   name: 'Nook',
@@ -310,7 +310,7 @@ export const BLINKS = new CharacterModel({
   }],
   inventory: new Collection({
     models: [
-      catQuestItemsApi.catnipCoins({ quantity: 4 }),
+      catquestItemsApi.catnipCoins({ quantity: 4 }),
       new ItemModel({
         name: 'doggy dollars',
         quantity: 0,

@@ -7,7 +7,7 @@ import { isLoggedIn } from 'utils/sessionUtils';
 
 import CharacterComponent from 'components/CharacterComponent';
 
-import { BLINKS } from 'apis/catQuestApi';
+import { BLINKS } from 'apis/catquest/catquestCharactersApi';
 
 /**
  *
