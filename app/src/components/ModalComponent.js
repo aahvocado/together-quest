@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
+import _ from 'lodash';
 
 /**
- * temporary no permission page
+ *
  */
-class ModalComponent extends PureComponent {
+export class ModalComponent extends PureComponent {
   static defaultProps = {
     /** @type {Boolean} */
     active: false,
@@ -26,14 +27,14 @@ class ModalComponent extends PureComponent {
 
     this.state = {
       /** @type {Boolean} */
-      isHidden: true, // we want this to be completely hidden when this is first rendered
+      isDisabled: _.isUndefined(props.active) ? false : !props.active,
     }
   };
   /** @default */
   componentDidUpdate() {
-    // if we were hidden, but now we are active, we can not worry about being hidden anymore
-    if (this.state.isHidden && this.props.active) {
-      this.setState({ isHidden: false });
+    // if we were disabled, but now we are active, we can not worry about being disabled anymore
+    if (this.state.isDisabled && this.props.active) {
+      this.setState({ isDisabled: false });
     }
   };
   /** @default */
@@ -45,11 +46,11 @@ class ModalComponent extends PureComponent {
       useStandardSize,
     } = this.props;
 
-    const { isHidden } = this.state;
+    const { isDisabled } = this.state;
 
     const modifiers = {
       'active': active,
-      'hidden': isHidden,
+      'disabled': isDisabled,
       'modal-component--standard': useStandardSize,
     };
 
