@@ -149,13 +149,10 @@ export class InventoryItemDetailsComponent extends PureComponent {
     className: '',
     /** @type {ItemModel} */
     itemModel: [],
-    /** @type {boolean} */
-    active: false,
   }
   /** @override */
   render() {
     const {
-      active,
       baseClassName,
       className,
       itemModel,
@@ -164,8 +161,6 @@ export class InventoryItemDetailsComponent extends PureComponent {
     const {
       description,
       name,
-      quantity,
-      flavorText,
     } = itemModel.attributes;
 
     return (
@@ -178,8 +173,7 @@ export class InventoryItemDetailsComponent extends PureComponent {
 
         <p className='mar-t-2'>{description}</p>
 
-        <p className='mar-t-2'>{flavorText}</p>
-
+        { this.renderFlavorText() }
       </Panel>
     );
   }
@@ -190,7 +184,6 @@ export class InventoryItemDetailsComponent extends PureComponent {
     const { itemModel: { attributes }} = this.props;
     const {
       isStackable,
-      name,
       quantity,
     } = attributes;
 
@@ -207,5 +200,20 @@ export class InventoryItemDetailsComponent extends PureComponent {
     }
 
     return `You possess ${quantity} of this item.`;
+  }
+  /**
+   * @returns {React.Element}
+   */
+  renderFlavorText() {
+    const { itemModel: { attributes }} = this.props;
+    const { flavorText } = attributes;
+
+    if (flavorText && flavorText.length > 0) {
+      return (
+        <i className='mar-t-2 color-darkgray f-italic f-thin'>{flavorText}</i>
+      )
+    }
+
+    return null;
   }
 }

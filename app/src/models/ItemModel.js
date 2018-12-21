@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import schema from 'js-schema';
 import uuid from 'uuid/v4';
 
@@ -40,7 +39,7 @@ export class CharacterModel extends Model {
     super(options);
 
     // set Model's attributes equal to some default plus whatever is passed in
-    this.attributes = _.assign({}, {
+    this.attributes = Object.assign({}, {
       name: null,
       id: null,
       description: '',
