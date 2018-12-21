@@ -4,6 +4,7 @@ import Collection from 'models/Collection';
 import StatModel, { STAT_TYPE_ID } from 'models/StatModel';
 import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
 
+import * as catQuestItemsApi from 'apis/catQuestItemsApi';
 
 export const NOOK = new CharacterModel({
   name: 'Nook',
@@ -309,18 +310,14 @@ export const BLINKS = new CharacterModel({
   }],
   inventory: new Collection({
     models: [
-      new ItemModel({
-        name: 'catnip coins',
-        quantity: 4,
-        isStackable: true,
-        typeId: ITEM_TYPE_ID.CONSUMABLE,
-        description: 'Currency for lands under the rule of the Cat Nation.',
-      }),
+      catQuestItemsApi.catnipCoins({ quantity: 4 }),
       new ItemModel({
         name: 'doggy dollars',
         quantity: 0,
         isStackable: true,
         typeId: ITEM_TYPE_ID.CONSUMABLE,
+        description: 'Currency for lands under the jurisdiction of the Dog Nation.',
+
       }),
       new ItemModel({
         name: 'broken leash',
