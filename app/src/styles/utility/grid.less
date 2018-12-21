@@ -1,0 +1,28 @@
+
+//
+.generate-all-grid(5);
+
+// mixin for create all instances of grid
+.generate-all-grid(@n, @i: 0) when (@i =< @n) {
+  .generate-grid-items(@i);
+
+  // recursive loop
+  .generate-all-grid(@n, (@i + 1));
+};
+
+// manually define grid templates
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns:repeat(3, 33.33%);
+}
+
+// items
+.generate-grid-items(@num) {
+  .grid-item-@{num} {
+    grid-column: @num;
+  }
+}

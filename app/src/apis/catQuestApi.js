@@ -359,11 +359,11 @@ export const BLINKS = new CharacterModel({
         isStackable: false,
         typeId: ITEM_TYPE_ID.EQUIPMENT,
       }),
-      new ItemModel({
-        name: 'Compound Bow of Tanging',
-        isStackable: false,
-        typeId: ITEM_TYPE_ID.EQUIPMENT,
-      }),
+      // new ItemModel({
+      //   name: 'Compound Bow of Twanging',
+      //   isStackable: false,
+      //   typeId: ITEM_TYPE_ID.EQUIPMENT,
+      // }),
     ],
   }),
   traits: [

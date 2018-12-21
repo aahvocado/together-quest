@@ -8,7 +8,7 @@ import {
 export class InventoryComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'flex-row',
+    baseClassName: 'mar-t-1 grid-cols-2',
     /** @type {string} */
     className: '',
     /** @type {Collection<ItemModel>} */
@@ -59,10 +59,6 @@ export class InventoryItemComponent extends PureComponent {
     return (
       <div
         className={cn('item-component', baseClassName, className)}
-        style={{
-          width: '120px',
-          height: '70px',
-        }}
       >
         <div
           className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'
@@ -74,7 +70,7 @@ export class InventoryItemComponent extends PureComponent {
         </div>
 
         <div
-          className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke zindex-1'
+          className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center zindex-1'
         >
           {this.getDisplayText()}
         </div>

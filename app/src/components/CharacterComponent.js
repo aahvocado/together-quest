@@ -13,7 +13,7 @@ import { InventoryComponent } from 'components/InventoryComponent';
 export class CharacterNameComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'flex-col bg-white borradius-1 pad-2',
+    baseClassName: 'flex-col flex-centered bg-white borradius-4 pad-2',
     /** @type {string} */
     className: '',
     /** @type {string} */
