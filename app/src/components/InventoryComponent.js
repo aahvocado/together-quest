@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 import {
   Icon,
+  ModalComponent,
+  Panel,
 } from 'components';
 
 export class InventoryComponent extends PureComponent {
@@ -43,6 +45,16 @@ export class InventoryItemComponent extends PureComponent {
     className: '',
     /** @type {ItemModel} */
     itemModel: [],
+  };
+  /** @override */
+  constructor(props) {
+    super(props);
+
+    this.toggleDetails = this.toggleDetails.bind(this);
+
+    this.state = {
+      isDetailsOpen: false,
+    }
   }
   /** @override */
   render() {
@@ -56,10 +68,25 @@ export class InventoryItemComponent extends PureComponent {
 
     // } = itemModel.attributes;
 
+    const { isDetailsOpen } = this.state;
+
     return (
       <div
         className={cn('item-component', baseClassName, className)}
+        onClick={this.toggleDetails}
       >
+        <ModalComponent
+          className='flex-centered width-full mar-2'
+          useStandardSize
+          active={isDetailsOpen}
+          onOverlayClick={this.toggleDetails}
+        >
+          <InventoryItemDetailsComponent
+            className='item-details-component--modal'
+            itemModel={itemModel}
+          />
+        </ModalComponent>
+
         <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
           {this.getBackgroundIcon()}
         </div>
@@ -71,6 +98,13 @@ export class InventoryItemComponent extends PureComponent {
         </div>
       </div>
     );
+  }
+  /**
+   *
+   */
+  toggleDetails() {
+    const { isDetailsOpen } = this.state;
+    this.setState({isDetailsOpen: !isDetailsOpen});
   }
   /**
    * @returns {string}
@@ -104,5 +138,74 @@ export class InventoryItemComponent extends PureComponent {
         className='fsize-8'
       />
     )
+  }
+}
+
+export class InventoryItemDetailsComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: '',
+    /** @type {string} */
+    className: '',
+    /** @type {ItemModel} */
+    itemModel: [],
+    /** @type {boolean} */
+    active: false,
+  }
+  /** @override */
+  render() {
+    const {
+      active,
+      baseClassName,
+      className,
+      itemModel,
+    } = this.props;
+
+    const {
+      description,
+      name,
+      quantity,
+      flavorText,
+    } = itemModel.attributes;
+
+    return (
+      <Panel className={cn('item-details-component', baseClassName, className)}>
+        <h2 className='bor-b-1 borcolor-litegray pad-b-1 mar-b-1 flex-grow'>{name}</h2>
+
+        <div className=''>
+          {this.getQuantityText()}
+        </div>
+
+        <p className='mar-t-2'>{description}</p>
+
+        <p className='mar-t-2'>{flavorText}</p>
+
+      </Panel>
+    );
+  }
+  /**
+   * @returns {string}
+   */
+  getQuantityText() {
+    const { itemModel: { attributes }} = this.props;
+    const {
+      isStackable,
+      name,
+      quantity,
+    } = attributes;
+
+    if (!isStackable) {
+      return null;
+    }
+
+    if (quantity <= 0) {
+      return 'There are none in your possession.';
+    }
+
+    if (quantity === 1) {
+      return 'You possess 1 of this item.'
+    }
+
+    return `You possess ${quantity} of this item.`;
   }
 }

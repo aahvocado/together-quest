@@ -11,6 +11,8 @@ export const itemModel = schema({
   id: String,
   // description
   description: String,
+  // optional flavor text
+  flavorText: [String, null],
   // name of icon
   icon: String,
   // any stats this modifies
@@ -42,6 +44,7 @@ export class CharacterModel extends Model {
       name: null,
       id: null,
       description: '',
+      flavorText: null,
       icon: '',
       modifier: null,
       typeId: '',
