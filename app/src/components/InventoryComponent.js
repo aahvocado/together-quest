@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import cn from 'classnames';
 
 import {
+  // Button,
   Icon,
   ModalComponent,
   Panel,
@@ -40,7 +41,7 @@ export class InventoryComponent extends PureComponent {
 export class InventoryItemComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy',
+    baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -71,13 +72,9 @@ export class InventoryItemComponent extends PureComponent {
     const { isDetailsOpen } = this.state;
 
     return (
-      <div
-        className={cn('item-component', baseClassName, className)}
-        onClick={this.toggleDetails}
-      >
+      <Fragment>
         <ModalComponent
           className='flex-centered width-full mar-2'
-          useStandardSize
           active={isDetailsOpen}
           onOverlayClick={this.toggleDetails}
         >
@@ -87,16 +84,19 @@ export class InventoryItemComponent extends PureComponent {
           />
         </ModalComponent>
 
-        <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
-          {this.getBackgroundIcon()}
-        </div>
-
         <div
-          className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center zindex-1'
+          className={cn('item-component', baseClassName, className)}
+          onClick={this.toggleDetails}
         >
-          {this.getDisplayText()}
+          <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
+            {this.getBackgroundIcon()}
+          </div>
+
+          <div className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center zindex-1'>
+            {this.getDisplayText()}
+          </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
   /**

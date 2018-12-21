@@ -31,7 +31,7 @@ function ButtonHOC(Wrapper) {
   return class ButtonComponent extends PureComponent {
     static defaultProps = {
       /** @type {String} */
-      baseClassName: 'pad-1 sibling-mar-l-2 borradius-1 color-black bg-white borcolor-transparent simple-shadow fsize-base',
+      baseClassName: 'pad-1 sibling-mar-l-2 borradius-1 color-black bg-white bor-1 borcolor-litegray fsize-base',
       /** @type {String} */
       className: '',
       /** @type {Boolean} */

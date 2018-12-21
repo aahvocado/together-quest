@@ -10,7 +10,7 @@ export class ModalComponent extends PureComponent {
     /** @type {Boolean} */
     active: false,
     /** @type {String} */
-    baseClassName: '',
+    baseClassName: 'cursor-auto bg-white',
     /** @type {String} */
     className: '',
     /** @type {Function} */
@@ -56,7 +56,7 @@ export class ModalComponent extends PureComponent {
 
     return (
       <div
-        className={cn('modal-component modal-overlay position-fixed flex-centered pos-0 zindex-10', modifiers)}
+        className={cn('modal-component modal-overlay position-fixed flex-centered pos-0 zindex-10 pointer-cursor', modifiers)}
         onClick={this.handleOverlayClick}
       >
         <div
