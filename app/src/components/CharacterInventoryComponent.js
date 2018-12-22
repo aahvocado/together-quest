@@ -8,14 +8,14 @@ import {
   Panel,
 } from 'components';
 
-export class InventoryComponent extends PureComponent {
+export class CharacterInventoryComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
     baseClassName: 'mar-t-1 grid-cols-2',
     /** @type {string} */
     className: '',
     /** @type {Collection<ItemModel>} */
-    inventory: [],
+    inventory: undefined,
   }
   /** @override */
   render() {

@@ -28,8 +28,7 @@ export class CharacterModel extends Model {
 
     this.schema = characterSchema;
 
-    // set Model's attributes equal to some default plus whatever is passed in
-    this.attributes = Object.assign({}, {
+    this.set(Object.assign({
       name: null,
       id: null,
       title: '',
@@ -38,7 +37,7 @@ export class CharacterModel extends Model {
       inventory: new Collection(),
       traits: [],
       honors: [],
-    }, options);
+    }, options));
 
     this.validate();
   }

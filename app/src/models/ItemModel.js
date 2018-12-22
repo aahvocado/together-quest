@@ -1,5 +1,4 @@
 import schema from 'js-schema';
-import uuid from 'uuid/v4';
 
 import Model from 'models/Model'
 
@@ -50,8 +49,7 @@ export class ItemModel extends Model {
 
     this.schema = itemSchema;
 
-    // set Model's attributes equal to some default plus whatever is passed in
-    this.attributes = Object.assign({}, {
+    this.set(Object.assign({
       id: null,
       typeId: null,
       name: null,
@@ -61,29 +59,12 @@ export class ItemModel extends Model {
       modifiers: null,
       quantity: 0,
       isStackable: false,
-    }, options);
-
-    this.attributes.id = this.attributes.id || uuid();
+    }, options));
 
     this.attributes.icon = ITEM_TYPE_ICON[this.attributes.typeId];
 
     this.validate();
   }
 }
-
-/**
- * includes all weapons, equipment, accessories, etc
- */
-export class EquipmentModel extends ItemModel {
-  constructor(options = {}) {
-    super(options);
-
-    // set Model's attributes equal to some default plus whatever is passed in
-    this.attributes = Object.assign({}, {
-
-    }, options);
-  }
-}
-
 
 export default ItemModel;

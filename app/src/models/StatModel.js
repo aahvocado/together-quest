@@ -41,8 +41,7 @@ export class StatModel extends Model {
 
     this.schema = statSchema;
 
-    // set Model's attributes equal to some default plus whatever is passed in
-    this.attributes = Object.assign({}, {
+    this.set(Object.assign({
       typeId: null,
       name: null,
       description: '',
@@ -50,7 +49,7 @@ export class StatModel extends Model {
       value: 0,
       modifier: 0,
       influence: (value) => (value),
-    }, options);
+    }, options));
 
     this.attributes.icon = STAT_TYPE_ICON[this.attributes.typeId];
 

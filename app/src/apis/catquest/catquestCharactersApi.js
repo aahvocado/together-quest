@@ -69,32 +69,15 @@ export const BLINKS = new CharacterModel({
       }),
     ],
   }),
-  equipments: [{
-    slot: 'head',
-    name: 'Zinc Helmet',
-    statMods: {},
-    description: "Protects you from bad smells.",
-  }, {
-    slot: 'body',
-    name: 'Leather Jacket',
-    statMods: {},
-    description: "Your signature style!",
-  }, {
-    slot: 'wrist',
-    name: 'Bracelet of Branches',
-    statMods: {},
-    description: "Allows you to maniuplate vines.",
-  }, {
-    slot: 'pants',
-    name: 'Breakup Jeans',
-    statMods: {},
-    description: "Gotten from a couple cats who were in the middle of a couple's spat.",
-  }, {
-    slot: 'feet',
-    name: 'Greaves of Saint Grebes',
-    statMods: {agility: -1},
-    description: "Lets you walk on water for a short duration.",
-  }],
+  equipments: new Collection({
+    models: [
+      catquestItemsApi.bowTwanging(),
+      catquestItemsApi.jacketLeather(),
+      catquestItemsApi.pantsBreakup(),
+      catquestItemsApi.greavesSaintGrebes(),
+      catquestItemsApi.braceletBranches(),
+    ],
+  }),
   inventory: new Collection({
     models: [
       catquestItemsApi.catnipCoins({ quantity: 4 }),
@@ -105,13 +88,9 @@ export const BLINKS = new CharacterModel({
       catquestItemsApi.glowDust({ quantity: 1 }),
       catquestItemsApi.handsaw(),
       catquestItemsApi.potato({ quantity: 1, modifiers: ['glowing'] }),
-      catquestItemsApi.rustySword({ quantity: 1 }),
+      catquestItemsApi.rustySword(),
       catquestItemsApi.brokenLeash(),
-      // new ItemModel({
-      //   name: 'Compound Bow of Twanging',
-      //   isStackable: false,
-      //   typeId: ITEM_TYPE_ID.EQUIPMENT,
-      // }),
+      catquestItemsApi.bowTwanging(),
     ],
   }),
   traits: [

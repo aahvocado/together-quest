@@ -11,6 +11,16 @@ export class Model {
     this.id = uuid();
   }
   /**
+   * assigns and updates these attributes
+   *
+   * @param {object} changes
+   * @returns {object} - returns all attributes
+   */
+  set(changes) {
+    this.attributes = Object.assign({}, this.attributes, changes);
+    return this.attributes;
+  }
+  /**
    * makes sure attributes match the schema
    *
    * @returns {boolean}

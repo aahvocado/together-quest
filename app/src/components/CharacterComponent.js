@@ -7,8 +7,9 @@ import {
   Icon,
 } from 'components';
 
+import { CharacterInventoryComponent } from 'components/CharacterInventoryComponent';
+import { CharacterEquipmentsComponent } from 'components/CharacterEquipmentsComponent';
 import { CharacterStatsComponent } from 'components/CharacterStatsComponent';
-import { InventoryComponent } from 'components/InventoryComponent';
 
 export class CharacterNameComponent extends PureComponent {
   static defaultProps = {
@@ -136,19 +137,12 @@ export class CharacterComponent extends PureComponent {
 
         {/* equipment */}
         <CharacterSectionCollapsible title='Equipment'>
-          { equipments.map((equipment, idx) =>
-            <div className='equipment' key={`${idx}`}>
-              <div className='equipment-main'>
-                <Icon name='fa-puzzle-piece' />
-                <span className='equipment-name'>{equipment.name}</span>
-              </div>
-            </div>
-          )}
+          <CharacterEquipmentsComponent equipments={equipments} />
         </CharacterSectionCollapsible>
 
         {/* Inventory */}
         <CharacterSectionCollapsible title='Inventory'>
-          <InventoryComponent inventory={inventory} />
+          <CharacterInventoryComponent inventory={inventory} />
         </CharacterSectionCollapsible>
 
         {/* traits */}
