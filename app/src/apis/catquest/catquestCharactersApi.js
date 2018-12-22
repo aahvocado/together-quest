@@ -5,6 +5,7 @@ import StatModel, { STAT_TYPE_ID } from 'models/StatModel';
 // import ItemModel, { ITEM_TYPE_ID } from 'models/ItemModel';
 
 import * as catquestItemsApi from 'apis/catquest/catquestItemsApi';
+import * as catquestEffectsApi from 'apis/catquest/catquestEffectsApi';
 
 export function strengthStat(options = {}) {
   return new StatModel(Object.assign({
@@ -93,14 +94,21 @@ export const BLINKS = new CharacterModel({
       catquestItemsApi.bowTwanging(),
     ],
   }),
-  traits: [
-    'Magic Sensitivity',
-    'Glowing a Bit',
-    'Bruised',
-  ],
-  honors: [
-    'Fire Fighting Human Champion',
-  ],
+  traits: new Collection({
+    models: [
+      catquestEffectsApi.magicSensitivity(),
+      catquestEffectsApi.statDecrease({
+        name: 'Bruised',
+      })
+    ],
+  }),
+  honors: new Collection({
+    models: [
+      catquestEffectsApi.statIncrease({
+        name: 'Fire Fighting Human Champion',
+      })
+    ],
+  }),
 });
 export const NOOK = new CharacterModel({
   name: 'Nook',

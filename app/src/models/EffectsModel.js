@@ -3,16 +3,19 @@ import schema from 'js-schema';
 import Model from 'models/Model'
 
 const effectSchema = schema({
-  // type id
-  typeId: String,
   // name
   name: String,
+  // type id
+  typeId: String,
   // description
-  description: String,
+  '?description': String,
   // optional flavor text
-  flavorText: [String, undefined],
+  '?flavorText': String,
   // name of icon (for IconComponent)
-  icon: [String, undefined],
+  '?icon': String,
+
+  //
+  '?modifies': Object,
 })
 
 export const EFFECT_TYPE_ID = {
@@ -21,7 +24,6 @@ export const EFFECT_TYPE_ID = {
   DEBUFF: 'DEBUFF-EFFECT-ID',
   TEMPORARY: 'TEMPORARY-EFFECT-ID',
   SPECIAL: 'SPECIAL-EFFECT-ID',
-  WEAPON: 'WEAPON-EFFECT-ID',
 }
 
 const EFFECT_TYPE_ICON = {

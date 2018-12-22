@@ -8,6 +8,7 @@ import EquipmentModel, { EQUIPMENT_SLOT_TYPE_ID } from 'models/EquipmentModel';
  * @param {object} [options] - additional options to instatiate model with
  * @returns {ItemModel}
  */
+// - GENERAL
 export function catnipCoins(options = {}) {
   return new ItemModel(Object.assign({
     name: 'catnip coins',
