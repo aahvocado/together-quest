@@ -1,4 +1,4 @@
-@all-colors: white, black, litegray, gray, darkgray, navy, blue, skyblue, overcastblue, limegreen, green, pink, red, darkred;
+@all-colors: white, black, litegray, gray, darkgray, navy, darknavy, blue, skyblue, overcastblue, limegreen, green, pink, red, darkred;
 
 @tg-white: #FFF;
 @tg-black: #333333;
@@ -6,6 +6,7 @@
 @tg-gray: #ccd0d8;
 @tg-darkgray: #7b7b7b;
 @tg-navy: #5b6883;
+@tg-darknavy: #485165;
 @tg-blue: #a7caea;
 @tg-skyblue: #bbecff;
 @tg-overcastblue: #596a71;
@@ -20,7 +21,7 @@ each(@all-colors, {
     color: ~"@{tg-@{value}}";
   }
   .bg-@{value} {
-    background: ~"@{tg-@{value}}";
+    background-color: ~"@{tg-@{value}}";
   }
   .borcolor-@{value} {
     border-color: ~"@{tg-@{value}}";

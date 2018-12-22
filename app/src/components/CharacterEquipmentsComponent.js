@@ -5,7 +5,6 @@ import {
   // Button,
   Icon,
   ModalComponent,
-  Panel,
 } from 'components';
 
 import { InventoryItemDisplayComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
@@ -16,7 +15,7 @@ export class CharacterEquipmentsComponent extends PureComponent {
     baseClassName: 'mar-t-1',
     /** @type {string} */
     className: '',
-    /** @type {Collection<ItemModel>} */
+    /** @type {Collection<EquipmentModel>} */
     equipments: undefined,
   }
   /** @override */
@@ -32,7 +31,7 @@ export class CharacterEquipmentsComponent extends PureComponent {
         { equipments.map((item) => (
           <EquipmentItemComponent
             key={item.id}
-            itemModel={item}
+            equipmentModel={item}
           />
         ))}
       </div>
@@ -42,12 +41,8 @@ export class CharacterEquipmentsComponent extends PureComponent {
 
 export class EquipmentItemComponent extends PureComponent {
   static defaultProps = {
-    /** @type {string} */
-    baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
-    /** @type {string} */
-    className: '',
-    /** @type {ItemModel} */
-    itemModel: [],
+    /** @type {EquipmentModel} */
+    equipmentModel: [],
   };
   /** @override */
   constructor(props) {
@@ -64,7 +59,7 @@ export class EquipmentItemComponent extends PureComponent {
     const {
       baseClassName,
       className,
-      itemModel,
+      equipmentModel,
     } = this.props;
 
     const { isDetailsOpen } = this.state;
@@ -77,22 +72,15 @@ export class EquipmentItemComponent extends PureComponent {
           onOverlayClick={this.toggleDetails}
         >
           <InventoryItemDetailsComponent
-            itemModel={itemModel}
+            itemModel={equipmentModel}
           />
         </ModalComponent>
 
-        <Panel
-          className={cn('equipment-component', baseClassName, className)}
-        >
-          {/* slot */}
-          <div></div>
+        <EquipmentItemDisplayComponent
+          equipmentModel={equipmentModel}
+          onClick={this.toggleDetails}
+        />
 
-          {/* item */}
-          <InventoryItemDisplayComponent
-            itemModel={itemModel}
-            onClick={this.toggleDetails}
-          />
-        </Panel>
       </Fragment>
     );
   }
@@ -104,3 +92,61 @@ export class EquipmentItemComponent extends PureComponent {
     this.setState({ isDetailsOpen: !isDetailsOpen });
   }
 }
+/**
+ * simple graphical display of an Equipment
+ */
+export class EquipmentItemDisplayComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'borradius-2 flex-row flex-centered position-relative mar-1 pad-l-2 bg-darknavy',
+    /** @type {string} */
+    className: '',
+    /** @type {EquipmentModel} */
+    equipmentModel: [],
+  };
+  /** @override */
+  constructor(props) {
+    super(props);
+
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+  /** @override */
+  render() {
+    const {
+      baseClassName,
+      className,
+      equipmentModel,
+    } = this.props;
+
+    return (
+       <div
+        className={cn('equipment-component', baseClassName, className)}
+        onClick={this.handleOnClick}
+      >
+        {/* slot */}
+        <div
+          className='flex-none color-white text-stroke'
+          style={{
+            width: '70px',
+          }}
+        >
+          Slot:
+        </div>
+
+        {/* item */}
+        <InventoryItemDisplayComponent
+          baseClassName='borradius-2 flex-col position-relative bg-navy cursor-pointer'
+          className='flex-grow bor-l-2 borcolor-white'
+          itemModel={equipmentModel}
+        />
+      </div>
+    )
+  }
+  /**
+   *
+   */
+  handleOnClick() {
+    this.props.onClick()
+  }
+}
+

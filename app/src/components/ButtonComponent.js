@@ -82,7 +82,7 @@ function ButtonHOC(Wrapper) {
         'flex-centered': isCentered,
         'button-component--round flex-centered borradius-round': isRound,
         'button-component--flag flex-centered': isFlag && !isWide,
-        'button-component--flag flex-centered pad-hor-2': isWide,
+        'button-component--flag flex-centered pad-h-2': isWide,
       };
 
       // hack a little bit to check if this is a Link
