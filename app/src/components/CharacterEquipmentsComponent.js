@@ -8,7 +8,7 @@ import {
   Panel,
 } from 'components';
 
-import { InventoryItemComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
+import { InventoryItemDisplayComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
 
 export class CharacterEquipmentsComponent extends PureComponent {
   static defaultProps = {
@@ -53,7 +53,7 @@ export class EquipmentItemComponent extends PureComponent {
   constructor(props) {
     super(props);
 
-    // this.toggleDetails = this.toggleDetails.bind(this);
+    this.toggleDetails = this.toggleDetails.bind(this);
 
     this.state = {
       isDetailsOpen: false,
@@ -67,24 +67,19 @@ export class EquipmentItemComponent extends PureComponent {
       itemModel,
     } = this.props;
 
-    // const {
-
-    // } = itemModel.attributes;
-
     const { isDetailsOpen } = this.state;
 
     return (
       <Fragment>
-{/*        <ModalComponent
+        <ModalComponent
           className='flex-centered width-full mar-2'
           active={isDetailsOpen}
           onOverlayClick={this.toggleDetails}
         >
           <InventoryItemDetailsComponent
-            className='equipment-details-component--modal'
             itemModel={itemModel}
           />
-        </ModalComponent>*/}
+        </ModalComponent>
 
         <Panel
           className={cn('equipment-component', baseClassName, className)}
@@ -93,42 +88,19 @@ export class EquipmentItemComponent extends PureComponent {
           <div></div>
 
           {/* item */}
-          <InventoryItemComponent itemModel={itemModel} />
+          <InventoryItemDisplayComponent
+            itemModel={itemModel}
+            onClick={this.toggleDetails}
+          />
         </Panel>
       </Fragment>
     );
   }
   /**
-   * @returns {string}
+   *
    */
-  getDisplayText() {
-    const { itemModel: { attributes }} = this.props;
-    const {
-      isStackable,
-      name,
-      quantity,
-    } = attributes;
-
-    if (isStackable) {
-      return `${quantity} ${name}`;
-    }
-
-    return name;
-  }
-  /**
-   * @returns {React.Element}
-   */
-  getBackgroundIcon() {
-    const { itemModel: { attributes }} = this.props;
-    const {
-      icon,
-    } = attributes;
-
-    return (
-      <Icon
-        name={icon}
-        className='fsize-8'
-      />
-    )
+  toggleDetails() {
+    const { isDetailsOpen } = this.state;
+    this.setState({ isDetailsOpen: !isDetailsOpen });
   }
 }

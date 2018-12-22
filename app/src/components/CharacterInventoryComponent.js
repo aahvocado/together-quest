@@ -8,6 +8,9 @@ import {
   Panel,
 } from 'components';
 
+/**
+ * component that has the list of
+ */
 export class CharacterInventoryComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
@@ -37,13 +40,11 @@ export class CharacterInventoryComponent extends PureComponent {
     );
   }
 }
-
+/**
+ * list item that combines the basic display and the detailed modal
+ */
 export class InventoryItemComponent extends PureComponent {
   static defaultProps = {
-    /** @type {string} */
-    baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
-    /** @type {string} */
-    className: '',
     /** @type {ItemModel} */
     itemModel: [],
   };
@@ -60,14 +61,8 @@ export class InventoryItemComponent extends PureComponent {
   /** @override */
   render() {
     const {
-      baseClassName,
-      className,
       itemModel,
     } = this.props;
-
-    // const {
-
-    // } = itemModel.attributes;
 
     const { isDetailsOpen } = this.state;
 
@@ -79,23 +74,14 @@ export class InventoryItemComponent extends PureComponent {
           onOverlayClick={this.toggleDetails}
         >
           <InventoryItemDetailsComponent
-            className='item-details-component--modal'
             itemModel={itemModel}
           />
         </ModalComponent>
 
-        <div
-          className={cn('item-component', baseClassName, className)}
+        <InventoryItemDisplayComponent
+          itemModel={itemModel}
           onClick={this.toggleDetails}
-        >
-          <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
-            {this.getBackgroundIcon()}
-          </div>
-
-          <div className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center wordbreak-break zindex-1'>
-            {this.getDisplayText()}
-          </div>
-        </div>
+        />
       </Fragment>
     );
   }
@@ -104,7 +90,7 @@ export class InventoryItemComponent extends PureComponent {
    */
   toggleDetails() {
     const { isDetailsOpen } = this.state;
-    this.setState({isDetailsOpen: !isDetailsOpen});
+    this.setState({ isDetailsOpen: !isDetailsOpen });
   }
   /**
    * @returns {string}
@@ -140,7 +126,94 @@ export class InventoryItemComponent extends PureComponent {
     )
   }
 }
+/**
+ * simple graphical display of an Item
+ */
+export class InventoryItemDisplayComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
+    /** @type {string} */
+    className: '',
+    /** @type {ItemModel} */
+    itemModel: [],
+    /** @type {function} */
+    onClick: () => {},
+  };
+  /** @override */
+  constructor(props) {
+    super(props);
 
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+  /** @override */
+  render() {
+    const {
+      baseClassName,
+      className,
+    } = this.props;
+
+    return (
+      <div
+        className={cn('item-display-component', baseClassName, className)}
+        onClick={this.handleOnClick}
+        style={{
+          height: '70px',
+        }}
+      >
+        <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
+          {this.getBackgroundIcon()}
+        </div>
+
+        <div className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center wordbreak-break zindex-1'>
+          {this.getDisplayText()}
+        </div>
+      </div>
+    );
+  }
+  /**
+   * @returns {string}
+   */
+  getDisplayText() {
+    const { itemModel: { attributes }} = this.props;
+    const {
+      isStackable,
+      name,
+      quantity,
+    } = attributes;
+
+    if (isStackable) {
+      return `${quantity} ${name}`;
+    }
+
+    return name;
+  }
+  /**
+   * @returns {React.Element}
+   */
+  getBackgroundIcon() {
+    const { itemModel: { attributes }} = this.props;
+    const {
+      icon,
+    } = attributes;
+
+    return (
+      <Icon
+        name={icon}
+        className='fsize-8'
+      />
+    )
+  }
+  /**
+   *
+   */
+  handleOnClick() {
+    this.props.onClick()
+  }
+}
+/**
+ * more details of an ItemModel
+ */
 export class InventoryItemDetailsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
@@ -165,22 +238,20 @@ export class InventoryItemDetailsComponent extends PureComponent {
 
     return (
       <Panel className={cn('item-details-component', baseClassName, className)}>
-        <h2 className='bor-b-1 borcolor-litegray pad-b-1 mar-b-1 flex-grow'>{name}</h2>
+        <h2 className='bor-b-1 borcolor-litegray pad-b-2 sibling-mar-t-2 flex-grow'>{name}</h2>
 
-        <div className=''>
-          {this.getQuantityText()}
-        </div>
+        {this.renderQuantityText()}
 
-        <p className='mar-t-2'>{description}</p>
+        <p className='sibling-mar-t-2'>{description}</p>
 
         { this.renderFlavorText() }
       </Panel>
     );
   }
   /**
-   * @returns {string}
+   * @returns {React.Element}
    */
-  getQuantityText() {
+  renderQuantityText() {
     const { itemModel: { attributes }} = this.props;
     const {
       isStackable,
@@ -192,14 +263,20 @@ export class InventoryItemDetailsComponent extends PureComponent {
     }
 
     if (quantity <= 0) {
-      return 'There are none in your possession.';
+      return (
+        <div className='sibling-mar-t-2'>There are none in your possession.</div>
+      )
     }
 
     if (quantity === 1) {
-      return 'You possess 1 of this item.'
+      return (
+        <div className='sibling-mar-t-2'>You possess 1 of this item.</div>
+      )
     }
 
-    return `You possess ${quantity} of this item.`;
+    return (
+      <div className='sibling-mar-t-2'>{`You possess ${quantity} of this item.`}</div>
+    )
   }
   /**
    * @returns {React.Element}
@@ -210,7 +287,7 @@ export class InventoryItemDetailsComponent extends PureComponent {
 
     if (flavorText && flavorText.length > 0) {
       return (
-        <i className='mar-t-2 color-darkgray f-italic f-thin'>{flavorText}</i>
+        <i className='sibling-mar-t-2 color-darkgray f-italic f-thin'>{flavorText}</i>
       )
     }
 
