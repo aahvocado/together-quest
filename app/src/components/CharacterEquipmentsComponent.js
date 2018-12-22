@@ -136,7 +136,7 @@ export class EquipmentItemBasicComponent extends PureComponent {
 
         {/* item */}
         <InventoryItemBasicComponent
-          baseClassName='borradius-2 flex-col position-relative bg-navy cursor-pointer'
+          baseClassName='flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer'
           className='flex-grow bor-l-2 borcolor-white'
           model={model}
         />

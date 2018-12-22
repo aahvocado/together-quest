@@ -132,7 +132,7 @@ export class InventoryItemComponent extends PureComponent {
 export class InventoryItemBasicComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
+    baseClassName: 'flex-centered borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -165,7 +165,7 @@ export class InventoryItemBasicComponent extends PureComponent {
           {this.getBackgroundIcon()}
         </div>
 
-        <div className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center wordbreak-break zindex-1'>
+        <div className='flex-wrap pad-1 color-white text-stroke text-center wordbreak-break zindex-1'>
           {this.getDisplayText()}
         </div>
       </div>

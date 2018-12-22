@@ -151,20 +151,20 @@ export class CharacterComponent extends PureComponent {
 
         {/* traits */}
         <CharacterSectionCollapsible title='Traits'>
-          { traits.map((trait, idx) =>
+          { traits.map((model, idx) =>
             <div className='trait' key={`${idx}`}>
               <Icon name='fa-tag' />
-              <span className='trait-name'>{trait}</span>
+              <span className='trait-name'>{model.get('name')}</span>
             </div>
           )}
         </CharacterSectionCollapsible>
 
         {/* honors */}
         <CharacterSectionCollapsible title='Honors'>
-          { honors.map((honor, idx) =>
+          { honors.map((model, idx) =>
             <div className='honor' key={`${idx}`}>
               <Icon name='fa-certificate' />
-              <span className='honor-name'>{honor}</span>
+              <span className='honor-name'>{model.get('name')}</span>
             </div>
           )}
         </CharacterSectionCollapsible>
