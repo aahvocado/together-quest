@@ -9,9 +9,9 @@ const itemSchema = schema({
   // name
   name: String,
   // description
-  description: [String, undefined],
+  '?description': String,
   // flavor text
-  flavorText: [String, undefined],
+  '?flavorText': String,
   // name of icon (for IconComponent)
   icon: String,
   // number of this item

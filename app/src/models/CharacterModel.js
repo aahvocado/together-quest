@@ -7,7 +7,7 @@ const characterSchema = schema({
   // name
   name: String,
   // description, title, honorific, or subheading
-  title: [String, undefined],
+  '?title': String,
   // // list of stats
   // stats: Collection,
   // // list of equipment

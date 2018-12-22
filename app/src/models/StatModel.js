@@ -8,9 +8,9 @@ export const statSchema = schema({
   // name of stat
   name: String,
   // description
-  description: [String, null],
+  '?description': String,
   // name of icon
-  icon: [String, null],
+  '?icon': String,
   // base value of modifier
   value: Number,
   // changes to the value
@@ -42,10 +42,6 @@ export class StatModel extends Model {
     this.schema = statSchema;
 
     this.set(Object.assign({
-      typeId: undefined,
-      name: undefined,
-      description: null,
-      icon: null,
       value: 0,
       modifier: 0,
       influence: (value) => (value),
