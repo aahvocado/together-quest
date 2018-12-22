@@ -4,9 +4,10 @@ import cn from 'classnames';
 import {
   // Button,
   ModalComponent,
+  Panel,
 } from 'components';
 
-import { InventoryItemDisplayComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
+import { InventoryItemBasicComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
 /**
  * equipment list
  */
@@ -17,22 +18,22 @@ export class CharacterEquipmentsComponent extends PureComponent {
     /** @type {string} */
     className: '',
     /** @type {Collection<EquipmentModel>} */
-    equipments: undefined,
+    collection: undefined,
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      equipments,
+      collection,
     } = this.props;
 
     return (
       <div className={cn('equipments-component', baseClassName, className)}>
-        { equipments.map((item) => (
+        { collection.map((item) => (
           <EquipmentItemComponent
             key={item.id}
-            equipmentModel={item}
+            model={item}
           />
         ))}
       </div>
@@ -45,7 +46,7 @@ export class CharacterEquipmentsComponent extends PureComponent {
 export class EquipmentItemComponent extends PureComponent {
   static defaultProps = {
     /** @type {EquipmentModel} */
-    equipmentModel: [],
+    model: undefined,
   };
   /** @override */
   constructor(props) {
@@ -60,7 +61,7 @@ export class EquipmentItemComponent extends PureComponent {
   /** @override */
   render() {
     const {
-      equipmentModel,
+      model,
     } = this.props;
 
     const { isDetailsOpen } = this.state;
@@ -72,13 +73,13 @@ export class EquipmentItemComponent extends PureComponent {
           active={isDetailsOpen}
           onOverlayClick={this.toggleDetails}
         >
-          <InventoryItemDetailsComponent
-            itemModel={equipmentModel}
+          <EquipmentItemDetailsComponent
+            model={model}
           />
         </ModalComponent>
 
-        <EquipmentItemDisplayComponent
-          equipmentModel={equipmentModel}
+        <EquipmentItemBasicComponent
+          model={model}
           onClick={this.toggleDetails}
         />
       </Fragment>
@@ -95,14 +96,14 @@ export class EquipmentItemComponent extends PureComponent {
 /**
  * simple graphical display of an Equipment
  */
-export class EquipmentItemDisplayComponent extends PureComponent {
+export class EquipmentItemBasicComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
     baseClassName: 'borradius-2 flex-row flex-centered position-relative mar-1 pad-l-2 bg-darknavy',
     /** @type {string} */
     className: '',
     /** @type {EquipmentModel} */
-    equipmentModel: [],
+    model: undefined,
   };
   /** @override */
   constructor(props) {
@@ -115,7 +116,7 @@ export class EquipmentItemDisplayComponent extends PureComponent {
     const {
       baseClassName,
       className,
-      equipmentModel,
+      model,
     } = this.props;
 
     return (
@@ -134,10 +135,10 @@ export class EquipmentItemDisplayComponent extends PureComponent {
         </div>
 
         {/* item */}
-        <InventoryItemDisplayComponent
+        <InventoryItemBasicComponent
           baseClassName='borradius-2 flex-col position-relative bg-navy cursor-pointer'
           className='flex-grow bor-l-2 borcolor-white'
-          itemModel={equipmentModel}
+          model={model}
         />
       </div>
     )
@@ -146,7 +147,7 @@ export class EquipmentItemDisplayComponent extends PureComponent {
    *
    */
   geSlotName() {
-    const { equipmentModel: { attributes }} = this.props;
+    const { model: { attributes }} = this.props;
     const { slotName } = attributes;
 
     return slotName || 'Slot';
@@ -158,4 +159,35 @@ export class EquipmentItemDisplayComponent extends PureComponent {
     this.props.onClick()
   }
 }
+/**
+ * more details of an Equipment
+ */
+export class EquipmentItemDetailsComponent extends InventoryItemDetailsComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: '',
+    /** @type {string} */
+    className: '',
+    /** @type {EquipmentModel} */
+    model: undefined,
+  };
+  /** @override */
+  render() {
+    const {
+      baseClassName,
+      className,
+    } = this.props;
 
+    return (
+      <Panel className={cn('equipment-details-component', baseClassName, className)}>
+        { this.renderNameElement() }
+
+        { this.renderQuantityElement() }
+
+        { this.renderDescriptionElement() }
+
+        { this.renderFlavorTextElement() }
+      </Panel>
+    );
+  }
+}

@@ -51,7 +51,7 @@ export class EquipmentModel extends ItemModel {
     }, options));
 
     this.set({
-      slotName: this.attributes.slotName || EQUIPMENT_SLOT_NAME[this.attributes.slotTypeId],
+      slotName: this.get('slotName') || EQUIPMENT_SLOT_NAME[this.get('slotTypeId')],
     })
 
     this.validate();

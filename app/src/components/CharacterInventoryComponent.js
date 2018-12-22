@@ -18,22 +18,22 @@ export class CharacterInventoryComponent extends PureComponent {
     /** @type {string} */
     className: '',
     /** @type {Collection<ItemModel>} */
-    inventory: undefined,
+    collection: undefined,
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      inventory,
+      collection,
     } = this.props;
 
     return (
       <div className={cn('inventory-component', baseClassName, className)}>
-        { inventory.map((item) => (
+        { collection.map((model) => (
           <InventoryItemComponent
-            key={item.id}
-            itemModel={item}
+            key={model.id}
+            model={model}
           />
         ))}
       </div>
@@ -46,7 +46,7 @@ export class CharacterInventoryComponent extends PureComponent {
 export class InventoryItemComponent extends PureComponent {
   static defaultProps = {
     /** @type {ItemModel} */
-    itemModel: [],
+    model: undefined,
   };
   /** @override */
   constructor(props) {
@@ -61,7 +61,7 @@ export class InventoryItemComponent extends PureComponent {
   /** @override */
   render() {
     const {
-      itemModel,
+      model,
     } = this.props;
 
     const { isDetailsOpen } = this.state;
@@ -74,12 +74,12 @@ export class InventoryItemComponent extends PureComponent {
           onOverlayClick={this.toggleDetails}
         >
           <InventoryItemDetailsComponent
-            itemModel={itemModel}
+            model={model}
           />
         </ModalComponent>
 
-        <InventoryItemDisplayComponent
-          itemModel={itemModel}
+        <InventoryItemBasicComponent
+          model={model}
           onClick={this.toggleDetails}
         />
       </Fragment>
@@ -129,14 +129,14 @@ export class InventoryItemComponent extends PureComponent {
 /**
  * simple graphical display of an Item
  */
-export class InventoryItemDisplayComponent extends PureComponent {
+export class InventoryItemBasicComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
     baseClassName: 'borradius-2 mar-1 flex-col position-relative bg-navy cursor-pointer',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
-    itemModel: [],
+    model: [],
     /** @type {function} */
     onClick: () => {},
   };
@@ -175,7 +175,7 @@ export class InventoryItemDisplayComponent extends PureComponent {
    * @returns {string}
    */
   getDisplayText() {
-    const { itemModel: { attributes }} = this.props;
+    const { model: { attributes }} = this.props;
     const {
       isStackable,
       name,
@@ -192,7 +192,7 @@ export class InventoryItemDisplayComponent extends PureComponent {
    * @returns {React.Element}
    */
   getBackgroundIcon() {
-    const { itemModel: { attributes }} = this.props;
+    const { model: { attributes }} = this.props;
     const {
       icon,
     } = attributes;
@@ -221,42 +221,53 @@ export class InventoryItemDetailsComponent extends PureComponent {
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
-    itemModel: [],
+    model: undefined,
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      itemModel,
     } = this.props;
-
-    const {
-      description,
-      name,
-    } = itemModel.attributes;
 
     return (
       <Panel className={cn('item-details-component', baseClassName, className)}>
-        <h2 className='bor-b-1 borcolor-litegray pad-b-2 sibling-mar-t-2 flex-grow'>{name}</h2>
+        { this.renderNameElement() }
 
-        {this.renderQuantityText()}
+        { this.renderQuantityElement() }
 
-        <p className='sibling-mar-t-2'>{description}</p>
+        { this.renderDescriptionElement() }
 
-        { this.renderFlavorText() }
+        { this.renderFlavorTextElement() }
       </Panel>
     );
   }
   /**
    * @returns {React.Element}
    */
-  renderQuantityText() {
-    const { itemModel: { attributes }} = this.props;
+  renderNameElement() {
+    const { model } = this.props;
+
+    const name = model.get('name');
+
+    if (!name) {
+      return null;
+    }
+
+    return (
+      <h2 className='bor-b-1 borcolor-litegray pad-b-2 sibling-mar-t-2 flex-grow'>{ name }</h2>
+    )
+  }
+  /**
+   * @returns {React.Element}
+   */
+  renderQuantityElement() {
+    const { model } = this.props;
+
     const {
       isStackable,
       quantity,
-    } = attributes;
+    } = model.attributes;
 
     if (!isStackable) {
       return null;
@@ -281,16 +292,37 @@ export class InventoryItemDetailsComponent extends PureComponent {
   /**
    * @returns {React.Element}
    */
-  renderFlavorText() {
-    const { itemModel: { attributes }} = this.props;
-    const { flavorText } = attributes;
+  renderDescriptionElement() {
+    const { model } = this.props;
 
-    if (flavorText && flavorText.length > 0) {
-      return (
-        <i className='sibling-mar-t-2 color-darkgray f-italic f-thin'>{flavorText}</i>
-      )
+    const description = model.get('description');
+
+    if (!description) {
+      return null;
     }
 
-    return null;
+    return (
+      <p className='sibling-mar-t-2'>{ description }</p>
+    )
+  }
+  /**
+   * @returns {React.Element}
+   */
+  renderFlavorTextElement() {
+    const { model } = this.props;
+
+    const flavorText = model.get('flavorText');
+
+    if (!flavorText) {
+      return null;
+    }
+
+    if (flavorText.length <= 0) {
+      return null;
+    }
+
+    return (
+      <i className='sibling-mar-t-2 color-darkgray f-italic f-thin'>{ flavorText }</i>
+    )
   }
 }

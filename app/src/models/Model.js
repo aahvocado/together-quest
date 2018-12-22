@@ -11,6 +11,15 @@ export class Model {
     this.id = uuid();
   }
   /**
+   * gets a specific attribute
+   *
+   * @param {string} attributeName
+   * @returns {* | undefined} - returns given attribute
+   */
+  get(attributeName) {
+    return this.attributes[attributeName]
+  }
+  /**
    * assigns and updates these attributes
    *
    * @param {object} changes

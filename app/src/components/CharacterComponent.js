@@ -138,14 +138,14 @@ export class CharacterComponent extends PureComponent {
         {/* equipment */}
         <CharacterSectionCollapsible title='Equipment'>
           <CharacterEquipmentsComponent
-            equipments={equipments}
+            collection={equipments}
           />
         </CharacterSectionCollapsible>
 
         {/* Inventory */}
         <CharacterSectionCollapsible title='Inventory'>
           <CharacterInventoryComponent
-            inventory={inventory}
+            collection={inventory}
           />
         </CharacterSectionCollapsible>
 
