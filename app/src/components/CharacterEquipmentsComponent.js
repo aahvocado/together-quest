@@ -29,7 +29,7 @@ export class CharacterEquipmentsComponent extends PureComponent {
     } = this.props;
 
     return (
-      <div className={cn('equipments-component', baseClassName, className)}>
+      <div className={cn('character-equipments-component', baseClassName, className)}>
         { collection.map((item) => (
           <EquipmentItemComponent
             key={item.id}
@@ -121,7 +121,7 @@ export class EquipmentItemBasicComponent extends PureComponent {
 
     return (
        <div
-        className={cn('equipment-component', baseClassName, className)}
+        className={cn('equipment-item-basic-component', baseClassName, className)}
         onClick={this.handleOnClick}
       >
         {/* slot */}
@@ -179,7 +179,7 @@ export class EquipmentItemDetailsComponent extends InventoryItemDetailsComponent
     } = this.props;
 
     return (
-      <Panel className={cn('equipment-details-component', baseClassName, className)}>
+      <Panel className={cn('equipment-item-details-component', baseClassName, className)}>
         { this.renderNameElement() }
 
         { this.renderQuantityElement() }

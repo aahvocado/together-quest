@@ -7,14 +7,15 @@ import {
   ModalComponent,
   Panel,
 } from 'components';
+import { InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
 
 /**
  * inventory list
  */
-export class CharacterInventoryComponent extends PureComponent {
+export class CharacterEffectsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'mar-t-1 grid-cols-2',
+    baseClassName: 'mar-t-1',
     /** @type {string} */
     className: '',
     /** @type {Collection<ItemModel>} */
@@ -31,7 +32,7 @@ export class CharacterInventoryComponent extends PureComponent {
     return (
       <div className={cn('inventory-component', baseClassName, className)}>
         { collection.map((model) => (
-          <InventoryItemComponent
+          <EffectsItemComponent
             key={model.id}
             model={model}
           />
@@ -43,7 +44,7 @@ export class CharacterInventoryComponent extends PureComponent {
 /**
  * list item that combines the basic display and the detailed modal
  */
-export class InventoryItemComponent extends PureComponent {
+export class EffectsItemComponent extends PureComponent {
   static defaultProps = {
     /** @type {ItemModel} */
     model: undefined,
@@ -73,12 +74,12 @@ export class InventoryItemComponent extends PureComponent {
           active={isDetailsOpen}
           onOverlayClick={this.toggleDetails}
         >
-          <InventoryItemDetailsComponent
+          <EffectsDetailsComponent
             model={model}
           />
         </ModalComponent>
 
-        <InventoryItemBasicComponent
+        <EffectsBasicComponent
           model={model}
           onClick={this.toggleDetails}
         />
@@ -96,10 +97,10 @@ export class InventoryItemComponent extends PureComponent {
 /**
  * simple graphical display of an Item
  */
-export class InventoryItemBasicComponent extends PureComponent {
+export class EffectsBasicComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'mar-1 flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer',
+    baseClassName: 'pad-1 mar-1 flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -122,38 +123,31 @@ export class InventoryItemBasicComponent extends PureComponent {
 
     return (
       <div
-        className={cn('inventory-item-basic-component', baseClassName, className)}
+        className={cn('effects-basic-component', baseClassName, className)}
         onClick={this.handleOnClick}
-        style={{
-          height: '70px',
-        }}
       >
+
         { this.renderBackgroundIcon() }
 
         { this.renderDisplayText() }
+
       </div>
     );
   }
   /**
-   * @returns {React.Element}
+   * @returns {string}
    */
   renderDisplayText() {
     const { model } = this.props;
-    const {
-      isStackable,
-      name,
-      quantity,
-    } = model.attributes;
+    const name = model.get('name');
 
     if (!name) {
       return null;
     }
 
-    const displayText = isStackable ? `${quantity} ${name}` : name;
-
     return (
       <div className='flex-wrap pad-1 color-white text-stroke text-center wordbreak-break zindex-1'>
-        { displayText }
+        { name }
       </div>
     )
   }
@@ -169,10 +163,10 @@ export class InventoryItemBasicComponent extends PureComponent {
     }
 
     return (
-      <div className='position-absolute pos-0 flex-centered opacity-2 mar-b-1'>
+      <div className='position-absolute pos-0 opacity-2 mar-l-2 flex-row align-center'>
         <Icon
           name={icon}
-          className='fsize-8'
+          className='fsize-4'
         />
       </div>
     )
@@ -187,7 +181,7 @@ export class InventoryItemBasicComponent extends PureComponent {
 /**
  * more details of an ItemModel
  */
-export class InventoryItemDetailsComponent extends PureComponent {
+export class EffectsDetailsComponent extends InventoryItemDetailsComponent {
   static defaultProps = {
     /** @type {string} */
     baseClassName: '',
@@ -204,98 +198,13 @@ export class InventoryItemDetailsComponent extends PureComponent {
     } = this.props;
 
     return (
-      <Panel className={cn('inventory-item-details-component', baseClassName, className)}>
+      <Panel className={cn('effects-details-component', baseClassName, className)}>
         { this.renderNameElement() }
-
-        { this.renderQuantityElement() }
 
         { this.renderDescriptionElement() }
 
         { this.renderFlavorTextElement() }
       </Panel>
     );
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderNameElement() {
-    const { model } = this.props;
-
-    const name = model.get('name');
-
-    if (!name) {
-      return null;
-    }
-
-    return (
-      <h2 className='bor-b-1 borcolor-litegray pad-b-2 sibling-mar-t-2 flex-grow'>{ name }</h2>
-    )
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderQuantityElement() {
-    const { model } = this.props;
-
-    const {
-      isStackable,
-      quantity,
-    } = model.attributes;
-
-    if (!isStackable) {
-      return null;
-    }
-
-    if (quantity <= 0) {
-      return (
-        <div className='sibling-mar-t-2'>There are none in your possession.</div>
-      )
-    }
-
-    if (quantity === 1) {
-      return (
-        <div className='sibling-mar-t-2'>You possess 1 of this item.</div>
-      )
-    }
-
-    return (
-      <div className='sibling-mar-t-2'>{`You possess ${quantity} of this item.`}</div>
-    )
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderDescriptionElement() {
-    const { model } = this.props;
-
-    const description = model.get('description');
-
-    if (!description) {
-      return null;
-    }
-
-    return (
-      <p className='sibling-mar-t-2'>{ description }</p>
-    )
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderFlavorTextElement() {
-    const { model } = this.props;
-
-    const flavorText = model.get('flavorText');
-
-    if (!flavorText) {
-      return null;
-    }
-
-    if (flavorText.length <= 0) {
-      return null;
-    }
-
-    return (
-      <i className='sibling-mar-t-2 color-darkgray f-italic f-thin'>{ flavorText }</i>
-    )
   }
 }

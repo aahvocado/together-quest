@@ -8,6 +8,7 @@ import {
 } from 'components';
 
 import { CharacterInventoryComponent } from 'components/CharacterInventoryComponent';
+import { CharacterEffectsComponent } from 'components/CharacterEffectsComponent';
 import { CharacterEquipmentsComponent } from 'components/CharacterEquipmentsComponent';
 import { CharacterStatsComponent } from 'components/CharacterStatsComponent';
 
@@ -111,9 +112,8 @@ export class CharacterComponent extends PureComponent {
       name,
       title,
       stats,
-      inventory,
-
       equipments,
+      inventory,
       traits,
       honors,
     } = attributes;
@@ -151,22 +151,16 @@ export class CharacterComponent extends PureComponent {
 
         {/* traits */}
         <CharacterSectionCollapsible title='Traits'>
-          { traits.map((model, idx) =>
-            <div className='trait' key={`${idx}`}>
-              <Icon name='fa-tag' />
-              <span className='trait-name'>{model.get('name')}</span>
-            </div>
-          )}
+          <CharacterEffectsComponent
+            collection={traits}
+          />
         </CharacterSectionCollapsible>
 
         {/* honors */}
         <CharacterSectionCollapsible title='Honors'>
-          { honors.map((model, idx) =>
-            <div className='honor' key={`${idx}`}>
-              <Icon name='fa-certificate' />
-              <span className='honor-name'>{model.get('name')}</span>
-            </div>
-          )}
+          <CharacterEffectsComponent
+            collection={honors}
+          />
         </CharacterSectionCollapsible>
 
       </div>
