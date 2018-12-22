@@ -4,10 +4,12 @@ import uuid from 'uuid/v4';
 import Model from 'models/Model'
 
 export const itemModel = schema({
-  // name of item
-  name: String,
   // item's id
   id: String,
+  // type
+  typeId: String,
+  // name of item
+  name: String,
   // description
   description: String,
   // optional flavor text
@@ -16,8 +18,6 @@ export const itemModel = schema({
   icon: String,
   // any modifying effects
   modifiers: [Array, null],
-  // type of item
-  typeId: String,
   // number of this item
   quantity: Number,
   // can this item be stacked
@@ -48,13 +48,13 @@ export class CharacterModel extends Model {
 
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = Object.assign({}, {
-      name: null,
       id: null,
+      typeId: null,
+      name: null,
       description: '',
       flavorText: null,
       icon: '',
       modifiers: null,
-      typeId: '',
       quantity: 0,
       isStackable: false,
     }, options);

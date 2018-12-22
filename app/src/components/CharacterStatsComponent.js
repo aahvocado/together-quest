@@ -31,7 +31,6 @@ export class CharacterStatsComponent extends PureComponent {
           baseClassName='flex-col'
           className=''
           list={stats}
-          getKey={(props) => (props.attributes.id)}
           ItemComponent={CollapsibleStatComponent}
         />
       </div>
