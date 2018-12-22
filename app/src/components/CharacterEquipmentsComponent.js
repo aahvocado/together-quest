@@ -53,7 +53,7 @@ export class EquipmentItemComponent extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.toggleDetails = this.toggleDetails.bind(this);
+    // this.toggleDetails = this.toggleDetails.bind(this);
 
     this.state = {
       isDetailsOpen: false,
@@ -88,7 +88,6 @@ export class EquipmentItemComponent extends PureComponent {
 
         <Panel
           className={cn('equipment-component', baseClassName, className)}
-          onClick={this.toggleDetails}
         >
           {/* slot */}
           <div></div>
@@ -98,13 +97,6 @@ export class EquipmentItemComponent extends PureComponent {
         </Panel>
       </Fragment>
     );
-  }
-  /**
-   *
-   */
-  toggleDetails() {
-    const { isDetailsOpen } = this.state;
-    this.setState({isDetailsOpen: !isDetailsOpen});
   }
   /**
    * @returns {string}

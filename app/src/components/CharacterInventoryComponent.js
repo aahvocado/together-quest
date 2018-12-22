@@ -92,7 +92,7 @@ export class InventoryItemComponent extends PureComponent {
             {this.getBackgroundIcon()}
           </div>
 
-          <div className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center zindex-1'>
+          <div className='flex-centered flex-grow flex-wrap pad-1 color-white text-stroke text-center wordbreak-break zindex-1'>
             {this.getDisplayText()}
           </div>
         </div>

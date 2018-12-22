@@ -29,7 +29,7 @@ export class Model {
     const valid = this.schema(this.attributes);
 
     if (!valid) {
-      console.error(this.schema.errors(this.attributes));
+      console.error(this.constructor.name, this.schema.errors(this.attributes));
     }
 
     return valid;

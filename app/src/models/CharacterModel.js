@@ -10,16 +10,16 @@ const characterSchema = schema({
   id: String,
   // sub title of character
   title: String,
-  // list of stats
+/*  // list of stats
   stats: Collection,
   // list of equipment
-  equipments: Array,
+  equipments: Collection,
   // list of inventory
   inventory: Collection,
   // any innate traits
-  traits: Array,
+  traits: Collection,
   // honors given
-  honors: Array,
+  honors: Collection,*/
 })
 
 export class CharacterModel extends Model {
@@ -30,13 +30,12 @@ export class CharacterModel extends Model {
 
     this.set(Object.assign({
       name: null,
-      id: null,
       title: '',
       stats: new Collection(),
-      equipments: [],
+      equipments: new Collection(),
       inventory: new Collection(),
-      traits: [],
-      honors: [],
+      traits: new Collection(),
+      honors: new Collection(),
     }, options));
 
     this.validate();

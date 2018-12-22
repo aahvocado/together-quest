@@ -3,8 +3,6 @@ import schema from 'js-schema';
 import Model from 'models/Model'
 
 const itemSchema = schema({
-  // item's id
-  id: String,
   // type
   typeId: String,
   // name of item
@@ -50,7 +48,6 @@ export class ItemModel extends Model {
     this.schema = itemSchema;
 
     this.set(Object.assign({
-      id: null,
       typeId: null,
       name: null,
       description: '',
