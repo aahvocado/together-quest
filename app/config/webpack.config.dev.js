@@ -89,7 +89,8 @@ module.exports = {
     alias: {
       apis: path.resolve(appPath, 'apis'),
 
-      components$: path.resolve(appPath, 'components/Components.js'),
+      'common-components': path.resolve(appPath, 'common-components'),
+      components$: path.resolve(appPath, 'common-components/Components.js'),
       components: path.resolve(appPath, 'components'),
 
       data$: path.resolve(appPath, 'data/appStore.js'),

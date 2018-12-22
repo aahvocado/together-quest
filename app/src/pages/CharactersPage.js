@@ -6,11 +6,11 @@ import _ from 'lodash';
 import { isLoggedIn } from 'utils/sessionUtils';
 
 import {
-  CharacterButton,
   Layout,
   Loader,
   Panel,
 } from 'components';
+import CharacterButton from 'components/CharacterButtonComponent';
 
 /**
  *

@@ -5,7 +5,7 @@ import {
   Icon,
 } from 'components';
 
-class CharacterButtonComponent extends PureComponent {
+export class CharacterButtonComponent extends PureComponent {
   static defaultProps = {
     /** @type {Function} */
     onClick: () => {},
