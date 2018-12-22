@@ -1,8 +1,7 @@
-// import _ from 'lodash';
 import uuid from 'uuid/v4';
 
 /**
- * :/ array of models
+ * array of models
  *
  * @typedef {object} Collection
  */
@@ -21,15 +20,6 @@ export class Collection {
   map(...args) {
     return this.models.map(...args);
   }
-}
-
-/**
- *
- * @type {*} mystery
- * @returns {boolean}
- */
-export function isCollection(mystery) {
-  return mystery.models;
 }
 
 export default Collection;

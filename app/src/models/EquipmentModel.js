@@ -4,7 +4,7 @@ import schema from 'js-schema';
 import ItemModel from 'models/ItemModel';
 
 const equipmentSchema = schema({
-  // id of the slot
+  // type id of the slot
   slotTypeId: String,
   // name of the slot
   slotName: String,
@@ -40,19 +40,14 @@ const EQUIPMENT_SLOT_NAME = {
  * includes all weapons, equipment, accessories, etc
  */
 export class EquipmentModel extends ItemModel {
-  constructor(options = {}) {
-    super(options);
+  constructor(defaultAttributes = {}) {
+    super(defaultAttributes);
 
     this.schema = equipmentSchema;
 
     this.set(Object.assign({
-      slotTypeId: undefined,
-      slotName: undefined,
-    }, options));
-
-    this.set({
-      slotName: this.get('slotName') || EQUIPMENT_SLOT_NAME[this.get('slotTypeId')],
-    })
+      slotName: EQUIPMENT_SLOT_NAME[this.get('slotTypeId')],
+    }, defaultAttributes));
 
     this.validate();
   }

@@ -6,7 +6,7 @@ import uuid from 'uuid/v4';
  * @typedef {object} Model
  */
 export class Model {
-  constructor(config = {}) {
+  constructor() {
     /** @type {string} */
     this.id = uuid();
   }

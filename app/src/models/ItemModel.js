@@ -1,24 +1,26 @@
 import schema from 'js-schema';
 
+import Collection from 'models/Collection';
 import Model from 'models/Model'
 
 const itemSchema = schema({
-  // type
+  // type id
   typeId: String,
-  // name of item
+  // name
   name: String,
   // description
-  description: String,
-  // optional flavor text
-  flavorText: [String, null],
-  // name of icon
+  description: [String, undefined],
+  // flavor text
+  flavorText: [String, undefined],
+  // name of icon (for IconComponent)
   icon: String,
-  // any modifying effects
-  modifiers: [Array, null],
   // number of this item
   quantity: Number,
   // can this item be stacked
   isStackable: Boolean,
+
+  // any modifying effects
+  effects: Collection,
 })
 
 export const ITEM_TYPE_ID = {
@@ -42,25 +44,17 @@ const ITEM_TYPE_ICON = {
  * data for an item for a character's inventory
  */
 export class ItemModel extends Model {
-  constructor(options = {}) {
-    super(options);
+  constructor(defaultAttributes = {}) {
+    super(defaultAttributes);
 
     this.schema = itemSchema;
 
     this.set(Object.assign({
-      typeId: undefined,
-      name: undefined,
-      description: '',
-      flavorText: null,
-      icon: undefined,
-      modifiers: null,
+      icon: ITEM_TYPE_ICON[defaultAttributes.typeId],
       quantity: 0,
       isStackable: false,
-    }, options));
-
-    this.set({
-      icon: this.attributes.icon || ITEM_TYPE_ICON[this.attributes.typeId],
-    })
+      effects: new Collection(),
+    }, defaultAttributes));
 
     this.validate();
   }
