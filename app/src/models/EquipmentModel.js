@@ -6,6 +6,8 @@ import ItemModel from 'models/ItemModel';
 const equipmentSchema = schema({
   // id of the slot
   slotTypeId: String,
+  // name of the slot
+  slotName: String,
 })
 
 export const EQUIPMENT_SLOT_TYPE_ID = {
@@ -24,6 +26,16 @@ export const EQUIPMENT_SLOT_TYPE_ID = {
   ACCESSORY_3: 'ACCESSORY_3-EQUIPMENT-SLOT-ID',
 }
 
+const EQUIPMENT_SLOT_NAME = {
+  [EQUIPMENT_SLOT_TYPE_ID.HEAD]: 'Head',
+  [EQUIPMENT_SLOT_TYPE_ID.BODY]: 'Body',
+  [EQUIPMENT_SLOT_TYPE_ID.BACK]: 'Back',
+  [EQUIPMENT_SLOT_TYPE_ID.PANTS]: 'Pants',
+  [EQUIPMENT_SLOT_TYPE_ID.HANDS]: 'Hands',
+  [EQUIPMENT_SLOT_TYPE_ID.FEET]: 'Feet',
+  [EQUIPMENT_SLOT_TYPE_ID.ACCESSORY]: 'Accessory',
+}
+
 /**
  * includes all weapons, equipment, accessories, etc
  */
@@ -35,7 +47,12 @@ export class EquipmentModel extends ItemModel {
 
     this.set(Object.assign({
       slotTypeId: undefined,
+      slotName: undefined,
     }, options));
+
+    this.set({
+      slotName: this.attributes.slotName || EQUIPMENT_SLOT_NAME[this.attributes.slotTypeId],
+    })
 
     this.validate();
   }

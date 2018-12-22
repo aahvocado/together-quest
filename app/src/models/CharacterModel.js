@@ -9,7 +9,7 @@ const characterSchema = schema({
   // character's id
   id: String,
   // sub title of character
-  title: String,
+  title: [String, null],
 /*  // list of stats
   stats: Collection,
   // list of equipment
@@ -29,8 +29,8 @@ export class CharacterModel extends Model {
     this.schema = characterSchema;
 
     this.set(Object.assign({
-      name: null,
-      title: '',
+      name: undefined,
+      title: null,
       stats: new Collection(),
       equipments: new Collection(),
       inventory: new Collection(),

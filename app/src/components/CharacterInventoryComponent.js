@@ -9,7 +9,7 @@ import {
 } from 'components';
 
 /**
- * component that has the list of
+ * inventory list
  */
 export class CharacterInventoryComponent extends PureComponent {
   static defaultProps = {

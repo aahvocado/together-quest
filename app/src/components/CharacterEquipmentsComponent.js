@@ -3,12 +3,13 @@ import cn from 'classnames';
 
 import {
   // Button,
-  Icon,
   ModalComponent,
 } from 'components';
 
 import { InventoryItemDisplayComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
-
+/**
+ * equipment list
+ */
 export class CharacterEquipmentsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
@@ -38,7 +39,9 @@ export class CharacterEquipmentsComponent extends PureComponent {
     );
   }
 }
-
+/**
+ * list item that combines the basic display and the detailed modal
+ */
 export class EquipmentItemComponent extends PureComponent {
   static defaultProps = {
     /** @type {EquipmentModel} */
@@ -57,8 +60,6 @@ export class EquipmentItemComponent extends PureComponent {
   /** @override */
   render() {
     const {
-      baseClassName,
-      className,
       equipmentModel,
     } = this.props;
 
@@ -80,7 +81,6 @@ export class EquipmentItemComponent extends PureComponent {
           equipmentModel={equipmentModel}
           onClick={this.toggleDetails}
         />
-
       </Fragment>
     );
   }
@@ -125,12 +125,12 @@ export class EquipmentItemDisplayComponent extends PureComponent {
       >
         {/* slot */}
         <div
-          className='flex-none color-white text-stroke'
+          className='flex-none color-white text-stroke text-ellipsis'
           style={{
-            width: '70px',
+            width: '75px',
           }}
         >
-          Slot:
+          { this.geSlotName() }
         </div>
 
         {/* item */}
@@ -141,6 +141,15 @@ export class EquipmentItemDisplayComponent extends PureComponent {
         />
       </div>
     )
+  }
+  /**
+   *
+   */
+  geSlotName() {
+    const { equipmentModel: { attributes }} = this.props;
+    const { slotName } = attributes;
+
+    return slotName || 'Slot';
   }
   /**
    *

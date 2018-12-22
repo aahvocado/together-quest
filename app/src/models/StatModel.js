@@ -8,7 +8,7 @@ export const statSchema = schema({
   // name of stat
   name: String,
   // description
-  description: String,
+  description: [String, null],
   // name of icon
   icon: [String, null],
   // base value of modifier
@@ -42,16 +42,18 @@ export class StatModel extends Model {
     this.schema = statSchema;
 
     this.set(Object.assign({
-      typeId: null,
-      name: null,
-      description: '',
-      icon: '',
+      typeId: undefined,
+      name: undefined,
+      description: null,
+      icon: null,
       value: 0,
       modifier: 0,
       influence: (value) => (value),
     }, options));
 
-    this.attributes.icon = STAT_TYPE_ICON[this.attributes.typeId];
+    this.set({
+      icon: this.attributes.icon || STAT_TYPE_ICON[this.attributes.typeId],
+    })
 
     this.validate();
   }

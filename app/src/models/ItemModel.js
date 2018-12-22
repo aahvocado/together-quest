@@ -48,17 +48,19 @@ export class ItemModel extends Model {
     this.schema = itemSchema;
 
     this.set(Object.assign({
-      typeId: null,
-      name: null,
+      typeId: undefined,
+      name: undefined,
       description: '',
       flavorText: null,
-      icon: '',
+      icon: undefined,
       modifiers: null,
       quantity: 0,
       isStackable: false,
     }, options));
 
-    this.attributes.icon = ITEM_TYPE_ICON[this.attributes.typeId];
+    this.set({
+      icon: this.attributes.icon || ITEM_TYPE_ICON[this.attributes.typeId],
+    })
 
     this.validate();
   }
