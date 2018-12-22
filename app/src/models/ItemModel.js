@@ -3,7 +3,7 @@ import uuid from 'uuid/v4';
 
 import Model from 'models/Model'
 
-export const itemModel = schema({
+const itemSchema = schema({
   // item's id
   id: String,
   // type
@@ -41,10 +41,14 @@ const ITEM_TYPE_ICON = {
   [ITEM_TYPE_ID.TOOL]: 'ra-hammer',
   [ITEM_TYPE_ID.WEAPON]: 'ra-plain-dagger',
 }
-
-export class CharacterModel extends Model {
+/**
+ * data for an item for a character's inventory
+ */
+export class ItemModel extends Model {
   constructor(options = {}) {
     super(options);
+
+    this.schema = itemSchema;
 
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = Object.assign({}, {
@@ -63,11 +67,23 @@ export class CharacterModel extends Model {
 
     this.attributes.icon = ITEM_TYPE_ICON[this.attributes.typeId];
 
-    // validate
-    if (!itemModel(this.attributes)) {
-      console.error(itemModel.errors(this.attributes));
-    }
+    this.validate();
   }
 }
 
-export default CharacterModel;
+/**
+ * includes all weapons, equipment, accessories, etc
+ */
+export class EquipmentModel extends ItemModel {
+  constructor(options = {}) {
+    super(options);
+
+    // set Model's attributes equal to some default plus whatever is passed in
+    this.attributes = Object.assign({}, {
+
+    }, options);
+  }
+}
+
+
+export default ItemModel;

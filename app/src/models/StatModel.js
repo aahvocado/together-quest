@@ -39,6 +39,8 @@ export class StatModel extends Model {
   constructor(options = {}) {
     super(options);
 
+    this.schema = statSchema;
+
     // set Model's attributes equal to some default plus whatever is passed in
     this.attributes = Object.assign({}, {
       typeId: null,
@@ -52,10 +54,7 @@ export class StatModel extends Model {
 
     this.attributes.icon = STAT_TYPE_ICON[this.attributes.typeId];
 
-    // validate
-    if (!statSchema(this.attributes)) {
-      console.error('StatModel.js', statSchema.errors(this.attributes));
-    }
+    this.validate();
   }
   /**
    * adds value and modifier together

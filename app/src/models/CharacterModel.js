@@ -1,10 +1,9 @@
-import _ from 'lodash';
 import schema from 'js-schema';
 
 import Collection from 'models/Collection';
 import Model from 'models/Model'
 
-export const characterSchema = schema({
+const characterSchema = schema({
   // name of character
   name: String,
   // character's id
@@ -27,8 +26,10 @@ export class CharacterModel extends Model {
   constructor(options = {}) {
     super(options);
 
+    this.schema = characterSchema;
+
     // set Model's attributes equal to some default plus whatever is passed in
-    this.attributes = _.assign({}, {
+    this.attributes = Object.assign({}, {
       name: null,
       id: null,
       title: '',
@@ -39,11 +40,7 @@ export class CharacterModel extends Model {
       honors: [],
     }, options);
 
-    // validate
-    if (!characterSchema(this.attributes)) {
-      console.error(characterSchema.errors(this.attributes));
-    }
-
+    this.validate();
   }
 }
 
