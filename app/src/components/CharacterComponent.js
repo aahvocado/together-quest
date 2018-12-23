@@ -149,7 +149,7 @@ export class CharacterComponent extends PureComponent {
         <CharacterSectionCollapsible title='Stats'>
           <CharacterStatsComponent
             className='mar-t-1'
-            stats={stats}
+            collection={stats}
             statModifiers={statModifiers}
           />
         </CharacterSectionCollapsible>

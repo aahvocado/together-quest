@@ -7,34 +7,35 @@ import Collapsible from 'react-collapsible';
 
 import {
   Icon,
-  ListComponent,
 } from 'components';
 
 export class CharacterStatsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: '',
+    baseClassName: 'flex-col',
     /** @type {string} */
     className: '',
-    /** @type {array<StatModel>} */
-    stats: [],
+    /** @type {Collection<StatModel>} */
+    collection: undefined,
+    /** @type {Array} */
+    statModifiers: [],
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      stats,
+      collection,
     } = this.props;
 
     return (
       <div className={cn('character-stats-component', baseClassName, className)}>
-        <ListComponent
-          baseClassName='flex-col'
-          className=''
-          list={stats}
-          ItemComponent={CollapsibleStatComponent}
-        />
+        { collection.map((model) => (
+          <CollapsibleStatComponent
+            key={model.id}
+            model={model}
+          />
+        ))}
       </div>
     );
   }
@@ -46,15 +47,15 @@ export class CollapsibleStatComponent extends PureComponent {
     baseClassName: 'sibling-mar-t-1 bg-navy borradius-1',
     /** @type {string} */
     className: '',
-    /** @type {StatModel.attributes} */
-    attributes: {},
+    /** @type {StatModel} */
+    model: undefined,
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      attributes,
+      model,
     } = this.props;
 
     return (
@@ -64,10 +65,10 @@ export class CollapsibleStatComponent extends PureComponent {
         transitionTime={200}
         transitionCloseTime={100}
         trigger={
-          <SimpleStatComponent attributes={attributes} />
+          <SimpleStatComponent model={model} />
         }
       >
-        <DetailedStatComponent attributes={attributes} />
+        <DetailedStatComponent model={model} />
       </Collapsible>
     );
   }
@@ -79,15 +80,15 @@ export class SimpleStatComponent extends PureComponent {
     baseClassName: 'flex-row bg-white borradius-1 pad-2 align-center bor-1 borcolor-litegray',
     /** @type {string} */
     className: '',
-    /** @type {StatModel.attributes} */
-    attributes: {},
+    /** @type {StatModel} */
+    model: undefined,
   }
   /** @override */
   render() {
     const {
       baseClassName,
       className,
-      attributes,
+      model,
     } = this.props;
 
     const {
@@ -95,7 +96,7 @@ export class SimpleStatComponent extends PureComponent {
       modifier,
       typeId,
       value,
-    } = attributes;
+    } = model.attributes;
 
     const statName = catquestLanguageHelper.getStatName(typeId);
 
@@ -121,37 +122,33 @@ export class SimpleStatComponent extends PureComponent {
    * @returns {React.Element | null}
    */
   renderModifiedIcon() {
-    const { attributes } = this.props;
-    const { modifier } = attributes;
+    // const { statModifiers } = this.props;
 
-    // guard clause - if not modifier then we don't need to show an icon
-    if (modifier === 0) {
-      return null;
-    }
+    return null;
 
-    // less than zero is down, greater than zero is up
-    const modIcon = modifier < 0 ? 'fa-arrow-down' : 'fa-arrow-up';
-    return (
-      <Icon name={modIcon} />
-    )
+    // // less than zero is down, greater than zero is up
+    // const modIcon = modifier < 0 ? 'fa-arrow-down' : 'fa-arrow-up';
+    // return (
+    //   <Icon name={modIcon} />
+    // )
   }
 }
 
 export class DetailedStatComponent extends PureComponent {
   static defaultProps = {
-    /** @type {StatModel.attributes} */
-    attributes: {},
+    /** @type {StatModel} */
+    model: undefined,
   }
   /** @override */
   render() {
     const {
-      attributes,
+      model,
     } = this.props;
 
     const {
       modifier,
       value,
-    } = attributes;
+    } = model.attributes;
 
     return (
       <div className='pad-2 borradius-2 color-white text-stroke'>
