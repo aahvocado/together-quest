@@ -23,6 +23,14 @@ export function statDecrease(options = {}) {
     flavorText: 'Debuffs are the worst. It\'s like your muscles ate pizza and sat on the couch all day.',
   }, options));
 }
+// - EXTENSION OF STAT CHANGES
+export function debuffLeadFeet(options = {}) {
+  return statDecrease(Object.assign({
+    name: 'Lead Feet',
+    typeId: EFFECT_TYPE_ID.SPECIAL,
+    description: 'Your feet are so heavy.',
+  }, options));
+}
 // - COMPLETELY UNIQUE
 export function magicSensitivity(options = {}) {
   return new EffectsModel(Object.assign({

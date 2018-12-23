@@ -224,7 +224,12 @@ export class InventoryItemDetailsComponent extends ItemModelDetailsComponent {
     return (
       <div className='effects-collection borradius-2 sibling-mar-t-2 bg-darknavy pad-1'>
         <h3 className='fsize-small text-center color-white text-stroke pad-1'>Effects</h3>
-        <ul className='flex-col'>
+        <ul
+          className='flex-col overflow-auto'
+          style={{
+            maxHeight: '200px'
+          }}
+        >
           { effects.map((model) => (
             <EffectsCollapsiblecomponent
               key={model.id}

@@ -186,21 +186,16 @@ export class EffectsBasicComponent extends PureComponent {
  */
 export class EffectsDetailsComponent extends ItemModelDetailsComponent {
   /** @override */
-  render() {
-    const {
-      baseClassName,
-      className,
-    } = this.props;
-
+  renderBody() {
     return (
-      <div className={cn('effects-details-component', baseClassName, className)}>
+      <Fragment>
         { this.renderNameElement() }
 
         { this.renderDescriptionElement() }
 
         { this.renderFlavorTextElement() }
-      </div>
-    );
+      </Fragment>
+    )
   }
 }
 /**
@@ -219,13 +214,14 @@ export class EffectsCollapsiblecomponent extends PureComponent {
 
     return (
       <Collapsible
-        className='sibling-mar-t-2'
-        openedClassName='bg-navy borradius-2 sibling-mar-t-2'
+        className='sibling-mar-t-2 overflow-auto'
+        openedClassName='bg-navy borradius-2 sibling-mar-t-2 overflow-auto'
         trigger={<EffectsBasicComponent model={model} />}
         transitionTime={200}
         transitionCloseTime={200}
       >
         <EffectsExtendBasicDetailsComponent
+          baseClassName='pad-2 flex-col'
           className='bg-white'
           model={model}
         />
@@ -234,7 +230,7 @@ export class EffectsCollapsiblecomponent extends PureComponent {
   }
 }
 /**
- * more details of an effect
+ * more details of an embedded effect
  */
 export class EffectsExtendBasicDetailsComponent extends ItemModelDetailsComponent {
   /** @override */
@@ -242,8 +238,6 @@ export class EffectsExtendBasicDetailsComponent extends ItemModelDetailsComponen
     return (
       <Fragment>
         { this.renderDescriptionElement() }
-
-        { this.renderFlavorTextElement() }
       </Fragment>
     )
   }

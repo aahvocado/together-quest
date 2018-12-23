@@ -154,9 +154,7 @@ export function greavesSaintGrebes(options = {}) {
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.FEET,
     effects: new Collection({
       models: [
-        catquestEffectsApi.statDecrease({
-          name: 'Lead Feet',
-        })
+        catquestEffectsApi.debuffLeadFeet(),
       ]
     })
   }, options));
