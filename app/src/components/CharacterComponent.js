@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 import Collapsible from 'react-collapsible';
 
+import * as characterStatsHelper from 'utils/characterStatsHelper';
+
 import {
   Icon,
 } from 'components';
@@ -105,8 +107,21 @@ class CharacterSectionCollapsible extends PureComponent {
  * has everything Character Component
  */
 export class CharacterComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'flex-col width-full',
+    /** @type {string} */
+    className: '',
+    /** @type {CharacterModel} */
+    character: undefined,
+  }
+  /** @override */
   render() {
-    const { character: { attributes } } = this.props;
+    const {
+      baseClassName,
+      className,
+      character,
+    } = this.props;
 
     const {
       name,
@@ -116,10 +131,13 @@ export class CharacterComponent extends PureComponent {
       inventory,
       traits,
       honors,
-    } = attributes;
+    } = character.attributes;
+
+    const statModifiers = characterStatsHelper.getAllStatModifiers(character);
+    console.log('characterStatsHelper', statModifiers);
 
     return (
-      <div className='character-component flex-col width-full'>
+      <div className={cn('character-component', baseClassName, className)}>
         {/* name */}
         <CharacterNameComponent
           className='sibling-mar-t-2'
@@ -132,6 +150,7 @@ export class CharacterComponent extends PureComponent {
           <CharacterStatsComponent
             className='mar-t-1'
             stats={stats}
+            statModifiers={statModifiers}
           />
         </CharacterSectionCollapsible>
 

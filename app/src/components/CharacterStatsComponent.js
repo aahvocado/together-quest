@@ -43,7 +43,7 @@ export class CharacterStatsComponent extends PureComponent {
 export class CollapsibleStatComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'sibling-mar-t-1 bg-skyblue borradius-1',
+    baseClassName: 'sibling-mar-t-1 bg-navy borradius-1',
     /** @type {string} */
     className: '',
     /** @type {StatModel.attributes} */
@@ -154,7 +154,7 @@ export class DetailedStatComponent extends PureComponent {
     } = attributes;
 
     return (
-      <div className='pad-2 borradius-2'>
+      <div className='pad-2 borradius-2 color-white text-stroke'>
         <div className='flex-row align-center'>
           <div>Current Value</div>
           <div className='fsize-4 mar-l-1'>{value}</div>
