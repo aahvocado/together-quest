@@ -1,4 +1,10 @@
-import { STAT_TYPE_ID } from 'models/StatModel';
+const STAT_TYPE_ID = {
+  STRENGTH: 'strength-stat-id',
+  AGILITY: 'agility-stat-id',
+  WISDOM: 'wisdom-stat-id',
+  CHARISMA: 'charisma-stat-id',
+  MAGIC: 'magic-stat-id',
+}
 
 const STAT_NAME = {
   [STAT_TYPE_ID.STRENGTH]: 'strength',

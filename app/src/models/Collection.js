@@ -16,6 +16,13 @@ export class Collection {
     this.id = uuid();
   }
   /**
+   * @type {*} args - Array.find params
+   * @return {function}
+   */
+  find(...args) {
+    return this.models.find(...args);
+  }
+  /**
    * @type {*} args - Array.forEach params
    * @return {function}
    */

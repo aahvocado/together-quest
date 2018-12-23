@@ -3,8 +3,6 @@ import cn from 'classnames';
 
 import Collapsible from 'react-collapsible';
 
-import * as characterStatsHelper from 'utils/characterStatsHelper';
-
 import {
   Icon,
 } from 'components';
@@ -133,8 +131,7 @@ export class CharacterComponent extends PureComponent {
       honors,
     } = character.attributes;
 
-    const statModifiers = characterStatsHelper.getAllStatModifiers(character);
-    console.log('characterStatsHelper', statModifiers);
+    const statModifiers = character.statModifiers;
 
     return (
       <div className={cn('character-component', baseClassName, className)}>

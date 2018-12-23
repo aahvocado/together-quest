@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
-import * as catquestLanguageHelper from 'apis/catquest/catquestLanguageHelper';
-
 import Collapsible from 'react-collapsible';
 
 import {
@@ -26,6 +24,7 @@ export class CharacterStatsComponent extends PureComponent {
       baseClassName,
       className,
       collection,
+      statModifiers,
     } = this.props;
 
     return (
@@ -34,6 +33,7 @@ export class CharacterStatsComponent extends PureComponent {
           <CollapsibleStatComponent
             key={model.id}
             model={model}
+            modifiers={statModifiers[model.get('typeId')]}
           />
         ))}
       </div>
@@ -49,6 +49,8 @@ export class CollapsibleStatComponent extends PureComponent {
     className: '',
     /** @type {StatModel} */
     model: undefined,
+    /** @type {Array} */
+    modifiers: undefined,
   }
   /** @override */
   render() {
@@ -56,6 +58,7 @@ export class CollapsibleStatComponent extends PureComponent {
       baseClassName,
       className,
       model,
+      modifiers,
     } = this.props;
 
     return (
@@ -68,7 +71,10 @@ export class CollapsibleStatComponent extends PureComponent {
           <SimpleStatComponent model={model} />
         }
       >
-        <DetailedStatComponent model={model} />
+        <DetailedStatComponent
+          model={model}
+          modifiers={modifiers}
+        />
       </Collapsible>
     );
   }
@@ -91,11 +97,7 @@ export class SimpleStatComponent extends PureComponent {
       model,
     } = this.props;
 
-    const {
-      typeId,
-    } = model.attributes;
-
-    const statName = catquestLanguageHelper.getStatName(typeId);
+    const statName = model.getName();
 
     return (
       <div
@@ -152,31 +154,47 @@ export class DetailedStatComponent extends PureComponent {
   static defaultProps = {
     /** @type {StatModel} */
     model: undefined,
+    /** @type {Array} */
+    modifiers: [],
   }
   /** @override */
   render() {
     const {
       model,
+      modifiers,
     } = this.props;
 
-    const {
-      modifier,
-      value,
-    } = model.attributes;
+    const statTypeId = model.get('typeId');
+
 
     return (
       <div className='pad-2 borradius-2 color-white text-stroke'>
-        <div className='grid-cols-2 flex-row align-center'>
-          <div className='fsize-4 mar-l-1 text-right'>{value}</div>
-          <div className='mar-l-2'>Base Value</div>
-        </div>
+        { this.renderStatLineElement('base value', model.get('value')) }
 
-        <div className='grid-cols-2 flex-row align-center'>
-          <div className='fsize-4 mar-l-1 text-right'>{modifier}</div>
-          <div className='mar-l-2'>Modifier</div>
+        <div
+          className='mar-t-1'
+        >
+          { modifiers.map((effectModel) => {
+            return this.renderStatLineElement(`from ${effectModel.get('name')}`, effectModel.getModifierByType(statTypeId).value)
+          })}
         </div>
       </div>
     );
+  }
+  /**
+   * @param {String} label
+   * @param {*} value
+   * @retuns {React.Element}
+   */
+  renderStatLineElement(label, value) {
+    const displayValue = value < 0 ? value : `+${value}`;
+
+    return (
+      <div className='grid-cols-2 flex-row align-center'>
+        <div className='fsize-4 mar-l-1 text-right'>{displayValue}</div>
+        <div className='mar-l-2'>{label}</div>
+      </div>
+    )
   }
 }
 

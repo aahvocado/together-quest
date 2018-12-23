@@ -1,7 +1,9 @@
 import schema from 'js-schema';
 
 import Collection from 'models/Collection';
-import Model from 'models/Model'
+import Model from 'models/Model';
+
+import * as characterStatsHelper from 'utils/characterStatsHelper';
 
 const characterSchema = schema({
   // name
@@ -21,6 +23,7 @@ const characterSchema = schema({
 })
 
 export class CharacterModel extends Model {
+  /** @override */
   constructor(defaultAttributes = {}) {
     super(defaultAttributes);
 
@@ -35,6 +38,12 @@ export class CharacterModel extends Model {
     }, defaultAttributes));
 
     this.validate();
+  }
+  /**
+   *
+   */
+  get statModifiers() {
+    return characterStatsHelper.getAllStatModifiers(this);
   }
 }
 

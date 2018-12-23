@@ -38,6 +38,7 @@ const EFFECT_TYPE_ICON = {
  * data for an item effect, status effect, stat modifier, etc
  */
 export class EffectModel extends Model {
+  /** @override */
   constructor(defaultAttributes = {}) {
     super(defaultAttributes);
 
@@ -48,6 +49,17 @@ export class EffectModel extends Model {
     }, defaultAttributes));
 
     this.validate();
+  }
+  /**
+   * gets the name of this stat
+   *
+   * @param {string} typeId - stat type
+   * @returns {Object}
+   */
+  getModifierByType(typeId) {
+    return this.get('modifiers').find((modifierModel) => {
+      return modifierModel.targetTypeId === typeId;
+    })
   }
 }
 

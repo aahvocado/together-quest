@@ -1,5 +1,7 @@
 import schema from 'js-schema';
 
+import * as catquestLanguageHelper from 'apis/catquest/catquestLanguageHelper';
+
 import Model from 'models/Model'
 
 export const statSchema = schema({
@@ -11,8 +13,6 @@ export const statSchema = schema({
   '?icon': String,
   // base value of modifier
   value: Number,
-  // changes to the value
-  modifier: Number,
   // how much a given amount affects a dice roll
   influence: Function,
 })
@@ -49,14 +49,12 @@ export class StatModel extends Model {
     this.validate();
   }
   /**
-   * adds value and modifier together
+   * gets the name of this stat
    *
-   * @returns {number}
+   * @returns {string}
    */
-  getTrueValue() {
-    const { value, modifier } = this.attributes;
-
-    return value + modifier;
+  getName() {
+    return catquestLanguageHelper.getStatName(this.get('typeId'));
   }
 }
 
