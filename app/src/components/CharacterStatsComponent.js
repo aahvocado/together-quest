@@ -132,7 +132,7 @@ export class SimpleStatComponent extends PureComponent {
 
     const modifiedValue = characterStatsHelper.calculateModifiedStatValue(model, modifiers);
 
-    if (!modifiedValue) {
+    if (modifiedValue === undefined) {
       return null;
     }
 
@@ -180,6 +180,7 @@ export class DetailedStatComponent extends PureComponent {
     return (
       <div className='pad-2 borradius-2 color-white text-stroke'>
         <StatLineComponent
+          className='pad-b-1 bor-b-1'
           label='Base'
           value={model.get('value')}
         />
@@ -204,6 +205,10 @@ export class DetailedStatComponent extends PureComponent {
 
 class StatLineComponent extends PureComponent {
   static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'grid-cols-2 flex-row align-center sibling-mar-t-1',
+    /** @type {string} */
+    className: '',
     /** @type {String} */
     label: '',
     /** @type {String} */
@@ -211,14 +216,19 @@ class StatLineComponent extends PureComponent {
   }
   /** @override */
   render() {
-    const { label, value } = this.props;
+    const {
+      baseClassName,
+      className,
+      label,
+      value,
+    } = this.props;
 
     const displayValue = value < 0 ? value : `+${value}`;
 
     return (
-      <div className='grid-cols-2 flex-row align-center'>
+      <div className={cn(baseClassName, className)}>
         <div className='fsize-4 mar-l-1 text-right'>{displayValue}</div>
-        <div className='mar-l-2'>{label}</div>
+        <div className='mar-l-2 text-ellipsis'>{label}</div>
       </div>
     )
   }

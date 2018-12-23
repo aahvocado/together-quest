@@ -32,18 +32,24 @@ export function getAllStatModifiers(characterModel, statTypeIds) {
   });
 
   // // search in `traits`
-  // const modifiersFromTraits = characterModel.get('traits').get('effects').map((traitModel) => (
-  //   if (statTypesToSearchFor.includes(traitModel.get('typeId'))) {
-  //     return traitModel;
-  //   }
-  // ));
+  characterModel.get('traits').forEach((traitModel) => {
+    traitModel.get('modifiers').forEach((modifier) => {
+      const targetStatId = modifier.targetTypeId;
+      if (statTypesToSearchFor.includes(targetStatId)) {
+        modifiedStats[targetStatId].push(traitModel);
+      }
+    })
+  });
 
   // // search in `honors`
-  // const modifiersFromHonors = characterModel.get('honors').get('effects').map((honorModel) => (
-  //   if (statTypesToSearchFor.includes(honorModel.get('typeId'))) {
-  //     return honorModel;
-  //   }
-  // ));
+  characterModel.get('honors').forEach((honorModel) => {
+    honorModel.get('modifiers').forEach((modifier) => {
+      const targetStatId = modifier.targetTypeId;
+      if (statTypesToSearchFor.includes(targetStatId)) {
+        modifiedStats[targetStatId].push(honorModel);
+      }
+    })
+  });
 
   // return list
   return modifiedStats;
