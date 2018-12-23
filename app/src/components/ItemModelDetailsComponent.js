@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
+import * as catquestLanguageHelper from 'apis/catquest/catquestLanguageHelper';
+
 /**
  * simple element creator for item details
  */
 export class ItemModelDetailsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'pad-4 flex-col',
+    baseClassName: 'pad-4 flex-col width-full',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -117,6 +119,74 @@ export class ItemModelDetailsComponent extends PureComponent {
       <i className='sibling-mar-t-2 color-darkgray f-italic f-thin'>{ flavorText }</i>
     )
   }
+  /**
+   * @returns {React.Element}
+   */
+  renderStatModifiersElement() {
+    const { model } = this.props;
+    const modifiers = model.get('modifiers');
+
+    if (!modifiers) {
+      return null;
+    }
+
+    if (modifiers.length <= 0) {
+      return null;
+    }
+
+    return (
+      <div className='flex-col sibling-mar-t-2'>
+        { modifiers.map((model, idx) => (
+          <ModifiersDetailsComponent
+            key={model.id || `effect-embedded-expanded-${idx}-key`}
+            model={model}
+          />
+        ))}
+      </div>
+    )
+  }
+}
+/**
+ * simplified details of an embedded effect
+ */
+export class ModifiersDetailsComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {string} */
+    baseClassName: 'flex-row sibling-mar-t-1 f-bold',
+    /** @type {string} */
+    className: '',
+    /** @type {Model} */
+    model: undefined, // currently an object, not a Model
+  };
+  /**
+   * @returns {React.Element}
+   */
+  render() {
+    const {
+      baseClassName,
+      className,
+      model,
+    } = this.props;
+
+    if (!model) {
+      return null;
+    }
+
+    const {
+      targetTypeId,
+      value,
+    } = model;
+
+    const statName = catquestLanguageHelper.getStatName(targetTypeId);
+
+    const displayValue = value < 0 ? value : `+${value}`;
+
+    return (
+      <div className={cn('modifiers-detail-component', baseClassName, className)}>
+        {`${statName} ${displayValue}`}
+      </div>
+    )
+  }
 }
 
-// export default ItemModelDetailsComponent;
+export default ItemModelDetailsComponent;

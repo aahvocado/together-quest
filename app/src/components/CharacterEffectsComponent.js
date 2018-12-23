@@ -193,6 +193,8 @@ export class EffectsDetailsComponent extends ItemModelDetailsComponent {
 
         { this.renderDescriptionElement() }
 
+        { this.renderStatModifiersElement() }
+
         { this.renderFlavorTextElement() }
       </Fragment>
     )
@@ -201,7 +203,7 @@ export class EffectsDetailsComponent extends ItemModelDetailsComponent {
 /**
  * collapsible details of an effect
  */
-export class EffectsCollapsiblecomponent extends PureComponent {
+export class EffectsCollapsibleComponent extends PureComponent {
   static defaultProps = {
     /** @type {ItemModel} */
     model: [],
@@ -220,7 +222,7 @@ export class EffectsCollapsiblecomponent extends PureComponent {
         transitionTime={200}
         transitionCloseTime={200}
       >
-        <EffectsExtendBasicDetailsComponent
+        <EffectsEmbeddedComponent
           baseClassName='pad-2 flex-col'
           className='bg-white'
           model={model}
@@ -232,34 +234,16 @@ export class EffectsCollapsiblecomponent extends PureComponent {
 /**
  * more details of an embedded effect
  */
-export class EffectsExtendBasicDetailsComponent extends ItemModelDetailsComponent {
+export class EffectsEmbeddedComponent extends ItemModelDetailsComponent {
   /** @override */
   renderBody() {
     return (
       <Fragment>
-        { this.renderStatModifiesElement() }
-
         { this.renderDescriptionElement() }
+
+        { this.renderStatModifiersElement() }
       </Fragment>
     )
   }
-  /**
-   * @returns {React.Element}
-   */
-  renderStatModifiesElement() {
-    const { model } = this.props;
-    const modifies = model.get('modifies');
 
-    if (!modifies) {
-      return null;
-    }
-
-    const targetName = modifies.targetTypeId;
-
-    return (
-      <div className='flex-row sibling-mar-t-2'>
-        {`${targetName} ${modifies.value}`}
-      </div>
-    )
-  }
 }

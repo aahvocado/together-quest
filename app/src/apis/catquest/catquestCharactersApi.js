@@ -10,35 +10,30 @@ import * as catquestEffectsApi from 'apis/catquest/catquestEffectsApi';
 export function strengthStat(options = {}) {
   return new StatModel(Object.assign({
     typeId: STAT_TYPE_ID.STRENGTH,
-    name: 'strength',
     description: 'Represents your physical prowess.',
   }, options));
 }
 export function agilityStat(options = {}) {
   return new StatModel(Object.assign({
     typeId: STAT_TYPE_ID.AGILITY,
-    name: 'agility',
     description: 'Represents how quick you are able to move and reaction time.',
   }, options));
 }
 export function wisdomStat(options = {}) {
   return new StatModel(Object.assign({
     typeId: STAT_TYPE_ID.WISDOM,
-    name: 'wisdom',
     description: 'Represents your understanding of things and perception of surroundings.',
   }, options));
 }
 export function charismaStat(options = {}) {
   return new StatModel(Object.assign({
     typeId: STAT_TYPE_ID.CHARISMA,
-    name: 'charisma',
     description: 'Represents your social status and how well others react to the things you say.',
   }, options));
 }
 export function magicStat(options = {}) {
   return new StatModel(Object.assign({
     typeId: STAT_TYPE_ID.MAGIC,
-    name: 'magic',
     description: 'Represents your proficiency in using magic and magical artifacts.',
   }, options));
 }
@@ -97,16 +92,12 @@ export const BLINKS = new CharacterModel({
   traits: new Collection({
     models: [
       catquestEffectsApi.magicSensitivity(),
-      catquestEffectsApi.statDecrease({
-        name: 'Bruised',
-      })
+      catquestEffectsApi.debuffWounded(),
     ],
   }),
   honors: new Collection({
     models: [
-      catquestEffectsApi.statIncrease({
-        name: 'Fire Fighting Human Champion',
-      })
+      catquestEffectsApi.championMeerkatHumanArena(),
     ],
   }),
 });

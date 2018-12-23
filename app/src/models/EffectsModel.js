@@ -1,5 +1,6 @@
 import schema from 'js-schema';
 
+import Collection from 'models/Collection';
 import Model from 'models/Model'
 
 const effectSchema = schema({
@@ -15,7 +16,7 @@ const effectSchema = schema({
   '?icon': String,
 
   //
-  '?modifies': Object,
+  '?modifiers': Collection,
 })
 
 export const EFFECT_TYPE_ID = {

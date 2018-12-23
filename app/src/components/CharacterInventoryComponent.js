@@ -8,7 +8,7 @@ import {
 } from 'components';
 
 import { ItemModelDetailsComponent } from 'components/ItemModelDetailsComponent';
-import { EffectsCollapsiblecomponent } from 'components/CharacterEffectsComponent';
+import { EffectsCollapsibleComponent } from 'components/CharacterEffectsComponent';
 
 /**
  * inventory list
@@ -231,7 +231,7 @@ export class InventoryItemDetailsComponent extends ItemModelDetailsComponent {
           }}
         >
           { effects.map((model) => (
-            <EffectsCollapsiblecomponent
+            <EffectsCollapsibleComponent
               key={model.id}
               model={model}
             />
