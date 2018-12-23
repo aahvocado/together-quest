@@ -1,20 +1,21 @@
 import uuid from 'uuid/v4';
 
 /**
- * array of models
+ * wrapper for array of models
  *
  * @typedef {object} Collection
  */
 export class Collection {
-  constructor(config = {}) {
+  /**
+   * @param {array<Model>}
+   */
+  constructor(defaultModels) {
     /** @type {Array<Model>} */
-    this.models = config.models || [];
+    this.models = defaultModels || [];
     /** @type {string} */
     this.id = uuid();
   }
   /**
-   * interprets it as mapping around the list of models
-   *
    * @type {*} args - Array.map params
    * @return {function}
    */

@@ -152,11 +152,9 @@ export function greavesSaintGrebes(options = {}) {
     flavorText: 'Saint Grebes was a doctor that was clumsy and fell over constantly while on land, so he decided to make lakes his home of choice. He offered his services to all animals but so many of them fell into the water when visiting. He decided to get a magical blessing to allow others to float, but the only thing he had on him were these metallic greaves.',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.FEET,
-    effects: new Collection({
-      models: [
-        catquestEffectsApi.debuffLeadFeet(),
-      ]
-    })
+    effects: new Collection([
+      catquestEffectsApi.debuffLeadFeet(),
+    ]),
   }, options));
 }
 // - ACCESSORIES

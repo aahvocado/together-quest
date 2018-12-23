@@ -41,72 +41,61 @@ export const BLINKS = new CharacterModel({
   name: 'Blinks',
   id: 'BLINKS-ID',
   title: 'Not-Naked Human',
-  stats: new Collection({
-    models: [
-      strengthStat({
-        value: 2,
-        modifier: -2,
-      }),
-      agilityStat({
-        value: 4,
-        modifier: -2,
-      }),
-      wisdomStat({
-        value: 5,
-        modifier: -2,
-      }),
-      charismaStat({
-        value: 4,
-        modifier: -2,
-      }),
-      magicStat({
-        value: 1,
-        modifier: -2,
-      }),
-    ],
-  }),
-  equipments: new Collection({
-    models: [
-      catquestItemsApi.bowTwanging(),
-      catquestItemsApi.jacketLeather(),
-      catquestItemsApi.pantsBreakup(),
-      catquestItemsApi.greavesSaintGrebes(),
-      catquestItemsApi.braceletBranches(),
-    ],
-  }),
-  inventory: new Collection({
-    models: [
-      catquestItemsApi.catnipCoins({ quantity: 4 }),
-      catquestItemsApi.doggyDollars({ quantity: 0 }),
-      catquestItemsApi.brokenLeash(),
-      catquestItemsApi.hammer(),
-      catquestItemsApi.fryingPan(),
-      catquestItemsApi.glowDust({ quantity: 1 }),
-      catquestItemsApi.handsaw(),
-      catquestItemsApi.potato({ quantity: 1, modifiers: ['glowing'] }),
-      catquestItemsApi.rustySword(),
-      catquestItemsApi.brokenLeash(),
-      catquestItemsApi.bowTwanging(),
-    ],
-  }),
-  traits: new Collection({
-    models: [
-      catquestEffectsApi.magicSensitivity(),
-      catquestEffectsApi.debuffWounded(),
-    ],
-  }),
-  honors: new Collection({
-    models: [
-      catquestEffectsApi.championMeerkatHumanArena(),
-    ],
-  }),
+  stats: new Collection([
+    strengthStat({
+      value: 2,
+      modifier: -2,
+    }),
+    agilityStat({
+      value: 4,
+      modifier: -2,
+    }),
+    wisdomStat({
+      value: 5,
+      modifier: -2,
+    }),
+    charismaStat({
+      value: 4,
+      modifier: -2,
+    }),
+    magicStat({
+      value: 1,
+      modifier: -2,
+    }),
+  ]),
+  equipments: new Collection([
+    catquestItemsApi.bowTwanging(),
+    catquestItemsApi.jacketLeather(),
+    catquestItemsApi.pantsBreakup(),
+    catquestItemsApi.greavesSaintGrebes(),
+    catquestItemsApi.braceletBranches(),
+  ]),
+  inventory: new Collection([
+    catquestItemsApi.catnipCoins({ quantity: 4 }),
+    catquestItemsApi.doggyDollars({ quantity: 0 }),
+    catquestItemsApi.brokenLeash(),
+    catquestItemsApi.hammer(),
+    catquestItemsApi.fryingPan(),
+    catquestItemsApi.glowDust({ quantity: 1 }),
+    catquestItemsApi.handsaw(),
+    catquestItemsApi.potato({ quantity: 1, modifiers: ['glowing'] }),
+    catquestItemsApi.rustySword(),
+    catquestItemsApi.brokenLeash(),
+    catquestItemsApi.bowTwanging(),
+  ]),
+  traits: new Collection([
+    catquestEffectsApi.magicSensitivity(),
+    catquestEffectsApi.debuffWounded(),
+  ]),
+  honors: new Collection([
+    catquestEffectsApi.championMeerkatHumanArena(),
+  ]),
 });
 export const NOOK = new CharacterModel({
   name: 'Nook',
   id: 'NOOK-ID',
   title: 'Mighty Savannah Cat',
-  stats: new Collection({
-    models: [
+  stats: new Collection([
       new StatModel({
         typeId: STAT_TYPE_ID.STRENGTH,
         name: 'strength',
@@ -137,8 +126,7 @@ export const NOOK = new CharacterModel({
         value: 0,
         modifier: -2,
       }),
-    ],
-  }),
+    ]),
   equipments: [{
     slot: 'hand',
     name: 'Assassin\'s gaunlet',
@@ -185,8 +173,7 @@ export const PEARL = new CharacterModel({
   name: 'Pearl',
   id: 'PEARL-ID',
   title: 'Brave Dachshund Captain',
-  stats: new Collection({
-    models: [
+  stats: new Collection([
       new StatModel({
         typeId: STAT_TYPE_ID.STRENGTH,
         name: 'strength',
@@ -217,8 +204,7 @@ export const PEARL = new CharacterModel({
         value: 1,
         modifier: -2,
       }),
-    ],
-  }),
+    ]),
   equipments: [{
     slot: 'accessory',
     name: 'Mink\'s Grappling Hook',
@@ -264,8 +250,7 @@ export const DOUGLAS = new CharacterModel({
   name: 'Douglas',
   id: 'DOUGLAS-ID',
   title: 'Mysterious Mole',
-  stats: new Collection({
-    models: [
+  stats: new Collection([
       new StatModel({
         typeId: STAT_TYPE_ID.STRENGTH,
         name: 'strength',
@@ -296,8 +281,7 @@ export const DOUGLAS = new CharacterModel({
         value: 0,
         modifier: 0,
       }),
-    ],
-  }),
+    ]),
   equipments: [{
     slot: 'body',
     name: 'Mountainhopper\'s Cursed Armor',
