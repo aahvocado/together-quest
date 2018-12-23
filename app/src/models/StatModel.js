@@ -42,7 +42,6 @@ export class StatModel extends Model {
     this.set(Object.assign({
       icon: STAT_TYPE_ICON[options.typeId],
       value: 0,
-      modifier: 0,
       influence: (value) => (value),
     }, options));
 

@@ -15,6 +15,7 @@ export class Collection {
     /** @type {string} */
     this.id = uuid();
   }
+  // -- EXTEND MODELS WITH ARRAY FUNCTIONS
   /**
    * @type {*} args - Array.find params
    * @return {function}
@@ -35,6 +36,13 @@ export class Collection {
    */
   map(...args) {
     return this.models.map(...args);
+  }
+  /**
+   * @type {*} args - Array.reduce params
+   * @return {function}
+   */
+  reduce(...args) {
+    return this.models.reduce(...args);
   }
   /**
    * @return {number}

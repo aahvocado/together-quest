@@ -51,7 +51,7 @@ export class EffectModel extends Model {
     this.validate();
   }
   /**
-   * gets the name of this stat
+   * gets the modifier that affects the given stat typeId
    *
    * @param {string} typeId - stat type
    * @returns {Object}
@@ -60,6 +60,21 @@ export class EffectModel extends Model {
     return this.get('modifiers').find((modifierModel) => {
       return modifierModel.targetTypeId === typeId;
     })
+  }
+  /**
+   * gets the modifier that affects the given stat typeId
+   *
+   * @param {string} typeId - stat type
+   * @returns {Object}
+   */
+  getModifierValueByType(typeId) {
+    const modifier = this.getModifierByType(typeId);
+
+    if (!modifier) {
+      return null;
+    }
+
+    return modifier.value;
   }
 }
 

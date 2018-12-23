@@ -45,6 +45,12 @@ export class CharacterModel extends Model {
   get statModifiers() {
     return characterStatsHelper.getAllStatModifiers(this);
   }
+  /**
+   *
+   */
+  get modifiedStatValues() {
+    return characterStatsHelper.getModifiedStatValues(this);
+  }
 }
 
 export default CharacterModel;

@@ -4,8 +4,8 @@
  *  if `statTypeIds` is not passed in, it will try to use the ones in the character
  *
  * @param {CharacterModel} characterModel
- * @param {array<string>} [statTypeIds]
- * @returns {Collection}
+ * @param {Array<string>} [statTypeIds]
+ * @returns {Array}
  */
 export function getAllStatModifiers(characterModel, statTypeIds) {
   if (!characterModel.get('equipments').models) {
@@ -13,9 +13,8 @@ export function getAllStatModifiers(characterModel, statTypeIds) {
   }
   const statTypesToSearchFor = statTypeIds || getStatTypesOfCharacter(characterModel);
 
-  let modifiedStats = {}; // to be returned
-
-  // create map to each stat
+  // stat map to be returned
+  let modifiedStats = {};
   statTypesToSearchFor.forEach((statTypeId) => {
     modifiedStats[statTypeId] = [];
   });
@@ -48,6 +47,43 @@ export function getAllStatModifiers(characterModel, statTypeIds) {
 
   // return list
   return modifiedStats;
+}
+/**
+ * gets the value of each stat after modifiers are applied
+ *
+ * @param {CharacterModel} characterModel
+ * @returns {Array}
+ */
+export function getModifiedStatValues(characterModel) {
+  const allModifiers = getAllStatModifiers(characterModel);
+  const typeIds = Object.keys(allModifiers);
+
+  // stat map to be returned
+  let modifiedStats = {};
+  typeIds.forEach((typeId) => {
+    modifiedStats[typeId] = allModifiers[typeId].reduce((accumulator, effectModel) => {
+      return accumulator + effectModel.getModifierValueByType(typeId);
+    }, 0)
+  })
+
+  return modifiedStats;
+}
+/**
+ * calculate value
+ *
+ * @param {StatModel} statModel
+ * @param {Array} modifierCollection
+ * @returns {Number}
+ */
+export function calculateModifiedStatValue(statModel, modifierCollection) {
+  const typeId = statModel.get('typeId');
+  const baseValue = statModel.get('value');
+
+  const combinedModifierValue = modifierCollection.reduce((accumulator, effectModel) => {
+    return accumulator + effectModel.getModifierValueByType(typeId);
+  }, 0)
+
+  return baseValue + combinedModifierValue;
 }
 /**
  * finds all modifiers of given stats

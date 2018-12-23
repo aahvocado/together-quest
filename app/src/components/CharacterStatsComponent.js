@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 import Collapsible from 'react-collapsible';
 
+import * as characterStatsHelper from 'utils/characterStatsHelper';
+
 import {
   Icon,
 } from 'components';
@@ -68,7 +70,10 @@ export class CollapsibleStatComponent extends PureComponent {
         transitionTime={200}
         transitionCloseTime={100}
         trigger={
-          <SimpleStatComponent model={model} />
+          <SimpleStatComponent
+            model={model}
+            modifiers={modifiers}
+          />
         }
       >
         <DetailedStatComponent
@@ -88,6 +93,8 @@ export class SimpleStatComponent extends PureComponent {
     className: '',
     /** @type {StatModel} */
     model: undefined,
+    /** @type {Array} */
+    modifiers: [],
   }
   /** @override */
   render() {
@@ -118,16 +125,20 @@ export class SimpleStatComponent extends PureComponent {
    * @returns {React.Element}
    */
   renderValueElement() {
-    const { model } = this.props;
-    const trueValue = model.get('value');
+    const {
+      model,
+      modifiers,
+    } = this.props;
 
-    if (!trueValue) {
+    const modifiedValue = characterStatsHelper.calculateModifiedStatValue(model, modifiers);
+
+    if (!modifiedValue) {
       return null;
     }
 
     return (
       <div className='fsize-6 flex-grow text-right'>
-        { trueValue }
+        { modifiedValue }
       </div>
     )
   }
@@ -166,27 +177,42 @@ export class DetailedStatComponent extends PureComponent {
 
     const statTypeId = model.get('typeId');
 
-
     return (
       <div className='pad-2 borradius-2 color-white text-stroke'>
-        { this.renderStatLineElement('base value', model.get('value')) }
+        <StatLineComponent
+          label='Base'
+          value={model.get('value')}
+        />
 
         <div
           className='mar-t-1'
         >
-          { modifiers.map((effectModel) => {
-            return this.renderStatLineElement(`from ${effectModel.get('name')}`, effectModel.getModifierByType(statTypeId).value)
+          { modifiers.map((effectModel, idx) => {
+            return (
+              <StatLineComponent
+                key={`${effectModel.get('name')}-stat-line-${idx}-key`}
+                label={effectModel.get('name')}
+                value={effectModel.getModifierValueByType(statTypeId)}
+              />
+            )
           })}
         </div>
       </div>
     );
   }
-  /**
-   * @param {String} label
-   * @param {*} value
-   * @retuns {React.Element}
-   */
-  renderStatLineElement(label, value) {
+}
+
+class StatLineComponent extends PureComponent {
+  static defaultProps = {
+    /** @type {String} */
+    label: '',
+    /** @type {String} */
+    value: '',
+  }
+  /** @override */
+  render() {
+    const { label, value } = this.props;
+
     const displayValue = value < 0 ? value : `+${value}`;
 
     return (
