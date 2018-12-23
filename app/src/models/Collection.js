@@ -21,12 +21,6 @@ export class Collection {
   map(...args) {
     return this.models.map(...args);
   }
-  // /**
-  //  * @return {number}
-  //  */
-  // length() {
-  //   return this.models.length;
-  // }
   /**
    * @return {number}
    */

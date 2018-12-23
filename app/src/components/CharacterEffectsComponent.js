@@ -1,11 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import cn from 'classnames';
 
+import Collapsible from 'react-collapsible';
+
 import {
   // Button,
   Icon,
   ModalComponent,
-  Panel,
 } from 'components';
 
 import { ItemModelDetailsComponent } from 'components/ItemModelDetailsComponent';
@@ -81,6 +82,7 @@ export class EffectsItemComponent extends PureComponent {
         </ModalComponent>
 
         <EffectsBasicComponent
+          className='mar-ver-1'
           model={model}
           onClick={this.toggleDetails}
         />
@@ -101,7 +103,7 @@ export class EffectsItemComponent extends PureComponent {
 export class EffectsBasicComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'pad-1 mar-ver-1 flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer',
+    baseClassName: 'pad-1 flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -180,7 +182,7 @@ export class EffectsBasicComponent extends PureComponent {
   }
 }
 /**
- * more details of an ItemModel
+ * more details of an effect
  */
 export class EffectsDetailsComponent extends ItemModelDetailsComponent {
   /** @override */
@@ -191,13 +193,58 @@ export class EffectsDetailsComponent extends ItemModelDetailsComponent {
     } = this.props;
 
     return (
-      <Panel className={cn('effects-details-component', baseClassName, className)}>
+      <div className={cn('effects-details-component', baseClassName, className)}>
         { this.renderNameElement() }
 
         { this.renderDescriptionElement() }
 
         { this.renderFlavorTextElement() }
-      </Panel>
+      </div>
     );
+  }
+}
+/**
+ * collapsible details of an effect
+ */
+export class EffectsCollapsiblecomponent extends PureComponent {
+  static defaultProps = {
+    /** @type {ItemModel} */
+    model: [],
+  };
+  /** @override */
+  render() {
+    const {
+      model,
+    } = this.props;
+
+    return (
+      <Collapsible
+        className='sibling-mar-t-2'
+        openedClassName='bg-navy borradius-2 sibling-mar-t-2'
+        trigger={<EffectsBasicComponent model={model} />}
+        transitionTime={200}
+        transitionCloseTime={200}
+      >
+        <EffectsExtendBasicDetailsComponent
+          className='bg-white'
+          model={model}
+        />
+      </Collapsible>
+    );
+  }
+}
+/**
+ * more details of an effect
+ */
+export class EffectsExtendBasicDetailsComponent extends ItemModelDetailsComponent {
+  /** @override */
+  renderBody() {
+    return (
+      <Fragment>
+        { this.renderDescriptionElement() }
+
+        { this.renderFlavorTextElement() }
+      </Fragment>
+    )
   }
 }

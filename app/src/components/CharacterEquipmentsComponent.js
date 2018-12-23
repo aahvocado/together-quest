@@ -4,7 +4,6 @@ import cn from 'classnames';
 import {
   // Button,
   ModalComponent,
-  Panel,
 } from 'components';
 
 import { InventoryItemBasicComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
@@ -164,23 +163,10 @@ export class EquipmentItemBasicComponent extends PureComponent {
  * more details of an Equipment
  */
 export class EquipmentItemDetailsComponent extends InventoryItemDetailsComponent {
-  static defaultProps = {
-    /** @type {string} */
-    baseClassName: '',
-    /** @type {string} */
-    className: '',
-    /** @type {EquipmentModel} */
-    model: undefined,
-  };
   /** @override */
-  render() {
-    const {
-      baseClassName,
-      className,
-    } = this.props;
-
+  renderBody() {
     return (
-      <Panel className={cn('equipment-item-details-component', baseClassName, className)}>
+      <Fragment>
         { this.renderNameElement() }
 
         { this.renderDescriptionElement() }
@@ -188,7 +174,7 @@ export class EquipmentItemDetailsComponent extends InventoryItemDetailsComponent
         { this.renderEffectsCollection() }
 
         { this.renderFlavorTextElement() }
-      </Panel>
-    );
+      </Fragment>
+    )
   }
 }

@@ -5,11 +5,10 @@ import {
   // Button,
   Icon,
   ModalComponent,
-  Panel,
 } from 'components';
 
 import { ItemModelDetailsComponent } from 'components/ItemModelDetailsComponent';
-import { EffectsBasicComponent } from 'components/CharacterEffectsComponent';
+import { EffectsCollapsiblecomponent } from 'components/CharacterEffectsComponent';
 
 /**
  * inventory list
@@ -192,14 +191,9 @@ export class InventoryItemBasicComponent extends PureComponent {
  */
 export class InventoryItemDetailsComponent extends ItemModelDetailsComponent {
   /** @override */
-  render() {
-    const {
-      baseClassName,
-      className,
-    } = this.props;
-
+  renderBody() {
     return (
-      <Panel className={cn('inventory-item-details-component', baseClassName, className)}>
+      <Fragment>
         { this.renderNameElement() }
 
         { this.renderQuantityElement() }
@@ -209,8 +203,8 @@ export class InventoryItemDetailsComponent extends ItemModelDetailsComponent {
         { this.renderEffectsCollection() }
 
         { this.renderFlavorTextElement() }
-      </Panel>
-    );
+      </Fragment>
+    )
   }
   /**
    * @returns {React.Element}
@@ -229,15 +223,15 @@ export class InventoryItemDetailsComponent extends ItemModelDetailsComponent {
 
     return (
       <div className='effects-collection borradius-2 sibling-mar-t-2 bg-darknavy pad-1'>
-        <h3 className='fsize-small text-center color-white text-stroke'>Effects</h3>
-        <div>
+        <h3 className='fsize-small text-center color-white text-stroke pad-1'>Effects</h3>
+        <ul className='flex-col'>
           { effects.map((model) => (
-            <EffectsBasicComponent
+            <EffectsCollapsiblecomponent
               key={model.id}
               model={model}
             />
           ))}
-        </div>
+        </ul>
       </div>
     )
   }

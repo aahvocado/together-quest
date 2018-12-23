@@ -1,17 +1,13 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
-import {
-  Panel,
-} from 'components';
-
 /**
  * simple element creator for item details
  */
 export class ItemModelDetailsComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: '',
+    baseClassName: 'pad-4 flex-col',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -25,16 +21,19 @@ export class ItemModelDetailsComponent extends PureComponent {
     } = this.props;
 
     return (
-      <Panel className={cn('inventory-item-details-component', baseClassName, className)}>
-        { this.renderNameElement() }
-
-        { this.renderQuantityElement() }
-
-        { this.renderDescriptionElement() }
-
-        { this.renderFlavorTextElement() }
-      </Panel>
+      <div className={cn('inventory-item-details-component', baseClassName, className)}>
+        { this.renderBody() }
+      </div>
     );
+  }
+  /**
+   * use this to choose the order of rendering the inner components
+   *
+   * @abstract
+   * @returns {React.Element}
+   */
+  renderBody() {
+    return null;
   }
   /**
    * @returns {React.Element}
@@ -88,7 +87,6 @@ export class ItemModelDetailsComponent extends PureComponent {
    */
   renderDescriptionElement() {
     const { model } = this.props;
-
     const description = model.get('description');
 
     if (!description) {
