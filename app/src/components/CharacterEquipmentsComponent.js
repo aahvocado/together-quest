@@ -8,6 +8,7 @@ import {
 } from 'components';
 
 import { InventoryItemBasicComponent, InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
+
 /**
  * equipment list
  */
@@ -182,9 +183,9 @@ export class EquipmentItemDetailsComponent extends InventoryItemDetailsComponent
       <Panel className={cn('equipment-item-details-component', baseClassName, className)}>
         { this.renderNameElement() }
 
-        { this.renderQuantityElement() }
-
         { this.renderDescriptionElement() }
+
+        { this.renderEffectsCollection() }
 
         { this.renderFlavorTextElement() }
       </Panel>

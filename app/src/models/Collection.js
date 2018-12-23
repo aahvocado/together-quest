@@ -16,9 +16,22 @@ export class Collection {
    * interprets it as mapping around the list of models
    *
    * @type {*} args - Array.map params
+   * @return {function}
    */
   map(...args) {
     return this.models.map(...args);
+  }
+  // /**
+  //  * @return {number}
+  //  */
+  // length() {
+  //   return this.models.length;
+  // }
+  /**
+   * @return {number}
+   */
+  get length() {
+    return this.models.length;
   }
 }
 

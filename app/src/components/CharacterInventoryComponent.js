@@ -8,6 +8,9 @@ import {
   Panel,
 } from 'components';
 
+import { ItemModelDetailsComponent } from 'components/ItemModelDetailsComponent';
+import { EffectsBasicComponent } from 'components/CharacterEffectsComponent';
+
 /**
  * inventory list
  */
@@ -187,15 +190,7 @@ export class InventoryItemBasicComponent extends PureComponent {
 /**
  * more details of an ItemModel
  */
-export class InventoryItemDetailsComponent extends PureComponent {
-  static defaultProps = {
-    /** @type {string} */
-    baseClassName: '',
-    /** @type {string} */
-    className: '',
-    /** @type {ItemModel} */
-    model: undefined,
-  }
+export class InventoryItemDetailsComponent extends ItemModelDetailsComponent {
   /** @override */
   render() {
     const {
@@ -211,6 +206,8 @@ export class InventoryItemDetailsComponent extends PureComponent {
 
         { this.renderDescriptionElement() }
 
+        { this.renderEffectsCollection() }
+
         { this.renderFlavorTextElement() }
       </Panel>
     );
@@ -218,84 +215,30 @@ export class InventoryItemDetailsComponent extends PureComponent {
   /**
    * @returns {React.Element}
    */
-  renderNameElement() {
+  renderEffectsCollection() {
     const { model } = this.props;
+    const effects = model.get('effects');
 
-    const name = model.get('name');
+    if (!effects) {
+      return null;
+    }
 
-    if (!name) {
+    if (effects.length <= 0) {
       return null;
     }
 
     return (
-      <h2 className='bor-b-1 borcolor-litegray pad-b-2 sibling-mar-t-2 flex-grow'>{ name }</h2>
-    )
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderQuantityElement() {
-    const { model } = this.props;
-
-    const {
-      isStackable,
-      quantity,
-    } = model.attributes;
-
-    if (!isStackable) {
-      return null;
-    }
-
-    if (quantity <= 0) {
-      return (
-        <div className='sibling-mar-t-2'>There are none in your possession.</div>
-      )
-    }
-
-    if (quantity === 1) {
-      return (
-        <div className='sibling-mar-t-2'>You possess 1 of this item.</div>
-      )
-    }
-
-    return (
-      <div className='sibling-mar-t-2'>{`You possess ${quantity} of this item.`}</div>
-    )
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderDescriptionElement() {
-    const { model } = this.props;
-
-    const description = model.get('description');
-
-    if (!description) {
-      return null;
-    }
-
-    return (
-      <p className='sibling-mar-t-2'>{ description }</p>
-    )
-  }
-  /**
-   * @returns {React.Element}
-   */
-  renderFlavorTextElement() {
-    const { model } = this.props;
-
-    const flavorText = model.get('flavorText');
-
-    if (!flavorText) {
-      return null;
-    }
-
-    if (flavorText.length <= 0) {
-      return null;
-    }
-
-    return (
-      <i className='sibling-mar-t-2 color-darkgray f-italic f-thin'>{ flavorText }</i>
+      <div className='effects-collection borradius-2 sibling-mar-t-2 bg-darknavy pad-1'>
+        <h3 className='fsize-small text-center color-white text-stroke'>Effects</h3>
+        <div>
+          { effects.map((model) => (
+            <EffectsBasicComponent
+              key={model.id}
+              model={model}
+            />
+          ))}
+        </div>
+      </div>
     )
   }
 }

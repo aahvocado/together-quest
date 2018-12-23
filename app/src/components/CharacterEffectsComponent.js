@@ -7,7 +7,8 @@ import {
   ModalComponent,
   Panel,
 } from 'components';
-import { InventoryItemDetailsComponent } from 'components/CharacterInventoryComponent';
+
+import { ItemModelDetailsComponent } from 'components/ItemModelDetailsComponent';
 
 /**
  * inventory list
@@ -100,7 +101,7 @@ export class EffectsItemComponent extends PureComponent {
 export class EffectsBasicComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'pad-1 mar-1 flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer',
+    baseClassName: 'pad-1 mar-ver-1 flex-centered borradius-2 flex-col position-relative bg-navy cursor-pointer',
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
@@ -181,15 +182,7 @@ export class EffectsBasicComponent extends PureComponent {
 /**
  * more details of an ItemModel
  */
-export class EffectsDetailsComponent extends InventoryItemDetailsComponent {
-  static defaultProps = {
-    /** @type {string} */
-    baseClassName: '',
-    /** @type {string} */
-    className: '',
-    /** @type {ItemModel} */
-    model: undefined,
-  }
+export class EffectsDetailsComponent extends ItemModelDetailsComponent {
   /** @override */
   render() {
     const {
