@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
+import * as catquestLanguageHelper from 'apis/catquest/catquestLanguageHelper';
+
 import Collapsible from 'react-collapsible';
 
 import {
@@ -90,10 +92,12 @@ export class SimpleStatComponent extends PureComponent {
 
     const {
       icon,
-      name,
       modifier,
+      typeId,
       value,
     } = attributes;
+
+    const statName = catquestLanguageHelper.getStatName(typeId);
 
     const displayValue = Math.max(value + modifier, 0);
 
@@ -105,7 +109,7 @@ export class SimpleStatComponent extends PureComponent {
         </div>
 
         <div className='flex-centered flex-row flex-grow borcolor-litegray bor-l-1 pad-l-1 mar-l-1'>
-          <div className='flex-grow'>{name}</div>
+          <div className='flex-grow'>{statName}</div>
           <Icon className='flex-none fsize-4' name={icon} />
         </div>
       </div>

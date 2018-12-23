@@ -5,8 +5,6 @@ import Model from 'models/Model'
 export const statSchema = schema({
   // type
   typeId: String,
-  // name of stat
-  name: String,
   // description
   '?description': String,
   // name of icon
@@ -42,14 +40,11 @@ export class StatModel extends Model {
     this.schema = statSchema;
 
     this.set(Object.assign({
+      icon: STAT_TYPE_ICON[options.typeId],
       value: 0,
       modifier: 0,
       influence: (value) => (value),
     }, options));
-
-    this.set({
-      icon: this.attributes.icon || STAT_TYPE_ICON[this.attributes.typeId],
-    })
 
     this.validate();
   }

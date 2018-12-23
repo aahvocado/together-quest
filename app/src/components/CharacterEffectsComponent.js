@@ -237,8 +237,29 @@ export class EffectsExtendBasicDetailsComponent extends ItemModelDetailsComponen
   renderBody() {
     return (
       <Fragment>
+        { this.renderStatModifiesElement() }
+
         { this.renderDescriptionElement() }
       </Fragment>
+    )
+  }
+  /**
+   * @returns {React.Element}
+   */
+  renderStatModifiesElement() {
+    const { model } = this.props;
+    const modifies = model.get('modifies');
+
+    if (!modifies) {
+      return null;
+    }
+
+    const targetName = modifies.targetTypeId;
+
+    return (
+      <div className='flex-row sibling-mar-t-2'>
+        {`${targetName} ${modifies.value}`}
+      </div>
     )
   }
 }

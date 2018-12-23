@@ -1,3 +1,4 @@
+import { STAT_TYPE_ID } from 'models/StatModel';
 import EffectsModel, { EFFECT_TYPE_ID } from 'models/EffectsModel';
 
 /**
@@ -29,6 +30,10 @@ export function debuffLeadFeet(options = {}) {
     name: 'Lead Feet',
     typeId: EFFECT_TYPE_ID.SPECIAL,
     description: 'Your feet are so heavy.',
+    modifies: {
+      targetTypeId: STAT_TYPE_ID.AGILITY,
+      value: -1,
+    }
   }, options));
 }
 // - COMPLETELY UNIQUE
