@@ -77,7 +77,7 @@ export class CollapsibleStatComponent extends PureComponent {
 export class SimpleStatComponent extends PureComponent {
   static defaultProps = {
     /** @type {string} */
-    baseClassName: 'flex-row bg-white borradius-1 pad-2 align-center bor-1 borcolor-litegray',
+    baseClassName: 'position-relative grid-cols-2 flex-row align-center bg-white borradius-1 pad-2 bor-1 borcolor-litegray',
     /** @type {string} */
     className: '',
     /** @type {StatModel} */
@@ -92,45 +92,59 @@ export class SimpleStatComponent extends PureComponent {
     } = this.props;
 
     const {
-      icon,
-      modifier,
       typeId,
-      value,
     } = model.attributes;
 
     const statName = catquestLanguageHelper.getStatName(typeId);
 
-    const displayValue = Math.max(value + modifier, 0);
-
     return (
-      <div className={cn('stat-component', baseClassName, className)}>
-        <div className='flex-row'>
-          <div className='fsize-6'>{displayValue}</div>
-          { this.renderModifiedIcon() }
-        </div>
+      <div
+        className={cn('stat-component', baseClassName, className)}
+      >
+        { this.renderStatIcon() }
 
-        <div className='flex-centered flex-row flex-grow borcolor-litegray bor-l-1 pad-l-1 mar-l-1'>
-          <div className='flex-grow'>{statName}</div>
-          <Icon className='flex-none fsize-4' name={icon} />
-        </div>
+        { this.renderValueElement() }
+
+        <div className='mar-l-2'>{ statName }</div>
+
       </div>
     );
   }
   /**
-   * icon that shows which direction stat was modified by
+   * value
    *
-   * @returns {React.Element | null}
+   * @returns {React.Element}
    */
-  renderModifiedIcon() {
-    // const { statModifiers } = this.props;
+  renderValueElement() {
+    const { model } = this.props;
+    const trueValue = model.get('value');
 
-    return null;
+    if (!trueValue) {
+      return null;
+    }
 
-    // // less than zero is down, greater than zero is up
-    // const modIcon = modifier < 0 ? 'fa-arrow-down' : 'fa-arrow-up';
-    // return (
-    //   <Icon name={modIcon} />
-    // )
+    return (
+      <div className='fsize-6 flex-grow text-right'>
+        { trueValue }
+      </div>
+    )
+  }
+  /**
+   * stat icon
+   *
+   * @returns {React.Element}
+   */
+  renderStatIcon() {
+    const { model } = this.props;
+    const icon = model.get('icon');
+
+    if (!icon) {
+      return null;
+    }
+
+    return (
+      <Icon className='position-absolute pos-l-0 opacity-2 mar-l-2 fsize-4' name={icon} />
+    )
   }
 }
 
@@ -152,14 +166,14 @@ export class DetailedStatComponent extends PureComponent {
 
     return (
       <div className='pad-2 borradius-2 color-white text-stroke'>
-        <div className='flex-row align-center'>
-          <div>Current Value</div>
-          <div className='fsize-4 mar-l-1'>{value}</div>
+        <div className='grid-cols-2 flex-row align-center'>
+          <div className='fsize-4 mar-l-1 text-right'>{value}</div>
+          <div className='mar-l-2'>Base Value</div>
         </div>
 
-        <div className='flex-row align-center'>
-          <div>Modifier</div>
-          <div className='fsize-4 mar-l-1'>{modifier}</div>
+        <div className='grid-cols-2 flex-row align-center'>
+          <div className='fsize-4 mar-l-1 text-right'>{modifier}</div>
+          <div className='mar-l-2'>Modifier</div>
         </div>
       </div>
     );
