@@ -28,6 +28,7 @@ export const ITEM_TYPE_ID = {
   CURRENCY: 'CURRENCY-ITEM-ID',
   EQUIPMENT: 'EQUIPMENT-ITEM-ID',
   FOOD: 'FOOD-ITEM-ID',
+  KEY: 'KEY-ITEM-ID',
   TOOL: 'TOOL-ITEM-ID',
   WEAPON: 'WEAPON-ITEM-ID',
 }
@@ -37,6 +38,7 @@ const ITEM_TYPE_ICON = {
   [ITEM_TYPE_ID.CURRENCY]: 'fa-money-bill',
   [ITEM_TYPE_ID.EQUIPMENT]: 'ra-plain-dagger',
   [ITEM_TYPE_ID.FOOD]: 'ra-meat',
+  [ITEM_TYPE_ID.KEY]: 'ra-key',
   [ITEM_TYPE_ID.TOOL]: 'ra-hammer',
   [ITEM_TYPE_ID.WEAPON]: 'ra-plain-dagger',
 }

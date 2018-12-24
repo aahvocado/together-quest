@@ -46,10 +46,10 @@ const ConnectedCharactersPage = connect((state) => ({
               <Loader active={!hasCharacters} />
 
               <div className='flex-row flex-none'>
-                { characters.map((char, idx) => (
+                { characters.map((characterModel, idx) => (
                   <CharacterButton
                     key={`char-list-item#${idx}-key`}
-                    {...char}
+                    model={characterModel}
                   />
                 ))}
               </div>

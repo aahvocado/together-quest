@@ -7,6 +7,8 @@ import {
 
 export class CharacterButtonComponent extends PureComponent {
   static defaultProps = {
+    /** @type {CharacterModel} */
+    model: undefined,
     /** @type {Function} */
     onClick: () => {},
   };
@@ -18,10 +20,10 @@ export class CharacterButtonComponent extends PureComponent {
   }
   /** @default */
   render() {
-    const {
-      name,
-      id,
-    } = this.props;
+    const { model } = this.props;
+
+    const id = model.id;
+    const name = model.get('name');
 
     return (
       <Link

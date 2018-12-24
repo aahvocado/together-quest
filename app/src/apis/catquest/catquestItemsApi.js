@@ -83,6 +83,24 @@ export function potato(options = {}) {
     flavorText: 'A staple for boars, rats, and mice who have developed a smorgasbord of dishes and preparation styles.',
   }, options));
 }
+export function alcoholWhiskey(options = {}) {
+  return new ItemModel(Object.assign({
+    name: 'Bottle of Whiskey',
+    isStackable: true,
+    typeId: ITEM_TYPE_ID.FOOD,
+    description: 'I bet if you drink it, you\'ll be more charismatic',
+    flavorText: 'Rats have their own brand - Rat Whiskey!',
+  }, options));
+}
+export function lockpick(options = {}) {
+  return new ItemModel(Object.assign({
+    name: 'lockpick',
+    isStackable: true,
+    typeId: ITEM_TYPE_ID.CONSUMABLE,
+    description: 'A simple tool that can help open simple locks.',
+    flavorText: 'Deep in the Black Forest there are classes that teach lockpicking as a novelty because they have very few locks.',
+  }, options));
+}
 // - HEAD
 export function helmetZinc(options = {}) {
   return new EquipmentModel(Object.assign({
@@ -108,13 +126,71 @@ export function jacketLeather(options = {}) {
   }, options));
 }
 // - HANDS
-export function rustySword(options = {}) {
+export function swordRusty(options = {}) {
   return new EquipmentModel(Object.assign({
     name: 'rusty sword',
     isStackable: false,
     typeId: ITEM_TYPE_ID.WEAPON,
     description: 'A sword that has been used too much or exposed to the salty ocean water too long.',
     flavorText: 'Any blacksmith would be embarassed.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function swordBurning(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Burning Blade',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'This sword has a hilt that holds oil and has a switch, when pressed, ignites and covers the blade in fire.',
+    flavorText: 'This sword is famous for burning down an entire fur store!',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function daggerKris(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Kris',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'A dagger meant for slicing.',
+    flavorText: 'Used by edgy birds when they refuse to be straightedge.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function daggerBackup(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Backup Dagger',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'A dagger meant to be wielded quickly as a surprise.',
+    flavorText: 'A popular weapon for bears as they are typically working with tools and sometimes need to defend themselves from thieves in a pinch.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function rapierNooks(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Nook\'s Rapier',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'A specialized rapier used by Nook to maximize her agility and grace.',
+    flavorText: 'She has the skill, but is still taking classes so she can one day enter a tournament and take down all her rivals.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+    effects: new Collection([
+      catquestEffectsApi.increaseAgility({ value: 1 }),
+    ]),
+  }, options));
+}
+export function gauntletAssassins(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Assassin\'s Gauntlet',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'A gauntlet that conceals a hidden shiv.',
+    flavorText: 'There is a creed among those who use it - "When your claws can\'t do the job - use a sharper knife."',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
   }, options));
@@ -165,6 +241,18 @@ export function braceletBranches(options = {}) {
     typeId: ITEM_TYPE_ID.EQUIPMENT,
     description: 'Gives you the ability to manipulate small to medium length branches, vines, and roots.',
     flavorText: 'My favorite is to make vines do a wiggle dance.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
+  }, options));
+}
+// - KEY ITEM
+export function fragmentCrystal(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Crystal Fragment',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.KEY,
+    description: 'A small crystalline fragment that is mostly transparent. Found in a volcano on Meermont Clounge.',
+    flavorText: 'The crystal itself is not extremely valuable but the shape seems to have been uniquely formed into a diamond shape.',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
   }, options));

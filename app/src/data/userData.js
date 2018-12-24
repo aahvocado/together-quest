@@ -1,6 +1,11 @@
 // import { combineReducers } from 'redux';
 import uuid from 'uuid/v4';
-import {BLINKS} from 'apis/catquest/catquestCharactersApi';
+import {
+  BLINKS,
+  NOOK,
+  PEARL,
+  DOUGLAS,
+} from 'apis/catquest/catquestCharactersApi';
 
 const userSchema = {
   user: {
@@ -10,7 +15,7 @@ const userSchema = {
     email: undefined,
     password: null, // how to do this?
     campaigns: [],
-    characters: [BLINKS],
+    characters: [BLINKS, NOOK, PEARL, DOUGLAS],
     // modules: [],
   },
   permissions: [],

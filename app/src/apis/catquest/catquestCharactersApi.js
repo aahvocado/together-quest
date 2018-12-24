@@ -42,26 +42,11 @@ export const BLINKS = new CharacterModel({
   id: 'BLINKS-ID',
   title: 'Not-Naked Human',
   stats: new Collection([
-    strengthStat({
-      value: 2,
-      modifier: -2,
-    }),
-    agilityStat({
-      value: 4,
-      modifier: -2,
-    }),
-    wisdomStat({
-      value: 5,
-      modifier: -2,
-    }),
-    charismaStat({
-      value: 4,
-      modifier: -2,
-    }),
-    magicStat({
-      value: 1,
-      modifier: -2,
-    }),
+    strengthStat({ value: 2 }),
+    agilityStat({ value: 4 }),
+    wisdomStat({ value: 5 }),
+    charismaStat({ value: 4 }),
+    magicStat({ value: 1 }),
   ]),
   equipments: new Collection([
     catquestItemsApi.bowTwanging(),
@@ -79,8 +64,7 @@ export const BLINKS = new CharacterModel({
     catquestItemsApi.glowDust({ quantity: 1 }),
     catquestItemsApi.handsaw(),
     catquestItemsApi.potato({ quantity: 1, modifiers: ['glowing'] }),
-    catquestItemsApi.rustySword(),
-    catquestItemsApi.brokenLeash(),
+    catquestItemsApi.swordRusty(),
     catquestItemsApi.bowTwanging(),
   ]),
   traits: new Collection([
@@ -96,78 +80,34 @@ export const NOOK = new CharacterModel({
   id: 'NOOK-ID',
   title: 'Mighty Savannah Cat',
   stats: new Collection([
-      new StatModel({
-        typeId: STAT_TYPE_ID.STRENGTH,
-        name: 'strength',
-        value: 7,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.AGILITY,
-        name: 'agility',
-        value: 5,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.WISDOM,
-        name: 'wisdom',
-        value: 3,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.CHARISMA,
-        name: 'charisma',
-        value: 1,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.MAGIC,
-        name: 'magic',
-        value: 0,
-        modifier: -2,
-      }),
-    ]),
-  equipments: [{
-    slot: 'hand',
-    name: 'Assassin\'s gaunlet',
-    statMods: {},
-    description: "",
-  }, {
-    slot: 'hand',
-    name: 'Burning Blade (out of fluid)',
-    statMods: {strength: 1},
-    description: "Your personal rapier!",
-  }, {
-    slot: 'body',
-    name: 'Leather Jacket',
-    statMods: {},
-    description: "Cooler than Blink's",
-  }],
-  stuff: [
-    '78 catnip coins',
-    '10 doggy dollars',
-    'the Red fragment',
-    'backup dagger',
-    'kris',
-    'whiskey bottle with water',
-    'Nook\'s Rapier',
-    'lockpicking kit'
-  ],
-  traits: [
-    'Tall',
-    'Intimidating',
-    'Crippled'
-  ],
-  honors: [
-    'Flaming Cat Champion'
-  ],
-  statMods: {
-    strength: 1,
-    agility: -2,
-    wisdom: 0,
-    charisma: 0,
-    magic: 0,
-  }
+    strengthStat({ value: 7 }),
+    agilityStat({ value: 5 }),
+    wisdomStat({ value: 3 }),
+    charismaStat({ value: 1 }),
+    magicStat({ value: 0 }),
+  ]),
+  equipments: new Collection([
+    catquestItemsApi.jacketLeather({ description: 'Cooler than Blinks\'' }),
+    catquestItemsApi.swordBurning(),
+    catquestItemsApi.gauntletAssassins(),
+  ]),
+  inventory: new Collection([
+    catquestItemsApi.catnipCoins({ quantity: 78 }),
+    catquestItemsApi.doggyDollars({ quantity: 10 }),
+    catquestItemsApi.fragmentCrystal({ name: 'Red Fragment' }),
+    catquestItemsApi.rapierNooks(),
+    catquestItemsApi.daggerKris(),
+    catquestItemsApi.daggerBackup(),
+    catquestItemsApi.alcoholWhiskey(),
+    catquestItemsApi.lockpick(),
+  ]),
+  traits: new Collection([
+    catquestEffectsApi.traitIntimidating(),
+    catquestEffectsApi.debuffWounded(),
+  ]),
+  honors: new Collection([
+    catquestEffectsApi.championMeerkatMainArena(),
+  ]),
 });
 export const PEARL = new CharacterModel({
   name: 'Pearl',

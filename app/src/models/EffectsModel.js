@@ -46,6 +46,7 @@ export class EffectModel extends Model {
 
     this.set(Object.assign({
       icon: EFFECT_TYPE_ICON[defaultAttributes.typeId],
+      modifiers: new Collection(),
     }, defaultAttributes));
 
     this.validate();

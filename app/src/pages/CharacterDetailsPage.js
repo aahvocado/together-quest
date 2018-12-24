@@ -7,8 +7,6 @@ import { isLoggedIn } from 'utils/sessionUtils';
 
 import CharacterComponent from 'components/CharacterComponent';
 
-import { BLINKS } from 'apis/catquest/catquestCharactersApi';
-
 /**
  *
  */
@@ -32,8 +30,7 @@ const ConnectedCharacterDetailsPage = connect((state) => ({
     };
     /** @default */
     render() {
-      // const { characterModel } = this.state;
-      const characterModel = BLINKS;
+      const { characterModel } = this.state;
 
       // go back to homepage if not logged in or if character is not found
       if (!isLoggedIn() || _.isUndefined(characterModel)) {
