@@ -170,9 +170,7 @@ export class ModifiersDetailsComponent extends PureComponent {
       return null;
     }
 
-    const targetTypeId = model.get('targetTypeId');
     const value = model.get('value');
-
     const displayValue = value < 0 ? value : `+${value}`;
 
     return (

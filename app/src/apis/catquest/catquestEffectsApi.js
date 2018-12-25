@@ -82,6 +82,23 @@ export function traitIntimidating(options = {}) {
     description: 'Other people are more nervous and wary of you.',
   }, options));
 }
+export function legPegged(options = {}) {
+  return new EffectsModel(Object.assign({
+    name: 'Peg-Legged',
+    typeId: EFFECT_TYPE_ID.SPECIAL,
+    description: 'One of your legs is made of wood.',
+    modifiers: new Collection([
+      modifierAgility({ value: -1 }),
+    ]),
+  }, options));
+}
+export function barkAndBite(options = {}) {
+  return new EffectsModel(Object.assign({
+    name: 'Bark and Bite',
+    typeId: EFFECT_TYPE_ID.SPECIAL,
+    description: 'You have a terrifying bark and bite. Quite scary, honestly.',
+  }, options));
+}
 // - COMPLETELY UNIQUE
 export function magicSensitivity(options = {}) {
   return new EffectsModel(Object.assign({
@@ -128,6 +145,17 @@ export function glowing(options = {}) {
       modifierWisdom({ value: 1 }),
       modifierCharisma({ value: 1 }),
       modifierMagic({ value: 1 }),
+    ]),
+  }, options));
+}
+export function catArmyInsignia(options = {}) {
+  return new EffectsModel(Object.assign({
+    name: 'Esteemed Member of the Cat Army',
+    typeId: EFFECT_TYPE_ID.SPECIAL,
+    description: 'You are a highly respected member of the Cat Army.',
+    flavorText: 'This is rarely handed out, as the Cat Army is already selective about the members that they surround themselves with.',
+    modifiers: new Collection([
+      modifierCharisma({ value: 1 }),
     ]),
   }, options));
 }

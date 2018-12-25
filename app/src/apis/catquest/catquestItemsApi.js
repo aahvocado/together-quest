@@ -170,6 +170,28 @@ export function daggerBackup(options = {}) {
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
   }, options));
 }
+export function daggerDogCutting(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Dog Cutting Dagger',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'Terrifies and slices dogs with exceptional acuity.',
+    flavorText: 'If only the Dog Nation could find the cruel cat ',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function knifeSharper(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Sharper Knife',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'This knife is made to always be sharper than your other knives!',
+    flavorText: 'No one knows why it was made. Blacksmiths joke that it was created and blessed by a humans with no sharp claws.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
 export function rapierNooks(options = {}) {
   return new EquipmentModel(Object.assign({
     name: 'Nook\'s Rapier',
@@ -206,6 +228,17 @@ export function bowTwanging(options = {}) {
     typeId: ITEM_TYPE_ID.WEAPON,
     description: 'Ranged. A powerful bow whose unique craftsmanship resulted in being able to play music on it.',
     flavorText: 'Twingy twangy, jingly jangly~',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function fistBoneKnuckles(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Bone Knuckles',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'Good for tactical punches.',
+    flavorText: 'They are made of pig hocks and it looks more intimidating than it is effective.',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
   }, options));
@@ -249,6 +282,28 @@ export function braceletBranches(options = {}) {
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
   }, options));
 }
+export function locketTreats(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Locket of Treats',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.EQUIPMENT,
+    description: 'You can open once a day to get a new candied treat!',
+    flavorText: 'Created by Witch Candida, a well liked stork who spent her time creating gifts for children abandoned birds.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
+  }, options));
+}
+export function grapplingHook(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Mink\'s Grappling Hook',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.EQUIPMENT,
+    description: 'You can open once a day to get a new candied treat!',
+    flavorText: 'Created by Witch Candida, a well liked stork who spent her time creating gifts for children abandoned birds.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
+  }, options));
+}
 // - KEY ITEM
 export function fragmentCrystal(options = {}) {
   return new EquipmentModel(Object.assign({
@@ -257,6 +312,17 @@ export function fragmentCrystal(options = {}) {
     typeId: ITEM_TYPE_ID.KEY,
     description: 'A small crystalline fragment that is mostly transparent. Found in a volcano on Meermont Clounge.',
     flavorText: 'The crystal itself is not extremely valuable but the shape seems to have been uniquely formed into a diamond shape.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
+  }, options));
+}
+export function gemWater(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Water Gem',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.KEY,
+    description: 'It\'s been protecting you from the dangers of the sea. Can also numb pain when squeezed with hope.',
+    flavorText: 'This mysterious gem was gotten from a volcano in Meermont Clounge.',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
   }, options));

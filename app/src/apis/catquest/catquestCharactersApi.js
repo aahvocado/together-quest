@@ -114,77 +114,33 @@ export const PEARL = new CharacterModel({
   id: 'PEARL-ID',
   title: 'Brave Dachshund Captain',
   stats: new Collection([
-      new StatModel({
-        typeId: STAT_TYPE_ID.STRENGTH,
-        name: 'strength',
-        value: 4,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.AGILITY,
-        name: 'agility',
-        value: 0,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.WISDOM,
-        name: 'wisdom',
-        value: 5,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.CHARISMA,
-        name: 'charisma',
-        value: 6,
-        modifier: -2,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.MAGIC,
-        name: 'magic',
-        value: 1,
-        modifier: -2,
-      }),
-    ]),
-  equipments: [{
-    slot: 'accessory',
-    name: 'Mink\'s Grappling Hook',
-    statMods: {},
-    description: '',
-  }, {
-    slot: 'neck',
-    name: 'Locket of Treats',
-    statMods: {},
-    description: 'Once per day, make a random candy treat!',
-  }, {
-    slot: 'hand',
-    name: 'Sharper Knife',
-    statMods: {},
-    description: 'It will be sharper than the one in your other hand',
-  }],
-  stuff: [
-    '32 catnip coins',
-    '5 doggy dollars',
-    'the Water Gem',
-    'kris',
-    'dog cutting dagger',
-    'bone knuckles',
-  ],
-  traits: [
-    'Peg-Legged',
-    'Bark',
-    'Bite',
-    'Wounded',
-  ],
-  honors: [
-    'Esteemed Member of the Cat Army',
-  ],
-  statMods: {
-    strength: -1,
-    agility: 0,
-    wisdom: 0,
-    charisma: 1,
-    magic: 0,
-  }
+    strengthStat({ value: 4 }),
+    agilityStat({ value: 0 }),
+    wisdomStat({ value: 5 }),
+    charismaStat({ value: 6 }),
+    magicStat({ value: 1 }),
+  ]),
+  equipments: new Collection([
+    catquestItemsApi.grapplingHook(),
+    catquestItemsApi.locketTreats(),
+  ]),
+  inventory: new Collection([
+    catquestItemsApi.catnipCoins({ quantity: 32 }),
+    catquestItemsApi.doggyDollars({ quantity: 5 }),
+    catquestItemsApi.gemWater(),
+    catquestItemsApi.daggerKris(),
+    catquestItemsApi.fistBoneKnuckles(),
+    catquestItemsApi.knifeSharper(),
+    catquestItemsApi.daggerDogCutting(),
+  ]),
+  traits: new Collection([
+    catquestEffectsApi.legPegged(),
+    catquestEffectsApi.barkAndBite(),
+    catquestEffectsApi.debuffWounded(),
+  ]),
+  honors: new Collection([
+    catquestEffectsApi.catArmyInsignia(),
+  ]),
 });
 export const DOUGLAS = new CharacterModel({
   name: 'Douglas',
