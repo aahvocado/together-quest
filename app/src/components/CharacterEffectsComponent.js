@@ -107,7 +107,7 @@ export class EffectsBasicComponent extends PureComponent {
     /** @type {string} */
     className: '',
     /** @type {ItemModel} */
-    model: [],
+    model: undefined,
     /** @type {function} */
     onClick: () => {},
   };
@@ -245,5 +245,4 @@ export class EffectsEmbeddedComponent extends ItemModelDetailsComponent {
       </Fragment>
     )
   }
-
 }

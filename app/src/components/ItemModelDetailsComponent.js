@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
-import * as catquestLanguageHelper from 'apis/catquest/catquestLanguageHelper';
-
 /**
  * simple element creator for item details
  */
@@ -156,7 +154,7 @@ export class ModifiersDetailsComponent extends PureComponent {
     /** @type {string} */
     className: '',
     /** @type {Model} */
-    model: undefined, // currently an object, not a Model
+    model: undefined,
   };
   /**
    * @returns {React.Element}
@@ -172,18 +170,14 @@ export class ModifiersDetailsComponent extends PureComponent {
       return null;
     }
 
-    const {
-      targetTypeId,
-      value,
-    } = model;
-
-    const statName = catquestLanguageHelper.getStatName(targetTypeId);
+    const targetTypeId = model.get('targetTypeId');
+    const value = model.get('value');
 
     const displayValue = value < 0 ? value : `+${value}`;
 
     return (
       <div className={cn('modifiers-detail-component', baseClassName, className)}>
-        {`${statName} ${displayValue}`}
+        {`${model.get('name')} ${displayValue}`}
       </div>
     )
   }

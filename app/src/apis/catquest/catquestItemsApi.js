@@ -180,7 +180,11 @@ export function rapierNooks(options = {}) {
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
     effects: new Collection([
-      catquestEffectsApi.increaseAgility({ value: 1 }),
+      catquestEffectsApi.statIncrease({
+        modifiers: new Collection([
+          catquestEffectsApi.modifierAgility({ value: 1 }),
+        ])
+      })
     ]),
   }, options));
 }

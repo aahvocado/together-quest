@@ -15,8 +15,8 @@ const effectSchema = schema({
   // name of icon (for IconComponent)
   '?icon': String,
 
-  //
-  '?modifiers': Collection,
+  // what things this effect modifies
+  'modifiers': Collection,
 })
 
 export const EFFECT_TYPE_ID = {
@@ -52,6 +52,12 @@ export class EffectModel extends Model {
     this.validate();
   }
   /**
+   *
+   */
+  addModifier(modifierModel) {
+    this.modifiers.push(modifierModel);
+  }
+  /**
    * gets the modifier that affects the given stat typeId
    *
    * @param {string} typeId - stat type
@@ -59,7 +65,7 @@ export class EffectModel extends Model {
    */
   getModifierByType(typeId) {
     return this.get('modifiers').find((modifierModel) => {
-      return modifierModel.targetTypeId === typeId;
+      return modifierModel.get('targetTypeId') === typeId;
     })
   }
   /**
@@ -72,10 +78,10 @@ export class EffectModel extends Model {
     const modifier = this.getModifierByType(typeId);
 
     if (!modifier) {
-      return null;
+      return undefined;
     }
 
-    return modifier.value;
+    return modifier.get('value');
   }
 }
 

@@ -45,6 +45,13 @@ export class Collection {
     return this.models.reduce(...args);
   }
   /**
+   * @type {*} args - Array.push params
+   * @return {function}
+   */
+  push(...args) {
+    return this.models.push(...args);
+  }
+  /**
    * @return {number}
    */
   get length() {
