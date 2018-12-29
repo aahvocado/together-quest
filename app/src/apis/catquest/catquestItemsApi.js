@@ -101,6 +101,30 @@ export function lockpick(options = {}) {
     flavorText: 'Deep in the Black Forest there are classes that teach lockpicking as a novelty because they have very few locks.',
   }, options));
 }
+export function unidentifiedScroll(options = {}) {
+  return new ItemModel(Object.assign({
+    name: 'unidentified scroll',
+    isStackable: true,
+    typeId: ITEM_TYPE_ID.CONSUMABLE,
+    description: 'This scroll has some writing you don\'t quite understand.',
+  }, options));
+}
+export function unidentifiedPotion(options = {}) {
+  return new ItemModel(Object.assign({
+    name: 'unidentified potion',
+    isStackable: true,
+    typeId: ITEM_TYPE_ID.CONSUMABLE,
+    description: 'This scroll has some liquid you can\'t quite identify.',
+  }, options));
+}
+export function pipette(options = {}) {
+  return new ItemModel(Object.assign({
+    name: 'pipette',
+    isStackable: true,
+    typeId: ITEM_TYPE_ID.CONSUMABLE,
+    description: 'I don\'t know what you want this for as it\'s not particularly sharp.',
+  }, options));
+}
 // - HEAD
 export function helmetZinc(options = {}) {
   return new EquipmentModel(Object.assign({
@@ -121,6 +145,28 @@ export function jacketLeather(options = {}) {
     typeId: ITEM_TYPE_ID.EQUIPMENT,
     description: 'Your signature style!',
     flavorText: 'Don\'t worry, it\'s actually faux leather.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.BODY,
+  }, options));
+}
+export function armorMountainhopper(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Cursed Mountainhopper Armor',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.EQUIPMENT,
+    description: 'A heavy armor that imbues with the power to leap up to 30ft. It has diminishing returns the more it is used. Curse awakens during a full moon.',
+    flavorText: '"Let\'s go kill the Trenchers... and rid ourselves of this curse, together."',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.BODY,
+  }, options));
+}
+export function capeSnakeRug(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Snake-Eye Rug',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.EQUIPMENT,
+    description: 'You took a rug and are now wearing it as a cape. Nothing magical here.',
+    flavorText: 'Found in a sparse room in the Temple of Triumph. The single eye depicted seems to give off a sense of calm.',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.BODY,
   }, options));
@@ -243,6 +289,43 @@ export function fistBoneKnuckles(options = {}) {
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
   }, options));
 }
+export function handLantern(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Hand Lantern',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'Provides some good light with some oil.',
+    flavorText: '',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+export function torchMagical(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Magical Torch',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'This torch will never run out on its own. Requires magic to be relit.',
+    flavorText: 'A torch with blue flames imbued by crows who fly through dark and stormy clouds.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+  }, options));
+}
+// - SHIELDS
+export function shieldCrystalline(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Crystalline Shield',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.WEAPON,
+    description: 'Heavy and weighty shield that can reflect magic.',
+    flavorText: '"I made it heavy because I wanted to FEEL something. Magic is kind just this imaginary hand-wavy thing." - Dormin the mole before getting crushed by a boulder trap.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.HANDS,
+    effects: new Collection([
+      catquestEffectsApi.debuffLeadFeet(),
+    ]),
+  }, options));
+}
 // - PANTS
 export function pantsBreakup(options = {}) {
   return new EquipmentModel(Object.assign({
@@ -323,6 +406,17 @@ export function gemWater(options = {}) {
     typeId: ITEM_TYPE_ID.KEY,
     description: 'It\'s been protecting you from the dangers of the sea. Can also numb pain when squeezed with hope.',
     flavorText: 'This mysterious gem was gotten from a volcano in Meermont Clounge.',
+    //
+    slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
+  }, options));
+}
+export function amuletTrencher(options = {}) {
+  return new EquipmentModel(Object.assign({
+    name: 'Trencher Amulet',
+    isStackable: false,
+    typeId: ITEM_TYPE_ID.KEY,
+    description: 'You are a Trencher Mole - a family of engineers.',
+    flavorText: 'They specialize in DE, EE, and ME.',
     //
     slotTypeId: EQUIPMENT_SLOT_TYPE_ID.ACCESSORY,
   }, options));

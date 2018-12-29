@@ -24,7 +24,7 @@ export function statDecrease(options = {}) {
     flavorText: 'Debuffs are the worst. It\'s like your muscles ate pizza and sat on the couch all day.',
   }, options));
 }
-// - STATMODIFIERS
+// - STAT MODIFIERS
 export function modifierStrength(options = {}) {
   return new ModifierModel(Object.assign({
     targetTypeId: STAT_TYPE_ID.STRENGTH,
@@ -97,6 +97,16 @@ export function barkAndBite(options = {}) {
     name: 'Bark and Bite',
     typeId: EFFECT_TYPE_ID.SPECIAL,
     description: 'You have a terrifying bark and bite. Quite scary, honestly.',
+  }, options));
+}
+export function nearSighted(options = {}) {
+  return new EffectsModel(Object.assign({
+    name: 'Near Sighted',
+    typeId: EFFECT_TYPE_ID.SPECIAL,
+    description: 'You no see so well.',
+    modifiers: new Collection([
+      modifierWisdom({ value: -1 }),
+    ]),
   }, options));
 }
 // - COMPLETELY UNIQUE

@@ -147,75 +147,32 @@ export const DOUGLAS = new CharacterModel({
   id: 'DOUGLAS-ID',
   title: 'Mysterious Mole',
   stats: new Collection([
-      new StatModel({
-        typeId: STAT_TYPE_ID.STRENGTH,
-        name: 'strength',
-        value: 6,
-        modifier: 0,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.AGILITY,
-        name: 'agility',
-        value: 2,
-        modifier: 0,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.WISDOM,
-        name: 'wisdom',
-        value: 4,
-        modifier: 0,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.CHARISMA,
-        name: 'charisma',
-        value: 4,
-        modifier: 0,
-      }),
-      new StatModel({
-        typeId: STAT_TYPE_ID.MAGIC,
-        name: 'magic',
-        value: 0,
-        modifier: 0,
-      }),
-    ]),
-  equipments: [{
-    slot: 'body',
-    name: 'Mountainhopper\'s Cursed Armor',
-    statMods: {},
-    description: '',
-  }, {
-    slot: 'back',
-    name: 'Snake-Eye Rug Cape',
-    statMods: {},
-    description: '',
-  }, {
-    slot: 'neck',
-    name: 'Trencher Amulet',
-    statMods: {},
-    description: '',
-  }, {
-    slot: 'hand',
-    name: 'Crystalline Shield',
-    statMods: {},
-    description: '',
-  }, {
-    slot: 'hand',
-    name: 'Magical torch',
-    statMods: {},
-    description: '',
-  }],
-  stuff: [
-    '0 catnip coins',
-    '12 doggy dollars',
-    'lantern (unlit)',
-    '(3 unidentified scrolls)',
-    '(2 unindentified beakers)',
-    'pipette',
-  ],
-  traits: [
-    'Short Sighted',
-  ],
-  honors: [
-    'Fire Fighting Human Champion',
-  ],
+    strengthStat({ value: 6 }),
+    agilityStat({ value: 2 }),
+    wisdomStat({ value: 4 }),
+    charismaStat({ value: 4 }),
+    magicStat({ value: 0 }),
+  ]),
+  equipments: new Collection([
+    catquestItemsApi.amuletTrencher(),
+    catquestItemsApi.capeSnakeRug(),
+    catquestItemsApi.armorMountainhopper(),
+    catquestItemsApi.shieldCrystalline(),
+  ]),
+  inventory: new Collection([
+    catquestItemsApi.catnipCoins({ quantity: 0 }),
+    catquestItemsApi.doggyDollars({ quantity: 12 }),
+    catquestItemsApi.unidentifiedScroll({ quantity: 3 }),
+    catquestItemsApi.unidentifiedPotion({ quantity: 2 }),
+    catquestItemsApi.pipette({ quantity: 1 }),
+    catquestItemsApi.handLantern(),
+    catquestItemsApi.torchMagical(),
+  ]),
+  traits: new Collection([
+    catquestEffectsApi.nearSighted(),
+    catquestEffectsApi.debuffWounded(),
+  ]),
+  honors: new Collection([
+    catquestEffectsApi.championMeerkatHumanArena(),
+  ]),
 });
